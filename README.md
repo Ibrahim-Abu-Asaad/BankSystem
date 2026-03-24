@@ -21,6 +21,7 @@ A C# .NET Windows Forms application featuring a robust 3-layer architecture and 
 2. Ensure you have the `System.Data.SqlClient` NuGet package installed.
 3. Update the connection string in the DAL layer in class called : "clsDataAccessSettings" to match your local SQL Server instance.
 4. Build and Run.
+Note : You Can Not Open It Now, Cause I Still Working On It.
 
 ---
 **Developed by [Ibrahim-Abu-Asaad](https://github.com/Ibrahim-Abu-Asaad)**
