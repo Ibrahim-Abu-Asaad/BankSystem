@@ -1,9 +1,0 @@
-C:\Users\PRO\source\repos\BankSystem\BankSystemDAL\bin\Debug\BankSystemDAL.dll
-C:\Users\PRO\source\repos\BankSystem\BankSystemDAL\bin\Debug\BankSystemDAL.pdb
-C:\Users\PRO\source\repos\BankSystem\BankSystemDAL\obj\Debug\BankSystemDAL.csproj.AssemblyReference.cache
-C:\Users\PRO\source\repos\BankSystem\BankSystemDAL\obj\Debug\BankSystemDAL.csproj.CoreCompileInputs.cache
-C:\Users\PRO\source\repos\BankSystem\BankSystemDAL\obj\Debug\BankSystemDAL.dll
-C:\Users\PRO\source\repos\BankSystem\BankSystemDAL\obj\Debug\BankSystemDAL.pdb
-C:\Users\PRO\source\repos\BankSystem\BankSystemDAL\bin\Debug\System.Data.SqlClient.dll
-C:\Users\PRO\source\repos\BankSystem\BankSystemDAL\bin\Debug\System.Data.SqlClient.xml
-C:\Users\PRO\source\repos\BankSystem\BankSystemDAL\obj\Debug\BankSyst.E71CAD12.Up2Date
