@@ -1,0 +1,145 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\PRO\\source\\repos\\BankSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|c:\\users\\pro\\source\\repos\\banksystem\\banksystemui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|solutionrelative:banksystemui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|c:\\users\\pro\\source\\repos\\banksystem\\banksystemui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|solutionrelative:banksystemui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|c:\\users\\pro\\source\\repos\\banksystem\\banksystemui\\frmbanksystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|solutionrelative:banksystemui\\frmbanksystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|c:\\users\\pro\\source\\repos\\banksystem\\banksystemui\\frmbanksystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|solutionrelative:banksystemui\\frmbanksystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4249E8E-9630-4307-8191-3F54272CF88E}|BankSystemBLL\\BankSystemBLL.csproj|c:\\users\\pro\\source\\repos\\banksystem\\banksystembll\\clsuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4249E8E-9630-4307-8191-3F54272CF88E}|BankSystemBLL\\BankSystemBLL.csproj|solutionrelative:banksystembll\\clsuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D66DDFC1-A1B0-4D06-A6FD-36A48CA9F85D}|BankSystemDAL\\BankSystemDAL.csproj|C:\\Users\\PRO\\source\\repos\\BankSystem\\banksystemdal\\clsdatauser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D66DDFC1-A1B0-4D06-A6FD-36A48CA9F85D}|BankSystemDAL\\BankSystemDAL.csproj|solutionrelative:banksystemdal\\clsdatauser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4249E8E-9630-4307-8191-3F54272CF88E}|BankSystemBLL\\BankSystemBLL.csproj|C:\\Users\\PRO\\source\\repos\\BankSystem\\banksystembll\\clsperson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4249E8E-9630-4307-8191-3F54272CF88E}|BankSystemBLL\\BankSystemBLL.csproj|solutionrelative:banksystembll\\clsperson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmBankSystem.cs",
+              "DocumentMoniker": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmBankSystem.cs",
+              "RelativeDocumentMoniker": "BankSystemUI\\frmBankSystem.cs",
+              "ToolTip": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmBankSystem.cs",
+              "RelativeToolTip": "BankSystemUI\\frmBankSystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T21:49:10.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmLogin.cs",
+              "DocumentMoniker": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmLogin.cs",
+              "RelativeDocumentMoniker": "BankSystemUI\\frmLogin.cs",
+              "ToolTip": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmLogin.cs",
+              "RelativeToolTip": "BankSystemUI\\frmLogin.cs",
+              "ViewState": "AgIAABcAAACAzczMzMwiwCEAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T21:35:43.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmLogin.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmLogin.cs",
+              "RelativeDocumentMoniker": "BankSystemUI\\frmLogin.cs",
+              "ToolTip": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmLogin.cs [Design]",
+              "RelativeToolTip": "BankSystemUI\\frmLogin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T21:35:18.227Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmBankSystem.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmBankSystem.cs",
+              "RelativeDocumentMoniker": "BankSystemUI\\frmBankSystem.cs",
+              "ToolTip": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmBankSystem.cs [Design]",
+              "RelativeToolTip": "BankSystemUI\\frmBankSystem.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T20:09:26.185Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "clsPerson.cs",
+              "DocumentMoniker": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemBLL\\clsPerson.cs",
+              "RelativeDocumentMoniker": "BankSystemBLL\\clsPerson.cs",
+              "ToolTip": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemBLL\\clsPerson.cs",
+              "RelativeToolTip": "BankSystemBLL\\clsPerson.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T12:01:42.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "clsUser.cs",
+              "DocumentMoniker": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemBLL\\clsUser.cs",
+              "RelativeDocumentMoniker": "BankSystemBLL\\clsUser.cs",
+              "ToolTip": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemBLL\\clsUser.cs",
+              "RelativeToolTip": "BankSystemBLL\\clsUser.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAMwEkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:51:54.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "clsDataUser.cs",
+              "DocumentMoniker": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemDAL\\clsDataUser.cs",
+              "RelativeDocumentMoniker": "BankSystemDAL\\clsDataUser.cs",
+              "ToolTip": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemDAL\\clsDataUser.cs",
+              "RelativeToolTip": "BankSystemDAL\\clsDataUser.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAWwCYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:51:31.39Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
