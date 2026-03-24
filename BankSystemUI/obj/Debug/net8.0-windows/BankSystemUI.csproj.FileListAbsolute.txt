@@ -27,3 +27,4 @@ C:\Users\PRO\source\repos\BankSystem\BankSystemUI\bin\Debug\net8.0-windows\runti
 C:\Users\PRO\source\repos\BankSystem\BankSystemUI\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
 C:\Users\PRO\source\repos\BankSystem\BankSystemUI\bin\Debug\net8.0-windows\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
 C:\Users\PRO\source\repos\BankSystem\BankSystemUI\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+C:\Users\PRO\source\repos\BankSystem\BankSystemUI\obj\Debug\net8.0-windows\BankSystemUI.sourcelink.json

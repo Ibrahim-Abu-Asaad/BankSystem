@@ -11,15 +11,15 @@
       "RelativeMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|solutionrelative:banksystemui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|c:\\users\\pro\\source\\repos\\banksystem\\banksystemui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|C:\\Users\\PRO\\source\\repos\\BankSystem\\banksystemui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|solutionrelative:banksystemui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|c:\\users\\pro\\source\\repos\\banksystem\\banksystemui\\frmbanksystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|C:\\Users\\PRO\\source\\repos\\BankSystem\\banksystemui\\frmbanksystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}|BankSystemUI\\BankSystemUI.csproj|solutionrelative:banksystemui\\frmbanksystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B4249E8E-9630-4307-8191-3F54272CF88E}|BankSystemBLL\\BankSystemBLL.csproj|c:\\users\\pro\\source\\repos\\banksystem\\banksystembll\\clsuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B4249E8E-9630-4307-8191-3F54272CF88E}|BankSystemBLL\\BankSystemBLL.csproj|C:\\Users\\PRO\\source\\repos\\BankSystem\\banksystembll\\clsuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B4249E8E-9630-4307-8191-3F54272CF88E}|BankSystemBLL\\BankSystemBLL.csproj|solutionrelative:banksystembll\\clsuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -49,6 +49,10 @@
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "frmBankSystem.cs",
@@ -56,7 +60,7 @@
               "RelativeDocumentMoniker": "BankSystemUI\\frmBankSystem.cs",
               "ToolTip": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmBankSystem.cs",
               "RelativeToolTip": "BankSystemUI\\frmBankSystem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T21:49:10.455Z",
               "EditorCaption": ""
@@ -83,8 +87,7 @@
               "ToolTip": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmLogin.cs [Design]",
               "RelativeToolTip": "BankSystemUI\\frmLogin.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T21:35:18.227Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-03-24T21:35:18.227Z"
             },
             {
               "$type": "Document",
@@ -95,8 +98,7 @@
               "ToolTip": "C:\\Users\\PRO\\source\\repos\\BankSystem\\BankSystemUI\\frmBankSystem.cs [Design]",
               "RelativeToolTip": "BankSystemUI\\frmBankSystem.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T20:09:26.185Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-03-24T20:09:26.185Z"
             },
             {
               "$type": "Document",
@@ -108,8 +110,7 @@
               "RelativeToolTip": "BankSystemBLL\\clsPerson.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T12:01:42.288Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-24T12:01:42.288Z"
             },
             {
               "$type": "Document",
@@ -121,8 +122,7 @@
               "RelativeToolTip": "BankSystemBLL\\clsUser.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAAAMwEkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T10:51:54.616Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T10:51:54.616Z"
             },
             {
               "$type": "Document",
@@ -134,8 +134,7 @@
               "RelativeToolTip": "BankSystemDAL\\clsDataUser.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAWwCYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T10:51:31.39Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T10:51:31.39Z"
             }
           ]
         }

@@ -7,7 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankSystemDAL", "BankSystem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankSystemBLL", "BankSystemBLL\BankSystemBLL.csproj", "{B4249E8E-9630-4307-8191-3F54272CF88E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankSystemUI", "BankSystemUI\BankSystemUI.csproj", "{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankSystemUI", "BankSystemUI\BankSystemUI.csproj", "{AD33D60E-07CE-4B2D-90EB-C23C79521C4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{10B84504-E1CC-4770-BB68-32E98D6F7B39}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
