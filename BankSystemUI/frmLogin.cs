@@ -1,4 +1,5 @@
 using BankSystemBLL;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BankSystemUI
 {
@@ -9,7 +10,7 @@ namespace BankSystemUI
             InitializeComponent();
         }
 
-        int UserID = -1;
+        private int _UserID = -1;
 
         private bool _Login()
         {
@@ -17,20 +18,22 @@ namespace BankSystemUI
             string Username = txtUsername.Text.ToString();
             string Password = txtPassword.Text.ToString();
 
-            UserID = clsUser.IsUserExist(Username, Password);
+            _UserID = clsUser.IsUserExist(Username, Password);
 
             return clsUser.IsUserExist(Username, Password) != -1;
 
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
 
             if (_Login())
             {
 
-                Form frm = new frmBankSystem(UserID);
+                Form frm = new frmBankSystem(_UserID);
                 frm.ShowDialog();
+                txtUsername.Text = string.Empty;
+                txtPassword.Text = string.Empty;
                 //this.Close();
 
             }
@@ -41,6 +44,11 @@ namespace BankSystemUI
 
             }
 
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+            //
         }
     }
 }

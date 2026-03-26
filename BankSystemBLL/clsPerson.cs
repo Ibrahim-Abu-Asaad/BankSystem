@@ -12,12 +12,17 @@ namespace BankSystemBLL
     {
 
         public int PersonID { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
         public string Email { get; set; }
         public DateTime? BirthDate { get; set; }
         public string Address { get; set; }
         public string ImagePath { get; set; }
         public string Country { get; set; }
+        public string Phone { get; set; }
+
+
+        public string FirstName => string.IsNullOrWhiteSpace(Name) ? "" : Name.Split(' ')[0];
+        public string LastName => Name.Contains(" ") ? Name.Split(' ').Last() : "";
 
 
         public clsPerson()
@@ -29,9 +34,11 @@ namespace BankSystemBLL
             this.Address = "";
             this.ImagePath = "";
             this.Country = "";
+            this.Phone = "";
+
         }
 
-        protected clsPerson(string Name, string Email, DateTime BirthDate, string Address, string ImagePath, string Country)
+        protected clsPerson(string Name, string Email, DateTime BirthDate, string Address, string ImagePath, string Country, string Phone)
         {
 
             this.Name = Name;
@@ -40,22 +47,24 @@ namespace BankSystemBLL
             this.Address = Address;
             this.ImagePath = ImagePath;
             this.Country = Country;
+            this.Phone = Phone;
             
         }
 
-        // This maybe will use it to load data(Just in case);
-        //private clsPerson(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, string Country)
-        //{
+        //This maybe will use it to load data(Just in case);
+        protected clsPerson(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, string Country, string Phone)
+        {
 
-        //    this.PersonID = PersonID;
-        //    this.Name = Name;
-        //    this.Email = Email;
-        //    this.BirthDate = BirthDate;
-        //    this.Address = Address;
-        //    this.ImagePath = ImagePath;
-        //    this.Country = Country;
+            this.PersonID = PersonID;
+            this.Name = Name;
+            this.Email = Email;
+            this.BirthDate = BirthDate;
+            this.Address = Address;
+            this.ImagePath = ImagePath;
+            this.Country = Country;
+            this.Phone = Phone;
 
-        //}
+        }
 
 
 
