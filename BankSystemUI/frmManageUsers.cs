@@ -33,12 +33,101 @@ namespace BankSystemUI
             //
         }
 
+        private void _RefreshUsersList()
+        {
+
+            lblTotalUsers.Text = clsUser.GetUserCount().ToString();
+            lblAdminCount.Text = clsUser.GetAdminCount().ToString();
+
+            dgvListUsers.DataSource = clsUser.ListUsers();
+
+        }
+
         private void frmManageUsers_Load(object sender, EventArgs e)
         {
 
-            string info = $"{_User.Name}  {_User.Email}\n{_User.Username}  {_User.Password}";
+            _RefreshUsersList();
 
-            lblInfo.Text = info;
+        }
+
+        private void dgvListUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex < 0) return;
+
+            int UserID = (int)dgvListUsers.Rows[e.RowIndex].Cells["UserID"].Value;
+
+            if (dgvListUsers.Columns[e.ColumnIndex].Name == "colEdit")
+            {
+
+                dgvListUsers.Cursor = Cursors.Hand;
+                MessageBox.Show($"EDIT {UserID}");
+
+                _RefreshUsersList();
+
+            }
+
+            if (dgvListUsers.Columns[e.ColumnIndex].Name == "colDelete")
+            {
+
+                dgvListUsers.Cursor = Cursors.Hand;
+                MessageBox.Show($"DELETE {UserID}");
+
+                _RefreshUsersList();
+
+            }
+
+        }
+
+        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void lblCount_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void dgvListUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            //
+
+        }
+
+        private void btnAddNewUser_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void cbSearchBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void dgvListUsers_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0 && (dgvListUsers.Columns[e.ColumnIndex].Name == "colEdit" || dgvListUsers.Columns[e.ColumnIndex].Name == "colDelete"))
+                dgvListUsers.Cursor = Cursors.Hand;
+
+        }
+
+        private void dgvListUsers_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+
+            dgvListUsers.Cursor = Cursors.Default;
 
         }
     }

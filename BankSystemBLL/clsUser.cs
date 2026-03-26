@@ -28,13 +28,14 @@ namespace BankSystemBLL
 
 
         [Flags]
-        enum enPermissions
+        public enum enPermissions
         {
             None = 0,
             ManageUsers = 1,
             ManageCLients = 2,
             ManageCurrencies = 4,
-            ManageTransactions = 8
+            ManageTransactions = 8,
+            LoginsRegister = 16
         }
         //enPermissions ePermissions;
 
@@ -47,7 +48,7 @@ namespace BankSystemBLL
 
         // Full Control
         // 0 + 1 + 2 + 4 + 8 = 15
-        int AdminPermissions = (int)(enPermissions.ManageUsers | enPermissions.ManageCLients | enPermissions.ManageTransactions | enPermissions.ManageCurrencies);
+        public static int AdminPermissions = (int)(enPermissions.ManageUsers | enPermissions.ManageCLients | enPermissions.ManageTransactions | enPermissions.ManageCurrencies | enPermissions.LoginsRegister);
 
 
 
@@ -165,11 +166,56 @@ namespace BankSystemBLL
 
         }
 
-        public clsUser CreateNewUser()
+        public static DataTable ListUsers()
         {
 
-            return new clsUser();
+            return clsDataUser.ListUsers();
 
+        }
+        public static bool CreateNewUser(clsUser User)
+        {
+
+            return true;
+
+        }
+
+        public static bool UpdateUser(clsUser User)
+        {
+
+            return true;
+
+        }
+
+        public static bool DeleteUser(int UserID)
+        {
+            return true;
+        }
+
+        public static void UpdateLastLogin(int UserID)
+        {
+
+            clsDataUser.UpdateLastLogin(UserID);
+
+        }
+
+        public bool HasPermissions(enPermissions Permission)
+        {
+
+            if (this.Permissions == (int)AdminPermissions)
+                return true;
+
+            return ((Permissions & (int)Permission) == (int)Permission);
+
+        }
+
+        public static int GetUserCount()
+        {
+            return clsDataUser.GetUserCount();
+        }
+
+        public static int GetAdminCount()
+        {
+            return clsDataUser.GetAdminCount();
         }
 
         public bool Save()
@@ -178,13 +224,20 @@ namespace BankSystemBLL
             switch (Mode)
             {
 
+
                 case enMode.Create:
-
-
-                case enMode.Update:
-
+                    if (CreateNewUser(this))
+                        return true;
                     break;
 
+                
+                case enMode.Update:
+                    if (UpdateUser(this))
+                        return true;
+                    break;
+                    
+
+            
             }
 
             return false;

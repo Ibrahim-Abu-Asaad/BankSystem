@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -157,7 +159,6 @@ namespace BankSystemDAL
 
         }
 
-
         public static bool GetUserByUsername(ref int PersonID, ref string Name, ref string Email, ref DateTime BirthDate, ref string Address, ref string ImagePath, ref string Country, ref string Phone, ref int UserID, string Username, ref string Password, ref int Permissions, ref DateTime LastLogin)
         {
 
@@ -224,6 +225,154 @@ namespace BankSystemDAL
 
         }
 
+        public static DataTable ListUsers()
+        {
+
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT Users.UserID, Users.Username, Users.Password, Users.Permissions, Users.LastLogin,
+                             Persons.Name, Persons.Email, Persons.Country, Persons.Phone
+                             FROM Persons INNER JOIN Users ON Persons.PersonID = Users.PersonID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+
+
+            try
+            {
+
+                connection.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                
+                adapter.Fill(dt);
+                
+
+            }
+            catch (Exception ex)
+            {
+                
+                string errorMessage = ex.Message;
+                
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return dt;
+
+        }
+
+
+        public static void UpdateLastLogin(int UserID)
+        {
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"UPDATE Users SET LastLogin = GETDATE() WHERE UserID = @UserID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserID", UserID);
+
+
+            try
+            {
+
+                connection.Open();
+                command.ExecuteNonQuery();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+        }
+
+        public static int GetUserCount()
+        {
+
+            int UserCount = -1;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT COUNT(*) FROM Users";
+            
+            SqlCommand command = new SqlCommand(query, connection);
+
+
+            try
+            {
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int Count))
+                    UserCount = Count;
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return UserCount;
+
+        }
+
+        public static int GetAdminCount()
+        {
+
+            int AdminCount = -1;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT COUNT(*) FROM Users WHERE Permissions = 31";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+
+            try
+            {
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int Count))
+                    AdminCount = Count;
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return AdminCount;
+
+        }
 
 
 
