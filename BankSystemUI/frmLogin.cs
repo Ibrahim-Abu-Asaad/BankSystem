@@ -34,6 +34,7 @@ namespace BankSystemUI
                 frm.ShowDialog();
                 txtUsername.Text = string.Empty;
                 txtPassword.Text = string.Empty;
+                cbShowPassword.Checked = false;
                 //this.Close();
 
             }
@@ -49,6 +50,26 @@ namespace BankSystemUI
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {
             //
+        }
+
+        private void guna2CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (cbShowPassword.Checked)
+                txtPassword.UseSystemPasswordChar = false;
+            else
+            {
+                txtPassword.UseSystemPasswordChar = true;
+                //txtPassword.PasswordChar = '*';
+            }
+
+
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            cbShowPassword.Checked = false;
+            txtPassword.UseSystemPasswordChar = true;
         }
     }
 }

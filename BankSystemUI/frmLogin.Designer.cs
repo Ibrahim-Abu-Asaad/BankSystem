@@ -47,6 +47,7 @@
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             pictureBox1 = new PictureBox();
+            cbShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -180,12 +181,35 @@
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
             // 
+            // cbShowPassword
+            // 
+            cbShowPassword.AutoSize = true;
+            cbShowPassword.BackColor = SystemColors.Control;
+            cbShowPassword.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbShowPassword.CheckedState.BorderRadius = 0;
+            cbShowPassword.CheckedState.BorderThickness = 0;
+            cbShowPassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            cbShowPassword.Cursor = Cursors.Hand;
+            cbShowPassword.ForeColor = SystemColors.ActiveCaptionText;
+            cbShowPassword.Location = new Point(522, 270);
+            cbShowPassword.Name = "cbShowPassword";
+            cbShowPassword.Size = new Size(132, 24);
+            cbShowPassword.TabIndex = 12;
+            cbShowPassword.Text = "Show Password";
+            cbShowPassword.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
+            cbShowPassword.UncheckedState.BorderRadius = 0;
+            cbShowPassword.UncheckedState.BorderThickness = 0;
+            cbShowPassword.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            cbShowPassword.UseVisualStyleBackColor = false;
+            cbShowPassword.CheckedChanged += guna2CheckBox1_CheckedChanged;
+            // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(772, 428);
+            Controls.Add(cbShowPassword);
             Controls.Add(pictureBox1);
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
@@ -198,6 +222,7 @@
             Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
+            Load += frmLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -213,5 +238,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private PictureBox pictureBox1;
+        private Guna.UI2.WinForms.Guna2CheckBox cbShowPassword;
     }
 }
