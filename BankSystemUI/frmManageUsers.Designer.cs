@@ -202,6 +202,7 @@
             // 
             // txtSearchBy
             // 
+            txtSearchBy.BorderRadius = 4;
             txtSearchBy.CustomizableEdges = customizableEdges3;
             txtSearchBy.DefaultText = "";
             txtSearchBy.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -224,6 +225,7 @@
             // cbSearchBy
             // 
             cbSearchBy.BackColor = Color.Transparent;
+            cbSearchBy.BorderRadius = 4;
             cbSearchBy.Cursor = Cursors.Hand;
             cbSearchBy.CustomizableEdges = customizableEdges1;
             cbSearchBy.DrawMode = DrawMode.OwnerDrawFixed;

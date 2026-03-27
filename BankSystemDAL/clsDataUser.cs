@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Text;
@@ -27,6 +28,44 @@ namespace BankSystemDAL
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Username", Username);
             command.Parameters.AddWithValue("@Password", Password);
+
+
+
+            try
+            {
+
+                connection.Open();
+                object obj = command.ExecuteScalar();
+
+                if (obj != null && int.TryParse(obj.ToString(), out int UserIDFound))
+                    UserID = UserIDFound;
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+            return UserID;
+        }
+
+        public static int IsUserExist(string Username)
+        {
+
+            int UserID = -1;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT UserID FROM Users WHERE Username = @Username";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Username", Username);
 
 
 
@@ -266,7 +305,6 @@ namespace BankSystemDAL
 
         }
 
-
         public static void UpdateLastLogin(int UserID)
         {
 
@@ -374,6 +412,48 @@ namespace BankSystemDAL
 
         }
 
+        public static bool CheckIfPasswordRight(int UserID, string Password)
+        {
+
+            bool IsPasswordRight = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT 1 FROM Users WHERE Password = @Password AND UserID = @UserID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@UserID", UserID);
+
+
+
+            try
+            {
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    IsPasswordRight = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return IsPasswordRight;
+
+
+
+        }
 
 
 
@@ -382,4 +462,11 @@ namespace BankSystemDAL
 
 
     }
+
+
+
+
+
+
+    
 }

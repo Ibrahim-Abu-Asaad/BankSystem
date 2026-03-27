@@ -12,13 +12,16 @@ namespace BankSystemBLL
     public class clsUser : clsPerson
     {
 
+        // Properties
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public int Permissions { get; set; }
         public DateTime LastLogin { get; set; }
 
-        
+
+        // Enums
+        // Enum (Mode AddNew/Create Or Mode Update)
         public enum enMode
         {
             Create,
@@ -27,6 +30,7 @@ namespace BankSystemBLL
         public enMode Mode;
 
 
+        // Enum (Permissions)
         [Flags]
         public enum enPermissions
         {
@@ -42,16 +46,15 @@ namespace BankSystemBLL
         // 0 + 2 + 8 = 10
         int UserPermissions = (int)(enPermissions.ManageCLients | enPermissions.ManageTransactions);
 
-
         // 0 + 8 = 8
         int ClientPermissions = (int)(enPermissions.ManageTransactions);
 
         // Full Control
-        // 0 + 1 + 2 + 4 + 8 = 15
+        // 0 + 1 + 2 + 4 + 8 + 16 = 31
         public static int AdminPermissions = (int)(enPermissions.ManageUsers | enPermissions.ManageCLients | enPermissions.ManageTransactions | enPermissions.ManageCurrencies | enPermissions.LoginsRegister);
 
 
-
+        // Constructors
         public clsUser() : base()
         {
 
@@ -101,11 +104,36 @@ namespace BankSystemBLL
 
         }
 
+
+        // Private Functions Used Inside The Class;
+
+        private static bool _CreateNewUser(clsUser User)
+        {
+
+            return true;
+
+        }
+
+        private static bool _UpdateUser(clsUser User)
+        {
+
+            return true;
+
+        }
+
+
+
+        // Functions Used In Programm
         public static int IsUserExist(string Username, string Password)
         {
 
             return clsDataUser.IsUserExist(Username, Password);
 
+        }
+
+        public static int IsUserExist(string Username)
+        {
+            return clsDataUser.IsUserExist(Username);
         }
 
         public static bool IsUserExist(int UserID)
@@ -172,23 +200,10 @@ namespace BankSystemBLL
             return clsDataUser.ListUsers();
 
         }
-        public static bool CreateNewUser(clsUser User)
+        
+        public static void DeleteUser(int UserID)
         {
-
-            return true;
-
-        }
-
-        public static bool UpdateUser(clsUser User)
-        {
-
-            return true;
-
-        }
-
-        public static bool DeleteUser(int UserID)
-        {
-            return true;
+            //
         }
 
         public static void UpdateLastLogin(int UserID)
@@ -218,6 +233,14 @@ namespace BankSystemBLL
             return clsDataUser.GetAdminCount();
         }
 
+        public static bool CheckIfPasswordRight(int UserID, string PasswordHash)
+        {
+
+            return clsDataUser.CheckIfPasswordRight(UserID, PasswordHash);
+
+        }
+
+
         public bool Save()
         {
 
@@ -226,13 +249,13 @@ namespace BankSystemBLL
 
 
                 case enMode.Create:
-                    if (CreateNewUser(this))
+                    if (_CreateNewUser(this))
                         return true;
                     break;
 
                 
                 case enMode.Update:
-                    if (UpdateUser(this))
+                    if (_UpdateUser(this))
                         return true;
                     break;
                     

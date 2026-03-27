@@ -1,4 +1,6 @@
 using BankSystemBLL;
+using BCrypt.Net;
+using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BankSystemUI
@@ -10,7 +12,51 @@ namespace BankSystemUI
             InitializeComponent();
         }
 
+        private clsUser _User = new clsUser();
         private int _UserID = -1;
+
+
+        private bool _ValidateUsernameAndPassword(string Username, string Password)
+        {
+
+            if(Username == string.Empty && Password == string.Empty)
+            {
+                MessageBox.Show("Username And Password Required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (Username == string.Empty)
+            {
+                MessageBox.Show("Username Required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (Password == string.Empty)
+            {
+                MessageBox.Show("Password Required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            //_UserID = clsUser.IsUserExist(Username, Password);
+            _UserID = clsUser.IsUserExist(Username);
+
+            if (_UserID == -1)
+            {
+                MessageBox.Show("Wronge Username", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            _User = clsUser.GetUserByUserID(_UserID);
+
+            if (!clsUser.CheckIfPasswordRight(_UserID, Password))
+            {
+                MessageBox.Show("Wronge Password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+
+            return true;
+
+        }
 
         private bool _Login()
         {
@@ -18,9 +64,7 @@ namespace BankSystemUI
             string Username = txtUsername.Text.ToString();
             string Password = txtPassword.Text.ToString();
 
-            _UserID = clsUser.IsUserExist(Username, Password);
-
-            return clsUser.IsUserExist(Username, Password) != -1;
+            return _ValidateUsernameAndPassword(Username, Password);
 
         }
 
@@ -35,15 +79,14 @@ namespace BankSystemUI
                 txtUsername.Text = string.Empty;
                 txtPassword.Text = string.Empty;
                 cbShowPassword.Checked = false;
-                //this.Close();
 
             }
-            else
-            {
+            //else
+            //{
 
-                MessageBox.Show("Incorrect Information", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    MessageBox.Show("Incorrect Information", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            }
+            //}
 
         }
 

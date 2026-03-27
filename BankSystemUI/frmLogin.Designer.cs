@@ -54,8 +54,8 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Cascadia Mono", 10.2F);
-            label2.Location = new Point(199, 223);
+            label2.Font = new Font("Cascadia Mono SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(140, 223);
             label2.Name = "label2";
             label2.Size = new Size(90, 22);
             label2.TabIndex = 2;
@@ -64,8 +64,8 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Cascadia Mono", 10.2F);
-            label3.Location = new Point(199, 267);
+            label3.Font = new Font("Cascadia Mono SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(140, 267);
             label3.Name = "label3";
             label3.Size = new Size(90, 22);
             label3.TabIndex = 4;
@@ -119,7 +119,7 @@
             guna2Button1.FocusedColor = Color.White;
             guna2Button1.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(326, 336);
+            guna2Button1.Location = new Point(308, 336);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2Button1.Size = new Size(123, 56);
@@ -130,6 +130,7 @@
             // txtUsername
             // 
             txtUsername.AccessibleDescription = "";
+            txtUsername.BorderRadius = 4;
             txtUsername.CustomizableEdges = customizableEdges3;
             txtUsername.DefaultText = "";
             txtUsername.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -137,21 +138,22 @@
             txtUsername.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtUsername.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtUsername.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtUsername.Font = new Font("Segoe UI", 9F);
+            txtUsername.Font = new Font("Cascadia Mono", 9F);
             txtUsername.ForeColor = Color.Black;
             txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtUsername.Location = new Point(292, 219);
+            txtUsername.Location = new Point(245, 223);
             txtUsername.Margin = new Padding(3, 4, 3, 4);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Enter You Username";
             txtUsername.SelectedText = "";
             txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtUsername.Size = new Size(214, 31);
+            txtUsername.Size = new Size(241, 31);
             txtUsername.TabIndex = 1;
             txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // txtPassword
             // 
+            txtPassword.BorderRadius = 4;
             txtPassword.CustomizableEdges = customizableEdges1;
             txtPassword.DefaultText = "";
             txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -159,16 +161,16 @@
             txtPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Font = new Font("Segoe UI", 9F);
+            txtPassword.Font = new Font("Cascadia Mono", 9F);
             txtPassword.ForeColor = Color.Black;
             txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Location = new Point(292, 263);
+            txtPassword.Location = new Point(245, 267);
             txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Enter Your Password";
             txtPassword.SelectedText = "";
             txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtPassword.Size = new Size(214, 31);
+            txtPassword.Size = new Size(241, 31);
             txtPassword.TabIndex = 2;
             // 
             // pictureBox1
@@ -190,10 +192,12 @@
             cbShowPassword.CheckedState.BorderThickness = 0;
             cbShowPassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             cbShowPassword.Cursor = Cursors.Hand;
+            cbShowPassword.Font = new Font("Cascadia Mono SemiBold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cbShowPassword.ForeColor = SystemColors.ActiveCaptionText;
-            cbShowPassword.Location = new Point(522, 270);
+            cbShowPassword.ImageAlign = ContentAlignment.MiddleRight;
+            cbShowPassword.Location = new Point(505, 277);
             cbShowPassword.Name = "cbShowPassword";
-            cbShowPassword.Size = new Size(132, 24);
+            cbShowPassword.Size = new Size(134, 21);
             cbShowPassword.TabIndex = 12;
             cbShowPassword.Text = "Show Password";
             cbShowPassword.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);

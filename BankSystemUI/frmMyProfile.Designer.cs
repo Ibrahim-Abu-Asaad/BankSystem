@@ -135,6 +135,7 @@
             // 
             // txtName
             // 
+            txtName.BorderRadius = 4;
             txtName.CustomizableEdges = customizableEdges17;
             txtName.DefaultText = "";
             txtName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -156,6 +157,7 @@
             // 
             // txtEmail
             // 
+            txtEmail.BorderRadius = 4;
             txtEmail.CustomizableEdges = customizableEdges15;
             txtEmail.DefaultText = "";
             txtEmail.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -177,6 +179,7 @@
             // 
             // dtpBirthdate
             // 
+            dtpBirthdate.BorderRadius = 4;
             dtpBirthdate.Checked = true;
             dtpBirthdate.CustomizableEdges = customizableEdges13;
             dtpBirthdate.FillColor = SystemColors.Highlight;
@@ -205,6 +208,7 @@
             // 
             // txtCountry
             // 
+            txtCountry.BorderRadius = 4;
             txtCountry.CustomizableEdges = customizableEdges11;
             txtCountry.DefaultText = "";
             txtCountry.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -226,6 +230,7 @@
             // 
             // txtPhone
             // 
+            txtPhone.BorderRadius = 4;
             txtPhone.CustomizableEdges = customizableEdges9;
             txtPhone.DefaultText = "";
             txtPhone.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -247,6 +252,7 @@
             // 
             // txtUsername
             // 
+            txtUsername.BorderRadius = 4;
             txtUsername.CustomizableEdges = customizableEdges7;
             txtUsername.DefaultText = "";
             txtUsername.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -268,6 +274,7 @@
             // 
             // txtPassword
             // 
+            txtPassword.BorderRadius = 4;
             txtPassword.CustomizableEdges = customizableEdges5;
             txtPassword.DefaultText = "";
             txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -289,6 +296,7 @@
             // 
             // txtAddress
             // 
+            txtAddress.BorderRadius = 4;
             txtAddress.CustomizableEdges = customizableEdges3;
             txtAddress.DefaultText = "";
             txtAddress.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
