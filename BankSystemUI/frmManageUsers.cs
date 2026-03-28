@@ -55,7 +55,7 @@ namespace BankSystemUI
 
             if (e.RowIndex < 0) return;
 
-            int UserID = (int)dgvListUsers.Rows[e.RowIndex].Cells["UserID"].Value;
+            int UserID = (int)dgvListUsers.Rows[e.RowIndex].Cells["ID"].Value;
 
             if (dgvListUsers.Columns[e.ColumnIndex].Name == "colEdit")
             {

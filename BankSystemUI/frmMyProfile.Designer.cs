@@ -143,16 +143,16 @@
             txtName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtName.Font = new Font("Segoe UI", 9F);
+            txtName.Font = new Font("Cascadia Mono", 9F);
             txtName.ForeColor = Color.Black;
             txtName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtName.Location = new Point(99, 369);
+            txtName.Location = new Point(98, 369);
             txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
             txtName.PlaceholderText = "Enter Your Name";
             txtName.SelectedText = "";
             txtName.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            txtName.Size = new Size(222, 38);
+            txtName.Size = new Size(194, 38);
             txtName.TabIndex = 4;
             // 
             // txtEmail
@@ -165,32 +165,33 @@
             txtEmail.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtEmail.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtEmail.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Font = new Font("Segoe UI", 9F);
+            txtEmail.Font = new Font("Cascadia Mono", 9F);
             txtEmail.ForeColor = Color.Black;
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(435, 433);
+            txtEmail.Location = new Point(398, 433);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Enter Your Email";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            txtEmail.Size = new Size(222, 38);
+            txtEmail.Size = new Size(194, 38);
             txtEmail.TabIndex = 5;
             // 
             // dtpBirthdate
             // 
             dtpBirthdate.BorderRadius = 4;
             dtpBirthdate.Checked = true;
+            dtpBirthdate.Cursor = Cursors.Hand;
             dtpBirthdate.CustomizableEdges = customizableEdges13;
             dtpBirthdate.FillColor = SystemColors.Highlight;
-            dtpBirthdate.Font = new Font("Segoe UI", 9F);
+            dtpBirthdate.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpBirthdate.Format = DateTimePickerFormat.Long;
-            dtpBirthdate.Location = new Point(435, 369);
+            dtpBirthdate.Location = new Point(399, 369);
             dtpBirthdate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpBirthdate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpBirthdate.Name = "dtpBirthdate";
             dtpBirthdate.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            dtpBirthdate.Size = new Size(231, 38);
+            dtpBirthdate.Size = new Size(288, 38);
             dtpBirthdate.TabIndex = 6;
             dtpBirthdate.Value = new DateTime(2026, 10, 26, 15, 36, 47, 926);
             dtpBirthdate.ValueChanged += guna2DateTimePicker1_ValueChanged;
@@ -200,7 +201,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(330, 374);
+            label3.Location = new Point(294, 374);
             label3.Name = "label3";
             label3.Size = new Size(100, 22);
             label3.TabIndex = 7;
@@ -216,16 +217,16 @@
             txtCountry.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtCountry.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtCountry.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCountry.Font = new Font("Segoe UI", 9F);
+            txtCountry.Font = new Font("Cascadia Mono", 9F);
             txtCountry.ForeColor = Color.Black;
             txtCountry.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCountry.Location = new Point(99, 433);
+            txtCountry.Location = new Point(98, 433);
             txtCountry.Margin = new Padding(3, 4, 3, 4);
             txtCountry.Name = "txtCountry";
             txtCountry.PlaceholderText = "Enter Your Country";
             txtCountry.SelectedText = "";
             txtCountry.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            txtCountry.Size = new Size(222, 38);
+            txtCountry.Size = new Size(194, 38);
             txtCountry.TabIndex = 8;
             // 
             // txtPhone
@@ -238,16 +239,16 @@
             txtPhone.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtPhone.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtPhone.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPhone.Font = new Font("Segoe UI", 9F);
+            txtPhone.Font = new Font("Cascadia Mono", 9F);
             txtPhone.ForeColor = Color.Black;
             txtPhone.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPhone.Location = new Point(435, 497);
+            txtPhone.Location = new Point(398, 497);
             txtPhone.Margin = new Padding(3, 4, 3, 4);
             txtPhone.Name = "txtPhone";
             txtPhone.PlaceholderText = "Enter Your Phone";
             txtPhone.SelectedText = "";
             txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            txtPhone.Size = new Size(222, 38);
+            txtPhone.Size = new Size(194, 38);
             txtPhone.TabIndex = 9;
             // 
             // txtUsername
@@ -260,16 +261,16 @@
             txtUsername.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtUsername.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtUsername.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtUsername.Font = new Font("Segoe UI", 9F);
+            txtUsername.Font = new Font("Cascadia Mono", 9F);
             txtUsername.ForeColor = Color.Black;
             txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtUsername.Location = new Point(99, 497);
+            txtUsername.Location = new Point(98, 497);
             txtUsername.Margin = new Padding(3, 4, 3, 4);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Enter Your Username";
             txtUsername.SelectedText = "";
             txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            txtUsername.Size = new Size(222, 38);
+            txtUsername.Size = new Size(194, 38);
             txtUsername.TabIndex = 10;
             // 
             // txtPassword
@@ -282,16 +283,16 @@
             txtPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Font = new Font("Segoe UI", 9F);
+            txtPassword.Font = new Font("Cascadia Mono", 9F);
             txtPassword.ForeColor = Color.Black;
             txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Location = new Point(435, 561);
+            txtPassword.Location = new Point(398, 561);
             txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Enter Your Password";
             txtPassword.SelectedText = "";
             txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            txtPassword.Size = new Size(222, 38);
+            txtPassword.Size = new Size(194, 38);
             txtPassword.TabIndex = 11;
             // 
             // txtAddress
@@ -304,16 +305,16 @@
             txtAddress.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtAddress.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtAddress.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtAddress.Font = new Font("Segoe UI", 9F);
+            txtAddress.Font = new Font("Cascadia Mono", 9F);
             txtAddress.ForeColor = Color.Black;
             txtAddress.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtAddress.Location = new Point(99, 561);
+            txtAddress.Location = new Point(98, 561);
             txtAddress.Margin = new Padding(3, 4, 3, 4);
             txtAddress.Name = "txtAddress";
             txtAddress.PlaceholderText = "Enter Your Address";
             txtAddress.SelectedText = "";
             txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtAddress.Size = new Size(222, 38);
+            txtAddress.Size = new Size(194, 38);
             txtAddress.TabIndex = 12;
             // 
             // btnSave
@@ -327,7 +328,7 @@
             btnSave.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnSave.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(279, 642);
+            btnSave.Location = new Point(273, 642);
             btnSave.Name = "btnSave";
             btnSave.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnSave.Size = new Size(168, 52);
@@ -360,7 +361,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(373, 440);
+            label5.Location = new Point(337, 440);
             label5.Name = "label5";
             label5.Size = new Size(60, 22);
             label5.TabIndex = 16;
@@ -380,7 +381,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(373, 505);
+            label7.Location = new Point(337, 505);
             label7.Name = "label7";
             label7.Size = new Size(60, 22);
             label7.TabIndex = 18;
@@ -400,7 +401,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(342, 569);
+            label9.Location = new Point(306, 569);
             label9.Name = "label9";
             label9.Size = new Size(90, 22);
             label9.TabIndex = 20;

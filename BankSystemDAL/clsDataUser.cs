@@ -20,7 +20,7 @@ namespace BankSystemDAL
         public static int IsUserExist(string Username, string Password)
         {
 
-            int UserID = -1;
+            int ID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = "SELECT UserID FROM Users WHERE Username = @Username AND Password = @Password";
@@ -38,7 +38,7 @@ namespace BankSystemDAL
                 object obj = command.ExecuteScalar();
 
                 if (obj != null && int.TryParse(obj.ToString(), out int UserIDFound))
-                    UserID = UserIDFound;
+                    ID = UserIDFound;
 
             }
             catch (Exception ex)
@@ -53,13 +53,13 @@ namespace BankSystemDAL
                 connection.Close();
 
             }
-            return UserID;
+            return ID;
         }
 
         public static int IsUserExist(string Username)
         {
 
-            int UserID = -1;
+            int ID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = "SELECT UserID FROM Users WHERE Username = @Username";
@@ -76,7 +76,7 @@ namespace BankSystemDAL
                 object obj = command.ExecuteScalar();
 
                 if (obj != null && int.TryParse(obj.ToString(), out int UserIDFound))
-                    UserID = UserIDFound;
+                    ID = UserIDFound;
 
             }
             catch (Exception ex)
@@ -91,20 +91,20 @@ namespace BankSystemDAL
                 connection.Close();
 
             }
-            return UserID;
+            return ID;
         }
 
-        public static bool IsUserExist(int UserID)
+        public static bool IsUserExist(int ID)
         {
 
             //int UserID = -1;
             bool IsExist = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT 1 FROM Users WHERE UserID = @UserID ";
+            string query = "SELECT 1 FROM Users WHERE ID = @ID ";
 
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@ID", ID);
 
 
 
@@ -133,20 +133,20 @@ namespace BankSystemDAL
             return IsExist;
         }
 
-        public static bool GetUserByUserID(ref int PersonID, ref string Name, ref string Email, ref DateTime BirthDate, ref string Address, ref string ImagePath, ref string Country, ref string Phone, int UserID, ref string Username, ref string Password, ref int Permissions, ref DateTime LastLogin)
+        public static bool GetUserByUserID(ref int PersonID, ref string Name, ref string Email, ref DateTime BirthDate, ref string Address, ref string ImagePath, ref int CountryID, ref string Phone, ref int MarkDeleted, int ID, ref string Username, ref string Password, ref int PermissionID, ref DateTime LastLogin)
         {
 
             //int UserID = -1;
             bool IsFoundUser = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT Users.UserID, Users.Username, Users.Password, Users.Permissions, Users.LastLogin, Users.PersonID,
-                             Persons.Name, Persons.Email, Persons.BirthDate , Persons.Address, Persons.ImagePath, Persons.Country, Persons.Phone
-                             FROM Persons INNER JOIN Users ON Persons.PersonID = Users.PersonID 
-                             WHERE Users.UserID = @UserID;";
+            string query = @"SELECT Users.ID, Users.Username, Users.Password, Users.PermissionID, Users.LastLogin, Users.PersonID,
+                             Persons.Name, Persons.Email, Persons.BirthDate , Persons.Address, Persons.ImagePath, Persons.CountryID, Persons.Phone, Persons.MarkDeleted
+                             FROM Persons INNER JOIN Users ON Persons.ID = Users.PersonID 
+                             WHERE Users.ID = @ID;";
 
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@ID", ID);
 
             
 
@@ -167,12 +167,13 @@ namespace BankSystemDAL
                     BirthDate = (reader["BirthDate"] != DBNull.Value) ? (DateTime)reader["BirthDate"] : DateTime.MinValue;
                     Address = (reader["Address"] != DBNull.Value) ? reader["Address"].ToString() : "";
                     ImagePath = (reader["ImagePath"] != DBNull.Value) ? reader["ImagePath"].ToString() : "";
-                    Country = (reader["Country"] != DBNull.Value) ? reader["Country"].ToString() : "";
+                    CountryID = (int)reader["CountryID"];
                     Phone = (reader["Phone"] != DBNull.Value) ? reader["Phone"].ToString() : "";
+                    MarkDeleted = (int)reader["MarkDeleted"];
 
                     Username = reader["Username"].ToString();
                     Password = reader["Password"].ToString();
-                    Permissions = (int)reader["Permissions"];
+                    PermissionID = (int)reader["PermissionID"];
                     LastLogin = (reader["LastLogin"] != DBNull.Value) ? (DateTime)reader["LastLogin"] : DateTime.MinValue;
 
                 }
@@ -198,16 +199,17 @@ namespace BankSystemDAL
 
         }
 
-        public static bool GetUserByUsername(ref int PersonID, ref string Name, ref string Email, ref DateTime BirthDate, ref string Address, ref string ImagePath, ref string Country, ref string Phone, ref int UserID, string Username, ref string Password, ref int Permissions, ref DateTime LastLogin)
+        public static bool GetUserByUsername(ref int PersonID, ref string Name, ref string Email, ref DateTime BirthDate, ref string Address, ref string ImagePath, ref int CountryID, ref string Phone, ref int MarkDeleted, ref int ID, string Username, ref string Password, ref int PermissionID, ref DateTime LastLogin)
         {
 
+            // FINISH EDIT
             //int UserID = -1;
             bool IsFoundUser = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT Users.UserID, Users.Username, Users.Password, Users.Permissions, Users.LastLogin, Users.PersonID,
-                             Persons.Name, Persons.Email, Persons.BirthDate , Persons.Address, Persons.ImagePath, Persons.Country, Persons.Phone
-                             FROM Persons INNER JOIN Users ON Persons.PersonID = Users.PersonID 
+            string query = @"SELECT Users.ID, Users.Username, Users.Password, Users.PermissionID, Users.LastLogin, Users.PersonID,
+                             Persons.Name, Persons.Email, Persons.BirthDate , Persons.Address, Persons.ImagePath, Persons.CountryID, Persons.Phone, Persons.MarkDeleted
+                             FROM Persons INNER JOIN Users ON Persons.ID = Users.PersonID 
                              WHERE Users.Username = @Username;";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -232,13 +234,14 @@ namespace BankSystemDAL
                     BirthDate = (reader["BirthDate"] != DBNull.Value) ? (DateTime)reader["BirthDate"] : DateTime.MinValue;
                     Address = (reader["Address"] != DBNull.Value) ? reader["Address"].ToString() : "";
                     ImagePath = (reader["ImagePath"] != DBNull.Value) ? reader["ImagePath"].ToString() : "";
-                    Country = (reader["Country"] != DBNull.Value) ? reader["Country"].ToString() : "";
+                    CountryID = (int)reader["CountryID"];
                     Phone = (reader["Phone"] != DBNull.Value) ? reader["Phone"].ToString() : "";
+                    MarkDeleted = (int)reader["MarkDeleted"];
 
-                    UserID = (int)reader["UserID"];
+                    ID = (int)reader["ID"];
                     //Username = reader["Username"].ToString();
                     Password = reader["Password"].ToString();
-                    Permissions = (int)reader["Permissions"];
+                    PermissionID = (int)reader["PermissionID"];
                     LastLogin = (reader["LastLogin"] != DBNull.Value) ? (DateTime)reader["LastLogin"] : DateTime.MinValue;
 
                 }
@@ -270,9 +273,9 @@ namespace BankSystemDAL
             DataTable dt = new DataTable();
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT Users.UserID, Users.Username, Users.Password, Users.Permissions, Users.LastLogin,
-                             Persons.Name, Persons.Email, Persons.Country, Persons.Phone
-                             FROM Persons INNER JOIN Users ON Persons.PersonID = Users.PersonID";
+            string query = @"SELECT Users.ID, Users.Username, Users.Password, Users.PermissionID, Users.LastLogin,
+                             Persons.Name, Persons.Email, Persons.CountryID, Persons.Phone, Persons.MarkDeleted
+                             FROM Persons INNER JOIN Users ON Persons.ID = Users.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -305,14 +308,16 @@ namespace BankSystemDAL
 
         }
 
-        public static void UpdateLastLogin(int UserID)
+        public static void UpdateLastLoginAndAddedItToLoginsRegister(int ID)
         {
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"UPDATE Users SET LastLogin = GETDATE() WHERE UserID = @UserID;";
+            string query = @"UPDATE Users SET LastLogin = GETDATE() WHERE ID = @ID;
+                             INSERT INTO LoginsRegister ([Date], [UserID]) VALUES (GETDATE(), @ID);";
 
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@ID", ID);
+
 
 
             try
@@ -341,7 +346,7 @@ namespace BankSystemDAL
         public static int GetUserCount()
         {
 
-            int UserCount = -1;
+            int UserCount = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"SELECT COUNT(*) FROM Users";
@@ -378,7 +383,7 @@ namespace BankSystemDAL
         public static int GetAdminCount()
         {
 
-            int AdminCount = -1;
+            int AdminCount = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"SELECT COUNT(*) FROM Users WHERE Permissions = 31";
@@ -455,9 +460,87 @@ namespace BankSystemDAL
 
         }
 
+        public static int GetPermissions(int PermissionID)
+        {
+
+            int PermissionLevel = 0;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT Permissions.PermissionLevel FROM Users INNER JOIN Permissions ON Users.PermissionID = Permissions.ID WHERE Permissions.ID = @PermissionID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PermissionID", PermissionID);
+
+
+            try
+            {
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int perLevel))
+                    PermissionLevel = perLevel;
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return PermissionLevel;
+
+        }
+
+        public static DataTable ListLoginsRegister()
+        {
+
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT LoginsRegister.Date, Users.Username, Roles.RoleName, Persons.Name FROM LoginsRegister INNER JOIN
+                             Users ON LoginsRegister.UserID = Users.ID INNER JOIN
+                             Persons ON Users.PersonID = Persons.ID INNER JOIN
+                             Permissions ON Users.PermissionID = Permissions.ID INNER JOIN
+                             Roles ON Permissions.RoleID = Roles.ID";
+
+            SqlCommand command = new SqlCommand(query, connection);
 
 
 
+            try
+            {
+
+                connection.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                adapter.Fill(dt);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return dt;
+
+        }
 
 
 

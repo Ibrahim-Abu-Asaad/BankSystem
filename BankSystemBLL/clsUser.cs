@@ -16,7 +16,7 @@ namespace BankSystemBLL
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public int Permissions { get; set; }
+        public int PermissionID { get; set; }
         public DateTime LastLogin { get; set; }
 
 
@@ -44,10 +44,10 @@ namespace BankSystemBLL
         //enPermissions ePermissions;
 
         // 0 + 2 + 8 = 10
-        int UserPermissions = (int)(enPermissions.ManageCLients | enPermissions.ManageTransactions);
+        //public static int UserPermissions = (int)(enPermissions.ManageCLients | enPermissions.ManageTransactions);
 
         // 0 + 8 = 8
-        int ClientPermissions = (int)(enPermissions.ManageTransactions);
+        //public static int ClientPermissions = (int)(enPermissions.ManageTransactions);
 
         // Full Control
         // 0 + 1 + 2 + 4 + 8 + 16 = 31
@@ -61,7 +61,7 @@ namespace BankSystemBLL
             this.UserID = -1;
             this.Username = "";
             this.Password = "";
-            this.Permissions = 0;
+            this.PermissionID = -1;
             this.LastLogin = DateTime.Now;
 
             this.PersonID = -1;
@@ -70,7 +70,7 @@ namespace BankSystemBLL
             this.BirthDate = null;
             this.Address = "";
             this.ImagePath = "";
-            this.Country = "";
+            this.CountryID = -1;
             this.Phone = "";
 
 
@@ -79,25 +79,25 @@ namespace BankSystemBLL
 
         }
 
-        private clsUser(string Name, string Email, DateTime BirthDate, string Address, string ImagePath, string Country, string Phone, string Username, string Password, int Permissions, DateTime LastLogin) : base(Name, Email, BirthDate, Address, ImagePath, Country, Phone)
+        private clsUser(string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted, string Username, string Password, int PermissionID, DateTime LastLogin) : base(Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted)
         {
 
             this.Username = Username;
             this.Password = Password;
-            this.Permissions = Permissions;
+            this.PermissionID = PermissionID;
             this.LastLogin = LastLogin;
             
             //base(this.PersonID,this.Name,this.Email,this.BirthDate,this.Address,this.ImagePath,this.Country);
 
         }
 
-        private clsUser(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, string Country, string Phone, int UserID, string Username, string Password, int Permissions, DateTime LastLogin) : base(PersonID, Name, Email, BirthDate, Address, ImagePath, Country, Phone)
+        private clsUser(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted, int UserID, string Username, string Password, int PermissionID, DateTime LastLogin) : base(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted)
         {
             
             this.UserID = UserID;
             this.Username = Username;
             this.Password = Password;
-            this.Permissions = Permissions;
+            this.PermissionID = PermissionID;
             this.LastLogin = LastLogin;
 
             //base(this.PersonID,this.Name,this.Email,this.BirthDate,this.Address,this.ImagePath,this.Country);
@@ -143,7 +143,7 @@ namespace BankSystemBLL
 
         }
 
-        public static clsUser GetUserByUserID(int UserID)
+        public static clsUser GetUserByUserID(int ID)
         {
 
             int PersonID = -1;
@@ -152,16 +152,17 @@ namespace BankSystemBLL
             DateTime BirthDate = DateTime.Now;
             string Address = "";
             string ImagePath = "";
-            string Country = "";
+            int CountryID = -1;
             string Phone = "";
+            int MarkDeleted = 0;
 
             string Username = "";
             string Password = "";
-            int Permissions = 0;
+            int PermissionID = -1;
             DateTime LastLogin = DateTime.Now;
 
-            if(clsDataUser.GetUserByUserID(ref PersonID, ref Name, ref Email, ref BirthDate, ref Address, ref ImagePath, ref Country, ref Phone, UserID, ref Username, ref Password, ref Permissions, ref LastLogin))
-                return new clsUser(PersonID, Name, Email, BirthDate, Address, ImagePath, Country, Phone, UserID, Username, Password, Permissions, LastLogin);
+            if(clsDataUser.GetUserByUserID(ref PersonID, ref Name, ref Email, ref BirthDate, ref Address, ref ImagePath, ref CountryID, ref Phone, ref MarkDeleted, ID, ref Username, ref Password, ref PermissionID, ref LastLogin))
+                return new clsUser(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, ID, Username, Password, PermissionID, LastLogin);
 
             return null;
 
@@ -177,17 +178,18 @@ namespace BankSystemBLL
             DateTime BirthDate = DateTime.Now;
             string Address = "";
             string ImagePath = "";
-            string Country = "";
+            int CountryID = -1;
             string Phone = "";
+            int MarkDeleted = 0;
 
             int UserID = -1;
             //string Username = "";
             string Password = "";
-            int Permissions = 0;
+            int PermissionID = -1;
             DateTime LastLogin = DateTime.Now;
 
-            if (clsDataUser.GetUserByUsername(ref PersonID, ref Name, ref Email, ref BirthDate, ref Address, ref ImagePath, ref Country, ref Phone, ref UserID, Username, ref Password, ref Permissions, ref LastLogin))
-                return new clsUser(PersonID, Name, Email, BirthDate, Address, ImagePath, Country, Phone, UserID, Username, Password, Permissions, LastLogin);
+            if (clsDataUser.GetUserByUsername(ref PersonID, ref Name, ref Email, ref BirthDate, ref Address, ref ImagePath, ref CountryID, ref Phone, ref MarkDeleted, ref UserID, Username, ref Password, ref PermissionID, ref LastLogin))
+                return new clsUser(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, UserID, Username, Password, PermissionID, LastLogin);
 
             return null;
 
@@ -206,20 +208,22 @@ namespace BankSystemBLL
             //
         }
 
-        public static void UpdateLastLogin(int UserID)
+        public static void UpdateLastLoginAndAddedItToLoginsRegister(int UserID)
         {
 
-            clsDataUser.UpdateLastLogin(UserID);
+            clsDataUser.UpdateLastLoginAndAddedItToLoginsRegister(UserID);
 
         }
 
-        public bool HasPermissions(enPermissions Permission)
+        public bool HasPermission(enPermissions PermissionToCheck)
         {
 
-            if (this.Permissions == (int)AdminPermissions)
+            int userPermissionValue = clsDataUser.GetPermissions(this.PermissionID);
+
+            if (userPermissionValue == AdminPermissions)
                 return true;
 
-            return ((Permissions & (int)Permission) == (int)Permission);
+            return ((userPermissionValue & (int)PermissionToCheck) == (int)PermissionToCheck);
 
         }
 
@@ -240,6 +244,13 @@ namespace BankSystemBLL
 
         }
 
+
+        public static DataTable ListLoginsRegister()
+        {
+
+            return clsDataUser.ListLoginsRegister();
+
+        }
 
         public bool Save()
         {

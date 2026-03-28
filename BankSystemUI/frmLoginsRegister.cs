@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankSystemBLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,25 @@ namespace BankSystemUI
         public frmLoginsRegister()
         {
             InitializeComponent();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void _ShowLoginsRegisterTable()
+        {
+
+            dgvLoginsRegister.DataSource = clsUser.ListLoginsRegister();
+
+        }
+
+        private void frmLoginsRegister_Load(object sender, EventArgs e)
+        {
+
+            _ShowLoginsRegisterTable();
+
         }
     }
 }

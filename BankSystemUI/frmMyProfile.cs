@@ -67,7 +67,7 @@ namespace BankSystemUI
             dtpBirthdate.Text = _User.BirthDate.ToString();
             txtName.Text = _User.Name;
             txtEmail.Text = _User.Email;
-            txtCountry.Text = _User.Country;
+            txtCountry.Text = _User.CountryID.ToString();
             txtPhone.Text = _User.Phone;
             txtUsername.Text = _User.Username;
             txtPassword.Text = _User.Password;

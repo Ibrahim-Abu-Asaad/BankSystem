@@ -60,6 +60,7 @@
             label2.Size = new Size(90, 22);
             label2.TabIndex = 2;
             label2.Text = "Username";
+            label2.Click += label2_Click;
             // 
             // label3
             // 

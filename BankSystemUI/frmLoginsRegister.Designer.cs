@@ -31,10 +31,16 @@
             components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             label1 = new Label();
             label2 = new Label();
+            dgvLoginsRegister = new Guna.UI2.WinForms.Guna2DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvLoginsRegister).BeginInit();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -79,12 +85,79 @@
             label2.Size = new Size(280, 54);
             label2.TabIndex = 2;
             label2.Text = "Logins Register";
+            label2.Click += label2_Click;
+            // 
+            // dgvLoginsRegister
+            // 
+            dgvLoginsRegister.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvLoginsRegister.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvLoginsRegister.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvLoginsRegister.ColumnHeadersHeight = 30;
+            dgvLoginsRegister.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvLoginsRegister.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvLoginsRegister.GridColor = Color.FromArgb(231, 229, 255);
+            dgvLoginsRegister.Location = new Point(33, 235);
+            dgvLoginsRegister.Name = "dgvLoginsRegister";
+            dgvLoginsRegister.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvLoginsRegister.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvLoginsRegister.RowHeadersVisible = false;
+            dgvLoginsRegister.RowHeadersWidth = 51;
+            dgvLoginsRegister.Size = new Size(954, 299);
+            dgvLoginsRegister.TabIndex = 3;
+            dgvLoginsRegister.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvLoginsRegister.ThemeStyle.AlternatingRowsStyle.Font = new Font("Segoe UI", 9F);
+            dgvLoginsRegister.ThemeStyle.AlternatingRowsStyle.ForeColor = SystemColors.ControlText;
+            dgvLoginsRegister.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvLoginsRegister.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvLoginsRegister.ThemeStyle.BackColor = Color.White;
+            dgvLoginsRegister.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            dgvLoginsRegister.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            dgvLoginsRegister.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvLoginsRegister.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+            dgvLoginsRegister.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvLoginsRegister.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvLoginsRegister.ThemeStyle.HeaderStyle.Height = 30;
+            dgvLoginsRegister.ThemeStyle.ReadOnly = false;
+            dgvLoginsRegister.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvLoginsRegister.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvLoginsRegister.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+            dgvLoginsRegister.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvLoginsRegister.ThemeStyle.RowsStyle.Height = 29;
+            dgvLoginsRegister.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvLoginsRegister.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
             // frmLoginsRegister
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1017, 606);
+            ClientSize = new Size(1017, 561);
+            Controls.Add(dgvLoginsRegister);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(guna2ControlBox1);
@@ -92,6 +165,8 @@
             Name = "frmLoginsRegister";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmLoginsRegister";
+            Load += frmLoginsRegister_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvLoginsRegister).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -102,5 +177,6 @@
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
         private Label label2;
         private Label label1;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvLoginsRegister;
     }
 }

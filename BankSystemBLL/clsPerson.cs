@@ -17,8 +17,9 @@ namespace BankSystemBLL
         public DateTime? BirthDate { get; set; }
         public string Address { get; set; }
         public string ImagePath { get; set; }
-        public string Country { get; set; }
+        public int CountryID { get; set; }
         public string Phone { get; set; }
+        public int MarkDeleted { get; set; }
 
 
         public string FirstName => string.IsNullOrWhiteSpace(Name) ? "" : Name.Split(' ')[0];
@@ -33,12 +34,13 @@ namespace BankSystemBLL
             this.BirthDate = null;
             this.Address = "";
             this.ImagePath = "";
-            this.Country = "";
+            this.CountryID = -1;
             this.Phone = "";
+            this.MarkDeleted = 0;
 
         }
 
-        protected clsPerson(string Name, string Email, DateTime BirthDate, string Address, string ImagePath, string Country, string Phone)
+        protected clsPerson(string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted)
         {
 
             this.Name = Name;
@@ -46,13 +48,14 @@ namespace BankSystemBLL
             this.BirthDate = BirthDate;
             this.Address = Address;
             this.ImagePath = ImagePath;
-            this.Country = Country;
+            this.CountryID = CountryID;
             this.Phone = Phone;
+            this.MarkDeleted = MarkDeleted;
             
         }
 
         //This maybe will use it to load data(Just in case);
-        protected clsPerson(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, string Country, string Phone)
+        protected clsPerson(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted)
         {
 
             this.PersonID = PersonID;
@@ -61,8 +64,9 @@ namespace BankSystemBLL
             this.BirthDate = BirthDate;
             this.Address = Address;
             this.ImagePath = ImagePath;
-            this.Country = Country;
+            this.CountryID = CountryID;
             this.Phone = Phone;
+            this.MarkDeleted = MarkDeleted;
 
         }
 

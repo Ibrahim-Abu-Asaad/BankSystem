@@ -19,7 +19,7 @@ namespace BankSystemUI
         private bool _ValidateUsernameAndPassword(string Username, string Password)
         {
 
-            if(Username == string.Empty && Password == string.Empty)
+            if (Username == string.Empty && Password == string.Empty)
             {
                 MessageBox.Show("Username And Password Required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -36,25 +36,44 @@ namespace BankSystemUI
                 return false;
             }
 
-            //_UserID = clsUser.IsUserExist(Username, Password);
-            _UserID = clsUser.IsUserExist(Username);
+            ////_UserID = clsUser.IsUserExist(Username, Password);
+            //_UserID = clsUser.IsUserExist(Username);
 
-            if (_UserID == -1)
+            //if (_UserID == -1)
+            //{
+            //    MessageBox.Show("Wronge Username", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
+
+            //_User = clsUser.GetUserByUserID(_UserID);
+
+            //if (!clsUser.CheckIfPasswordRight(_UserID, Password))
+            //{
+            //    MessageBox.Show("Wronge Password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
+
+
+            //return true;
+
+            _User = clsUser.GetUserByUsername(Username);
+
+            if (_User == null)
             {
-                MessageBox.Show("Wronge Username", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wrong Username", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            _User = clsUser.GetUserByUserID(_UserID);
-
-            if (!clsUser.CheckIfPasswordRight(_UserID, Password))
+            if (_User.Password != Password)
             {
-                MessageBox.Show("Wronge Password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wrong Password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-
+            _UserID = _User.UserID;
             return true;
+
+
 
         }
 
@@ -79,6 +98,8 @@ namespace BankSystemUI
                 txtUsername.Text = string.Empty;
                 txtPassword.Text = string.Empty;
                 cbShowPassword.Checked = false;
+
+                //MessageBox.Show($"Right Username And Right Password, Username: {_User.Username} Password: {_User.Password}");
 
             }
             //else
@@ -113,6 +134,11 @@ namespace BankSystemUI
         {
             cbShowPassword.Checked = false;
             txtPassword.UseSystemPasswordChar = true;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            //
         }
     }
 }

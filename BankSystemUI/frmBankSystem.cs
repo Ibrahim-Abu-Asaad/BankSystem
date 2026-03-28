@@ -14,7 +14,7 @@ namespace BankSystemUI
     public partial class frmBankSystem : Form
     {
 
-        public clsUser _User = new clsUser();
+        public clsUser _User;
         public int _UserID = -1;
 
         public frmBankSystem(int UserID)
@@ -25,8 +25,7 @@ namespace BankSystemUI
             //_UserID = UserID;
 
             //_User.LastLogin = DateTime.Now;
-            clsUser.UpdateLastLogin(UserID);
-
+            clsUser.UpdateLastLoginAndAddedItToLoginsRegister(UserID);
 
         }
 
@@ -37,7 +36,7 @@ namespace BankSystemUI
 
             lblLogedIn.Text = $"Welcome {_User.FirstName}";
 
-            if (_User.Permissions == clsUser.AdminPermissions)
+            if (_User.PermissionID == 4)
                 lblRole.Text = "Role : Admin";
             else lblRole.Text = "Role : User";
 
@@ -65,17 +64,23 @@ namespace BankSystemUI
 
         }
 
-        
+
 
         private void btnManageUsers_Click(object sender, EventArgs e)
         {
 
-            if (!_User.HasPermissions(clsUser.enPermissions.ManageUsers))
-            {
+            //if (!_User.HasPermissions(_User.PermissionID))
+            //{
 
+            //    MessageBox.Show("Access Denied! Check with your Admin.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+
+            //}
+
+            if (!_User.HasPermission(clsUser.enPermissions.ManageUsers))
+            {
                 MessageBox.Show("Access Denied! Check with your Admin.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-
             }
 
             Form frm = new frmManageUsers(_User.UserID);
@@ -92,9 +97,9 @@ namespace BankSystemUI
         private void btnManageClients_Click(object sender, EventArgs e)
         {
 
-            if (!_User.HasPermissions(clsUser.enPermissions.ManageCLients))
+            if (!_User.HasPermission(clsUser.enPermissions.ManageCLients))
             {
-                MessageBox.Show("Access Denied! Check with your Admin.", "Failed",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Access Denied! Check with your Admin.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -115,7 +120,13 @@ namespace BankSystemUI
         private void btnTransactions_Click(object sender, EventArgs e)
         {
 
-            if (!_User.HasPermissions(clsUser.enPermissions.ManageTransactions))
+            //if (!_User.HasPermissions(clsUser.enPermissions.ManageTransactions))
+            //{
+            //    MessageBox.Show("Access Denied! Check with your Admin.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+
+            if (!_User.HasPermission(clsUser.enPermissions.ManageTransactions))
             {
                 MessageBox.Show("Access Denied! Check with your Admin.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -129,7 +140,13 @@ namespace BankSystemUI
         private void btnCurrenciesSettings_Click(object sender, EventArgs e)
         {
 
-            if (!_User.HasPermissions(clsUser.enPermissions.ManageCurrencies))
+            //if (!_User.HasPermissions(clsUser.enPermissions.ManageCurrencies))
+            //{
+            //    MessageBox.Show("Access Denied! Check with your Admin.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+
+            if (!_User.HasPermission(clsUser.enPermissions.ManageCurrencies))
             {
                 MessageBox.Show("Access Denied! Check with your Admin.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -143,7 +160,12 @@ namespace BankSystemUI
         private void btnLoginsRegister_Click(object sender, EventArgs e)
         {
 
-            if (!_User.HasPermissions(clsUser.enPermissions.LoginsRegister))
+            //if (!_User.HasPermissions(clsUser.enPermissions.LoginsRegister))
+            //{
+            //    MessageBox.Show("Access Denied! Check with your Admin.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            if (!_User.HasPermission(clsUser.enPermissions.LoginsRegister))
             {
                 MessageBox.Show("Access Denied! Check with your Admin.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -153,5 +175,7 @@ namespace BankSystemUI
             frm.ShowDialog();
 
         }
+
+
     }
 }
