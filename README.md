@@ -22,28 +22,31 @@
 * 🧠 `/BankSystemBLL` - Logic and Validations.
 * 💾 `/BankSystemDAL` - Database Queries and Connections.
 
-## Setup
+## ⚙️ Setup
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Ibrahim-Abu-Asaad/BankSystem
+   git clone https://github.com/Ibrahim-Abu-Asaad/BankSystem.git
+   cd BankSystem
    ```
 
 2. Open the solution in Visual Studio
 
-3. Restore NuGet packages:
+3. Restore NuGet packages (if needed)
 
-   * This will automatically install required packages like:
+   * The required packages are already included in the repository
 
-     * Guna UI
-     * System.Data.SqlClient
+4. Update the connection string in:
+   `clsDataAccessSettings` (DAL layer)
 
-4. Update the connection string in DDL (Data Access Layer) in class called:
+5. Build and run the project
 
-   * `clsDataAccessSettings`
+## ⚠️ Notes
 
-5. Run the project
+* This project is still in progress and may not run correctly in all cases
+* SQL Server must be installed and running on your machine
+* The database scripts/backup will be added later
 
 
 > [!CAUTION]
