@@ -73,14 +73,10 @@ namespace BankSystemUI
             txtPassword.Text = _User.Password;
             txtAddress.Text = _User.Address;
 
-            
+
             cbCountry.DisplayMember = "Name";
             cbCountry.ValueMember = "ID";
             cbCountry.DataSource = clsUser.GetAllCountries();
-
-            //cbCountry.DropDownStyle = ComboBoxStyle.DropDown;
-            //cbCountry.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            //cbCountry.AutoCompleteSource = AutoCompleteSource.ListItems;
 
         }
 
@@ -90,6 +86,11 @@ namespace BankSystemUI
         }
 
         private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
         {
             //
         }

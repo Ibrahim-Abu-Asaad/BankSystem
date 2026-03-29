@@ -312,6 +312,7 @@
             btnSave.Size = new Size(168, 52);
             btnSave.TabIndex = 13;
             btnSave.Text = "Save";
+            btnSave.Click += btnSave_Click;
             // 
             // linkLabel1
             // 

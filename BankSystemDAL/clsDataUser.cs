@@ -674,11 +674,134 @@ namespace BankSystemDAL
 
         }
 
+        public static bool IsUsernameExist(string Username)
+        {
+
+            bool IsExist = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //string query = @"DELETE FROM Users WHERE ID = @ID";
+            string query = @"SELECT 1 FROM Users WHERE Username = @Username";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Username", Username);
+
+
+            try
+            {
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    IsExist = true;
 
 
 
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return IsExist;
+
+        }
+
+        public static bool IsEmailExist(string Email)
+        {
+
+            bool IsExist = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //string query = @"DELETE FROM Users WHERE ID = @ID";
+            string query = @"SELECT 1 FROM Persons WHERE Email = @Email";
 
 
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Email", Email);
+
+
+            try
+            {
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    IsExist = true;
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return IsExist;
+
+        }
+
+        public static bool IsPhoneExist(string Phone)
+        {
+
+            bool IsExist = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //string query = @"DELETE FROM Users WHERE ID = @ID";
+            string query = @"SELECT 1 FROM Persons WHERE Phone = @Phone";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Phone", Phone);
+
+
+            try
+            {
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    IsExist = true;
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return IsExist;
+
+        }
 
     }
 

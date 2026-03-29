@@ -210,6 +210,26 @@ namespace BankSystemBLL
         
         }
         
+        public static bool IsUsernameExist(string Username)
+        {
+
+            return clsDataUser.IsUsernameExist(Username);
+
+        }
+
+        public static bool IsEmailExist(string Email)
+        {
+
+            return clsDataUser.IsEmailExist(Email);
+
+        }
+
+        public static bool IsPhoneExist(string Phone)
+        {
+
+            return clsDataUser.IsPhoneExist(Phone);
+
+        }
         public static bool DeleteUser(int ID)
         {
 

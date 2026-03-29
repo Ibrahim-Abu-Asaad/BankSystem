@@ -48,7 +48,9 @@
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             pictureBox1 = new PictureBox();
             cbShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
+            errorProvider1 = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label2
@@ -66,7 +68,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Cascadia Mono SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(140, 267);
+            label3.Location = new Point(140, 269);
             label3.Name = "label3";
             label3.Size = new Size(90, 22);
             label3.TabIndex = 4;
@@ -120,7 +122,7 @@
             guna2Button1.FocusedColor = Color.White;
             guna2Button1.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(308, 336);
+            guna2Button1.Location = new Point(308, 353);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2Button1.Size = new Size(123, 56);
@@ -165,7 +167,7 @@
             txtPassword.Font = new Font("Cascadia Mono", 9F);
             txtPassword.ForeColor = Color.Black;
             txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Location = new Point(245, 267);
+            txtPassword.Location = new Point(245, 269);
             txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Enter Your Password";
@@ -173,6 +175,7 @@
             txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txtPassword.Size = new Size(241, 31);
             txtPassword.TabIndex = 2;
+            txtPassword.TextChanged += txtPassword_TextChanged;
             // 
             // pictureBox1
             // 
@@ -196,7 +199,7 @@
             cbShowPassword.Font = new Font("Cascadia Mono SemiBold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cbShowPassword.ForeColor = SystemColors.ActiveCaptionText;
             cbShowPassword.ImageAlign = ContentAlignment.MiddleRight;
-            cbShowPassword.Location = new Point(505, 277);
+            cbShowPassword.Location = new Point(245, 307);
             cbShowPassword.Name = "cbShowPassword";
             cbShowPassword.Size = new Size(134, 21);
             cbShowPassword.TabIndex = 12;
@@ -208,12 +211,16 @@
             cbShowPassword.UseVisualStyleBackColor = false;
             cbShowPassword.CheckedChanged += guna2CheckBox1_CheckedChanged;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(772, 428);
+            ClientSize = new Size(772, 451);
             Controls.Add(cbShowPassword);
             Controls.Add(pictureBox1);
             Controls.Add(txtPassword);
@@ -229,6 +236,7 @@
             Text = "Login";
             Load += frmLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -244,5 +252,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2CheckBox cbShowPassword;
+        private ErrorProvider errorProvider1;
     }
 }

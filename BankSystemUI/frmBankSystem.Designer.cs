@@ -123,10 +123,10 @@
             btnManageClients.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnManageClients.Font = new Font("Cascadia Mono", 10.2F);
             btnManageClients.ForeColor = Color.White;
-            btnManageClients.Location = new Point(395, 203);
+            btnManageClients.Location = new Point(392, 203);
             btnManageClients.Name = "btnManageClients";
             btnManageClients.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            btnManageClients.Size = new Size(193, 56);
+            btnManageClients.Size = new Size(202, 56);
             btnManageClients.TabIndex = 6;
             btnManageClients.Text = "Manage Clients";
             btnManageClients.Click += btnManageClients_Click;
@@ -142,10 +142,10 @@
             btnTransactions.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnTransactions.Font = new Font("Cascadia Mono", 10.2F);
             btnTransactions.ForeColor = Color.White;
-            btnTransactions.Location = new Point(395, 280);
+            btnTransactions.Location = new Point(392, 280);
             btnTransactions.Name = "btnTransactions";
             btnTransactions.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnTransactions.Size = new Size(193, 56);
+            btnTransactions.Size = new Size(202, 56);
             btnTransactions.TabIndex = 7;
             btnTransactions.Text = "Transactions";
             btnTransactions.Click += btnTransactions_Click;
@@ -161,10 +161,10 @@
             btnManageUsers.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnManageUsers.Font = new Font("Cascadia Mono", 10.2F);
             btnManageUsers.ForeColor = Color.White;
-            btnManageUsers.Location = new Point(395, 357);
+            btnManageUsers.Location = new Point(392, 357);
             btnManageUsers.Name = "btnManageUsers";
             btnManageUsers.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnManageUsers.Size = new Size(193, 56);
+            btnManageUsers.Size = new Size(202, 56);
             btnManageUsers.TabIndex = 8;
             btnManageUsers.Text = "Manage Users";
             btnManageUsers.Click += btnManageUsers_Click;
@@ -180,12 +180,12 @@
             btnCurrenciesSettings.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnCurrenciesSettings.Font = new Font("Cascadia Mono", 10.2F);
             btnCurrenciesSettings.ForeColor = Color.White;
-            btnCurrenciesSettings.Location = new Point(395, 434);
+            btnCurrenciesSettings.Location = new Point(392, 434);
             btnCurrenciesSettings.Name = "btnCurrenciesSettings";
             btnCurrenciesSettings.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnCurrenciesSettings.Size = new Size(193, 56);
+            btnCurrenciesSettings.Size = new Size(202, 56);
             btnCurrenciesSettings.TabIndex = 9;
-            btnCurrenciesSettings.Text = "Currencies Settings";
+            btnCurrenciesSettings.Text = "Currency Settings";
             btnCurrenciesSettings.Click += btnCurrenciesSettings_Click;
             // 
             // btnLoginsRegister
@@ -199,10 +199,10 @@
             btnLoginsRegister.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnLoginsRegister.Font = new Font("Cascadia Mono", 10.2F);
             btnLoginsRegister.ForeColor = Color.White;
-            btnLoginsRegister.Location = new Point(395, 511);
+            btnLoginsRegister.Location = new Point(392, 511);
             btnLoginsRegister.Name = "btnLoginsRegister";
             btnLoginsRegister.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnLoginsRegister.Size = new Size(193, 56);
+            btnLoginsRegister.Size = new Size(202, 56);
             btnLoginsRegister.TabIndex = 10;
             btnLoginsRegister.Text = "Logins Register";
             btnLoginsRegister.Click += btnLoginsRegister_Click;
@@ -219,10 +219,10 @@
             btnLogout.FillColor = Color.Tomato;
             btnLogout.Font = new Font("Cascadia Mono", 10.2F);
             btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(395, 665);
+            btnLogout.Location = new Point(392, 665);
             btnLogout.Name = "btnLogout";
             btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnLogout.Size = new Size(193, 56);
+            btnLogout.Size = new Size(202, 56);
             btnLogout.TabIndex = 11;
             btnLogout.Text = "Logout";
             btnLogout.Click += btnExit_Click;
@@ -238,10 +238,10 @@
             btnMyProfile.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnMyProfile.Font = new Font("Cascadia Mono", 10.2F);
             btnMyProfile.ForeColor = Color.White;
-            btnMyProfile.Location = new Point(395, 588);
+            btnMyProfile.Location = new Point(392, 588);
             btnMyProfile.Name = "btnMyProfile";
             btnMyProfile.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnMyProfile.Size = new Size(193, 56);
+            btnMyProfile.Size = new Size(202, 56);
             btnMyProfile.TabIndex = 12;
             btnMyProfile.Text = "My Profile";
             btnMyProfile.Click += btnMyProfile_Click;

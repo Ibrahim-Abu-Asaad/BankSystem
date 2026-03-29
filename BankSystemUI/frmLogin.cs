@@ -19,20 +19,26 @@ namespace BankSystemUI
         private bool _ValidateUsernameAndPassword(string Username, string Password)
         {
 
+            errorProvider1.Clear();
+
             if (Username == string.Empty && Password == string.Empty)
             {
-                MessageBox.Show("Username And Password Required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errorProvider1.SetError(txtUsername, "Username is required");
+                errorProvider1.SetError(txtPassword, "Password is required");
+                //MessageBox.Show("Username And Password Required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (Username == string.Empty)
             {
-                MessageBox.Show("Username Required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errorProvider1.SetError(txtUsername, "Username is required");
+                //MessageBox.Show("Username Required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             else if (Password == string.Empty)
             {
-                MessageBox.Show("Password Required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errorProvider1.SetError(txtPassword, "Password is required");
+                //MessageBox.Show("Password Required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -113,7 +119,10 @@ namespace BankSystemUI
 
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {
-            //
+
+            if (txtUsername.Text.Length > 0)
+                errorProvider1.SetError(txtUsername, "");
+
         }
 
         private void guna2CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -139,6 +148,14 @@ namespace BankSystemUI
         private void label2_Click(object sender, EventArgs e)
         {
             //
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+            if (txtPassword.Text.Length > 0)
+                errorProvider1.SetError(txtPassword, "");
+
         }
     }
 }
