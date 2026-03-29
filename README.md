@@ -27,7 +27,7 @@
 1. Clone the repository:
 
    ```bash
-   git clone <https://github.com/Ibrahim-Abu-Asaad/BankSystem>
+   git clone https://github.com/Ibrahim-Abu-Asaad/BankSystem
    ```
 
 2. Open the solution in Visual Studio
