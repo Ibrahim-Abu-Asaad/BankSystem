@@ -273,9 +273,13 @@ namespace BankSystemDAL
             DataTable dt = new DataTable();
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT Users.ID, Users.Username, Users.Password, Users.PermissionID, Users.LastLogin,
-                             Persons.Name, Persons.Email, Persons.CountryID, Persons.Phone, Persons.MarkDeleted
-                             FROM Persons INNER JOIN Users ON Persons.ID = Users.PersonID";
+            string query = @"SELECT Users.ID, Users.Username, Users.LastLogin, Persons.Name, Countries.Name AS Country, Roles.RoleName
+                             FROM Users INNER JOIN
+                             Persons ON Users.PersonID = Persons.ID INNER JOIN
+                             Permissions ON Users.PermissionID = Permissions.ID INNER JOIN
+                             Roles ON Permissions.RoleID = Roles.ID INNER JOIN
+                             Countries ON Persons.CountryID = Countries.ID
+                             WHERE Persons.MarkDeleted = 0";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -541,6 +545,138 @@ namespace BankSystemDAL
             return dt;
 
         }
+
+        public static bool DeleteUser(int ID)
+        {
+
+            bool IsDeleted = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //string query = @"DELETE FROM Users WHERE ID = @ID";
+            string query = @"UPDATE Persons SET Persons.MarkDeleted = 1 WHERE ID = @ID";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ID", ID);
+
+
+            try
+            {
+
+                connection.Open();
+                int rowAffected = command.ExecuteNonQuery();
+
+                if (rowAffected > 0)
+                    IsDeleted = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return IsDeleted;
+
+        }
+
+        public static bool IsAdmin(int ID)
+        {
+
+            bool IsAdmin = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //string query = @"DELETE FROM Users WHERE ID = @ID";
+            string query = @"SELECT LOWER(Roles.RoleName)
+                             FROM Users INNER JOIN
+                             Permissions ON Users.PermissionID = Permissions.ID INNER JOIN
+                             Roles ON Permissions.RoleID = Roles.ID
+                             WHERE Users.ID = @ID";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ID", ID);
+
+
+            try
+            {
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                string RoleName = result.ToString();
+                if (RoleName == "admin")
+                    IsAdmin = true;
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return IsAdmin;
+
+        }
+
+        public static DataTable GetAllCountries()
+        {
+
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT ID, Name FROM Countries";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+
+
+            try
+            {
+
+                connection.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                adapter.Fill(dt);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return dt;
+
+        }
+
+
+
+
 
 
 

@@ -89,6 +89,9 @@
             // 
             // dgvLoginsRegister
             // 
+            dgvLoginsRegister.AllowUserToAddRows = false;
+            dgvLoginsRegister.AllowUserToDeleteRows = false;
+            dgvLoginsRegister.AllowUserToOrderColumns = true;
             dgvLoginsRegister.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
@@ -117,6 +120,7 @@
             dgvLoginsRegister.GridColor = Color.FromArgb(231, 229, 255);
             dgvLoginsRegister.Location = new Point(33, 235);
             dgvLoginsRegister.Name = "dgvLoginsRegister";
+            dgvLoginsRegister.ReadOnly = true;
             dgvLoginsRegister.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.White;
@@ -143,7 +147,7 @@
             dgvLoginsRegister.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             dgvLoginsRegister.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgvLoginsRegister.ThemeStyle.HeaderStyle.Height = 30;
-            dgvLoginsRegister.ThemeStyle.ReadOnly = false;
+            dgvLoginsRegister.ThemeStyle.ReadOnly = true;
             dgvLoginsRegister.ThemeStyle.RowsStyle.BackColor = Color.White;
             dgvLoginsRegister.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvLoginsRegister.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);

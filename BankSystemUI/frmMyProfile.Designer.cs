@@ -59,7 +59,6 @@
             txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
             dtpBirthdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             label3 = new Label();
-            txtCountry = new Guna.UI2.WinForms.Guna2TextBox();
             txtPhone = new Guna.UI2.WinForms.Guna2TextBox();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
@@ -73,6 +72,7 @@
             label8 = new Label();
             label9 = new Label();
             label10 = new Label();
+            cbCountry = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)pbMyProfile).BeginInit();
             SuspendLayout();
             // 
@@ -207,32 +207,10 @@
             label3.TabIndex = 7;
             label3.Text = "Birthdate";
             // 
-            // txtCountry
-            // 
-            txtCountry.BorderRadius = 4;
-            txtCountry.CustomizableEdges = customizableEdges11;
-            txtCountry.DefaultText = "";
-            txtCountry.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtCountry.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtCountry.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtCountry.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtCountry.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCountry.Font = new Font("Cascadia Mono", 9F);
-            txtCountry.ForeColor = Color.Black;
-            txtCountry.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCountry.Location = new Point(98, 433);
-            txtCountry.Margin = new Padding(3, 4, 3, 4);
-            txtCountry.Name = "txtCountry";
-            txtCountry.PlaceholderText = "Enter Your Country";
-            txtCountry.SelectedText = "";
-            txtCountry.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            txtCountry.Size = new Size(194, 38);
-            txtCountry.TabIndex = 8;
-            // 
             // txtPhone
             // 
             txtPhone.BorderRadius = 4;
-            txtPhone.CustomizableEdges = customizableEdges9;
+            txtPhone.CustomizableEdges = customizableEdges11;
             txtPhone.DefaultText = "";
             txtPhone.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPhone.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -247,14 +225,14 @@
             txtPhone.Name = "txtPhone";
             txtPhone.PlaceholderText = "Enter Your Phone";
             txtPhone.SelectedText = "";
-            txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges12;
             txtPhone.Size = new Size(194, 38);
             txtPhone.TabIndex = 9;
             // 
             // txtUsername
             // 
             txtUsername.BorderRadius = 4;
-            txtUsername.CustomizableEdges = customizableEdges7;
+            txtUsername.CustomizableEdges = customizableEdges9;
             txtUsername.DefaultText = "";
             txtUsername.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtUsername.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -269,14 +247,14 @@
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Enter Your Username";
             txtUsername.SelectedText = "";
-            txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges10;
             txtUsername.Size = new Size(194, 38);
             txtUsername.TabIndex = 10;
             // 
             // txtPassword
             // 
             txtPassword.BorderRadius = 4;
-            txtPassword.CustomizableEdges = customizableEdges5;
+            txtPassword.CustomizableEdges = customizableEdges7;
             txtPassword.DefaultText = "";
             txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -291,14 +269,14 @@
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Enter Your Password";
             txtPassword.SelectedText = "";
-            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges8;
             txtPassword.Size = new Size(194, 38);
             txtPassword.TabIndex = 11;
             // 
             // txtAddress
             // 
             txtAddress.BorderRadius = 4;
-            txtAddress.CustomizableEdges = customizableEdges3;
+            txtAddress.CustomizableEdges = customizableEdges5;
             txtAddress.DefaultText = "";
             txtAddress.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtAddress.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -313,7 +291,7 @@
             txtAddress.Name = "txtAddress";
             txtAddress.PlaceholderText = "Enter Your Address";
             txtAddress.SelectedText = "";
-            txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txtAddress.Size = new Size(194, 38);
             txtAddress.TabIndex = 12;
             // 
@@ -321,7 +299,7 @@
             // 
             btnSave.BorderRadius = 5;
             btnSave.Cursor = Cursors.Hand;
-            btnSave.CustomizableEdges = customizableEdges1;
+            btnSave.CustomizableEdges = customizableEdges3;
             btnSave.DisabledState.BorderColor = Color.DarkGray;
             btnSave.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSave.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -330,7 +308,7 @@
             btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(273, 642);
             btnSave.Name = "btnSave";
-            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnSave.Size = new Size(168, 52);
             btnSave.TabIndex = 13;
             btnSave.Text = "Save";
@@ -417,11 +395,35 @@
             label10.TabIndex = 21;
             label10.Text = "Address";
             // 
+            // cbCountry
+            // 
+            cbCountry.BackColor = Color.Transparent;
+            cbCountry.BorderRadius = 4;
+            cbCountry.Cursor = Cursors.Hand;
+            cbCountry.CustomizableEdges = customizableEdges1;
+            cbCountry.DisplayMember = "Country";
+            cbCountry.DrawMode = DrawMode.OwnerDrawFixed;
+            cbCountry.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbCountry.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbCountry.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbCountry.Font = new Font("Segoe UI", 10F);
+            cbCountry.ForeColor = Color.FromArgb(68, 88, 112);
+            cbCountry.FormattingEnabled = true;
+            cbCountry.ItemHeight = 30;
+            cbCountry.Location = new Point(98, 435);
+            cbCountry.Name = "cbCountry";
+            cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            cbCountry.Size = new Size(175, 36);
+            cbCountry.TabIndex = 22;
+            cbCountry.ValueMember = "Choose Country";
+            cbCountry.SelectedIndexChanged += guna2ComboBox1_SelectedIndexChanged;
+            // 
             // frmMyProfile
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(690, 732);
+            Controls.Add(cbCountry);
             Controls.Add(label10);
             Controls.Add(label9);
             Controls.Add(label8);
@@ -435,7 +437,6 @@
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
             Controls.Add(txtPhone);
-            Controls.Add(txtCountry);
             Controls.Add(label3);
             Controls.Add(dtpBirthdate);
             Controls.Add(txtEmail);
@@ -470,7 +471,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private Guna.UI2.WinForms.Guna2TextBox txtPhone;
-        private Guna.UI2.WinForms.Guna2TextBox txtCountry;
         private LinkLabel linkLabel1;
         private Label label10;
         private Label label9;
@@ -479,5 +479,6 @@
         private Label label6;
         private Label label5;
         private Label label4;
+        private Guna.UI2.WinForms.Guna2ComboBox cbCountry;
     }
 }

@@ -40,6 +40,7 @@ namespace BankSystemUI
             lblAdminCount.Text = clsUser.GetAdminCount().ToString();
 
             dgvListUsers.DataSource = clsUser.ListUsers();
+            dgvListUsers.Columns["ID"].Visible = false;
 
         }
 
@@ -56,22 +57,40 @@ namespace BankSystemUI
             if (e.RowIndex < 0) return;
 
             int UserID = (int)dgvListUsers.Rows[e.RowIndex].Cells["ID"].Value;
+            //string Username = dgvListUsers.Rows[e.RowIndex].Cells["Username"].Value.ToString();
+            _User = clsUser.GetUserByUserID(UserID);
+            //int PersonID = _User.PersonID;
 
             if (dgvListUsers.Columns[e.ColumnIndex].Name == "colEdit")
             {
 
                 dgvListUsers.Cursor = Cursors.Hand;
-                MessageBox.Show($"EDIT {UserID}");
+                //MessageBox.Show($"EDIT {UserID}");
+
+                Form frm = new frmAddEditUsers(UserID);
+                frm.ShowDialog();
 
                 _RefreshUsersList();
 
             }
 
+            
+
             if (dgvListUsers.Columns[e.ColumnIndex].Name == "colDelete")
             {
 
+
                 dgvListUsers.Cursor = Cursors.Hand;
-                MessageBox.Show($"DELETE {UserID}");
+                //MessageBox.Show($"DELETE {UserID}");
+                if (MessageBox.Show($"Are You Sure You Want To Delete {_User.Username}","Confirm",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if(clsUser.DeleteUser(UserID))
+                        MessageBox.Show($"User Deleted Successfully {_User.Username}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show($"User Does Not Deleted! {_User.Username}", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+                
 
                 _RefreshUsersList();
 
@@ -108,7 +127,10 @@ namespace BankSystemUI
 
         private void btnAddNewUser_Click(object sender, EventArgs e)
         {
-            //
+
+            Form frm = new frmAddEditUsers(-1);
+            frm.ShowDialog();
+
         }
 
         private void cbSearchBy_SelectedIndexChanged(object sender, EventArgs e)

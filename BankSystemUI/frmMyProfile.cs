@@ -67,17 +67,31 @@ namespace BankSystemUI
             dtpBirthdate.Text = _User.BirthDate.ToString();
             txtName.Text = _User.Name;
             txtEmail.Text = _User.Email;
-            txtCountry.Text = _User.CountryID.ToString();
+            //txtCountry.Text = _User.CountryID.ToString();
             txtPhone.Text = _User.Phone;
             txtUsername.Text = _User.Username;
             txtPassword.Text = _User.Password;
             txtAddress.Text = _User.Address;
+
+            
+            cbCountry.DisplayMember = "Name";
+            cbCountry.ValueMember = "ID";
+            cbCountry.DataSource = clsUser.GetAllCountries();
+
+            //cbCountry.DropDownStyle = ComboBoxStyle.DropDown;
+            //cbCountry.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //cbCountry.AutoCompleteSource = AutoCompleteSource.ListItems;
 
         }
 
         private void frmMyProfile_Load(object sender, EventArgs e)
         {
             _FillInformation();
+        }
+
+        private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //
         }
     }
 }

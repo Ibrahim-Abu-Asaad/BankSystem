@@ -202,10 +202,21 @@ namespace BankSystemBLL
             return clsDataUser.ListUsers();
 
         }
-        
-        public static void DeleteUser(int UserID)
+
+        public static bool IsAdmin(int ID)
         {
-            //
+
+            return clsDataUser.IsAdmin(ID);
+        
+        }
+        
+        public static bool DeleteUser(int ID)
+        {
+
+            clsUser User = clsUser.GetUserByUserID(ID);
+            //int PeronsID = User.PersonID;
+
+            return clsDataUser.DeleteUser(User.PersonID);
         }
 
         public static void UpdateLastLoginAndAddedItToLoginsRegister(int UserID)
@@ -279,6 +290,13 @@ namespace BankSystemBLL
         }
 
 
+        // This functions should written in its own class
+        public static DataTable GetAllCountries()
+        {
+
+            return clsDataUser.GetAllCountries();
+
+        }
 
 
     }
