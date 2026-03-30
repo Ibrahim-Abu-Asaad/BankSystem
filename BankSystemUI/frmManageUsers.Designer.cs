@@ -45,8 +45,6 @@
             label1 = new Label();
             label2 = new Label();
             dgvListUsers = new Guna.UI2.WinForms.Guna2DataGridView();
-            colEdit = new DataGridViewImageColumn();
-            colDelete = new DataGridViewImageColumn();
             btnAddNewUser = new Guna.UI2.WinForms.Guna2Button();
             txtSearchBy = new Guna.UI2.WinForms.Guna2TextBox();
             cbSearchBy = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -54,6 +52,8 @@
             label4 = new Label();
             lblTotalUsers = new Label();
             lblAdminCount = new Label();
+            colDelete = new DataGridViewImageColumn();
+            colEdit = new DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)dgvListUsers).BeginInit();
             SuspendLayout();
             // 
@@ -119,7 +119,7 @@
             dgvListUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvListUsers.ColumnHeadersHeight = 30;
             dgvListUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvListUsers.Columns.AddRange(new DataGridViewColumn[] { colEdit, colDelete });
+            dgvListUsers.Columns.AddRange(new DataGridViewColumn[] { colDelete, colEdit });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -161,26 +161,6 @@
             dgvListUsers.CellContentClick += dgvListUsers_CellContentClick;
             dgvListUsers.CellMouseEnter += dgvListUsers_CellMouseEnter;
             dgvListUsers.CellMouseLeave += dgvListUsers_CellMouseLeave;
-            // 
-            // colEdit
-            // 
-            colEdit.FillWeight = 53.4759369F;
-            colEdit.HeaderText = "";
-            colEdit.Image = Properties.Resources.Edit;
-            colEdit.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            colEdit.MinimumWidth = 6;
-            colEdit.Name = "colEdit";
-            colEdit.ReadOnly = true;
-            // 
-            // colDelete
-            // 
-            colDelete.FillWeight = 146.524063F;
-            colDelete.HeaderText = "";
-            colDelete.Image = Properties.Resources.Trash;
-            colDelete.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            colDelete.MinimumWidth = 6;
-            colDelete.Name = "colDelete";
-            colDelete.ReadOnly = true;
             // 
             // btnAddNewUser
             // 
@@ -288,6 +268,26 @@
             lblAdminCount.Text = "5";
             lblAdminCount.Click += lblCount_Click;
             // 
+            // colDelete
+            // 
+            colDelete.FillWeight = 35.52406F;
+            colDelete.HeaderText = "";
+            colDelete.Image = Properties.Resources.Trash;
+            colDelete.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            colDelete.MinimumWidth = 6;
+            colDelete.Name = "colDelete";
+            colDelete.ReadOnly = true;
+            // 
+            // colEdit
+            // 
+            colEdit.FillWeight = 50.47594F;
+            colEdit.HeaderText = "";
+            colEdit.Image = Properties.Resources.Edit;
+            colEdit.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            colEdit.MinimumWidth = 6;
+            colEdit.Name = "colEdit";
+            colEdit.ReadOnly = true;
+            // 
             // frmManageUsers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -328,7 +328,7 @@
         private Label lblAdminCount;
         private Label lblTotalUsers;
         private Label label4;
-        private DataGridViewImageColumn colEdit;
         private DataGridViewImageColumn colDelete;
+        private DataGridViewImageColumn colEdit;
     }
 }

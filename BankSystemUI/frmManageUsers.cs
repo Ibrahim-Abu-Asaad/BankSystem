@@ -204,7 +204,11 @@ namespace BankSystemUI
 
             Form frm = new frmAddEditUsers(-1);
             frm.ShowDialog();
+            //_RefreshUsersList();
+
             _RefreshUsersList();
+            txtSearchBy.Text = SEARCHING_Sentence;
+            _Search();
 
         }
 

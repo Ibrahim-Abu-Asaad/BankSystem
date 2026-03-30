@@ -369,7 +369,15 @@ namespace BankSystemUI
             //    _User.ImagePath = "";
 
             _User.Phone = txtPhone.Text;
-            _User.CountryID = (int)cbCountry.SelectedValue;
+
+
+            //_User.CountryID = 0;
+            //_User.CountryID = (int)cbCountry.SelectedValue;
+
+            //if(cbCountry.SelectedValue != null)
+            //    _User.CountryID = (int)cbCountry.SelectedValue;
+
+            _User.CountryID = cbCountry.SelectedValue != null ? (int)cbCountry.SelectedValue : 0;
 
             _User.Username = txtUsername.Text;
             _User.Password = txtPassword.Text;
