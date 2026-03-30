@@ -129,6 +129,45 @@ namespace BankSystemDAL
             return PermissionID;
 
         }
+
+        public static int GetPermissionLevelByPermissionID(int PermissionID)
+        {
+
+            int PermissionLevel = 0;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT PermissionLevel FROM [Permissions] WHERE ID = @PermissionID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PermissionID", PermissionID);
+
+            try
+            {
+
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int insertedPermission))
+                    PermissionLevel = insertedPermission;
+
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return PermissionLevel;
+
+        }
+
+
         /*
          
         

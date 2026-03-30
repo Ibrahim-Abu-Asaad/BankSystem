@@ -390,7 +390,10 @@ namespace BankSystemDAL
             int AdminCount = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT COUNT(*) FROM Users WHERE Permissions = 31";
+            string query = @"SELECT COUNT(Permissions.PermissionLevel)
+                             FROM Users INNER JOIN
+                             Permissions ON Users.PermissionID = Permissions.ID
+                             WHERE PermissionLevel = 31";
 
             SqlCommand command = new SqlCommand(query, connection);
 

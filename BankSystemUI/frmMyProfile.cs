@@ -37,6 +37,9 @@ namespace BankSystemUI
             //
         }
 
+
+        string _SelectedImagePath = "";
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
@@ -48,6 +51,7 @@ namespace BankSystemUI
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     pbMyProfile.Image = Image.FromFile(openFileDialog.FileName);
+                    _SelectedImagePath = openFileDialog.FileName;
                 }
             }
 
@@ -73,6 +77,9 @@ namespace BankSystemUI
             txtPassword.Text = _User.Password;
             txtAddress.Text = _User.Address;
 
+            _SelectedImagePath = _User.ImagePath;
+            //_User.ImagePath = _SelectedImagePath;
+            pbMyProfile.Load(_SelectedImagePath);
 
             cbCountry.DisplayMember = "Name";
             cbCountry.ValueMember = "ID";
@@ -226,6 +233,12 @@ namespace BankSystemUI
             //if (_User.ImagePath == null)
             //    _User.ImagePath = "";
 
+            //_User.ImagePath = _SelectedImagePath;
+            if (!string.IsNullOrEmpty(_SelectedImagePath))
+            {
+                _User.ImagePath = _SelectedImagePath;
+            }
+
             _User.Phone = txtPhone.Text;
             _User.CountryID = (int)cbCountry.SelectedValue;
 
@@ -248,9 +261,12 @@ namespace BankSystemUI
                 _User.Mode = clsUser.enMode.Update;
 
                 if (_User.Save())
-                    MessageBox.Show("Your Info Is Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Your Info Is Saved Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
-                    MessageBox.Show("Your Info Is NOT Updated", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Your Info Is NOT Saved", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+
 
                 this.Close();
 

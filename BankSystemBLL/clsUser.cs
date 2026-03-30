@@ -346,6 +346,12 @@ namespace BankSystemBLL
             return clsDataPermission.GetPermissionIDByPermissionLevel(PermissionLevel);
 
         }
+        public static int GetPermissionLevelByPermissionID(int PermissionID)
+        {
+
+            return clsDataPermission.GetPermissionLevelByPermissionID(PermissionID);
+
+        }
 
         // And this one
         public static int AddNewPermission(int PermissionLevel)

@@ -52,17 +52,21 @@ namespace BankSystemUI
             //cbCountry.DataSource = clsUser.GetAllCountries();
             cbCountry.SelectedValue = _User.CountryID;
 
+            int PermissionLevel = clsUser.GetPermissionLevelByPermissionID(_User.PermissionID);
+            //MessageBox.Show($"{PermissionLevel}");
+            chbManageUsers.Checked = (PermissionLevel & (int)clsUser.enPermissions.ManageUsers) == (int)clsUser.enPermissions.ManageUsers;
+            chbManageClients.Checked = (PermissionLevel & (int)clsUser.enPermissions.ManageCLients) == (int)clsUser.enPermissions.ManageCLients;
+            chbCurrenciesSettings.Checked = (PermissionLevel & (int)clsUser.enPermissions.ManageCurrencies) == (int)clsUser.enPermissions.ManageCurrencies;
+            chbTransactions.Checked = (PermissionLevel & (int)clsUser.enPermissions.ManageTransactions) == (int)clsUser.enPermissions.ManageTransactions;
+            chbLoginsRegister.Checked = (PermissionLevel & (int)clsUser.enPermissions.LoginsRegister) == (int)clsUser.enPermissions.LoginsRegister;
 
-            chbManageUsers.Checked = (_User.PermissionID & (int)clsUser.enPermissions.ManageUsers) == (int)clsUser.enPermissions.ManageUsers;
-            chbManageClients.Checked = (_User.PermissionID & (int)clsUser.enPermissions.ManageCLients) == (int)clsUser.enPermissions.ManageCLients;
-            chbCurrenciesSettings.Checked = (_User.PermissionID & (int)clsUser.enPermissions.ManageCurrencies) == (int)clsUser.enPermissions.ManageCurrencies;
-            chbTransactions.Checked = (_User.PermissionID & (int)clsUser.enPermissions.ManageTransactions) == (int)clsUser.enPermissions.ManageTransactions;
-            chbLoginsRegister.Checked = (_User.PermissionID & (int)clsUser.enPermissions.LoginsRegister) == (int)clsUser.enPermissions.LoginsRegister;
+            if (_User.ImagePath != "" && File.Exists(_User.ImagePath))
+                pbUserImage.Load(_User.ImagePath);
 
-            //if (_User.ImagePath != "" && File.Exists(_User.ImagePath))
-            //    pbUserImage.ImageLocation = _User.ImagePath;
+            //_User.ImagePath = string.IsNullOrEmpty(_User.ImagePath) ? "" : _User.ImagePath;
+            //_User.ImagePath =  _User.ImagePath;
 
-            _User.ImagePath = string.IsNullOrEmpty(_User.ImagePath) ? "" : _User.ImagePath;
+
 
             errorProvider1.Clear();
 
@@ -374,8 +378,8 @@ namespace BankSystemUI
 
                 _FillTheUserWithTheValidatedInfo();
 
-                MessageBox.Show($"UserID = {_User.UserID}, PersonID = {_User.PersonID}");
-                MessageBox.Show(_User.Mode.ToString());
+                //MessageBox.Show($"UserID = {_User.UserID}, PersonID = {_User.PersonID}");
+                //MessageBox.Show(_User.Mode.ToString());
                 if (_User.Save())
                 {
 
@@ -386,7 +390,12 @@ namespace BankSystemUI
 
 
                     MessageBox.Show(msg, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _ResetFields();
+
+                    if (_Mode == clsUser.enMode.Create)
+                        _ResetFields();
+                    else this.Close();
+
+
                 }
                 else
                 {
