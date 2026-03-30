@@ -132,13 +132,14 @@ namespace BankSystemUI
                 _FillTheFieldsWithUserInfoFromDatabase();
 
 
+                
 
             }
 
             //cbCountry.DisplayMember = "Name";
             //cbCountry.ValueMember = "ID";
             //cbCountry.DataSource = clsUser.GetAllCountries();
-
+            cbCountry.MaxDropDownItems = 7;
 
         }
 
@@ -593,6 +594,11 @@ namespace BankSystemUI
             //if (txtUsername.Text.Length > 0)
             //    errorProvider1.SetError(txtUsername, "");
 
+        }
+
+        private void cbCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //
         }
     }
 }

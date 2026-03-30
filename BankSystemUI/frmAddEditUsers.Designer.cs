@@ -361,17 +361,21 @@
             cbCountry.Cursor = Cursors.Hand;
             cbCountry.CustomizableEdges = customizableEdges7;
             cbCountry.DrawMode = DrawMode.OwnerDrawFixed;
+            cbCountry.DropDownHeight = 240;
             cbCountry.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCountry.FocusedColor = Color.FromArgb(94, 148, 255);
             cbCountry.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             cbCountry.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbCountry.ForeColor = SystemColors.ControlText;
+            cbCountry.IntegralHeight = false;
             cbCountry.ItemHeight = 30;
             cbCountry.Location = new Point(871, 448);
+            cbCountry.MaxDropDownItems = 7;
             cbCountry.Name = "cbCountry";
             cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            cbCountry.Size = new Size(175, 36);
+            cbCountry.Size = new Size(162, 36);
             cbCountry.TabIndex = 19;
+            cbCountry.SelectedIndexChanged += cbCountry_SelectedIndexChanged;
             // 
             // label4
             // 

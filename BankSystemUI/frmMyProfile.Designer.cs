@@ -414,12 +414,16 @@
             cbCountry.CustomizableEdges = customizableEdges1;
             cbCountry.DisplayMember = "Country";
             cbCountry.DrawMode = DrawMode.OwnerDrawFixed;
+            cbCountry.DropDownHeight = 240;
             cbCountry.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbCountry.DropDownWidth = 221;
             cbCountry.FocusedColor = Color.FromArgb(94, 148, 255);
             cbCountry.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             cbCountry.Font = new Font("Segoe UI", 10F);
             cbCountry.ForeColor = Color.FromArgb(68, 88, 112);
             cbCountry.FormattingEnabled = true;
+            cbCountry.ImeMode = ImeMode.On;
+            cbCountry.IntegralHeight = false;
             cbCountry.ItemHeight = 30;
             cbCountry.Location = new Point(98, 435);
             cbCountry.Name = "cbCountry";
