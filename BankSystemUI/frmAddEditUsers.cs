@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using BankSystemDAL;
+using Microsoft.VisualBasic;
 
 namespace BankSystemUI
 {
@@ -99,7 +101,7 @@ namespace BankSystemUI
 
         }
 
-        private bool _Validate()
+        private bool _ValidateInfo()
         {
 
 
@@ -241,11 +243,143 @@ namespace BankSystemUI
 
         }
 
+        private int _GetThePermissionIDofTheUser()
+        {
+
+            int PermissionLevel = 0;
+
+            if (chbManageUsers.Checked == true)
+                PermissionLevel += (int)clsUser.enPermissions.ManageUsers;
+
+            if (chbManageClients.Checked == true)
+                PermissionLevel += (int)clsUser.enPermissions.ManageCLients;
+
+            if (chbCurrenciesSettings.Checked == true)
+                PermissionLevel += (int)clsUser.enPermissions.ManageCurrencies;
+
+            if (chbTransactions.Checked == true)
+                PermissionLevel += (int)clsUser.enPermissions.ManageTransactions;
+
+            if (chbLoginsRegister.Checked == true)
+                PermissionLevel += (int)clsUser.enPermissions.LoginsRegister;
+
+            int PermissionID = clsUser.GetPermissionIDByPermissionLevel(PermissionLevel);
+
+            //if (clsUser.IsPermissionLevelExist(PermissionLevel))
+            //    PermissionID = clsUser.GetPermissionIDByPermissionLevel(PermissionLevel);
+            //else
+            //{
+
+            //}
+
+            if (PermissionID == -1)
+                PermissionID = clsUser.AddNewPermission(PermissionLevel);
+
+            return PermissionID;
+
+        }
+
+        private void _FillTheUserWithTheValidatedInfo()
+        {
+
+
+            _User.Name = txtName.Text;
+            _User.Email = txtEmail.Text;
+            _User.BirthDate = dtpBirthdate.Value;
+            _User.Address = txtAddress.Text;
+
+            if (_User.ImagePath == null)
+                _User.ImagePath = "";
+
+            _User.Phone = txtPhone.Text;
+            _User.CountryID = (int)cbCountry.SelectedValue;
+
+            _User.Username = txtUsername.Text;
+            _User.Password = txtPassword.Text;
+
+            _User.PermissionID = _GetThePermissionIDofTheUser();
+
+
+
+        }
+
+
+
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-            if (_Validate())
-                MessageBox.Show("Inputs Are Valid!");
+            //if (_Validate())
+            //    MessageBox.Show("Inputs Are Valid!");
+
+
+            string msg = "";
+
+            if (_ValidateInfo())
+            {
+
+                _FillTheUserWithTheValidatedInfo();
+
+                
+                if (_User.Save())
+                {
+
+
+                    msg = "User added successfully!";
+                    if (_Mode == clsUser.enMode.Update)
+                        msg = "User Updated successfully!";
+
+
+                    MessageBox.Show(msg, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _ResetFields();
+                }
+                else
+                {
+
+                    msg = "User was not added";
+                    if (_Mode == clsUser.enMode.Update)
+                        msg = "User was not updated";
+
+                        MessageBox.Show(msg, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+
+            }
+
+
+
+        }
+
+        private void _ResetFields()
+        {
+
+            _User = new clsUser();
+            _Mode = clsUser.enMode.Create;
+
+            txtName.Text = "";
+            txtEmail.Text = "";
+            txtPhone.Text = "";
+            txtAddress.Text = "";
+            txtUsername.Text = "";
+            txtPassword.Text = "";
+            txtConfirmPassword.Text = "";
+
+            dtpBirthdate.Value = DateTime.Now;
+            if (cbCountry.Items.Count > 0) cbCountry.SelectedIndex = 0;
+
+            chbManageUsers.Checked = false;
+            chbManageClients.Checked = false;
+            chbCurrenciesSettings.Checked = false;
+            chbTransactions.Checked = false;
+            chbLoginsRegister.Checked = false;
+
+            pbUserImage.Image = Properties.Resources.InitPicProfile;
+
+            errorProvider1.Clear();
+
+            lblTitleAddEditUser.Text = "Add New User";
+
+            
 
         }
 
@@ -316,9 +450,31 @@ namespace BankSystemUI
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     pbUserImage.Image = Image.FromFile(openFileDialog.FileName);
+
+                    _User.ImagePath = openFileDialog.FileName;
                 }
             }
 
+        }
+
+        private void cbTransactions_CheckedChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void chLoginsRegister_CheckedChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void chManageClients_CheckedChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void cbCurrenciesSettings_CheckedChanged(object sender, EventArgs e)
+        {
+            //
         }
     }
 }

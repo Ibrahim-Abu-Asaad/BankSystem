@@ -33,7 +33,7 @@ namespace BankSystemUI
             //
         }
 
-        private void _RefreshUsersList()
+        public void _RefreshUsersList()
         {
 
             lblTotalUsers.Text = clsUser.GetUserCount().ToString();
@@ -89,8 +89,8 @@ namespace BankSystemUI
                     else
                         MessageBox.Show($"User Does Not Deleted! {_User.Username}", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
-                
+
+
 
                 _RefreshUsersList();
 
@@ -130,6 +130,7 @@ namespace BankSystemUI
 
             Form frm = new frmAddEditUsers(-1);
             frm.ShowDialog();
+            _RefreshUsersList();
 
         }
 

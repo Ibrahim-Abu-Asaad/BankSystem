@@ -803,12 +803,156 @@ namespace BankSystemDAL
 
         }
 
+        public static bool IsPermissionLevelExist(int PermissionLevel)
+        {
+
+            bool IsPermissionLevelExist = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT 1 FROM [Permissions] WHERE PermissionLevel = @PermissionLevel";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PermissionLevel", PermissionLevel);
+
+            try
+            {
+
+                connection.Open();
+
+                int rowAffected = command.ExecuteNonQuery();
+
+                if (rowAffected > 0)
+                    IsPermissionLevelExist = true;
+
+
+
+            }
+            catch(Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return IsPermissionLevelExist;
+
+
+        }
+
+
+        ///////////////////////////////////////////////////////
+
+        // Add New User {INSERT}
+
+        private static int _AddInfoInPersonTable(string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, string Username, string Password, int PermissionID)
+        {
+
+            int PersonID = -1;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"INSERT INTO Persons (Name, Email, BirthDate, Address, ImagePath, Phone, MarkDeleted, CountryID)
+                             VALUES (@Name, @Email, @Birthdate, @Address, @ImagePath, @Phone, 0, @CountryID);
+                             SELECT SCOPE_IDENTITY();";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@Name", Name);
+            command.Parameters.AddWithValue("@Email", Email);
+            command.Parameters.AddWithValue("@Birthdate", BirthDate);
+            command.Parameters.AddWithValue("@Address", Address);
+            command.Parameters.AddWithValue("@ImagePath", (object)ImagePath ?? DBNull.Value);
+            command.Parameters.AddWithValue("@Phone", Phone);
+            command.Parameters.AddWithValue("@CountryID", CountryID);
+
+
+            try
+            {
+
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int insertedPerson))
+                    PersonID = insertedPerson;
+
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return PersonID;
+
+        }
+
+        public static int AddNewUser(string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, string Username, string Password, int PermissionID)
+        {
+
+            int PersonID = _AddInfoInPersonTable(Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, Username, Password, PermissionID);
+
+            int UserID = -1;
+            
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"INSERT INTO Users(Username, Password, PersonID, PermissionID)
+                             VALUES(@Username, @Password, @PersonID, @PermissionID);
+                             SELECT SCOPE_IDENTITY();";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@Username", Username);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@PermissionID", PermissionID);
+
+
+            try
+            {
+
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int insertedUser))
+                    UserID = insertedUser;
+
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return UserID;
+
+        }
+
+
+
+
+
+
+
+
+
     }
 
-
-
-
-
-
-    
 }

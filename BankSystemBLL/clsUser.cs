@@ -110,7 +110,7 @@ namespace BankSystemBLL
         private static bool _CreateNewUser(clsUser User)
         {
 
-            return true;
+            return clsDataUser.AddNewUser(User.Name, User.Email, User.BirthDate.Value, User.Address, User.ImagePath, User.CountryID, User.Phone, User.Username, User.Password, User.PermissionID) != -1;
 
         }
 
@@ -315,6 +315,30 @@ namespace BankSystemBLL
         {
 
             return clsDataUser.GetAllCountries();
+
+        }
+
+        // And this one
+        public static int GetPermissionIDByPermissionLevel(int PermissionLevel)
+        {
+
+            return clsDataPermission.GetPermissionIDByPermissionLevel(PermissionLevel);
+
+        }
+
+        // And this one
+        public static int AddNewPermission(int PermissionLevel)
+        {
+
+            return clsDataPermission.AddNewPermission(PermissionLevel);
+
+        }
+
+        // And this one
+        public static bool IsPermissionLevelExist(int PermissionLevel)
+        {
+
+            return clsDataPermission.IsPermissionLevelExist(PermissionLevel);
 
         }
 

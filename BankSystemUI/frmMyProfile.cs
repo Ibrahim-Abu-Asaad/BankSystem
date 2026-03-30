@@ -77,6 +77,8 @@ namespace BankSystemUI
             cbCountry.DisplayMember = "Name";
             cbCountry.ValueMember = "ID";
             cbCountry.DataSource = clsUser.GetAllCountries();
+            cbCountry.SelectedValue = _User.CountryID;
+
 
         }
 

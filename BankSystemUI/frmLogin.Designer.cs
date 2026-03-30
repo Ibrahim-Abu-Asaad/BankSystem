@@ -57,7 +57,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Cascadia Mono SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(140, 223);
+            label2.Location = new Point(206, 201);
             label2.Name = "label2";
             label2.Size = new Size(90, 22);
             label2.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Cascadia Mono SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(140, 269);
+            label3.Location = new Point(206, 247);
             label3.Name = "label3";
             label3.Size = new Size(90, 22);
             label3.TabIndex = 4;
@@ -122,7 +122,7 @@
             guna2Button1.FocusedColor = Color.White;
             guna2Button1.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(308, 353);
+            guna2Button1.Location = new Point(311, 334);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2Button1.Size = new Size(123, 56);
@@ -144,7 +144,7 @@
             txtUsername.Font = new Font("Cascadia Mono", 9F);
             txtUsername.ForeColor = Color.Black;
             txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtUsername.Location = new Point(245, 223);
+            txtUsername.Location = new Point(311, 201);
             txtUsername.Margin = new Padding(3, 4, 3, 4);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Enter You Username";
@@ -167,7 +167,7 @@
             txtPassword.Font = new Font("Cascadia Mono", 9F);
             txtPassword.ForeColor = Color.Black;
             txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Location = new Point(245, 269);
+            txtPassword.Location = new Point(311, 247);
             txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Enter Your Password";
@@ -180,9 +180,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(263, 57);
+            pictureBox1.Location = new Point(208, 29);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(257, 102);
+            pictureBox1.Size = new Size(395, 159);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
@@ -199,7 +199,7 @@
             cbShowPassword.Font = new Font("Cascadia Mono SemiBold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cbShowPassword.ForeColor = SystemColors.ActiveCaptionText;
             cbShowPassword.ImageAlign = ContentAlignment.MiddleRight;
-            cbShowPassword.Location = new Point(245, 307);
+            cbShowPassword.Location = new Point(311, 285);
             cbShowPassword.Name = "cbShowPassword";
             cbShowPassword.Size = new Size(134, 21);
             cbShowPassword.TabIndex = 12;
@@ -220,7 +220,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(772, 451);
+            ClientSize = new Size(772, 416);
             Controls.Add(cbShowPassword);
             Controls.Add(pictureBox1);
             Controls.Add(txtPassword);
