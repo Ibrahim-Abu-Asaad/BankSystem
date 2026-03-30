@@ -199,7 +199,7 @@ namespace BankSystemUI
             //    MessageBox.Show("Invalid email format. Please check again.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             //    return false;
             //}
-            if (clsUser.IsEmailExist(txtEmail.Text) && _Mode == clsUser.enMode.Create)
+            if (clsUser.IsEmailExist(txtEmail.Text, _User.UserID)) 
             {
                 errorProvider1.SetError(txtEmail, "This email is already exist, enter another one");
                 isValid = false;
@@ -219,7 +219,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtPhone, "The phone number length should be between 8 and 20 digits");
                 isValid = false;
             }
-            else if (clsUser.IsPhoneExist(txtPhone.Text) && _Mode == clsUser.enMode.Create)
+            else if (clsUser.IsPhoneExist(txtPhone.Text, _User.UserID)) 
             {
                 errorProvider1.SetError(txtPhone, "This phone is already exist, enter another one");
                 isValid = false;
@@ -252,7 +252,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtUsername, "The username is required");
                 isValid = false;
             }
-            else if (clsUser.IsUsernameExist(txtUsername.Text) && _Mode == clsUser.enMode.Create)
+            else if (clsUser.IsUsernameExist(txtUsername.Text, _User.UserID)) 
             {
                 errorProvider1.SetError(txtUsername, "This username is already exist, enter another one");
                 isValid = false;

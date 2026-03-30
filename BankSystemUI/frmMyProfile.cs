@@ -274,5 +274,41 @@ namespace BankSystemUI
 
 
         }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtName.Text.Length > 0)
+                errorProvider1.SetError(txtName, "");
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEmail.Text.Length > 0)
+                errorProvider1.SetError(txtEmail, "");
+        }
+
+        private void txtAddress_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAddress.Text.Length > 0)
+                errorProvider1.SetError(txtAddress, "");
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPhone.Text.Length > 0)
+                errorProvider1.SetError(txtPhone, "");
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+            if (txtUsername.Text.Length > 0)
+                errorProvider1.SetError(txtUsername, "");
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPassword.Text.Length > 0)
+                errorProvider1.SetError(txtPassword, "");
+        }
     }
 }

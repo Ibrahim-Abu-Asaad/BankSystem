@@ -43,12 +43,20 @@ namespace BankSystemUI
             dgvListUsers.DataSource = clsUser.ListUsers();
             dgvListUsers.Columns["ID"].Visible = false;
 
+            
+
+            
         }
 
         private void frmManageUsers_Load(object sender, EventArgs e)
         {
 
             _RefreshUsersList();
+
+            cbSearchBy.Items.Add("Username");
+            cbSearchBy.Items.Add("Name");
+
+            cbSearchBy.SelectedIndex = 0;
 
         }
 
@@ -101,9 +109,67 @@ namespace BankSystemUI
 
         }
 
+        private void _Search()
+        {
+
+            DataTable dtUsers = (DataTable)dgvListUsers.DataSource;
+
+            if (txtSearchBy.Text == "")
+            {
+                dtUsers.DefaultView.RowFilter = "";
+                return;
+            }
+
+            string filterColumn = "";
+
+            if (cbSearchBy.SelectedIndex == 0)
+                filterColumn = "Username";
+            else if (cbSearchBy.SelectedIndex == 1)
+                filterColumn = "Name";
+
+            dtUsers.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterColumn, txtSearchBy.Text.Trim());
+
+            lblTotalUsers.Text = dgvListUsers.Rows.Count.ToString();
+
+            // Admin
+
+            int AdminCount = 0;
+            foreach (DataGridViewRow row in dgvListUsers.Rows)
+            {
+                if (row.Cells["RoleName"].Value.ToString().ToLower() == "admin")
+                    AdminCount++;
+
+            }
+
+            lblAdminCount.Text = AdminCount.ToString();
+
+        }
+
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
         {
-            //
+
+            //if(cbSearchBy.SelectedIndex == 0)
+            //{
+            //    //Username
+
+
+
+            //}
+            //else if(cbSearchBy.SelectedIndex == 1)
+            //{
+            //    //Name
+
+
+
+            //}
+
+            if (txtSearchBy.Text == "")
+                _RefreshUsersList();
+            else _Search();
+
+
+
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -139,7 +205,16 @@ namespace BankSystemUI
 
         private void cbSearchBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //
+
+            if (cbSearchBy.SelectedIndex == 0)
+                txtSearchBy.PlaceholderText = "Search By Username";
+            else if(cbSearchBy.SelectedIndex == 1)
+                txtSearchBy.PlaceholderText = "Search By Name";
+
+            //_RefreshUsersList();
+            //txtSearchBy.Text = "";
+            _Search();
+
         }
 
         private void dgvListUsers_CellMouseEnter(object sender, DataGridViewCellEventArgs e)

@@ -93,7 +93,7 @@
             guna2ControlBox1.CustomizableEdges = customizableEdges20;
             guna2ControlBox1.FillColor = Color.Tomato;
             guna2ControlBox1.IconColor = Color.White;
-            guna2ControlBox1.Location = new Point(640, 9);
+            guna2ControlBox1.Location = new Point(734, 9);
             guna2ControlBox1.Name = "guna2ControlBox1";
             guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges21;
             guna2ControlBox1.Size = new Size(37, 36);
@@ -114,7 +114,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 24F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.Highlight;
-            label2.Location = new Point(252, 80);
+            label2.Location = new Point(314, 80);
             label2.Name = "label2";
             label2.Size = new Size(195, 54);
             label2.TabIndex = 2;
@@ -126,7 +126,7 @@
             pbMyProfile.Image = Properties.Resources.InitPicProfile;
             pbMyProfile.ImageRotate = 0F;
             pbMyProfile.InitialImage = null;
-            pbMyProfile.Location = new Point(267, 137);
+            pbMyProfile.Location = new Point(329, 137);
             pbMyProfile.Name = "pbMyProfile";
             pbMyProfile.ShadowDecoration.CustomizableEdges = customizableEdges19;
             pbMyProfile.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -157,6 +157,7 @@
             txtName.ShadowDecoration.CustomizableEdges = customizableEdges18;
             txtName.Size = new Size(194, 38);
             txtName.TabIndex = 4;
+            txtName.TextChanged += txtName_TextChanged;
             // 
             // txtEmail
             // 
@@ -171,7 +172,7 @@
             txtEmail.Font = new Font("Cascadia Mono", 9F);
             txtEmail.ForeColor = Color.Black;
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(398, 433);
+            txtEmail.Location = new Point(448, 433);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Enter Your Email";
@@ -179,6 +180,7 @@
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges16;
             txtEmail.Size = new Size(194, 38);
             txtEmail.TabIndex = 5;
+            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // dtpBirthdate
             // 
@@ -189,7 +191,7 @@
             dtpBirthdate.FillColor = SystemColors.Highlight;
             dtpBirthdate.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpBirthdate.Format = DateTimePickerFormat.Long;
-            dtpBirthdate.Location = new Point(399, 369);
+            dtpBirthdate.Location = new Point(449, 369);
             dtpBirthdate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpBirthdate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpBirthdate.Name = "dtpBirthdate";
@@ -204,7 +206,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(294, 374);
+            label3.Location = new Point(344, 374);
             label3.Name = "label3";
             label3.Size = new Size(100, 22);
             label3.TabIndex = 7;
@@ -223,7 +225,7 @@
             txtPhone.Font = new Font("Cascadia Mono", 9F);
             txtPhone.ForeColor = Color.Black;
             txtPhone.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPhone.Location = new Point(398, 497);
+            txtPhone.Location = new Point(448, 497);
             txtPhone.Margin = new Padding(3, 4, 3, 4);
             txtPhone.Name = "txtPhone";
             txtPhone.PlaceholderText = "Enter Your Phone";
@@ -231,6 +233,7 @@
             txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges12;
             txtPhone.Size = new Size(194, 38);
             txtPhone.TabIndex = 9;
+            txtPhone.TextChanged += txtPhone_TextChanged;
             // 
             // txtUsername
             // 
@@ -253,6 +256,7 @@
             txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges10;
             txtUsername.Size = new Size(194, 38);
             txtUsername.TabIndex = 10;
+            txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // txtPassword
             // 
@@ -267,7 +271,7 @@
             txtPassword.Font = new Font("Cascadia Mono", 9F);
             txtPassword.ForeColor = Color.Black;
             txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Location = new Point(398, 561);
+            txtPassword.Location = new Point(448, 561);
             txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Enter Your Password";
@@ -275,6 +279,7 @@
             txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges8;
             txtPassword.Size = new Size(194, 38);
             txtPassword.TabIndex = 11;
+            txtPassword.TextChanged += txtPassword_TextChanged;
             // 
             // txtAddress
             // 
@@ -297,6 +302,7 @@
             txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txtAddress.Size = new Size(194, 38);
             txtAddress.TabIndex = 12;
+            txtAddress.TextChanged += txtAddress_TextChanged;
             // 
             // btnSave
             // 
@@ -309,7 +315,7 @@
             btnSave.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnSave.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(273, 642);
+            btnSave.Location = new Point(319, 638);
             btnSave.Name = "btnSave";
             btnSave.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnSave.Size = new Size(168, 52);
@@ -321,7 +327,7 @@
             // 
             linkLabel1.AutoSize = true;
             linkLabel1.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkLabel1.Location = new Point(222, 283);
+            linkLabel1.Location = new Point(284, 283);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(66, 17);
             linkLabel1.TabIndex = 14;
@@ -343,7 +349,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(337, 440);
+            label5.Location = new Point(387, 440);
             label5.Name = "label5";
             label5.Size = new Size(60, 22);
             label5.TabIndex = 16;
@@ -363,7 +369,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(337, 505);
+            label7.Location = new Point(387, 505);
             label7.Name = "label7";
             label7.Size = new Size(60, 22);
             label7.TabIndex = 18;
@@ -383,7 +389,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(306, 569);
+            label9.Location = new Point(356, 569);
             label9.Name = "label9";
             label9.Size = new Size(90, 22);
             label9.TabIndex = 20;
@@ -417,7 +423,7 @@
             cbCountry.Location = new Point(98, 435);
             cbCountry.Name = "cbCountry";
             cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            cbCountry.Size = new Size(175, 36);
+            cbCountry.Size = new Size(170, 36);
             cbCountry.TabIndex = 22;
             cbCountry.ValueMember = "Choose Country";
             cbCountry.SelectedIndexChanged += guna2ComboBox1_SelectedIndexChanged;
@@ -430,7 +436,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(690, 732);
+            ClientSize = new Size(784, 732);
             Controls.Add(cbCountry);
             Controls.Add(label10);
             Controls.Add(label9);
