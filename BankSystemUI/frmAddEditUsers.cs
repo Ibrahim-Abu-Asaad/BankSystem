@@ -25,6 +25,9 @@ namespace BankSystemUI
         {
             InitializeComponent();
 
+            if (UserID == -1)
+                llblRemove.Visible = false;
+
             _UserID = UserID;
             _User = clsUser.GetUserByUserID(UserID);
 
@@ -71,7 +74,7 @@ namespace BankSystemUI
                 llblSetImage.Visible = true;
                 llblRemove.Visible = false;
             }
-                
+
 
             //_User.ImagePath = string.IsNullOrEmpty(_User.ImagePath) ? "" : _User.ImagePath;
             //_User.ImagePath =  _User.ImagePath;
@@ -151,7 +154,10 @@ namespace BankSystemUI
 
         private void guna2DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            //
+
+            if (dtpBirthdate.Text.Length > 0)
+                errorProvider1.SetError(dtpBirthdate, "");
+
         }
 
         //private void guna2TextBox3_TextChanged(object sender, EventArgs e)
@@ -563,14 +569,22 @@ namespace BankSystemUI
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if(_User.ImagePath != Properties.Resources.InitPicProfile.ToString())
+            if (_User.ImagePath != Properties.Resources.InitPicProfile.ToString())
             {
                 _User.ImagePath = "";
                 pbUserImage.Image = Properties.Resources.InitPicProfile;
                 llblRemove.Visible = false;
                 llblSetImage.Visible = true;
             }
-            
+
+        }
+
+        private void dtpBirthdate_TextChanged(object sender, EventArgs e)
+        {
+
+            //if (txtUsername.Text.Length > 0)
+            //    errorProvider1.SetError(txtUsername, "");
+
         }
     }
 }
