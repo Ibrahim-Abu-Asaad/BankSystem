@@ -64,7 +64,7 @@
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             txtAddress = new Guna.UI2.WinForms.Guna2TextBox();
             btnSave = new Guna.UI2.WinForms.Guna2Button();
-            linkLabel1 = new LinkLabel();
+            llblSetImage = new LinkLabel();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -74,6 +74,7 @@
             label10 = new Label();
             cbCountry = new Guna.UI2.WinForms.Guna2ComboBox();
             errorProvider1 = new ErrorProvider(components);
+            llblRemove = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)pbMyProfile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -323,17 +324,17 @@
             btnSave.Text = "Save";
             btnSave.Click += btnSave_Click;
             // 
-            // linkLabel1
+            // llblSetImage
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkLabel1.Location = new Point(284, 283);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(66, 17);
-            linkLabel1.TabIndex = 14;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Set Image";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            llblSetImage.AutoSize = true;
+            llblSetImage.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            llblSetImage.Location = new Point(284, 283);
+            llblSetImage.Name = "llblSetImage";
+            llblSetImage.Size = new Size(66, 17);
+            llblSetImage.TabIndex = 14;
+            llblSetImage.TabStop = true;
+            llblSetImage.Text = "Set Image";
+            llblSetImage.LinkClicked += linkLabel1_LinkClicked;
             // 
             // label4
             // 
@@ -432,11 +433,24 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // llblRemove
+            // 
+            llblRemove.AutoSize = true;
+            llblRemove.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            llblRemove.Location = new Point(463, 283);
+            llblRemove.Name = "llblRemove";
+            llblRemove.Size = new Size(55, 17);
+            llblRemove.TabIndex = 23;
+            llblRemove.TabStop = true;
+            llblRemove.Text = "Remove";
+            llblRemove.LinkClicked += llblRemove_LinkClicked;
+            // 
             // frmMyProfile
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 732);
+            Controls.Add(llblRemove);
             Controls.Add(cbCountry);
             Controls.Add(label10);
             Controls.Add(label9);
@@ -445,7 +459,7 @@
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(linkLabel1);
+            Controls.Add(llblSetImage);
             Controls.Add(btnSave);
             Controls.Add(txtAddress);
             Controls.Add(txtPassword);
@@ -486,7 +500,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private Guna.UI2.WinForms.Guna2TextBox txtPhone;
-        private LinkLabel linkLabel1;
+        private LinkLabel llblSetImage;
         private Label label10;
         private Label label9;
         private Label label8;
@@ -496,5 +510,6 @@
         private Label label4;
         private Guna.UI2.WinForms.Guna2ComboBox cbCountry;
         private ErrorProvider errorProvider1;
+        private LinkLabel llblRemove;
     }
 }

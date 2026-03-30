@@ -52,6 +52,11 @@ namespace BankSystemUI
                 {
                     pbMyProfile.Image = Image.FromFile(openFileDialog.FileName);
                     _SelectedImagePath = openFileDialog.FileName;
+
+                    //_User.ImagePath = openFileDialog.FileName;
+
+                    llblSetImage.Visible = false;
+                    llblRemove.Visible = true;
                 }
             }
 
@@ -79,7 +84,17 @@ namespace BankSystemUI
 
             _SelectedImagePath = _User.ImagePath;
             //_User.ImagePath = _SelectedImagePath;
-            pbMyProfile.Load(_SelectedImagePath);
+            if (_User.ImagePath != "" && File.Exists(_User.ImagePath))
+            {
+                pbMyProfile.Load(_User.ImagePath);
+                llblSetImage.Visible = false;
+                llblRemove.Visible = true;
+            }
+            else
+            {
+                llblSetImage.Visible = true;
+                llblRemove.Visible = false;
+            }
 
             cbCountry.DisplayMember = "Name";
             cbCountry.ValueMember = "ID";
@@ -309,6 +324,20 @@ namespace BankSystemUI
         {
             if (txtPassword.Text.Length > 0)
                 errorProvider1.SetError(txtPassword, "");
+        }
+
+        private void llblRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            if (_User.ImagePath != Properties.Resources.InitPicProfile.ToString())
+            {
+                _User.ImagePath = "";
+                _SelectedImagePath = "";
+                pbMyProfile.Image = Properties.Resources.InitPicProfile;
+                llblRemove.Visible = false;
+                llblSetImage.Visible = true;
+            }
+
         }
     }
 }

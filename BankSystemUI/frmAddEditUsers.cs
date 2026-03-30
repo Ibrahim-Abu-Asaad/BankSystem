@@ -61,7 +61,17 @@ namespace BankSystemUI
             chbLoginsRegister.Checked = (PermissionLevel & (int)clsUser.enPermissions.LoginsRegister) == (int)clsUser.enPermissions.LoginsRegister;
 
             if (_User.ImagePath != "" && File.Exists(_User.ImagePath))
+            {
                 pbUserImage.Load(_User.ImagePath);
+                llblSetImage.Visible = false;
+                llblRemove.Visible = true;
+            }
+            else
+            {
+                llblSetImage.Visible = true;
+                llblRemove.Visible = false;
+            }
+                
 
             //_User.ImagePath = string.IsNullOrEmpty(_User.ImagePath) ? "" : _User.ImagePath;
             //_User.ImagePath =  _User.ImagePath;
@@ -117,6 +127,8 @@ namespace BankSystemUI
                 lblTitleAddEditUser.Location = new Point(490, 52);
 
                 _FillTheFieldsWithUserInfoFromDatabase();
+
+
 
             }
 
@@ -199,7 +211,7 @@ namespace BankSystemUI
             //    MessageBox.Show("Invalid email format. Please check again.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             //    return false;
             //}
-            if (clsUser.IsEmailExist(txtEmail.Text, _User.UserID)) 
+            if (clsUser.IsEmailExist(txtEmail.Text, _User.UserID))
             {
                 errorProvider1.SetError(txtEmail, "This email is already exist, enter another one");
                 isValid = false;
@@ -219,7 +231,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtPhone, "The phone number length should be between 8 and 20 digits");
                 isValid = false;
             }
-            else if (clsUser.IsPhoneExist(txtPhone.Text, _User.UserID)) 
+            else if (clsUser.IsPhoneExist(txtPhone.Text, _User.UserID))
             {
                 errorProvider1.SetError(txtPhone, "This phone is already exist, enter another one");
                 isValid = false;
@@ -252,7 +264,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtUsername, "The username is required");
                 isValid = false;
             }
-            else if (clsUser.IsUsernameExist(txtUsername.Text, _User.UserID)) 
+            else if (clsUser.IsUsernameExist(txtUsername.Text, _User.UserID))
             {
                 errorProvider1.SetError(txtUsername, "This username is already exist, enter another one");
                 isValid = false;
@@ -443,7 +455,7 @@ namespace BankSystemUI
 
             lblTitleAddEditUser.Text = "Add New User";
 
-            
+
 
         }
 
@@ -516,6 +528,9 @@ namespace BankSystemUI
                     pbUserImage.Image = Image.FromFile(openFileDialog.FileName);
 
                     _User.ImagePath = openFileDialog.FileName;
+
+                    llblSetImage.Visible = false;
+                    llblRemove.Visible = true;
                 }
             }
 
@@ -539,6 +554,23 @@ namespace BankSystemUI
         private void cbCurrenciesSettings_CheckedChanged(object sender, EventArgs e)
         {
             //
+        }
+
+        private void guna2ControlBox1_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(_User.ImagePath != Properties.Resources.InitPicProfile.ToString())
+            {
+                _User.ImagePath = "";
+                pbUserImage.Image = Properties.Resources.InitPicProfile;
+                llblRemove.Visible = false;
+                llblSetImage.Visible = true;
+            }
+            
         }
     }
 }

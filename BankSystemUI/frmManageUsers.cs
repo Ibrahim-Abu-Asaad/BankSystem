@@ -43,9 +43,9 @@ namespace BankSystemUI
             dgvListUsers.DataSource = clsUser.ListUsers();
             dgvListUsers.Columns["ID"].Visible = false;
 
-            
 
-            
+
+
         }
 
         private void frmManageUsers_Load(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace BankSystemUI
 
         }
 
-        
+
 
         private void dgvListUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -81,11 +81,14 @@ namespace BankSystemUI
                 Form frm = new frmAddEditUsers(UserID);
                 frm.ShowDialog();
 
+
                 _RefreshUsersList();
+                txtSearchBy.Text = SEARCHING_Sentence;
+                _Search();
 
             }
 
-            
+
 
             if (dgvListUsers.Columns[e.ColumnIndex].Name == "colDelete")
             {
@@ -93,9 +96,9 @@ namespace BankSystemUI
 
                 dgvListUsers.Cursor = Cursors.Hand;
                 //MessageBox.Show($"DELETE {UserID}");
-                if (MessageBox.Show($"Are You Sure You Want To Delete {_User.Username}","Confirm",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show($"Are You Sure You Want To Delete {_User.Username}", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if(clsUser.DeleteUser(UserID))
+                    if (clsUser.DeleteUser(UserID))
                         MessageBox.Show($"User Deleted Successfully {_User.Username}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else
                         MessageBox.Show($"User Does Not Deleted! {_User.Username}", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -145,6 +148,8 @@ namespace BankSystemUI
 
         }
 
+        string SEARCHING_Sentence = "";
+
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -167,7 +172,7 @@ namespace BankSystemUI
                 _RefreshUsersList();
             else _Search();
 
-
+            SEARCHING_Sentence = txtSearchBy.Text;
 
 
         }
@@ -208,7 +213,7 @@ namespace BankSystemUI
 
             if (cbSearchBy.SelectedIndex == 0)
                 txtSearchBy.PlaceholderText = "Search By Username";
-            else if(cbSearchBy.SelectedIndex == 1)
+            else if (cbSearchBy.SelectedIndex == 1)
                 txtSearchBy.PlaceholderText = "Search By Name";
 
             //_RefreshUsersList();
@@ -229,6 +234,14 @@ namespace BankSystemUI
         {
 
             dgvListUsers.Cursor = Cursors.Default;
+
+        }
+
+        private void guna2ControlBox1_Click(object sender, EventArgs e)
+        {
+
+            //txtSearchBy.Text = SEARCHING_Sentence;
+            //_Search();
 
         }
     }
