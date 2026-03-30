@@ -92,9 +92,169 @@ namespace BankSystemUI
             //
         }
 
+        private bool _ValidateInfo()
+        {
+
+
+            errorProvider1.Clear();
+
+            bool isValid = true;
+
+
+            // Validate Name
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                errorProvider1.SetError(txtName, "Name is required!");
+                isValid = false;
+            }
+            else if (txtName.TextLength < 2)
+            {
+                errorProvider1.SetError(txtName, "Name must be at least 2 chars");
+                isValid = false;
+            }
+
+
+
+            // Validate Email
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                errorProvider1.SetError(txtEmail, "The email is required!");
+                isValid = false;
+            }
+            else if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            {
+                errorProvider1.SetError(txtEmail, "Invalid email address!");
+                isValid = false;
+            }
+            // From AI: Not used for now, maybe later 
+            //string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            //if (!Regex.IsMatch(txtEmail.Text, emailPattern))
+            //{
+            //    MessageBox.Show("Invalid email format. Please check again.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return false;
+            //}
+            if (clsUser.IsEmailExist(txtEmail.Text, _User.PersonID))
+            {
+                errorProvider1.SetError(txtEmail, "This email is already exist, enter another one");
+                isValid = false;
+            }
+
+
+
+
+            // Validate phone number
+            if (txtPhone.TextLength == 0)
+            {
+                errorProvider1.SetError(txtPhone, "The phone number is required");
+                isValid = false;
+            }
+            else if (txtPhone.TextLength < 8 || txtPhone.TextLength > 20)
+            {
+                errorProvider1.SetError(txtPhone, "The phone number length should be between 8 and 20 digits");
+                isValid = false;
+            }
+            else if (clsUser.IsPhoneExist(txtPhone.Text, _User.PersonID))
+            {
+                errorProvider1.SetError(txtPhone, "This phone is already exist, enter another one");
+                isValid = false;
+            }
+
+
+
+
+            // Validate Birthdate
+            if (dtpBirthdate.Value > DateTime.Now)
+            {
+                errorProvider1.SetError(dtpBirthdate, "Birth date cannot be in the future");
+                isValid = false;
+            }
+
+
+            // Validate Address
+            if (txtAddress.TextLength == 0)
+            {
+                errorProvider1.SetError(txtAddress, "The address is required");
+                isValid = false;
+            }
+
+
+
+
+            // Validate Username
+            if (txtUsername.Text.Length == 0)
+            {
+                errorProvider1.SetError(txtUsername, "The username is required");
+                isValid = false;
+            }
+            else if (clsUser.IsUsernameExist(txtUsername.Text, _User.UserID))
+            {
+                errorProvider1.SetError(txtUsername, "This username is already exist, enter another one");
+                isValid = false;
+            }
+
+
+            // Validate Password
+            if (txtPassword.Text.Length == 0)
+            {
+                errorProvider1.SetError(txtPassword, "The password is required");
+                isValid = false;
+            }
+            else if (txtPassword.Text.Length < 8)
+            {
+                errorProvider1.SetError(txtPassword, "Password must be at least 8 characters.");
+                isValid = false;
+            }
+
+
+
+
+
+
+            return isValid;
+
+        }
+
+        private void _FillTheUserWithTheValidatedInfo()
+        {
+
+            _User.UserID = _UserID;
+            _User.Name = txtName.Text;
+            _User.Email = txtEmail.Text;
+            _User.BirthDate = dtpBirthdate.Value;
+            _User.Address = txtAddress.Text;
+
+            //if (_User.ImagePath == null)
+            //    _User.ImagePath = "";
+
+            _User.Phone = txtPhone.Text;
+            _User.CountryID = (int)cbCountry.SelectedValue;
+
+            _User.Username = txtUsername.Text;
+            _User.Password = txtPassword.Text;
+
+
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //
+
+            if (_ValidateInfo())
+            {
+
+                _FillTheUserWithTheValidatedInfo();
+
+                _User.Mode = clsUser.enMode.Update;
+
+                if (_User.Save())
+                    MessageBox.Show("Your Info Is Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Your Info Is NOT Updated", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                this.Close();
+
+            }
+
+
         }
     }
 }

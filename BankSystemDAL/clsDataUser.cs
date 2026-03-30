@@ -716,6 +716,50 @@ namespace BankSystemDAL
             return IsExist;
 
         }
+        public static bool IsUsernameExist(string Username, int UserID)
+        {
+
+            bool IsExist = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //string query = @"DELETE FROM Users WHERE ID = @ID";
+            string query = @"SELECT 1 FROM Users WHERE Username = @Username AND ID != @UserID";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Username", Username);
+            command.Parameters.AddWithValue("@UserID", UserID);
+
+
+            try
+            {
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    IsExist = true;
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return IsExist;
+
+        }
+
 
         public static bool IsEmailExist(string Email)
         {
@@ -760,6 +804,51 @@ namespace BankSystemDAL
 
         }
 
+        public static bool IsEmailExist(string Email, int PersonID)
+        {
+
+            bool IsExist = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //string query = @"DELETE FROM Users WHERE ID = @ID";
+            string query = @"SELECT 1 FROM Persons WHERE Email = @Email AND ID != @PersonID";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Email", Email);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+
+
+            try
+            {
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    IsExist = true;
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return IsExist;
+
+        }
+
+
         public static bool IsPhoneExist(string Phone)
         {
 
@@ -772,6 +861,50 @@ namespace BankSystemDAL
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Phone", Phone);
+
+
+            try
+            {
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    IsExist = true;
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = ex.Message;
+
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return IsExist;
+
+        }
+
+        public static bool IsPhoneExist(string Phone, int PersonID)
+        {
+
+            bool IsExist = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //string query = @"DELETE FROM Users WHERE ID = @ID";
+            string query = @"SELECT 1 FROM Persons WHERE Phone = @Phone AND ID != @PersonID";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Phone", Phone);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
 
 
             try
@@ -942,6 +1075,151 @@ namespace BankSystemDAL
 
 
             return UserID;
+
+        }
+
+        /*
+         
+         
+         
+         */
+
+        private static bool _UpdateInfoInPersonTable(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone)
+        {
+
+            bool IsUpdated = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"UPDATE Persons
+                             SET [Name] = @Name
+                             ,[Email] = @Email
+                             ,[BirthDate] = @Birthdate
+                             ,[Address] = @Address
+                             ,[ImagePath] = @ImagePath
+                             ,[Phone] = @Phone
+                             ,[MarkDeleted] = 0
+                             ,[CountryID] = @CountryID
+                             WHERE ID = @PersonID;";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@Name", Name);
+            command.Parameters.AddWithValue("@Email", Email);
+            command.Parameters.AddWithValue("@Birthdate", BirthDate);
+            command.Parameters.AddWithValue("@Address", Address);
+            command.Parameters.AddWithValue("@ImagePath", (object)ImagePath ?? DBNull.Value);
+            command.Parameters.AddWithValue("@Phone", Phone);
+            command.Parameters.AddWithValue("@CountryID", CountryID);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+
+
+            try
+            {
+
+                connection.Open();
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                    IsUpdated = true;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return IsUpdated;
+
+        }
+
+
+        public static bool UpdateUser(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone,int UserID, string Username, string Password, int PermissionID)
+        {
+
+            //bool IsPersonUpdated = _UpdateInfoInPersonTable(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone);
+
+            bool IsUpdated = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            //string query = @"UPDATE Users
+            //                 SET
+            //                  [Username] = @Username
+            //                 ,[Password] = @Password
+            //                 ,[PersonID] = @PersonID
+            //                 ,[PermissionID] = @PermissionID
+            //                 WHERE ID = @UserID;";
+
+
+            string query = @"UPDATE Persons
+                             SET [Name] = @Name
+                             ,[Email] = @Email
+                             ,[BirthDate] = @BirthDate
+                             ,[Address] = @Address
+                             ,[ImagePath] = @ImagePath
+                             ,[Phone] = @Phone
+                             ,[MarkDeleted] = 0
+                             ,[CountryID] = @CountryID
+                             WHERE ID = @PersonID;
+                             UPDATE Users
+                             SET
+                              [Username] = @Username
+                             ,[Password] = @Password
+                             ,[PersonID] = @PersonID
+                             ,[PermissionID] = @PermissionID
+                             WHERE ID = @UserID;";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@Name", Name);
+            command.Parameters.AddWithValue("@Email", Email);
+            command.Parameters.AddWithValue("@BirthDate", BirthDate);
+            command.Parameters.AddWithValue("@Address", Address);
+            command.Parameters.AddWithValue("@ImagePath", (object)ImagePath ?? DBNull.Value);
+            command.Parameters.AddWithValue("@Phone", Phone);
+            command.Parameters.AddWithValue("@CountryID", CountryID);
+
+            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@Username", Username);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@PermissionID", PermissionID);
+           
+            
+            try
+            {
+
+                connection.Open();
+
+                int rowsAffected = command.ExecuteNonQuery();
+                //if (rowsAffected > 0)
+                //    IsUpdated = true;
+                IsUpdated = true;
+
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return IsUpdated;
 
         }
 

@@ -117,7 +117,7 @@ namespace BankSystemBLL
         private static bool _UpdateUser(clsUser User)
         {
 
-            return true;
+            return clsDataUser.UpdateUser(User.PersonID, User.Name, User.Email, User.BirthDate.Value, User.Address, User.ImagePath, User.CountryID, User.Phone, User.UserID, User.Username, User.Password, User.PermissionID);
 
         }
 
@@ -217,10 +217,24 @@ namespace BankSystemBLL
 
         }
 
+        public static bool IsUsernameExist(string Username, int UserID)
+        {
+
+            return clsDataUser.IsUsernameExist(Username, UserID);
+
+        }
+
         public static bool IsEmailExist(string Email)
         {
 
             return clsDataUser.IsEmailExist(Email);
+
+        }
+
+        public static bool IsEmailExist(string Email, int PersonID)
+        {
+
+            return clsDataUser.IsEmailExist(Email, PersonID);
 
         }
 
@@ -230,6 +244,13 @@ namespace BankSystemBLL
             return clsDataUser.IsPhoneExist(Phone);
 
         }
+        public static bool IsPhoneExist(string Phone, int PersonID)
+        {
+
+            return clsDataUser.IsPhoneExist(Phone, PersonID);
+
+        }
+
         public static bool DeleteUser(int ID)
         {
 

@@ -30,8 +30,61 @@ namespace BankSystemUI
 
         }
 
+
+        private void _FillTheFieldsWithUserInfoFromDatabase()
+        {
+
+            _User = clsUser.GetUserByUserID(_UserID);
+            _User.Mode = clsUser.enMode.Update;
+
+            txtName.Text = _User.Name;
+            txtEmail.Text = _User.Email;
+            txtPhone.Text = _User.Phone;
+            txtAddress.Text = _User.Address;
+            txtUsername.Text = _User.Username;
+            txtPassword.Text = _User.Password;
+            txtConfirmPassword.Text = _User.Password;
+
+            dtpBirthdate.Text = _User.BirthDate.ToString();
+
+            //cbCountry.DisplayMember = "Name";
+            //cbCountry.ValueMember = "ID";
+            //cbCountry.DataSource = clsUser.GetAllCountries();
+            cbCountry.SelectedValue = _User.CountryID;
+
+
+            chbManageUsers.Checked = (_User.PermissionID & (int)clsUser.enPermissions.ManageUsers) == (int)clsUser.enPermissions.ManageUsers;
+            chbManageClients.Checked = (_User.PermissionID & (int)clsUser.enPermissions.ManageCLients) == (int)clsUser.enPermissions.ManageCLients;
+            chbCurrenciesSettings.Checked = (_User.PermissionID & (int)clsUser.enPermissions.ManageCurrencies) == (int)clsUser.enPermissions.ManageCurrencies;
+            chbTransactions.Checked = (_User.PermissionID & (int)clsUser.enPermissions.ManageTransactions) == (int)clsUser.enPermissions.ManageTransactions;
+            chbLoginsRegister.Checked = (_User.PermissionID & (int)clsUser.enPermissions.LoginsRegister) == (int)clsUser.enPermissions.LoginsRegister;
+
+            //if (_User.ImagePath != "" && File.Exists(_User.ImagePath))
+            //    pbUserImage.ImageLocation = _User.ImagePath;
+
+            _User.ImagePath = string.IsNullOrEmpty(_User.ImagePath) ? "" : _User.ImagePath;
+
+            errorProvider1.Clear();
+
+            //lblTitleAddEditUser.Text = "Add New User";
+
+        }
+
+        //private void _SetAllCheckBoxes(bool IsChecked)
+        //{
+        //    chbManageUsers.Checked = IsChecked;
+        //    chbManageClients.Checked = IsChecked;
+        //    chbCurrenciesSettings.Checked = IsChecked;
+        //    chbTransactions.Checked = IsChecked;
+        //    chbLoginsRegister.Checked = IsChecked;
+        //}
+
         private void frmAddEditUsers_Load(object sender, EventArgs e)
         {
+
+            cbCountry.DisplayMember = "Name";
+            cbCountry.ValueMember = "ID";
+            cbCountry.DataSource = clsUser.GetAllCountries();
 
             if (_UserID == -1)
                 _Mode = clsUser.enMode.Create;
@@ -59,11 +112,13 @@ namespace BankSystemUI
 
                 lblTitleAddEditUser.Location = new Point(490, 52);
 
+                _FillTheFieldsWithUserInfoFromDatabase();
+
             }
 
-            cbCountry.DisplayMember = "Name";
-            cbCountry.ValueMember = "ID";
-            cbCountry.DataSource = clsUser.GetAllCountries();
+            //cbCountry.DisplayMember = "Name";
+            //cbCountry.ValueMember = "ID";
+            //cbCountry.DataSource = clsUser.GetAllCountries();
 
 
         }
@@ -140,7 +195,7 @@ namespace BankSystemUI
             //    MessageBox.Show("Invalid email format. Please check again.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             //    return false;
             //}
-            if (clsUser.IsEmailExist(txtEmail.Text))
+            if (clsUser.IsEmailExist(txtEmail.Text) && _Mode == clsUser.enMode.Create)
             {
                 errorProvider1.SetError(txtEmail, "This email is already exist, enter another one");
                 isValid = false;
@@ -160,7 +215,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtPhone, "The phone number length should be between 8 and 20 digits");
                 isValid = false;
             }
-            else if (clsUser.IsPhoneExist(txtPhone.Text))
+            else if (clsUser.IsPhoneExist(txtPhone.Text) && _Mode == clsUser.enMode.Create)
             {
                 errorProvider1.SetError(txtPhone, "This phone is already exist, enter another one");
                 isValid = false;
@@ -193,7 +248,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtUsername, "The username is required");
                 isValid = false;
             }
-            else if (clsUser.IsUsernameExist(txtUsername.Text))
+            else if (clsUser.IsUsernameExist(txtUsername.Text) && _Mode == clsUser.enMode.Create)
             {
                 errorProvider1.SetError(txtUsername, "This username is already exist, enter another one");
                 isValid = false;
@@ -282,14 +337,14 @@ namespace BankSystemUI
         private void _FillTheUserWithTheValidatedInfo()
         {
 
-
+            _User.UserID = _UserID;
             _User.Name = txtName.Text;
             _User.Email = txtEmail.Text;
             _User.BirthDate = dtpBirthdate.Value;
             _User.Address = txtAddress.Text;
 
-            if (_User.ImagePath == null)
-                _User.ImagePath = "";
+            //if (_User.ImagePath == null)
+            //    _User.ImagePath = "";
 
             _User.Phone = txtPhone.Text;
             _User.CountryID = (int)cbCountry.SelectedValue;
@@ -319,7 +374,8 @@ namespace BankSystemUI
 
                 _FillTheUserWithTheValidatedInfo();
 
-                
+                MessageBox.Show($"UserID = {_User.UserID}, PersonID = {_User.PersonID}");
+                MessageBox.Show(_User.Mode.ToString());
                 if (_User.Save())
                 {
 
@@ -334,12 +390,11 @@ namespace BankSystemUI
                 }
                 else
                 {
-
                     msg = "User was not added";
                     if (_Mode == clsUser.enMode.Update)
                         msg = "User was not updated";
 
-                        MessageBox.Show(msg, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(msg, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
 
