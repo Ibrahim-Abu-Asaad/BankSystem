@@ -92,6 +92,7 @@
             Name = "frmTransactions";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmTransactions";
+            Load += frmTransactions_Load;
             ResumeLayout(false);
             PerformLayout();
         }

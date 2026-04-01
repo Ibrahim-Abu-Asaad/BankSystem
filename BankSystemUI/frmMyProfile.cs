@@ -82,6 +82,10 @@ namespace BankSystemUI
             txtPassword.Text = _User.Password;
             txtAddress.Text = _User.Address;
 
+            if (_User.Gender.ToLower() == "male")
+                rbtnMale.Checked = true;
+            else rbtnFemale.Checked = true;
+
             _SelectedImagePath = _User.ImagePath;
             //_User.ImagePath = _SelectedImagePath;
             if (_User.ImagePath != "" && File.Exists(_User.ImagePath))
@@ -260,6 +264,10 @@ namespace BankSystemUI
             _User.Username = txtUsername.Text;
             _User.Password = txtPassword.Text;
 
+            if (rbtnMale.Checked == true)
+                _User.Gender = "Male";
+            else _User.Gender = "Female";
+
 
         }
 
@@ -333,10 +341,45 @@ namespace BankSystemUI
             {
                 _User.ImagePath = "";
                 _SelectedImagePath = "";
-                pbMyProfile.Image = Properties.Resources.InitPicProfile;
+
+                if (rbtnMale.Checked == true)
+                    pbMyProfile.Image = Properties.Resources.InitPicProfile;
+                else if (rbtnFemale.Checked == true)
+                    pbMyProfile.Image = Properties.Resources.initialPhotoWomen;
+
                 llblRemove.Visible = false;
                 llblSetImage.Visible = true;
             }
+
+        }
+
+        private void rbtnMale_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (rbtnMale.Checked)
+            {
+                if (string.IsNullOrEmpty(_User.ImagePath) && string.IsNullOrEmpty(_SelectedImagePath))
+                {
+                    pbMyProfile.Image = Properties.Resources.InitPicProfile;
+                    //pbMyProfile.Tag = "default";
+                }
+            }
+
+        }
+
+        private void rbtnFemale_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (rbtnFemale.Checked)
+            {
+                if (string.IsNullOrEmpty(_User.ImagePath) && string.IsNullOrEmpty(_SelectedImagePath))
+                {
+                    pbMyProfile.Image = Properties.Resources.initialPhotoWomen;
+                    //pbMyProfile.Tag = "default";
+                }
+            }
+
+
 
         }
     }

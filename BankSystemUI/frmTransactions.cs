@@ -21,5 +21,10 @@ namespace BankSystemUI
         {
             //
         }
+
+        private void frmTransactions_Load(object sender, EventArgs e)
+        {
+            //
+        }
     }
 }

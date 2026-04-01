@@ -10,7 +10,6 @@ namespace BankSystemBLL
 {
     public class clsPerson
     {
-
         public int PersonID { get; set; }
         public string Name { get; set; } = "";
         public string Email { get; set; }
@@ -20,11 +19,10 @@ namespace BankSystemBLL
         public int CountryID { get; set; }
         public string Phone { get; set; }
         public int MarkDeleted { get; set; }
-
+        public string Gender { get; set; }
 
         public string FirstName => string.IsNullOrWhiteSpace(Name) ? "" : Name.Split(' ')[0];
         public string LastName => Name.Contains(" ") ? Name.Split(' ').Last() : "";
-
 
         public clsPerson()
         {
@@ -37,12 +35,12 @@ namespace BankSystemBLL
             this.CountryID = -1;
             this.Phone = "";
             this.MarkDeleted = 0;
-
+            this.Gender = "Male";
         }
 
-        protected clsPerson(string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted)
+        protected clsPerson(string Name, string Email, DateTime BirthDate, string Address,
+            string ImagePath, int CountryID, string Phone, int MarkDeleted, string Gender)
         {
-
             this.Name = Name;
             this.Email = Email;
             this.BirthDate = BirthDate;
@@ -51,13 +49,12 @@ namespace BankSystemBLL
             this.CountryID = CountryID;
             this.Phone = Phone;
             this.MarkDeleted = MarkDeleted;
-            
+            this.Gender = Gender;
         }
 
-        //This maybe will use it to load data(Just in case);
-        protected clsPerson(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted)
+        protected clsPerson(int PersonID, string Name, string Email, DateTime BirthDate,
+            string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted, string Gender)
         {
-
             this.PersonID = PersonID;
             this.Name = Name;
             this.Email = Email;
@@ -67,12 +64,7 @@ namespace BankSystemBLL
             this.CountryID = CountryID;
             this.Phone = Phone;
             this.MarkDeleted = MarkDeleted;
-
+            this.Gender = Gender;
         }
-
-
-
-
-
     }
 }

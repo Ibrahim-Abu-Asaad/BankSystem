@@ -92,6 +92,7 @@
             Name = "frmCurrenciesSettings";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmCurrenciesSettings";
+            Load += frmCurrenciesSettings_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -65,50 +65,51 @@ namespace BankSystemUI
         private void dgvListUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+
             if (e.RowIndex < 0) return;
 
             int UserID = (int)dgvListUsers.Rows[e.RowIndex].Cells["ID"].Value;
-            //string Username = dgvListUsers.Rows[e.RowIndex].Cells["Username"].Value.ToString();
-            _User = clsUser.GetUserByUserID(UserID);
-            //int PersonID = _User.PersonID;
+            clsUser selectedUser = clsUser.GetUserByUserID(UserID);
 
             if (dgvListUsers.Columns[e.ColumnIndex].Name == "colEdit")
             {
-
-                dgvListUsers.Cursor = Cursors.Hand;
-                //MessageBox.Show($"EDIT {UserID}");
+                if (!_User.HasPermission(clsPermission.enPermissions.User_Edit))
+                {
+                    MessageBox.Show("Access Denied! Check with your Admin.",
+                        "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 Form frm = new frmAddEditUsers(UserID);
                 frm.ShowDialog();
-
-
                 _RefreshUsersList();
                 txtSearchBy.Text = SEARCHING_Sentence;
                 _Search();
-
             }
 
-
-
-            if (dgvListUsers.Columns[e.ColumnIndex].Name == "colDelete")
+            else if (dgvListUsers.Columns[e.ColumnIndex].Name == "colDelete")
             {
-
-
-                dgvListUsers.Cursor = Cursors.Hand;
-                //MessageBox.Show($"DELETE {UserID}");
-                if (MessageBox.Show($"Are You Sure You Want To Delete {_User.Username}", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (!_User.HasPermission(clsPermission.enPermissions.User_Delete))
                 {
-                    if (clsUser.DeleteUser(UserID))
-                        MessageBox.Show($"User Deleted Successfully {_User.Username}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    else
-                        MessageBox.Show($"User Does Not Deleted! {_User.Username}", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Access Denied! Check with your Admin.",
+                        "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
+                if (MessageBox.Show($"Are you sure you want to delete {selectedUser.Username}?",
+                        "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (clsUser.DeleteUser(UserID))
+                        MessageBox.Show($"User deleted successfully: {selectedUser.Username}",
+                            "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show($"User was not deleted: {selectedUser.Username}",
+                            "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-
-                _RefreshUsersList();
-
+                    _RefreshUsersList();
+                }
             }
+
 
         }
 
@@ -153,21 +154,6 @@ namespace BankSystemUI
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
         {
 
-            //if(cbSearchBy.SelectedIndex == 0)
-            //{
-            //    //Username
-
-
-
-            //}
-            //else if(cbSearchBy.SelectedIndex == 1)
-            //{
-            //    //Name
-
-
-
-            //}
-
             if (txtSearchBy.Text == "")
                 _RefreshUsersList();
             else _Search();
@@ -202,13 +188,24 @@ namespace BankSystemUI
         private void btnAddNewUser_Click(object sender, EventArgs e)
         {
 
-            Form frm = new frmAddEditUsers(-1);
-            frm.ShowDialog();
-            //_RefreshUsersList();
+            if (_User.HasPermission(clsPermission.enPermissions.User_Create))
+            {
 
-            _RefreshUsersList();
-            txtSearchBy.Text = SEARCHING_Sentence;
-            _Search();
+                Form frm = new frmAddEditUsers(-1);
+                frm.ShowDialog();
+                //_RefreshUsersList();
+
+                _RefreshUsersList();
+                txtSearchBy.Text = SEARCHING_Sentence;
+                _Search();
+
+            }
+            else
+            {
+                MessageBox.Show("Access Denied");
+            }
+
+            
 
         }
 

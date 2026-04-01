@@ -75,6 +75,9 @@
             cbCountry = new Guna.UI2.WinForms.Guna2ComboBox();
             errorProvider1 = new ErrorProvider(components);
             llblRemove = new LinkLabel();
+            rbtnMale = new RadioButton();
+            rbtnFemale = new RadioButton();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbMyProfile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -316,7 +319,7 @@
             btnSave.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnSave.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(319, 638);
+            btnSave.Location = new Point(319, 717);
             btnSave.Name = "btnSave";
             btnSave.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnSave.Size = new Size(168, 52);
@@ -449,11 +452,52 @@
             llblRemove.Text = "Remove";
             llblRemove.LinkClicked += llblRemove_LinkClicked;
             // 
+            // rbtnMale
+            // 
+            rbtnMale.AutoSize = true;
+            rbtnMale.Cursor = Cursors.Hand;
+            rbtnMale.Font = new Font("Cascadia Mono", 9F);
+            rbtnMale.Location = new Point(121, 635);
+            rbtnMale.Name = "rbtnMale";
+            rbtnMale.Size = new Size(66, 24);
+            rbtnMale.TabIndex = 24;
+            rbtnMale.TabStop = true;
+            rbtnMale.Text = "Male";
+            rbtnMale.UseVisualStyleBackColor = true;
+            rbtnMale.CheckedChanged += rbtnMale_CheckedChanged;
+            // 
+            // rbtnFemale
+            // 
+            rbtnFemale.AutoSize = true;
+            rbtnFemale.Cursor = Cursors.Hand;
+            rbtnFemale.Font = new Font("Cascadia Mono", 9F);
+            rbtnFemale.Location = new Point(203, 635);
+            rbtnFemale.Name = "rbtnFemale";
+            rbtnFemale.Size = new Size(84, 24);
+            rbtnFemale.TabIndex = 25;
+            rbtnFemale.TabStop = true;
+            rbtnFemale.Text = "Female";
+            rbtnFemale.UseVisualStyleBackColor = true;
+            rbtnFemale.CheckedChanged += rbtnFemale_CheckedChanged;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(15, 635);
+            label11.Name = "label11";
+            label11.Size = new Size(70, 22);
+            label11.TabIndex = 26;
+            label11.Text = "Gender";
+            // 
             // frmMyProfile
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 732);
+            ClientSize = new Size(784, 794);
+            Controls.Add(label11);
+            Controls.Add(rbtnFemale);
+            Controls.Add(rbtnMale);
             Controls.Add(llblRemove);
             Controls.Add(cbCountry);
             Controls.Add(label10);
@@ -515,5 +559,8 @@
         private Guna.UI2.WinForms.Guna2ComboBox cbCountry;
         private ErrorProvider errorProvider1;
         private LinkLabel llblRemove;
+        private RadioButton rbtnFemale;
+        private RadioButton rbtnMale;
+        private Label label11;
     }
 }

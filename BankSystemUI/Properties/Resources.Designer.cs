@@ -73,6 +73,16 @@ namespace BankSystemUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap initialPhotoWomen {
+            get {
+                object obj = ResourceManager.GetObject("initialPhotoWomen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap InitPicProfile {
             get {
                 object obj = ResourceManager.GetObject("InitPicProfile", resourceCulture);

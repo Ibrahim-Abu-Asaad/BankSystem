@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -78,15 +80,17 @@
             label8 = new Label();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             label9 = new Label();
-            chbManageClients = new Guna.UI2.WinForms.Guna2CheckBox();
-            chbTransactions = new Guna.UI2.WinForms.Guna2CheckBox();
-            chbManageUsers = new Guna.UI2.WinForms.Guna2CheckBox();
-            chbCurrenciesSettings = new Guna.UI2.WinForms.Guna2CheckBox();
-            chbLoginsRegister = new Guna.UI2.WinForms.Guna2CheckBox();
             label10 = new Label();
             txtConfirmPassword = new Guna.UI2.WinForms.Guna2TextBox();
             errorProvider1 = new ErrorProvider(components);
             llblRemove = new LinkLabel();
+            clbPermissions = new CheckedListBox();
+            cbRole = new Guna.UI2.WinForms.Guna2ComboBox();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            rbtnMale = new RadioButton();
+            rbtnFemale = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)pbUserImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -103,15 +107,14 @@
             guna2ControlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2ControlBox1.BorderRadius = 15;
             guna2ControlBox1.Cursor = Cursors.Hand;
-            guna2ControlBox1.CustomizableEdges = customizableEdges22;
+            guna2ControlBox1.CustomizableEdges = customizableEdges24;
             guna2ControlBox1.FillColor = Color.Tomato;
             guna2ControlBox1.IconColor = Color.White;
             guna2ControlBox1.Location = new Point(1088, 12);
             guna2ControlBox1.Name = "guna2ControlBox1";
-            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges23;
+            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges25;
             guna2ControlBox1.Size = new Size(37, 36);
             guna2ControlBox1.TabIndex = 0;
-            guna2ControlBox1.Click += guna2ControlBox1_Click;
             // 
             // lblCornerNameAddEditUser
             // 
@@ -139,7 +142,7 @@
             // 
             btnSave.BorderRadius = 5;
             btnSave.Cursor = Cursors.Hand;
-            btnSave.CustomizableEdges = customizableEdges20;
+            btnSave.CustomizableEdges = customizableEdges22;
             btnSave.DisabledState.BorderColor = Color.DarkGray;
             btnSave.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSave.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -148,7 +151,7 @@
             btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(464, 901);
             btnSave.Name = "btnSave";
-            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges21;
+            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges23;
             btnSave.Size = new Size(170, 56);
             btnSave.TabIndex = 3;
             btnSave.Text = "Save";
@@ -171,7 +174,7 @@
             pbUserImage.ImageRotate = 0F;
             pbUserImage.Location = new Point(515, 166);
             pbUserImage.Name = "pbUserImage";
-            pbUserImage.ShadowDecoration.CustomizableEdges = customizableEdges19;
+            pbUserImage.ShadowDecoration.CustomizableEdges = customizableEdges21;
             pbUserImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbUserImage.Size = new Size(132, 134);
             pbUserImage.SizeMode = PictureBoxSizeMode.Zoom;
@@ -193,7 +196,7 @@
             // txtName
             // 
             txtName.BorderRadius = 4;
-            txtName.CustomizableEdges = customizableEdges17;
+            txtName.CustomizableEdges = customizableEdges19;
             txtName.DefaultText = "";
             txtName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -208,7 +211,7 @@
             txtName.Name = "txtName";
             txtName.PlaceholderText = "Enter Your Name";
             txtName.SelectedText = "";
-            txtName.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            txtName.ShadowDecoration.CustomizableEdges = customizableEdges20;
             txtName.Size = new Size(184, 36);
             txtName.TabIndex = 7;
             txtName.TextChanged += txtName_TextChanged;
@@ -236,7 +239,7 @@
             // txtEmail
             // 
             txtEmail.BorderRadius = 4;
-            txtEmail.CustomizableEdges = customizableEdges15;
+            txtEmail.CustomizableEdges = customizableEdges17;
             txtEmail.DefaultText = "";
             txtEmail.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtEmail.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -251,7 +254,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Enter Your Email";
             txtEmail.SelectedText = "";
-            txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges18;
             txtEmail.Size = new Size(184, 36);
             txtEmail.TabIndex = 9;
             txtEmail.TextChanged += txtEmail_TextChanged;
@@ -261,7 +264,7 @@
             // 
             txtBirthdate.AutoSize = true;
             txtBirthdate.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBirthdate.Location = new Point(13, 455);
+            txtBirthdate.Location = new Point(13, 438);
             txtBirthdate.Name = "txtBirthdate";
             txtBirthdate.Size = new Size(100, 22);
             txtBirthdate.TabIndex = 12;
@@ -271,7 +274,7 @@
             // 
             lblAddress.AutoSize = true;
             lblAddress.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAddress.Location = new Point(459, 454);
+            lblAddress.Location = new Point(459, 437);
             lblAddress.Name = "lblAddress";
             lblAddress.Size = new Size(80, 22);
             lblAddress.TabIndex = 14;
@@ -280,7 +283,7 @@
             // txtAddress
             // 
             txtAddress.BorderRadius = 4;
-            txtAddress.CustomizableEdges = customizableEdges13;
+            txtAddress.CustomizableEdges = customizableEdges15;
             txtAddress.DefaultText = "";
             txtAddress.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtAddress.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -290,12 +293,12 @@
             txtAddress.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAddress.ForeColor = SystemColors.ControlText;
             txtAddress.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtAddress.Location = new Point(541, 448);
+            txtAddress.Location = new Point(541, 431);
             txtAddress.Margin = new Padding(3, 4, 3, 4);
             txtAddress.Name = "txtAddress";
             txtAddress.PlaceholderText = "Enter Your Address";
             txtAddress.SelectedText = "";
-            txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges16;
             txtAddress.Size = new Size(184, 36);
             txtAddress.TabIndex = 13;
             txtAddress.TextChanged += txtAddress_TextChanged;
@@ -313,7 +316,7 @@
             // txtPhone
             // 
             txtPhone.BorderRadius = 4;
-            txtPhone.CustomizableEdges = customizableEdges11;
+            txtPhone.CustomizableEdges = customizableEdges13;
             txtPhone.DefaultText = "";
             txtPhone.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPhone.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -328,7 +331,7 @@
             txtPhone.Name = "txtPhone";
             txtPhone.PlaceholderText = "Enter Your Phone";
             txtPhone.SelectedText = "";
-            txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges14;
             txtPhone.Size = new Size(184, 36);
             txtPhone.TabIndex = 17;
             txtPhone.TextChanged += txtPhone_TextChanged;
@@ -339,27 +342,26 @@
             dtpBirthdate.BorderRadius = 4;
             dtpBirthdate.Checked = true;
             dtpBirthdate.Cursor = Cursors.Hand;
-            dtpBirthdate.CustomizableEdges = customizableEdges9;
+            dtpBirthdate.CustomizableEdges = customizableEdges11;
             dtpBirthdate.FillColor = SystemColors.Highlight;
             dtpBirthdate.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpBirthdate.Format = DateTimePickerFormat.Long;
-            dtpBirthdate.Location = new Point(117, 448);
+            dtpBirthdate.Location = new Point(117, 431);
             dtpBirthdate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpBirthdate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpBirthdate.Name = "dtpBirthdate";
-            dtpBirthdate.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            dtpBirthdate.ShadowDecoration.CustomizableEdges = customizableEdges12;
             dtpBirthdate.Size = new Size(282, 36);
             dtpBirthdate.TabIndex = 18;
             dtpBirthdate.Value = new DateTime(2026, 3, 29, 19, 28, 5, 116);
             dtpBirthdate.ValueChanged += guna2DateTimePicker1_ValueChanged;
-            dtpBirthdate.TextChanged += dtpBirthdate_TextChanged;
             // 
             // cbCountry
             // 
             cbCountry.BackColor = Color.Transparent;
             cbCountry.BorderRadius = 4;
             cbCountry.Cursor = Cursors.Hand;
-            cbCountry.CustomizableEdges = customizableEdges7;
+            cbCountry.CustomizableEdges = customizableEdges9;
             cbCountry.DrawMode = DrawMode.OwnerDrawFixed;
             cbCountry.DropDownHeight = 240;
             cbCountry.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -369,19 +371,18 @@
             cbCountry.ForeColor = SystemColors.ControlText;
             cbCountry.IntegralHeight = false;
             cbCountry.ItemHeight = 30;
-            cbCountry.Location = new Point(871, 448);
+            cbCountry.Location = new Point(871, 431);
             cbCountry.MaxDropDownItems = 7;
             cbCountry.Name = "cbCountry";
-            cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges10;
             cbCountry.Size = new Size(162, 36);
             cbCountry.TabIndex = 19;
-            cbCountry.SelectedIndexChanged += cbCountry_SelectedIndexChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(787, 455);
+            label4.Location = new Point(787, 438);
             label4.Name = "label4";
             label4.Size = new Size(80, 22);
             label4.TabIndex = 20;
@@ -411,7 +412,7 @@
             // txtUsername
             // 
             txtUsername.BorderRadius = 4;
-            txtUsername.CustomizableEdges = customizableEdges5;
+            txtUsername.CustomizableEdges = customizableEdges7;
             txtUsername.DefaultText = "";
             txtUsername.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtUsername.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -426,7 +427,7 @@
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Enter Your Username";
             txtUsername.SelectedText = "";
-            txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges8;
             txtUsername.Size = new Size(201, 36);
             txtUsername.TabIndex = 22;
             txtUsername.TextChanged += txtUsername_TextChanged;
@@ -444,7 +445,7 @@
             // txtPassword
             // 
             txtPassword.BorderRadius = 4;
-            txtPassword.CustomizableEdges = customizableEdges3;
+            txtPassword.CustomizableEdges = customizableEdges5;
             txtPassword.DefaultText = "";
             txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -459,7 +460,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Enter Your Password";
             txtPassword.SelectedText = "";
-            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txtPassword.Size = new Size(201, 36);
             txtPassword.TabIndex = 24;
             txtPassword.TextChanged += txtPassword_TextChanged;
@@ -471,113 +472,9 @@
             label9.ForeColor = SystemColors.Highlight;
             label9.Location = new Point(12, 671);
             label9.Name = "label9";
-            label9.Size = new Size(144, 27);
+            label9.Size = new Size(264, 27);
             label9.TabIndex = 26;
-            label9.Text = "Permissions";
-            // 
-            // chbManageClients
-            // 
-            chbManageClients.AutoSize = true;
-            chbManageClients.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            chbManageClients.CheckedState.BorderRadius = 0;
-            chbManageClients.CheckedState.BorderThickness = 0;
-            chbManageClients.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            chbManageClients.Cursor = Cursors.Hand;
-            chbManageClients.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chbManageClients.Location = new Point(250, 725);
-            chbManageClients.Name = "chbManageClients";
-            chbManageClients.Size = new Size(172, 26);
-            chbManageClients.TabIndex = 27;
-            chbManageClients.Tag = "2";
-            chbManageClients.Text = "Manage Clients";
-            chbManageClients.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            chbManageClients.UncheckedState.BorderRadius = 0;
-            chbManageClients.UncheckedState.BorderThickness = 0;
-            chbManageClients.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            chbManageClients.CheckedChanged += chManageClients_CheckedChanged;
-            // 
-            // chbTransactions
-            // 
-            chbTransactions.AutoSize = true;
-            chbTransactions.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            chbTransactions.CheckedState.BorderRadius = 0;
-            chbTransactions.CheckedState.BorderThickness = 0;
-            chbTransactions.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            chbTransactions.Cursor = Cursors.Hand;
-            chbTransactions.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chbTransactions.Location = new Point(505, 725);
-            chbTransactions.Name = "chbTransactions";
-            chbTransactions.Size = new Size(222, 26);
-            chbTransactions.TabIndex = 28;
-            chbTransactions.Tag = "8";
-            chbTransactions.Text = "Manage Transactions";
-            chbTransactions.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            chbTransactions.UncheckedState.BorderRadius = 0;
-            chbTransactions.UncheckedState.BorderThickness = 0;
-            chbTransactions.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            chbTransactions.CheckedChanged += cbTransactions_CheckedChanged;
-            // 
-            // chbManageUsers
-            // 
-            chbManageUsers.AutoSize = true;
-            chbManageUsers.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            chbManageUsers.CheckedState.BorderRadius = 0;
-            chbManageUsers.CheckedState.BorderThickness = 0;
-            chbManageUsers.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            chbManageUsers.Cursor = Cursors.Hand;
-            chbManageUsers.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chbManageUsers.Location = new Point(744, 725);
-            chbManageUsers.Name = "chbManageUsers";
-            chbManageUsers.Size = new Size(152, 26);
-            chbManageUsers.TabIndex = 29;
-            chbManageUsers.Tag = "1";
-            chbManageUsers.Text = "Manage Users";
-            chbManageUsers.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            chbManageUsers.UncheckedState.BorderRadius = 0;
-            chbManageUsers.UncheckedState.BorderThickness = 0;
-            chbManageUsers.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            // 
-            // chbCurrenciesSettings
-            // 
-            chbCurrenciesSettings.AutoSize = true;
-            chbCurrenciesSettings.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            chbCurrenciesSettings.CheckedState.BorderRadius = 0;
-            chbCurrenciesSettings.CheckedState.BorderThickness = 0;
-            chbCurrenciesSettings.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            chbCurrenciesSettings.Cursor = Cursors.Hand;
-            chbCurrenciesSettings.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chbCurrenciesSettings.Location = new Point(250, 777);
-            chbCurrenciesSettings.Name = "chbCurrenciesSettings";
-            chbCurrenciesSettings.Size = new Size(202, 26);
-            chbCurrenciesSettings.TabIndex = 30;
-            chbCurrenciesSettings.Tag = "4";
-            chbCurrenciesSettings.Text = "Currency Settings";
-            chbCurrenciesSettings.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            chbCurrenciesSettings.UncheckedState.BorderRadius = 0;
-            chbCurrenciesSettings.UncheckedState.BorderThickness = 0;
-            chbCurrenciesSettings.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            chbCurrenciesSettings.CheckedChanged += cbCurrenciesSettings_CheckedChanged;
-            // 
-            // chbLoginsRegister
-            // 
-            chbLoginsRegister.AutoSize = true;
-            chbLoginsRegister.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            chbLoginsRegister.CheckedState.BorderRadius = 0;
-            chbLoginsRegister.CheckedState.BorderThickness = 0;
-            chbLoginsRegister.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            chbLoginsRegister.Cursor = Cursors.Hand;
-            chbLoginsRegister.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chbLoginsRegister.Location = new Point(505, 777);
-            chbLoginsRegister.Name = "chbLoginsRegister";
-            chbLoginsRegister.Size = new Size(182, 26);
-            chbLoginsRegister.TabIndex = 31;
-            chbLoginsRegister.Tag = "16";
-            chbLoginsRegister.Text = "Logins Register";
-            chbLoginsRegister.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            chbLoginsRegister.UncheckedState.BorderRadius = 0;
-            chbLoginsRegister.UncheckedState.BorderThickness = 0;
-            chbLoginsRegister.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            chbLoginsRegister.CheckedChanged += chLoginsRegister_CheckedChanged;
+            label9.Text = "Permissions And Roles";
             // 
             // label10
             // 
@@ -592,7 +489,7 @@
             // txtConfirmPassword
             // 
             txtConfirmPassword.BorderRadius = 4;
-            txtConfirmPassword.CustomizableEdges = customizableEdges1;
+            txtConfirmPassword.CustomizableEdges = customizableEdges3;
             txtConfirmPassword.DefaultText = "";
             txtConfirmPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtConfirmPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -607,7 +504,7 @@
             txtConfirmPassword.Name = "txtConfirmPassword";
             txtConfirmPassword.PlaceholderText = "Confirm Password";
             txtConfirmPassword.SelectedText = "";
-            txtConfirmPassword.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtConfirmPassword.ShadowDecoration.CustomizableEdges = customizableEdges4;
             txtConfirmPassword.Size = new Size(201, 36);
             txtConfirmPassword.TabIndex = 32;
             txtConfirmPassword.TextChanged += txtConfirmPassword_TextChanged;
@@ -628,19 +525,107 @@
             llblRemove.Text = "Remove";
             llblRemove.LinkClicked += linkLabel2_LinkClicked;
             // 
+            // clbPermissions
+            // 
+            clbPermissions.FormattingEnabled = true;
+            clbPermissions.Location = new Point(276, 748);
+            clbPermissions.Name = "clbPermissions";
+            clbPermissions.Size = new Size(193, 114);
+            clbPermissions.TabIndex = 35;
+            // 
+            // cbRole
+            // 
+            cbRole.BackColor = Color.Transparent;
+            cbRole.BorderRadius = 4;
+            cbRole.Cursor = Cursors.Hand;
+            cbRole.CustomizableEdges = customizableEdges1;
+            cbRole.DrawMode = DrawMode.OwnerDrawFixed;
+            cbRole.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbRole.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbRole.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbRole.Font = new Font("Segoe UI", 10F);
+            cbRole.ForeColor = Color.FromArgb(68, 88, 112);
+            cbRole.ItemHeight = 30;
+            cbRole.Location = new Point(767, 734);
+            cbRole.Name = "cbRole";
+            cbRole.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            cbRole.Size = new Size(162, 36);
+            cbRole.TabIndex = 36;
+            cbRole.SelectedIndexChanged += cbRole_SelectedIndexChanged;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(692, 748);
+            label11.Name = "label11";
+            label11.Size = new Size(60, 22);
+            label11.TabIndex = 37;
+            label11.Text = "Roles";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.Location = new Point(132, 748);
+            label12.Name = "label12";
+            label12.Size = new Size(120, 22);
+            label12.TabIndex = 38;
+            label12.Text = "Permissions";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.Location = new Point(43, 490);
+            label13.Name = "label13";
+            label13.Size = new Size(70, 22);
+            label13.TabIndex = 39;
+            label13.Text = "Gender";
+            // 
+            // rbtnMale
+            // 
+            rbtnMale.AutoSize = true;
+            rbtnMale.Cursor = Cursors.Hand;
+            rbtnMale.Font = new Font("Cascadia Mono", 9F);
+            rbtnMale.Location = new Point(178, 490);
+            rbtnMale.Name = "rbtnMale";
+            rbtnMale.Size = new Size(66, 24);
+            rbtnMale.TabIndex = 40;
+            rbtnMale.TabStop = true;
+            rbtnMale.Text = "Male";
+            rbtnMale.UseVisualStyleBackColor = true;
+            rbtnMale.CheckedChanged += rbtnMale_CheckedChanged;
+            // 
+            // rbtnFemale
+            // 
+            rbtnFemale.AutoSize = true;
+            rbtnFemale.Cursor = Cursors.Hand;
+            rbtnFemale.Font = new Font("Cascadia Mono", 9F);
+            rbtnFemale.Location = new Point(275, 490);
+            rbtnFemale.Name = "rbtnFemale";
+            rbtnFemale.Size = new Size(84, 24);
+            rbtnFemale.TabIndex = 41;
+            rbtnFemale.TabStop = true;
+            rbtnFemale.Text = "Female";
+            rbtnFemale.UseVisualStyleBackColor = true;
+            rbtnFemale.CheckedChanged += rbtnFemale_CheckedChanged;
+            // 
             // frmAddEditUsers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1137, 1009);
+            Controls.Add(rbtnFemale);
+            Controls.Add(rbtnMale);
+            Controls.Add(label13);
+            Controls.Add(label12);
+            Controls.Add(label11);
+            Controls.Add(cbRole);
+            Controls.Add(clbPermissions);
             Controls.Add(llblRemove);
             Controls.Add(label10);
             Controls.Add(txtConfirmPassword);
-            Controls.Add(chbLoginsRegister);
-            Controls.Add(chbCurrenciesSettings);
-            Controls.Add(chbManageUsers);
-            Controls.Add(chbTransactions);
-            Controls.Add(chbManageClients);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(txtPassword);
@@ -705,15 +690,17 @@
         private Label label7;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private Label label5;
-        private Guna.UI2.WinForms.Guna2CheckBox chbManageClients;
         private Label label9;
-        private Guna.UI2.WinForms.Guna2CheckBox chbCurrenciesSettings;
-        private Guna.UI2.WinForms.Guna2CheckBox chbManageUsers;
-        private Guna.UI2.WinForms.Guna2CheckBox chbTransactions;
-        private Guna.UI2.WinForms.Guna2CheckBox chbLoginsRegister;
         private Label label10;
         private Guna.UI2.WinForms.Guna2TextBox txtConfirmPassword;
         private ErrorProvider errorProvider1;
         private LinkLabel llblRemove;
+        private CheckedListBox clbPermissions;
+        private Guna.UI2.WinForms.Guna2ComboBox cbRole;
+        private Label label11;
+        private Label label12;
+        private RadioButton rbtnFemale;
+        private RadioButton rbtnMale;
+        private Label label13;
     }
 }

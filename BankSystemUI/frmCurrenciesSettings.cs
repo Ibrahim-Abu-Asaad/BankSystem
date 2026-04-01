@@ -16,5 +16,10 @@ namespace BankSystemUI
         {
             InitializeComponent();
         }
+
+        private void frmCurrenciesSettings_Load(object sender, EventArgs e)
+        {
+            //
+        }
     }
 }
