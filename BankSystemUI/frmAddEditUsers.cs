@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Runtime.ConstrainedExecution;
+using System.Collections.Generic;
 
 namespace BankSystemUI
 {
@@ -32,12 +34,15 @@ namespace BankSystemUI
             _User = clsUser.GetUserByUserID(UserID);
         }
 
-       
+
 
         // Form Loading
         private void frmAddEditUsers_Load(object sender, EventArgs e)
         {
 
+            chbShowPassword.Checked = false;
+            txtPassword.UseSystemPasswordChar = true;
+            txtConfirmPassword.UseSystemPasswordChar = true;
 
             cbRole.DisplayMember = "RoleName";
             cbRole.ValueMember = "ID";
@@ -358,6 +363,9 @@ namespace BankSystemUI
             _User = new clsUser();
             _Mode = clsUser.enMode.Create;
 
+            llblRemove.Visible = false;
+            llblSetImage.Visible = true;
+
             txtName.Text = "";
             txtEmail.Text = "";
             txtPhone.Text = "";
@@ -545,7 +553,7 @@ namespace BankSystemUI
                 }
 
             }
-            else if(cbRole.Text.ToLower() == "user")
+            else if (cbRole.Text.ToLower() == "user")
             {
 
 
@@ -556,9 +564,98 @@ namespace BankSystemUI
                 //    //string permName = clbPermissions.Items[i].ToString();
                 //    clbPermissions.SetItemChecked(i, false);
                 //}
-               
+
             }
 
+        }
+
+        private void clbPermissions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        //Dictionary<int, int> Perm = new Dictionary<int, int>();
+        Dictionary<int, List<int>> Perm = new Dictionary<int, List<int>>()
+    {
+    { 0, new List<int> { 1, 2, 3 } },
+    { 4, new List<int> { 5, 6, 7 } },
+    { 8, new List<int> { 9, 10, 11 } }
+    };
+
+        //private void _CheckAndUncheck(Dictionary<int, int> per)
+        //{
+
+
+        //    //
+
+
+        //}
+
+        private void clbPermissions_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+
+            // Handle Master Unchecking (If Master is unchecked, uncheck all children)
+            if (Perm.ContainsKey(e.Index) && e.NewValue == CheckState.Unchecked)
+            {
+                // Use BeginInvoke to allow the current event to finish before force-unchecking children
+                this.BeginInvoke(new Action(() =>
+                {
+                    foreach (int childIndex in Perm[e.Index])
+                    {
+                        clbPermissions.SetItemChecked(childIndex, false);
+                    }
+                }));
+            }
+
+            // Handle Child Checking (If Child is checked, ensure Master is already checked)
+            foreach (var group in Perm)
+            {
+                int masterIndex = group.Key;
+                List<int> children = group.Value;
+
+                if (children.Contains(e.Index) && e.NewValue == CheckState.Checked)
+                {
+                    // If the master is currently unchecked, stop the user
+                    if (clbPermissions.GetItemCheckState(masterIndex) == CheckState.Unchecked)
+                    {
+                        e.NewValue = CheckState.Unchecked;
+                        string masterName = clbPermissions.Items[masterIndex].ToString();
+                        MessageBox.Show($"You must enable '{masterName}' before selecting this permission.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
+            }
+        }
+
+        private void chbShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chbShowPassword.Checked == true)
+            {
+
+                txtPassword.UseSystemPasswordChar = false;
+                txtConfirmPassword.UseSystemPasswordChar = false;
+
+            }
+            else
+            {
+
+                txtPassword.UseSystemPasswordChar = true;
+                txtConfirmPassword.UseSystemPasswordChar = true;
+
+            }
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void lblTitleAddEditUser_Click(object sender, EventArgs e)
+        {
+            //
         }
     }
 }

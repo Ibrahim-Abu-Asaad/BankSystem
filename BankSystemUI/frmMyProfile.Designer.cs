@@ -78,6 +78,7 @@
             rbtnMale = new RadioButton();
             rbtnFemale = new RadioButton();
             label11 = new Label();
+            chbShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
             ((System.ComponentModel.ISupportInitialize)pbMyProfile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -490,11 +491,31 @@
             label11.TabIndex = 26;
             label11.Text = "Gender";
             // 
+            // chbShowPassword
+            // 
+            chbShowPassword.AutoSize = true;
+            chbShowPassword.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
+            chbShowPassword.CheckedState.BorderRadius = 0;
+            chbShowPassword.CheckedState.BorderThickness = 0;
+            chbShowPassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            chbShowPassword.Cursor = Cursors.Hand;
+            chbShowPassword.Location = new Point(448, 606);
+            chbShowPassword.Name = "chbShowPassword";
+            chbShowPassword.Size = new Size(132, 24);
+            chbShowPassword.TabIndex = 27;
+            chbShowPassword.Text = "Show Password";
+            chbShowPassword.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
+            chbShowPassword.UncheckedState.BorderRadius = 0;
+            chbShowPassword.UncheckedState.BorderThickness = 0;
+            chbShowPassword.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            chbShowPassword.CheckedChanged += chbShowPassword_CheckedChanged;
+            // 
             // frmMyProfile
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 794);
+            Controls.Add(chbShowPassword);
             Controls.Add(label11);
             Controls.Add(rbtnFemale);
             Controls.Add(rbtnMale);
@@ -562,5 +583,6 @@
         private RadioButton rbtnFemale;
         private RadioButton rbtnMale;
         private Label label11;
+        private Guna.UI2.WinForms.Guna2CheckBox chbShowPassword;
     }
 }

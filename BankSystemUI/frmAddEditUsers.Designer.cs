@@ -91,6 +91,7 @@
             label13 = new Label();
             rbtnMale = new RadioButton();
             rbtnFemale = new RadioButton();
+            chbShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
             ((System.ComponentModel.ISupportInitialize)pbUserImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -137,6 +138,7 @@
             lblTitleAddEditUser.TabIndex = 2;
             lblTitleAddEditUser.Text = "Add New User";
             lblTitleAddEditUser.TextAlign = ContentAlignment.TopCenter;
+            lblTitleAddEditUser.Click += lblTitleAddEditUser_Click;
             // 
             // btnSave
             // 
@@ -532,6 +534,8 @@
             clbPermissions.Name = "clbPermissions";
             clbPermissions.Size = new Size(193, 114);
             clbPermissions.TabIndex = 35;
+            clbPermissions.ItemCheck += clbPermissions_ItemCheck;
+            clbPermissions.SelectedIndexChanged += clbPermissions_SelectedIndexChanged;
             // 
             // cbRole
             // 
@@ -557,11 +561,12 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(692, 748);
+            label11.Location = new Point(711, 740);
             label11.Name = "label11";
-            label11.Size = new Size(60, 22);
+            label11.Size = new Size(50, 22);
             label11.TabIndex = 37;
-            label11.Text = "Roles";
+            label11.Text = "Role";
+            label11.Click += label11_Click;
             // 
             // label12
             // 
@@ -611,11 +616,31 @@
             rbtnFemale.UseVisualStyleBackColor = true;
             rbtnFemale.CheckedChanged += rbtnFemale_CheckedChanged;
             // 
+            // chbShowPassword
+            // 
+            chbShowPassword.AutoSize = true;
+            chbShowPassword.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
+            chbShowPassword.CheckedState.BorderRadius = 0;
+            chbShowPassword.CheckedState.BorderThickness = 0;
+            chbShowPassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            chbShowPassword.Cursor = Cursors.Hand;
+            chbShowPassword.Location = new Point(456, 641);
+            chbShowPassword.Name = "chbShowPassword";
+            chbShowPassword.Size = new Size(132, 24);
+            chbShowPassword.TabIndex = 42;
+            chbShowPassword.Text = "Show Password";
+            chbShowPassword.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
+            chbShowPassword.UncheckedState.BorderRadius = 0;
+            chbShowPassword.UncheckedState.BorderThickness = 0;
+            chbShowPassword.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            chbShowPassword.CheckedChanged += chbShowPassword_CheckedChanged;
+            // 
             // frmAddEditUsers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1137, 1009);
+            Controls.Add(chbShowPassword);
             Controls.Add(rbtnFemale);
             Controls.Add(rbtnMale);
             Controls.Add(label13);
@@ -702,5 +727,6 @@
         private RadioButton rbtnFemale;
         private RadioButton rbtnMale;
         private Label label13;
+        private Guna.UI2.WinForms.Guna2CheckBox chbShowPassword;
     }
 }

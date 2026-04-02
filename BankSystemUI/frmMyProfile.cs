@@ -105,6 +105,9 @@ namespace BankSystemUI
             cbCountry.DataSource = clsUser.GetAllCountries();
             cbCountry.SelectedValue = _User.CountryID;
 
+            chbShowPassword.Checked = false;
+            txtPassword.UseSystemPasswordChar = true;
+
 
         }
 
@@ -380,6 +383,24 @@ namespace BankSystemUI
             }
 
 
+
+        }
+
+        private void chbShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if(chbShowPassword.Checked == true)
+            {
+
+                txtPassword.UseSystemPasswordChar = false;
+
+            }
+            else
+            {
+
+                txtPassword.UseSystemPasswordChar = true;
+
+            }
 
         }
     }
