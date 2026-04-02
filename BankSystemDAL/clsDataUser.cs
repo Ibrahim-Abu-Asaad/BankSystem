@@ -257,7 +257,10 @@ namespace BankSystemDAL
             int UserCount = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT COUNT(*) FROM Users";
+            string query = @"SELECT COUNT(Users.ID)
+                             FROM Users INNER JOIN
+                             Persons ON Users.PersonID = Persons.ID
+                             WHERE Persons.MarkDeleted = 0";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -279,10 +282,16 @@ namespace BankSystemDAL
             int AdminCount = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT COUNT(*)
-                             FROM Users u
-                             INNER JOIN Roles r ON u.RoleID = r.ID
-                             WHERE LOWER(r.RoleName) = 'admin'";
+            //string query = @"SELECT COUNT(*)
+            //                 FROM Users u
+            //                 INNER JOIN Roles r ON u.RoleID = r.ID
+            //                 WHERE LOWER(r.RoleName) = 'admin' AND ";
+
+            string query = @"SELECT COUNT(Users.ID)
+                              FROM Users INNER JOIN
+                              Roles ON Users.RoleID = Roles.ID INNER JOIN
+                              Persons ON Users.PersonID = Persons.ID
+                              WHERE LOWER(Roles.RoleName) = 'admin' AND Persons.MarkDeleted = 0";
 
             SqlCommand command = new SqlCommand(query, connection);
 

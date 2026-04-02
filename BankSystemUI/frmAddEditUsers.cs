@@ -383,6 +383,7 @@ namespace BankSystemUI
             //for (int i = 0; i < clbPermissions.Items.Count; i++)
             //    clbPermissions.SetItemChecked(i, false);
 
+            cbRole.SelectedIndex = 1;
             _LoadDefaultUserPermissions();
 
             pbUserImage.Image = Properties.Resources.InitPicProfile;
