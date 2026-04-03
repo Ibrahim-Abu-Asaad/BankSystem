@@ -14,7 +14,7 @@ namespace BankSystemBLL
         public string Password { get; set; }
         public DateTime LastLogin { get; set; }
         public int RoleID { get; set; }
-        public List<string> PermissionNames { get; set; } = new List<string>();
+        //public List<string> PermissionNames { get; set; } = new List<string>();
 
         public enum enMode { Create, Update }
         public enMode Mode;
@@ -28,7 +28,7 @@ namespace BankSystemBLL
             this.Password = "";
             this.LastLogin = DateTime.Now;
             this.RoleID = -1;
-            this.PermissionNames = new List<string>();
+            //this.PermissionNames = new List<string>();
 
             this.PersonID = -1;
             this.Name = "";
@@ -55,22 +55,23 @@ namespace BankSystemBLL
             this.LastLogin = LastLogin;
             this.RoleID = RoleID;
 
-            this.PermissionNames = clsPermission.GetAllPermissionsOfUser(UserID);
+            //this.PermissionNames = clsPermission.GetAllPermissionsOfUser(UserID);
         }
 
 
         // Private Func
         private static bool _CreateNewUser(clsUser User)
         {
+
             int newUserID = clsDataUser.AddNewUser(
                 User.Name, User.Email, User.BirthDate.Value,
                 User.Address, User.ImagePath, User.CountryID,
                 User.Phone, User.Gender,
                 User.Username, User.Password, User.RoleID);
 
-            if (newUserID == -1) return false;
+            return (newUserID != -1);
 
-            return clsPermission.SetPermissionsForUser(newUserID, User.PermissionNames);
+            //return clsPermission.SetPermissionsForUser(newUserID, User.PermissionNames);
         }
 
         private static bool _UpdateUser(clsUser User)
@@ -80,18 +81,25 @@ namespace BankSystemBLL
                 User.Address, User.ImagePath, User.CountryID, User.Phone, User.Gender,
                 User.UserID, User.Username, User.Password, User.RoleID);
 
-            if (!updated) return false;
+            return updated;
 
-            return clsPermission.SetPermissionsForUser(User.UserID, User.PermissionNames);
+            //return clsPermission.SetPermissionsForUser(User.UserID, User.PermissionNames);
         }
 
+        public static bool _DeleteUser(int ID)
+        {
+
+            clsUser User = clsUser.GetUserByUserID(ID);
+            return clsDataUser.DeleteUser(User.PersonID);
+
+        }
 
         // Public Func
 
-        public bool HasPermission(clsPermission.enPermissions Permission)
-        {
-            return PermissionNames.Contains(Permission.ToString());
-        }
+        //public bool HasPermission(clsPermission.enPermissions Permission)
+        //{
+        //    return PermissionNames.Contains(Permission.ToString());
+        //}
 
         public static clsUser GetUserByUserID(int ID)
         {
@@ -136,9 +144,9 @@ namespace BankSystemBLL
         }
 
 
-
-        public static List<string> GetAllPermissionsOfUser(int UserID)
-            => clsPermission.GetAllPermissionsOfUser(UserID);
+        // re do it 
+        //public static List<string> GetAllPermissionsOfUser(int UserID)
+        //    => clsPermission.GetAllPermissionsOfUser(UserID);
 
 
         public static int IsUserExist(string Username, string Password)
@@ -150,6 +158,7 @@ namespace BankSystemBLL
         public static bool IsUserExist(int UserID)
             => clsDataUser.IsUserExist(UserID);
 
+        // Handling The Same Data Problem And The Edit Form Problem
         public static bool IsUsernameExist(string Username)
             => clsDataUser.IsUsernameExist(Username);
 
@@ -167,14 +176,8 @@ namespace BankSystemBLL
 
         public static bool IsPhoneExist(string Phone, int PersonID)
             => clsDataUser.IsPhoneExist(Phone, PersonID);
-
-        public static bool DeleteUser(int ID)
-        {
-
-            clsUser User = clsUser.GetUserByUserID(ID);
-            return clsDataUser.DeleteUser(User.PersonID);
-
-        }
+        /////////////////////////////////////////////////////////////////
+        
 
         public static void UpdateLastLoginAndAddedItToLoginsRegister(int UserID)
             => clsDataUser.UpdateLastLoginAndAddedItToLoginsRegister(UserID);
@@ -194,8 +197,8 @@ namespace BankSystemBLL
         public static int GetAdminCount()
             => clsDataUser.GetAdminCount();
 
-        public static DataTable GetAllCountries()
-            => clsDataUser.GetAllCountries();
+        //public static DataTable GetAllCountries()
+        //    => clsDataUser.GetAllCountries();
 
 
         // SAVE

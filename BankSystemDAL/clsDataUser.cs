@@ -499,26 +499,26 @@ namespace BankSystemDAL
             return IsExist;
         }
 
-        public static DataTable GetAllCountries()
-        {
-            DataTable dt = new DataTable();
+        //public static DataTable GetAllCountries()
+        //{
+        //    DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT ID, Name FROM Countries";
+        //    SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+        //    string query = "SELECT ID, Name FROM Countries";
 
-            SqlCommand command = new SqlCommand(query, connection);
+        //    SqlCommand command = new SqlCommand(query, connection);
 
-            try
-            {
-                connection.Open();
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                adapter.Fill(dt);
-            }
-            catch (Exception ex) { string errorMessage = ex.Message; }
-            finally { connection.Close(); }
+        //    try
+        //    {
+        //        connection.Open();
+        //        SqlDataAdapter adapter = new SqlDataAdapter(command);
+        //        adapter.Fill(dt);
+        //    }
+        //    catch (Exception ex) { string errorMessage = ex.Message; }
+        //    finally { connection.Close(); }
 
-            return dt;
-        }
+        //    return dt;
+        //}
 
         private static int _AddInfoInPersonTable(string Name, string Email, DateTime BirthDate,
             string Address, string ImagePath, int CountryID, string Phone, string Gender)
@@ -650,6 +650,8 @@ namespace BankSystemDAL
 
             return IsDeleted;
         }
+
+
 
     }
 }

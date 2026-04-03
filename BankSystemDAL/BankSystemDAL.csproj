@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsDataAccessSettings.cs" />
+    <Compile Include="clsDataCountry.cs" />
     <Compile Include="clsDataPermission.cs" />
     <Compile Include="clsDataRole.cs" />
     <Compile Include="clsDataUser.cs" />
