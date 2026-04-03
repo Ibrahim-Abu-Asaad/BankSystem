@@ -93,9 +93,9 @@
             lblRole.Font = new Font("Cascadia Mono", 12F);
             lblRole.Location = new Point(51, 167);
             lblRole.Name = "lblRole";
-            lblRole.Size = new Size(84, 27);
+            lblRole.Size = new Size(60, 27);
             lblRole.TabIndex = 3;
-            lblRole.Text = "Role :";
+            lblRole.Text = "Role";
             // 
             // lblClock
             // 

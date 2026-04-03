@@ -5,8 +5,7 @@ using System;
 
 public class clsDataRole
 {
-    private static string _connectionString =
-        clsDataAccessSettings.ConnectionString;
+    private static string _connectionString = clsDataAccessSettings.ConnectionString;
 
     public static DataTable ListAllRoles()
     {

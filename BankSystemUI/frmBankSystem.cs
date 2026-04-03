@@ -24,7 +24,7 @@ namespace BankSystemUI
             
         }
 
-
+              
         private void frmBankSystem_Load(object sender, EventArgs e)
         {
             lblLogedIn.Text = $"Welcome {_User.FirstName}";
