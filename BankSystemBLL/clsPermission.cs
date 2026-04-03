@@ -8,12 +8,8 @@ namespace BankSystemBLL
     public class clsPermission
     {
 
-        public int PermissionID { get; set; }
+        public int ID { get; set; }
         public string PermissionName { get; set; }
-
-
-        public enum enMode { Create, Update }
-        public enMode Mode;
 
         public enum enPermissions
         {
@@ -41,45 +37,39 @@ namespace BankSystemBLL
 
         public clsPermission()
         {
-            this.PermissionID = -1;
+            this.ID = -1;
             this.PermissionName = "";
-            this.Mode = enMode.Create;
         }
 
-        private clsPermission(int PermissionID, string PermissionName)
+        private clsPermission(int ID, string PermissionName)
         {
-            this.PermissionID = PermissionID;
+            this.ID = ID;
             this.PermissionName = PermissionName;
-            this.Mode = enMode.Update;
         }
 
         // Private 
 
         private bool _AddNewPermission()
         {
-            this.PermissionID = clsDataPermission.AddNewPermission(this.PermissionName);
-            return this.PermissionID != -1;
+            this.ID = clsDataPermission.AddNewPermission(this.PermissionName);
+            return this.ID != -1;
         }
 
         private bool _UpdatePermission()
-        {
-            return clsDataPermission.UpdatePermission(this.PermissionID, this.PermissionName);
-        }
+            => clsDataPermission.UpdatePermission(this.ID, this.PermissionName);
 
-        public static clsPermission GetPermissionByID(int PermissionID)
-        {
-            string PermissionName = "";
-            if (clsDataPermission.GetPermissionByID(PermissionID, ref PermissionName))
-                return new clsPermission(PermissionID, PermissionName);
-            return null;
-        }
+        public static bool _DeletePermission(int ID)
+            => clsDataPermission.DeletePermission(ID);
 
-        public static clsPermission GetPermissionByName(string PermissionName)
+        public static int GetPermissionIDByName(string PermissionName)
         {
-            int PermissionID = -1;
-            if (clsDataPermission.GetPermissionByName(PermissionName, ref PermissionID))
-                return new clsPermission(PermissionID, PermissionName);
-            return null;
+
+            int ID = -1;
+
+            if (clsDataPermission.GetPermissionIDByName(PermissionName) != -1)
+                ID = clsDataPermission.GetPermissionIDByName(PermissionName);
+
+            return ID;
         }
 
 
@@ -89,39 +79,8 @@ namespace BankSystemBLL
         public static bool IsPermissionExist(string PermissionName)
             => clsDataPermission.IsPermissionExist(PermissionName);
 
-        public static bool DeletePermission(int PermissionID)
-            => clsDataPermission.DeletePermission(PermissionID);
-
         public static DataTable ListAllPermissions()
             => clsDataPermission.ListAllPermissions();
 
-
-
-        public static List<string> GetAllPermissionsOfUser(int UserID)
-            => clsDataPermission.GetAllPermissionsOfUser(UserID);
-
-        public static bool SetPermissionsForUser(int UserID, List<string> PermissionNames)
-            => clsDataPermission.SetPermissionsForUser(UserID, PermissionNames);
-
-        public static bool AddPermissionToUser(int UserID, string PermissionName)
-            => clsDataPermission.AddPermissionToUser(UserID, PermissionName);
-
-        public static bool RemovePermissionFromUser(int UserID, string PermissionName)
-            => clsDataPermission.RemovePermissionFromUser(UserID, PermissionName);
-
-        public static bool UserHasPermission(int UserID, enPermissions Permission)
-            => clsDataPermission.UserHasPermission(UserID, Permission.ToString());
-
-        // SAVE
-
-        public bool Save()
-        {
-            switch (Mode)
-            {
-                case enMode.Create: return _AddNewPermission();
-                case enMode.Update: return _UpdatePermission();
-            }
-            return false;
-        }
     }
 }
