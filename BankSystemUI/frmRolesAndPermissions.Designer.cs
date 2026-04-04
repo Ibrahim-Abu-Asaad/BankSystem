@@ -29,16 +29,24 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             label1 = new Label();
             label2 = new Label();
             dgvListRoles = new Guna.UI2.WinForms.Guna2DataGridView();
+            chlPermissions = new CheckedListBox();
+            label3 = new Label();
+            txtRoleName = new Guna.UI2.WinForms.Guna2TextBox();
+            btnSave = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)dgvListRoles).BeginInit();
             SuspendLayout();
             // 
@@ -53,12 +61,13 @@
             // 
             guna2ControlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2ControlBox1.BorderRadius = 15;
-            guna2ControlBox1.CustomizableEdges = customizableEdges3;
+            guna2ControlBox1.Cursor = Cursors.Hand;
+            guna2ControlBox1.CustomizableEdges = customizableEdges5;
             guna2ControlBox1.FillColor = Color.Tomato;
             guna2ControlBox1.IconColor = Color.White;
             guna2ControlBox1.Location = new Point(1114, 12);
             guna2ControlBox1.Name = "guna2ControlBox1";
-            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2ControlBox1.Size = new Size(37, 36);
             guna2ControlBox1.TabIndex = 0;
             // 
@@ -89,33 +98,33 @@
             dgvListRoles.AllowUserToAddRows = false;
             dgvListRoles.AllowUserToDeleteRows = false;
             dgvListRoles.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dgvListRoles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvListRoles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dgvListRoles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvListRoles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvListRoles.ColumnHeadersHeight = 30;
             dgvListRoles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvListRoles.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvListRoles.DefaultCellStyle = dataGridViewCellStyle3;
             dgvListRoles.GridColor = Color.FromArgb(231, 229, 255);
             dgvListRoles.Location = new Point(79, 212);
             dgvListRoles.Name = "dgvListRoles";
             dgvListRoles.ReadOnly = true;
             dgvListRoles.RowHeadersVisible = false;
             dgvListRoles.RowHeadersWidth = 51;
-            dgvListRoles.Size = new Size(483, 257);
+            dgvListRoles.Size = new Size(358, 403);
             dgvListRoles.TabIndex = 3;
             dgvListRoles.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvListRoles.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -138,12 +147,74 @@
             dgvListRoles.ThemeStyle.RowsStyle.Height = 29;
             dgvListRoles.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvListRoles.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvListRoles.CellContentDoubleClick += dgvListRoles_CellContentDoubleClick;
+            dgvListRoles.CellDoubleClick += dgvListRoles_CellDoubleClick;
+            // 
+            // chlPermissions
+            // 
+            chlPermissions.FormattingEnabled = true;
+            chlPermissions.Location = new Point(528, 264);
+            chlPermissions.Name = "chlPermissions";
+            chlPermissions.Size = new Size(282, 136);
+            chlPermissions.TabIndex = 4;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(528, 215);
+            label3.Name = "label3";
+            label3.Size = new Size(120, 27);
+            label3.TabIndex = 5;
+            label3.Text = "Role Name";
+            // 
+            // txtRoleName
+            // 
+            txtRoleName.BorderRadius = 4;
+            txtRoleName.CustomizableEdges = customizableEdges3;
+            txtRoleName.DefaultText = "";
+            txtRoleName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtRoleName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtRoleName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtRoleName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtRoleName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtRoleName.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtRoleName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtRoleName.Location = new Point(652, 212);
+            txtRoleName.Margin = new Padding(3, 4, 3, 4);
+            txtRoleName.Name = "txtRoleName";
+            txtRoleName.PlaceholderText = "Role Name";
+            txtRoleName.SelectedText = "";
+            txtRoleName.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtRoleName.Size = new Size(209, 34);
+            txtRoleName.TabIndex = 6;
+            // 
+            // btnSave
+            // 
+            btnSave.BorderRadius = 5;
+            btnSave.CustomizableEdges = customizableEdges1;
+            btnSave.DisabledState.BorderColor = Color.DarkGray;
+            btnSave.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnSave.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnSave.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnSave.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(900, 559);
+            btnSave.Name = "btnSave";
+            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnSave.Size = new Size(170, 56);
+            btnSave.TabIndex = 7;
+            btnSave.Text = "Save";
             // 
             // frmRolesAndPermissions
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1163, 716);
+            ClientSize = new Size(1163, 641);
+            Controls.Add(btnSave);
+            Controls.Add(txtRoleName);
+            Controls.Add(label3);
+            Controls.Add(chlPermissions);
             Controls.Add(dgvListRoles);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -165,5 +236,9 @@
         private Label label1;
         private Label label2;
         private Guna.UI2.WinForms.Guna2DataGridView dgvListRoles;
+        private Label label3;
+        private CheckedListBox chlPermissions;
+        private Guna.UI2.WinForms.Guna2TextBox txtRoleName;
+        private Guna.UI2.WinForms.Guna2Button btnSave;
     }
 }

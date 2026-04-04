@@ -31,12 +31,34 @@ namespace BankSystemUI
 
         private void frmRolesAndPermissions_Load(object sender, EventArgs e)
         {
+
             dgvListRoles.DataSource = clsRole.ListAllRoles();
+
+            if (dgvListRoles.Columns.Contains("ID"))
+                dgvListRoles.Columns["ID"].Visible = false;
+
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
             //
+        }
+
+        private void dgvListRoles_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            //MessageBox.Show($"{_User.Name}, {clsRole.GetRoleNameByRoleID(_User.RoleID)}");
+
+        }
+
+        private void dgvListRoles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            //MessageBox.Show($"{_User.Name}, {clsRole.GetRoleNameByRoleID(_User.RoleID)}");
+            //MessageBox.Show(dgvListRoles.Rows[e.RowIndex].ToString());
+            
+
+
         }
     }
 }
