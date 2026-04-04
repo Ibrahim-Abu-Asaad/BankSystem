@@ -58,10 +58,10 @@ namespace BankSystemDAL
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"SELECT ID
                             FROM Permissions
-                            WHERE ID = @ID";
+                            WHERE PermissionName = @PermissionName";
 
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ID", ID);
+            command.Parameters.AddWithValue("@PermissionName", PermissionName);
 
             try
             {
@@ -70,7 +70,7 @@ namespace BankSystemDAL
 
                 object result = command.ExecuteScalar();
 
-                if (ID != -1 && int.TryParse(result.ToString(),out int IDofPermission))
+                if (result != null && int.TryParse(result.ToString(),out int IDofPermission))
                     ID = IDofPermission;
 
 

@@ -49,7 +49,10 @@ namespace BankSystemUI
 
         private void btnManageUsers_Click(object sender, EventArgs e)
         {
-            if (!_User.HasPermission(clsPermission.enPermissions.User_AccessPage))
+
+            int PermissionID = clsPermission.GetPermissionIDByName("User_AccessPage");
+
+            if (!_User.HasPermission(_User.RoleID, PermissionID))
             {
                 _AccessDenied();
                 return;
@@ -57,11 +60,15 @@ namespace BankSystemUI
 
             Form frm = new frmManageUsers(_User.UserID);
             frm.ShowDialog();
+
         }
 
         private void btnManageClients_Click(object sender, EventArgs e)
         {
-            if (!_User.HasPermission(clsPermission.enPermissions.Client_AccessPage))
+
+            int PermissionID = clsPermission.GetPermissionIDByName("Client_AccessPage");
+
+            if (!_User.HasPermission(_User.RoleID, PermissionID))
             {
                 _AccessDenied();
                 return;
@@ -69,11 +76,15 @@ namespace BankSystemUI
 
             Form frm = new frmManageClients();
             frm.ShowDialog();
+
         }
 
         private void btnTransactions_Click(object sender, EventArgs e)
         {
-            if (!_User.HasPermission(clsPermission.enPermissions.Transaction_AccessPage))
+
+            int PermissionID = clsPermission.GetPermissionIDByName("Transaction_AccessPage");
+
+            if (!_User.HasPermission(_User.RoleID, PermissionID))
             {
                 _AccessDenied();
                 return;
@@ -81,11 +92,15 @@ namespace BankSystemUI
 
             Form frm = new frmTransactions();
             frm.ShowDialog();
+
         }
 
         private void btnCurrenciesSettings_Click(object sender, EventArgs e)
         {
-            if (!_User.HasPermission(clsPermission.enPermissions.Currency_AccessPage))
+
+            int PermissionID = clsPermission.GetPermissionIDByName("CurrencySettings_AccessPage");
+
+            if (!_User.HasPermission(_User.RoleID, PermissionID))
             {
                 _AccessDenied();
                 return;
@@ -93,11 +108,15 @@ namespace BankSystemUI
 
             Form frm = new frmCurrenciesSettings();
             frm.ShowDialog();
+
         }
 
         private void btnLoginsRegister_Click(object sender, EventArgs e)
         {
-            if (!_User.HasPermission(clsPermission.enPermissions.LoginsRegister_AccessPage))
+
+            int PermissionID = clsPermission.GetPermissionIDByName("LoginsRegister-AccessPage");
+
+            if (!_User.HasPermission(_User.RoleID, PermissionID))
             {
                 _AccessDenied();
                 return;
@@ -105,6 +124,7 @@ namespace BankSystemUI
 
             Form frm = new frmLoginsRegister();
             frm.ShowDialog();
+
         }
 
         private void btnMyProfile_Click(object sender, EventArgs e)

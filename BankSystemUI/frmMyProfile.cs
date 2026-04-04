@@ -102,7 +102,7 @@ namespace BankSystemUI
 
             cbCountry.DisplayMember = "Name";
             cbCountry.ValueMember = "ID";
-            cbCountry.DataSource = clsUser.GetAllCountries();
+            cbCountry.DataSource = clsCountry.GetAllCountries();
             cbCountry.SelectedValue = _User.CountryID;
 
             chbShowPassword.Checked = false;

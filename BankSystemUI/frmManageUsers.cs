@@ -73,7 +73,7 @@ namespace BankSystemUI
 
             if (dgvListUsers.Columns[e.ColumnIndex].Name == "colEdit")
             {
-                if (!_User.HasPermission(clsPermission.enPermissions.User_Edit))
+                if (!_User.HasPermission(_User.RoleID, clsPermission.GetPermissionIDByName("User_Edit")))
                 {
                     MessageBox.Show("Access Denied! Check with your Admin.",
                         "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -89,7 +89,7 @@ namespace BankSystemUI
 
             else if (dgvListUsers.Columns[e.ColumnIndex].Name == "colDelete")
             {
-                if (!_User.HasPermission(clsPermission.enPermissions.User_Delete))
+                if (!_User.HasPermission(_User.RoleID, clsPermission.GetPermissionIDByName("User_Delete")))
                 {
                     MessageBox.Show("Access Denied! Check with your Admin.",
                         "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -188,7 +188,7 @@ namespace BankSystemUI
         private void btnAddNewUser_Click(object sender, EventArgs e)
         {
 
-            if (_User.HasPermission(clsPermission.enPermissions.User_Create))
+            if (_User.HasPermission(_User.RoleID, clsPermission.GetPermissionIDByName("User_Create")))
             {
 
                 Form frm = new frmAddEditUsers(-1);

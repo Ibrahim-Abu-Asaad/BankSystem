@@ -62,16 +62,10 @@ namespace BankSystemBLL
             => clsDataPermission.DeletePermission(ID);
 
         public static int GetPermissionIDByName(string PermissionName)
-        {
+            => clsDataPermission.GetPermissionIDByName(PermissionName);
 
-            int ID = -1;
-
-            if (clsDataPermission.GetPermissionIDByName(PermissionName) != -1)
-                ID = clsDataPermission.GetPermissionIDByName(PermissionName);
-
-            return ID;
-        }
-
+        public static bool GetPermissionNameByID(int ID, ref string PermissionName)
+            => clsDataPermission.GetPermissionNameByID(ID, ref PermissionName);
 
         public static bool IsPermissionExist(int PermissionID)
             => clsDataPermission.IsPermissionExist(PermissionID);

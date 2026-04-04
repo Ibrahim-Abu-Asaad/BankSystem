@@ -86,13 +86,7 @@ namespace BankSystemBLL
             //return clsPermission.SetPermissionsForUser(User.UserID, User.PermissionNames);
         }
 
-        public static bool _DeleteUser(int ID)
-        {
 
-            clsUser User = clsUser.GetUserByUserID(ID);
-            return clsDataUser.DeleteUser(User.PersonID);
-
-        }
 
         // Public Func
 
@@ -100,6 +94,18 @@ namespace BankSystemBLL
         //{
         //    return PermissionNames.Contains(Permission.ToString());
         //}
+
+        public static bool DeleteUser(int ID)
+        {
+
+            clsUser User = clsUser.GetUserByUserID(ID);
+            return clsDataUser.DeleteUser(User.PersonID);
+
+        }
+
+
+        public bool HasPermission(int RoleID, int PermissionID)
+            => clsRole.HasPermission(RoleID, PermissionID);
 
         public static clsUser GetUserByUserID(int ID)
         {

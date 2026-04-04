@@ -47,18 +47,18 @@ namespace BankSystemUI
             cbRole.DisplayMember = "RoleName";
             cbRole.ValueMember = "ID";
             cbRole.DataSource = clsDataRole.ListAllRoles();
-            cbRole.SelectedIndex = 1;
+            cbRole.SelectedIndex = 0;
 
             cbCountry.DisplayMember = "Name";
             cbCountry.ValueMember = "ID";
-            cbCountry.DataSource = clsUser.GetAllCountries();
+            cbCountry.DataSource = clsCountry.GetAllCountries();
             cbCountry.MaxDropDownItems = 7;
 
             // Load all permissions into CheckedListBox
-            _LoadPermissionsIntoCheckedListBox();
+            //_LoadPermissionsIntoCheckedListBox();
 
             // Then Check the default ones
-            _LoadDefaultUserPermissions();
+            //_LoadDefaultUserPermissions();
 
             if (_UserID == -1)
                 _Mode = clsUser.enMode.Create;
@@ -89,15 +89,15 @@ namespace BankSystemUI
         }
 
 
-        private void _LoadPermissionsIntoCheckedListBox()
-        {
-            clbPermissions.Items.Clear();
+        //private void _LoadPermissionsIntoCheckedListBox()
+        //{
+        //    clbPermissions.Items.Clear();
 
-            DataTable dt = clsPermission.ListAllPermissions();
+        //    DataTable dt = clsPermission.ListAllPermissions();
 
-            foreach (DataRow row in dt.Rows)
-                clbPermissions.Items.Add(row["PermissionName"].ToString());
-        }
+        //    foreach (DataRow row in dt.Rows)
+        //        clbPermissions.Items.Add(row["PermissionName"].ToString());
+        //}
 
 
         private void _FillTheFieldsWithUserInfoFromDatabase()
@@ -120,11 +120,16 @@ namespace BankSystemUI
             else if (_User.Gender.ToLower() == "female")
                 rbtnFemale.Checked = true;
 
-            _CheckUserPermissions();
+            //_CheckUserPermissions();
 
-            if (_User.RoleID == 1)
-                cbRole.SelectedIndex = 0;
-            else cbRole.SelectedIndex = 1;
+            if (_User.RoleID == clsRole.GetRoleIDByRoleName("Admin"))
+                cbRole.SelectedValue = _User.RoleID;
+            else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Account Manager"))
+                cbRole.SelectedValue = _User.RoleID;
+            else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Finance Manager"))
+                cbRole.SelectedValue = _User.RoleID;
+            else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Standard User"))
+                cbRole.SelectedValue = _User.RoleID;
 
             if (_User.ImagePath != "" && File.Exists(_User.ImagePath))
             {
@@ -141,57 +146,57 @@ namespace BankSystemUI
             errorProvider1.Clear();
         }
 
-        private void _CheckUserPermissions()
-        {
+        //private void _CheckUserPermissions()
+        //{
 
-            for (int i = 0; i < clbPermissions.Items.Count; i++)
-            {
-                string permName = clbPermissions.Items[i].ToString();
-                clbPermissions.SetItemChecked(i, _User.PermissionNames.Contains(permName));
-            }
+        //    for (int i = 0; i < clbPermissions.Items.Count; i++)
+        //    {
+        //        string permName = clbPermissions.Items[i].ToString();
+        //        clbPermissions.SetItemChecked(i, _User.PermissionNames.Contains(permName));
+        //    }
 
-        }
+        //}
 
         private void _LoadDefaultUserPermissions()
         {
 
-            var userPermissions = new List<string>
-                {
-                clsPermission.enPermissions.Client_AccessPage.ToString(),
-                clsPermission.enPermissions.Client_Create.ToString(),
-                clsPermission.enPermissions.Client_Edit.ToString(),
-                clsPermission.enPermissions.Client_Delete.ToString(),
-                clsPermission.enPermissions.Transaction_AccessPage.ToString(),
-                clsPermission.enPermissions.Transaction_Withdraw.ToString(),
-                clsPermission.enPermissions.Transaction_Deposit.ToString(),
-                clsPermission.enPermissions.Transaction_Transfer.ToString(),
-                clsPermission.enPermissions.Currency_AccessPage.ToString()
-                };
+            //var userPermissions = new List<string>
+            //    {
+            //    clsPermission.enPermissions.Client_AccessPage.ToString(),
+            //    clsPermission.enPermissions.Client_Create.ToString(),
+            //    clsPermission.enPermissions.Client_Edit.ToString(),
+            //    clsPermission.enPermissions.Client_Delete.ToString(),
+            //    clsPermission.enPermissions.Transaction_AccessPage.ToString(),
+            //    clsPermission.enPermissions.Transaction_Withdraw.ToString(),
+            //    clsPermission.enPermissions.Transaction_Deposit.ToString(),
+            //    clsPermission.enPermissions.Transaction_Transfer.ToString(),
+            //    clsPermission.enPermissions.Currency_AccessPage.ToString()
+            //    };
 
-            for (int i = 0; i < clbPermissions.Items.Count; i++)
-            {
-                if (userPermissions.Contains(clbPermissions.Items[i].ToString()))
-                {
-                    clbPermissions.SetItemChecked(i, true);
-                }
-                else
-                {
-                    clbPermissions.SetItemChecked(i, false);
-                }
-            }
+            //for (int i = 0; i < clbPermissions.Items.Count; i++)
+            //{
+            //    if (userPermissions.Contains(clbPermissions.Items[i].ToString()))
+            //    {
+            //        clbPermissions.SetItemChecked(i, true);
+            //    }
+            //    else
+            //    {
+            //        clbPermissions.SetItemChecked(i, false);
+            //    }
+            //}
 
         }
 
 
-        private List<string> _GetSelectedPermissions()
-        {
-            var permissions = new List<string>();
+        //private List<string> _GetSelectedPermissions()
+        //{
+        //    var permissions = new List<string>();
 
-            foreach (var item in clbPermissions.CheckedItems)
-                permissions.Add(item.ToString());
+        //    foreach (var item in clbPermissions.CheckedItems)
+        //        permissions.Add(item.ToString());
 
-            return permissions;
-        }
+        //    return permissions;
+        //}
 
 
         private void _FillTheUserWithTheValidatedInfo()
@@ -210,7 +215,7 @@ namespace BankSystemUI
                 _User.Gender = "Male";
             else _User.Gender = "Female";
 
-            _User.PermissionNames = _GetSelectedPermissions();
+            //_User.PermissionNames = _GetSelectedPermissions();
 
 
             _User.RoleID = cbRole.SelectedValue != null ? (int)cbRole.SelectedValue : -1;
@@ -219,6 +224,7 @@ namespace BankSystemUI
 
         private bool _ValidateInfo()
         {
+
             bool isValid = true;
 
             // Name
@@ -244,7 +250,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtEmail, "Invalid email address!");
                 isValid = false;
             }
-            if (clsUser.IsEmailExist(txtEmail.Text, _User.UserID))
+            if (clsUser.IsEmailExist(txtEmail.Text, _User.PersonID))
             {
                 errorProvider1.SetError(txtEmail, "This email already exists, enter another one");
                 isValid = false;
@@ -261,7 +267,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtPhone, "Phone number length should be between 8 and 20 digits");
                 isValid = false;
             }
-            else if (clsUser.IsPhoneExist(txtPhone.Text, _User.UserID))
+            else if (clsUser.IsPhoneExist(txtPhone.Text, _User.PersonID))
             {
                 errorProvider1.SetError(txtPhone, "This phone already exists, enter another one");
                 isValid = false;
@@ -383,8 +389,7 @@ namespace BankSystemUI
             //for (int i = 0; i < clbPermissions.Items.Count; i++)
             //    clbPermissions.SetItemChecked(i, false);
 
-            cbRole.SelectedIndex = 1;
-            _LoadDefaultUserPermissions();
+            cbRole.SelectedIndex = 0;
 
             pbUserImage.Image = Properties.Resources.InitPicProfile;
             lblTitleAddEditUser.Text = "Add New User";
@@ -544,29 +549,29 @@ namespace BankSystemUI
         private void cbRole_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (cbRole.Text.ToLower() == "admin")
-            {
+            //if (cbRole.Text.ToLower() == "admin")
+            //{
 
-                for (int i = 0; i < clbPermissions.Items.Count; i++)
-                {
-                    //string permName = clbPermissions.Items[i].ToString();
-                    clbPermissions.SetItemChecked(i, true);
-                }
+            //    for (int i = 0; i < clbPermissions.Items.Count; i++)
+            //    {
+            //        //string permName = clbPermissions.Items[i].ToString();
+            //        clbPermissions.SetItemChecked(i, true);
+            //    }
 
-            }
-            else if (cbRole.Text.ToLower() == "user")
-            {
+            //}
+            //else if (cbRole.Text.ToLower() == "user")
+            //{
 
 
-                _LoadDefaultUserPermissions();
+            //    _LoadDefaultUserPermissions();
 
-                //for (int i = 0; i < clbPermissions.Items.Count; i++)
-                //{
-                //    //string permName = clbPermissions.Items[i].ToString();
-                //    clbPermissions.SetItemChecked(i, false);
-                //}
+            //    //for (int i = 0; i < clbPermissions.Items.Count; i++)
+            //    //{
+            //    //    //string permName = clbPermissions.Items[i].ToString();
+            //    //    clbPermissions.SetItemChecked(i, false);
+            //    //}
 
-            }
+            //}
 
         }
 
@@ -595,38 +600,38 @@ namespace BankSystemUI
         private void clbPermissions_ItemCheck(object sender, ItemCheckEventArgs e)
         {
 
-            // Handle Master Unchecking (If Master is unchecked, uncheck all children)
-            if (Perm.ContainsKey(e.Index) && e.NewValue == CheckState.Unchecked)
-            {
-                // Use BeginInvoke to allow the current event to finish before force-unchecking children
-                this.BeginInvoke(new Action(() =>
-                {
-                    foreach (int childIndex in Perm[e.Index])
-                    {
-                        clbPermissions.SetItemChecked(childIndex, false);
-                    }
-                }));
-            }
+            //// Handle Master Unchecking (If Master is unchecked, uncheck all children)
+            //if (Perm.ContainsKey(e.Index) && e.NewValue == CheckState.Unchecked)
+            //{
+            //    // Use BeginInvoke to allow the current event to finish before force-unchecking children
+            //    this.BeginInvoke(new Action(() =>
+            //    {
+            //        foreach (int childIndex in Perm[e.Index])
+            //        {
+            //            clbPermissions.SetItemChecked(childIndex, false);
+            //        }
+            //    }));
+            //}
 
-            // Handle Child Checking (If Child is checked, ensure Master is already checked)
-            foreach (var group in Perm)
-            {
-                int masterIndex = group.Key;
-                List<int> children = group.Value;
+            //// Handle Child Checking (If Child is checked, ensure Master is already checked)
+            //foreach (var group in Perm)
+            //{
+            //    int masterIndex = group.Key;
+            //    List<int> children = group.Value;
 
-                if (children.Contains(e.Index) && e.NewValue == CheckState.Checked)
-                {
-                    // If the master is currently unchecked, stop the user
-                    if (clbPermissions.GetItemCheckState(masterIndex) == CheckState.Unchecked)
-                    {
-                        e.NewValue = CheckState.Unchecked;
-                        string masterName = clbPermissions.Items[masterIndex].ToString();
-                        MessageBox.Show($"You must enable '{masterName}' before selecting this permission.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                }
+            //    if (children.Contains(e.Index) && e.NewValue == CheckState.Checked)
+            //    {
+            //        // If the master is currently unchecked, stop the user
+            //        if (clbPermissions.GetItemCheckState(masterIndex) == CheckState.Unchecked)
+            //        {
+            //            e.NewValue = CheckState.Unchecked;
+            //            string masterName = clbPermissions.Items[masterIndex].ToString();
+            //            MessageBox.Show($"You must enable '{masterName}' before selecting this permission.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //            return;
+            //        }
+            //    }
 
-            }
+            //}
         }
 
         private void chbShowPassword_CheckedChanged(object sender, EventArgs e)

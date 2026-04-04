@@ -84,14 +84,12 @@
             txtConfirmPassword = new Guna.UI2.WinForms.Guna2TextBox();
             errorProvider1 = new ErrorProvider(components);
             llblRemove = new LinkLabel();
-            clbPermissions = new CheckedListBox();
             cbRole = new Guna.UI2.WinForms.Guna2ComboBox();
-            label11 = new Label();
-            label12 = new Label();
             label13 = new Label();
             rbtnMale = new RadioButton();
             rbtnFemale = new RadioButton();
             chbShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbUserImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -151,7 +149,7 @@
             btnSave.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnSave.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(464, 901);
+            btnSave.Location = new Point(902, 707);
             btnSave.Name = "btnSave";
             btnSave.ShadowDecoration.CustomizableEdges = customizableEdges23;
             btnSave.Size = new Size(170, 56);
@@ -472,11 +470,12 @@
             label9.AutoSize = true;
             label9.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = SystemColors.Highlight;
-            label9.Location = new Point(12, 671);
+            label9.Location = new Point(12, 688);
             label9.Name = "label9";
-            label9.Size = new Size(264, 27);
+            label9.Size = new Size(60, 27);
             label9.TabIndex = 26;
-            label9.Text = "Permissions And Roles";
+            label9.Text = "Role";
+            label9.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label10
             // 
@@ -527,16 +526,6 @@
             llblRemove.Text = "Remove";
             llblRemove.LinkClicked += linkLabel2_LinkClicked;
             // 
-            // clbPermissions
-            // 
-            clbPermissions.FormattingEnabled = true;
-            clbPermissions.Location = new Point(276, 748);
-            clbPermissions.Name = "clbPermissions";
-            clbPermissions.Size = new Size(193, 114);
-            clbPermissions.TabIndex = 35;
-            clbPermissions.ItemCheck += clbPermissions_ItemCheck;
-            clbPermissions.SelectedIndexChanged += clbPermissions_SelectedIndexChanged;
-            // 
             // cbRole
             // 
             cbRole.BackColor = Color.Transparent;
@@ -550,33 +539,12 @@
             cbRole.Font = new Font("Segoe UI", 10F);
             cbRole.ForeColor = Color.FromArgb(68, 88, 112);
             cbRole.ItemHeight = 30;
-            cbRole.Location = new Point(767, 734);
+            cbRole.Location = new Point(275, 727);
             cbRole.Name = "cbRole";
             cbRole.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            cbRole.Size = new Size(162, 36);
+            cbRole.Size = new Size(235, 36);
             cbRole.TabIndex = 36;
             cbRole.SelectedIndexChanged += cbRole_SelectedIndexChanged;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(711, 740);
-            label11.Name = "label11";
-            label11.Size = new Size(50, 22);
-            label11.TabIndex = 37;
-            label11.Text = "Role";
-            label11.Click += label11_Click;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(132, 748);
-            label12.Name = "label12";
-            label12.Size = new Size(120, 22);
-            label12.TabIndex = 38;
-            label12.Text = "Permissions";
             // 
             // label13
             // 
@@ -635,19 +603,27 @@
             chbShowPassword.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
             chbShowPassword.CheckedChanged += chbShowPassword_CheckedChanged;
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(174, 733);
+            label11.Name = "label11";
+            label11.Size = new Size(100, 22);
+            label11.TabIndex = 43;
+            label11.Text = "User Role";
+            // 
             // frmAddEditUsers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1137, 1009);
+            ClientSize = new Size(1137, 794);
+            Controls.Add(label11);
             Controls.Add(chbShowPassword);
             Controls.Add(rbtnFemale);
             Controls.Add(rbtnMale);
             Controls.Add(label13);
-            Controls.Add(label12);
-            Controls.Add(label11);
             Controls.Add(cbRole);
-            Controls.Add(clbPermissions);
             Controls.Add(llblRemove);
             Controls.Add(label10);
             Controls.Add(txtConfirmPassword);
@@ -720,13 +696,11 @@
         private Guna.UI2.WinForms.Guna2TextBox txtConfirmPassword;
         private ErrorProvider errorProvider1;
         private LinkLabel llblRemove;
-        private CheckedListBox clbPermissions;
         private Guna.UI2.WinForms.Guna2ComboBox cbRole;
-        private Label label11;
-        private Label label12;
         private RadioButton rbtnFemale;
         private RadioButton rbtnMale;
         private Label label13;
         private Guna.UI2.WinForms.Guna2CheckBox chbShowPassword;
+        private Label label11;
     }
 }
