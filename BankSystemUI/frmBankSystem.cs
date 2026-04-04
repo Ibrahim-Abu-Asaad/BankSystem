@@ -1,6 +1,7 @@
 ﻿using BankSystemBLL;
 using System;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace BankSystemUI
 {
@@ -18,13 +19,28 @@ namespace BankSystemUI
             _User = clsUser.GetUserByUserID(UserID);
             clsUser.UpdateLastLoginAndAddedItToLoginsRegister(UserID);
 
-            if (_User.RoleID == 1)
-                lblRole.Text = "Admin";
-            else lblRole.Text = "User";
-            
+            //if (_User.RoleID == clsRole.GetRoleIDByRoleName("Admin"))
+            //    lblRole.Text = "Admin";
+            //else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Account Manager"))
+            //    lblRole.Text = "Account Manager";
+            //else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Finance Manager"))
+            //    lblRole.Text = "Finance Manager";
+            //else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Standard User"))
+            //    lblRole.Text = "Standard User";
+
+            if (_User.RoleID == clsRole.GetRoleIDByRoleName("Admin"))
+                btnRoundedRole.Text = "Admin";
+            else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Account Manager"))
+                btnRoundedRole.Text = "Account Manager";
+            else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Finance Manager"))
+                btnRoundedRole.Text = "Finance Manager";
+            else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Standard User"))
+                btnRoundedRole.Text = "Standard User";
+
+
         }
 
-              
+
         private void frmBankSystem_Load(object sender, EventArgs e)
         {
             lblLogedIn.Text = $"Welcome {_User.FirstName}";
@@ -32,6 +48,11 @@ namespace BankSystemUI
             _UpdateClock();
             timer1.Interval = 1000;
             timer1.Start();
+
+            //btnRoundedRole.Click = true;
+
+            btnRoundedRole_Click(sender, e);
+
         }
 
 
@@ -146,6 +167,50 @@ namespace BankSystemUI
                 "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void btnRoundedRole_Click(object sender, EventArgs e)
+        {
+
+            //btnRoundedRole.Enabled = false;
+            //btnRoundedRole.ForeColor = SystemColors.GradientActiveCaption;
+            //btnRoundedRole.BorderColor = SystemColors.GradientActiveCaption;
+
+            btnRoundedRole.TextAlign = HorizontalAlignment.Center;
+            //btnRoundedRole.TextAlign = VerticalAlignment.Center;
+
+            if (btnRoundedRole.Text.Length <= 6)
+            {
+                btnRoundedRole.Size = new Size(129, 43);
+                btnRoundedRole.BorderRadius = 22;
+            }
+
+            // Define your "Active" color
+            Color myHighlight = SystemColors.GradientActiveCaption;
+            Color myText = SystemColors.Highlight;
+
+            // 1. Set the main colors
+            btnRoundedRole.FillColor = myHighlight;
+            btnRoundedRole.ForeColor = myText;
+            btnRoundedRole.BorderColor = myText;
+
+            // 2. STOP the "Hover" effect (The color won't change when mouse moves over it)
+            btnRoundedRole.HoverState.FillColor = myHighlight;
+            btnRoundedRole.HoverState.ForeColor = myText;
+            btnRoundedRole.HoverState.BorderColor = myText;
+
+            //// 3. STOP the "Click" effect (The color won't change when clicked)
+            //btnRoundedRole.PressedState.FillColor = myHighlight;
+            //btnRoundedRole.PressedState.ForeColor = myText;
+            //btnRoundedRole.PressedState.BorderColor = myText;
+
+            btnRoundedRole.PressedColor = myHighlight;
+            btnRoundedRole.PressedDepth = 0; // Set depth to 0 to remove the "pushing down" effect
+
+            // 4. Change the cursor so it doesn't look like a button
+            btnRoundedRole.Cursor = Cursors.Default;
+
+
+
+        }
     }
 }
 

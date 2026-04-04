@@ -1,4 +1,6 @@
-﻿namespace BankSystemUI
+﻿//using BankSystemUI.UI_Components;
+
+namespace BankSystemUI
 {
     partial class frmBankSystem
     {
@@ -29,6 +31,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -46,7 +50,6 @@
             label1 = new Label();
             lblLogedIn = new Label();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
-            lblRole = new Label();
             lblClock = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             btnManageClients = new Guna.UI2.WinForms.Guna2Button();
@@ -57,6 +60,7 @@
             btnLogout = new Guna.UI2.WinForms.Guna2Button();
             btnMyProfile = new Guna.UI2.WinForms.Guna2Button();
             lblMainInterface = new Label();
+            btnRoundedRole = new Guna.UI2.WinForms.Guna2Button();
             SuspendLayout();
             // 
             // label1
@@ -87,16 +91,6 @@
             guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
-            // lblRole
-            // 
-            lblRole.AutoSize = true;
-            lblRole.Font = new Font("Cascadia Mono", 12F);
-            lblRole.Location = new Point(51, 167);
-            lblRole.Name = "lblRole";
-            lblRole.Size = new Size(60, 27);
-            lblRole.TabIndex = 3;
-            lblRole.Text = "Role";
-            // 
             // lblClock
             // 
             lblClock.AutoSize = true;
@@ -116,7 +110,7 @@
             // 
             btnManageClients.BorderRadius = 10;
             btnManageClients.Cursor = Cursors.Hand;
-            btnManageClients.CustomizableEdges = customizableEdges13;
+            btnManageClients.CustomizableEdges = customizableEdges15;
             btnManageClients.DisabledState.BorderColor = Color.DarkGray;
             btnManageClients.DisabledState.CustomBorderColor = Color.DarkGray;
             btnManageClients.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -125,7 +119,7 @@
             btnManageClients.ForeColor = Color.White;
             btnManageClients.Location = new Point(392, 203);
             btnManageClients.Name = "btnManageClients";
-            btnManageClients.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnManageClients.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnManageClients.Size = new Size(202, 56);
             btnManageClients.TabIndex = 6;
             btnManageClients.Text = "Manage Clients";
@@ -135,7 +129,7 @@
             // 
             btnTransactions.BorderRadius = 10;
             btnTransactions.Cursor = Cursors.Hand;
-            btnTransactions.CustomizableEdges = customizableEdges11;
+            btnTransactions.CustomizableEdges = customizableEdges13;
             btnTransactions.DisabledState.BorderColor = Color.DarkGray;
             btnTransactions.DisabledState.CustomBorderColor = Color.DarkGray;
             btnTransactions.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -144,7 +138,7 @@
             btnTransactions.ForeColor = Color.White;
             btnTransactions.Location = new Point(392, 280);
             btnTransactions.Name = "btnTransactions";
-            btnTransactions.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnTransactions.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnTransactions.Size = new Size(202, 56);
             btnTransactions.TabIndex = 7;
             btnTransactions.Text = "Transactions";
@@ -154,7 +148,7 @@
             // 
             btnManageUsers.BorderRadius = 10;
             btnManageUsers.Cursor = Cursors.Hand;
-            btnManageUsers.CustomizableEdges = customizableEdges9;
+            btnManageUsers.CustomizableEdges = customizableEdges11;
             btnManageUsers.DisabledState.BorderColor = Color.DarkGray;
             btnManageUsers.DisabledState.CustomBorderColor = Color.DarkGray;
             btnManageUsers.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -163,7 +157,7 @@
             btnManageUsers.ForeColor = Color.White;
             btnManageUsers.Location = new Point(392, 357);
             btnManageUsers.Name = "btnManageUsers";
-            btnManageUsers.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnManageUsers.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnManageUsers.Size = new Size(202, 56);
             btnManageUsers.TabIndex = 8;
             btnManageUsers.Text = "Manage Users";
@@ -173,7 +167,7 @@
             // 
             btnCurrenciesSettings.BorderRadius = 10;
             btnCurrenciesSettings.Cursor = Cursors.Hand;
-            btnCurrenciesSettings.CustomizableEdges = customizableEdges7;
+            btnCurrenciesSettings.CustomizableEdges = customizableEdges9;
             btnCurrenciesSettings.DisabledState.BorderColor = Color.DarkGray;
             btnCurrenciesSettings.DisabledState.CustomBorderColor = Color.DarkGray;
             btnCurrenciesSettings.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -182,7 +176,7 @@
             btnCurrenciesSettings.ForeColor = Color.White;
             btnCurrenciesSettings.Location = new Point(392, 434);
             btnCurrenciesSettings.Name = "btnCurrenciesSettings";
-            btnCurrenciesSettings.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnCurrenciesSettings.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnCurrenciesSettings.Size = new Size(202, 56);
             btnCurrenciesSettings.TabIndex = 9;
             btnCurrenciesSettings.Text = "Currency Settings";
@@ -192,7 +186,7 @@
             // 
             btnLoginsRegister.BorderRadius = 10;
             btnLoginsRegister.Cursor = Cursors.Hand;
-            btnLoginsRegister.CustomizableEdges = customizableEdges5;
+            btnLoginsRegister.CustomizableEdges = customizableEdges7;
             btnLoginsRegister.DisabledState.BorderColor = Color.DarkGray;
             btnLoginsRegister.DisabledState.CustomBorderColor = Color.DarkGray;
             btnLoginsRegister.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -201,7 +195,7 @@
             btnLoginsRegister.ForeColor = Color.White;
             btnLoginsRegister.Location = new Point(392, 511);
             btnLoginsRegister.Name = "btnLoginsRegister";
-            btnLoginsRegister.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnLoginsRegister.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnLoginsRegister.Size = new Size(202, 56);
             btnLoginsRegister.TabIndex = 10;
             btnLoginsRegister.Text = "Logins Register";
@@ -211,7 +205,7 @@
             // 
             btnLogout.BorderRadius = 10;
             btnLogout.Cursor = Cursors.Hand;
-            btnLogout.CustomizableEdges = customizableEdges3;
+            btnLogout.CustomizableEdges = customizableEdges5;
             btnLogout.DisabledState.BorderColor = Color.DarkGray;
             btnLogout.DisabledState.CustomBorderColor = Color.DarkGray;
             btnLogout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -221,7 +215,7 @@
             btnLogout.ForeColor = Color.White;
             btnLogout.Location = new Point(392, 665);
             btnLogout.Name = "btnLogout";
-            btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnLogout.Size = new Size(202, 56);
             btnLogout.TabIndex = 11;
             btnLogout.Text = "Logout";
@@ -231,7 +225,7 @@
             // 
             btnMyProfile.BorderRadius = 10;
             btnMyProfile.Cursor = Cursors.Hand;
-            btnMyProfile.CustomizableEdges = customizableEdges1;
+            btnMyProfile.CustomizableEdges = customizableEdges3;
             btnMyProfile.DisabledState.BorderColor = Color.DarkGray;
             btnMyProfile.DisabledState.CustomBorderColor = Color.DarkGray;
             btnMyProfile.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -240,7 +234,7 @@
             btnMyProfile.ForeColor = Color.White;
             btnMyProfile.Location = new Point(392, 588);
             btnMyProfile.Name = "btnMyProfile";
-            btnMyProfile.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnMyProfile.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnMyProfile.Size = new Size(202, 56);
             btnMyProfile.TabIndex = 12;
             btnMyProfile.Text = "My Profile";
@@ -256,11 +250,38 @@
             lblMainInterface.TabIndex = 13;
             lblMainInterface.Text = "Apex Bank - Home";
             // 
+            // btnRoundedRole
+            // 
+            btnRoundedRole.BackColor = SystemColors.Control;
+            btnRoundedRole.BorderRadius = 25;
+            btnRoundedRole.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            btnRoundedRole.CustomizableEdges = customizableEdges1;
+            btnRoundedRole.DisabledState.BorderColor = Color.DarkGray;
+            btnRoundedRole.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnRoundedRole.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnRoundedRole.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnRoundedRole.FillColor = SystemColors.GradientActiveCaption;
+            btnRoundedRole.FocusedColor = SystemColors.Control;
+            btnRoundedRole.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRoundedRole.ForeColor = SystemColors.Highlight;
+            btnRoundedRole.HoverState.BorderColor = SystemColors.GradientActiveCaption;
+            btnRoundedRole.HoverState.CustomBorderColor = SystemColors.GradientActiveCaption;
+            btnRoundedRole.HoverState.FillColor = SystemColors.GradientActiveCaption;
+            btnRoundedRole.HoverState.ForeColor = SystemColors.Highlight;
+            btnRoundedRole.Location = new Point(51, 168);
+            btnRoundedRole.Name = "btnRoundedRole";
+            btnRoundedRole.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnRoundedRole.Size = new Size(189, 53);
+            btnRoundedRole.TabIndex = 15;
+            btnRoundedRole.Text = "Role";
+            btnRoundedRole.Click += btnRoundedRole_Click;
+            // 
             // frmBankSystem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1002, 771);
+            Controls.Add(btnRoundedRole);
             Controls.Add(lblMainInterface);
             Controls.Add(btnMyProfile);
             Controls.Add(btnLogout);
@@ -270,7 +291,6 @@
             Controls.Add(btnTransactions);
             Controls.Add(btnManageClients);
             Controls.Add(lblClock);
-            Controls.Add(lblRole);
             Controls.Add(lblLogedIn);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
@@ -287,7 +307,7 @@
         private Label label1;
         private Label lblLogedIn;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private Label lblRole;
+        //private clsRoundedLabel lblRole;
         private Label lblClock;
         private System.Windows.Forms.Timer timer1;
         private Guna.UI2.WinForms.Guna2Button btnLogout;
@@ -298,5 +318,6 @@
         private Guna.UI2.WinForms.Guna2Button btnManageClients;
         private Guna.UI2.WinForms.Guna2Button btnMyProfile;
         private Label lblMainInterface;
+        private Guna.UI2.WinForms.Guna2Button btnRoundedRole;
     }
 }
