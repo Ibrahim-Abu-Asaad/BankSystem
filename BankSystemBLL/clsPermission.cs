@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using BankSystemDAL;
+using static BankSystemBLL.clsUser;
 
 namespace BankSystemBLL
 {
@@ -10,6 +11,9 @@ namespace BankSystemBLL
 
         public int ID { get; set; }
         public string PermissionName { get; set; }
+
+        public enum enMode { AddNew = 0, Update = 1 };
+        public enMode Mode = enMode.AddNew;
 
         public enum enPermissions
         {
@@ -30,7 +34,20 @@ namespace BankSystemBLL
 
             Currency_AccessPage,
 
-            LoginsRegister_AccessPage
+            LoginsRegister_AccessPage,
+
+            RolesAndPermissions_AccessPage,
+
+            Role_Create,
+            Role_Edit,
+            Role_Delete,
+            
+            Permission_Create,
+            Permission_Edit,
+            Permission_Delete,
+
+
+
         }
 
         //  Constructors
@@ -39,12 +56,14 @@ namespace BankSystemBLL
         {
             this.ID = -1;
             this.PermissionName = "";
+            Mode = enMode.AddNew;
         }
 
         private clsPermission(int ID, string PermissionName)
         {
             this.ID = ID;
             this.PermissionName = PermissionName;
+            Mode = enMode.Update;
         }
 
         // Private 
@@ -58,7 +77,32 @@ namespace BankSystemBLL
         private bool _UpdatePermission()
             => clsDataPermission.UpdatePermission(this.ID, this.PermissionName);
 
-        public static bool _DeletePermission(int ID)
+        
+
+
+        public bool Save()
+        {
+            switch (Mode)
+            {
+                case enMode.AddNew:
+                    if (_AddNewPermission())
+                    {
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case enMode.Update:
+                    return _UpdatePermission();
+            }
+
+            return false;
+        }
+
+        public static bool DeletePermission(int ID)
             => clsDataPermission.DeletePermission(ID);
 
         public static int GetPermissionIDByName(string PermissionName)

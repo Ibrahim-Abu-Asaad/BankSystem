@@ -78,7 +78,7 @@ public class clsDataRole
 
     }
 
-    public static string GetRoleNameByID(int RoleID)
+    public static string GetRoleNameByRoleID(int RoleID)
     {
 
         string RoleName = "";
@@ -155,7 +155,110 @@ public class clsDataRole
 
     }
 
+    public static int AddNewRole(string RoleName)
+    {
 
+        int RoleID = -1;
+
+        SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+        string query = @"INSERT INTO Roles (RoleName)
+                         VALUES (@RoleName);
+                         SELECT SCOPE_IDENTITY();";
+
+        SqlCommand command = new SqlCommand(query, connection);
+        command.Parameters.AddWithValue("@RoleName", RoleName);
+
+        try
+        {
+
+            connection.Open();
+
+            object result = command.ExecuteScalar();
+
+            if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                RoleID = insertedID;
+
+        }
+        catch (Exception ex)
+        {
+            string errorMessage = ex.Message;
+        }
+        finally
+        {
+            connection.Close();
+        }
+
+        return RoleID;
+
+    }
+
+    public static bool UpdateRole(int ID, string RoleName)
+    {
+
+        int rowsAffected = 0;
+        SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+        string query = @"UPDATE Roles
+                         SET RoleName = @RoleName
+                         WHERE ID = @ID";
+
+        SqlCommand command = new SqlCommand(query, connection);
+        command.Parameters.AddWithValue("@RoleName", RoleName);
+        command.Parameters.AddWithValue("@ID", ID);
+
+        try
+        {
+
+            connection.Open();
+
+            rowsAffected = command.ExecuteNonQuery();
+
+        }
+        catch (Exception ex)
+        {
+            string msg = ex.Message;
+        }
+        finally
+        {
+            connection.Close();
+        }
+
+        return (rowsAffected > 0);
+
+    }
+
+    public static bool DeleteRole(int ID)
+    {
+
+        int rowsAffected = 0;
+        SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+        string query = @"DELETE Roles WHERE ID = @ID";
+
+        SqlCommand command = new SqlCommand(query, connection);
+        command.Parameters.AddWithValue("@ID", ID);
+
+        try
+        {
+
+            connection.Open();
+
+            rowsAffected = command.ExecuteNonQuery();
+
+        }
+        catch (Exception ex)
+        {
+            string msg = ex.Message;
+        }
+        finally
+        {
+            connection.Close();
+        }
+
+        return (rowsAffected > 0);
+
+    }
 
 
 
