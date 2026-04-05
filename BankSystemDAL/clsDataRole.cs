@@ -49,7 +49,7 @@ public class clsDataRole
 
         SqlConnection connection = new SqlConnection(ConnectionString);
 
-        string query = "SELECT ID, RoleName FROM Roles WHERE LOWER(RoleName) != 'admin'";
+        string query = "SELECT ID, RoleName AS Role FROM Roles WHERE LOWER(RoleName) != 'admin'";
 
         SqlCommand command = new SqlCommand(query, connection);
 

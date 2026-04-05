@@ -214,8 +214,8 @@ namespace BankSystemDAL
             DataTable dt = new DataTable();
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT u.ID, u.Username, u.LastLogin,
-                                    p.Name, c.Name AS Country, r.RoleName
+            string query = @"SELECT u.ID, u.Username, u.LastLogin AS 'Last Login',
+                                    p.Name, c.Name AS Country, r.RoleName AS Role
                              FROM Users u
                              INNER JOIN Persons p ON u.PersonID = p.ID
                              INNER JOIN Countries c ON p.CountryID = c.ID
@@ -245,7 +245,7 @@ namespace BankSystemDAL
             DataTable dt = new DataTable();
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT lr.Date, u.Username, r.RoleName, p.Name
+            string query = @"SELECT lr.Date, u.Username, r.RoleName AS Role, p.Name
                              FROM LoginsRegister lr
                              INNER JOIN Users u ON lr.UserID = u.ID
                              INNER JOIN Persons p ON u.PersonID = p.ID

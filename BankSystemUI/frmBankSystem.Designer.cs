@@ -271,10 +271,10 @@ namespace BankSystemUI
             btnRoundedRole.HoverState.CustomBorderColor = SystemColors.GradientActiveCaption;
             btnRoundedRole.HoverState.FillColor = SystemColors.GradientActiveCaption;
             btnRoundedRole.HoverState.ForeColor = SystemColors.Highlight;
-            btnRoundedRole.Location = new Point(51, 168);
+            btnRoundedRole.Location = new Point(51, 179);
             btnRoundedRole.Name = "btnRoundedRole";
             btnRoundedRole.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnRoundedRole.Size = new Size(189, 53);
+            btnRoundedRole.Size = new Size(197, 42);
             btnRoundedRole.TabIndex = 15;
             btnRoundedRole.Text = "Role";
             btnRoundedRole.Click += btnRoundedRole_Click;

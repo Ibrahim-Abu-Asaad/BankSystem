@@ -284,7 +284,8 @@ namespace BankSystemDAL
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"SELECT ID, PermissionName FROM Permissions 
                              WHERE PermissionName NOT LIKE '%Role%' 
-                             AND PermissionName NOT LIKE '%Permission%';";
+                             AND PermissionName NOT LIKE '%Permission%'
+                             AND PermissionName NOT LIKE '%User%';";
 
             SqlCommand command = new SqlCommand(query, connection);
 

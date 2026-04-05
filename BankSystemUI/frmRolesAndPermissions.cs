@@ -183,7 +183,7 @@ namespace BankSystemUI
 
             if (e.RowIndex >= 0)
             {
-                string roleName = dgvListRoles.Rows[e.RowIndex].Cells["RoleName"].Value.ToString();
+                string roleName = dgvListRoles.Rows[e.RowIndex].Cells["Role"].Value.ToString();
                 lblRoleName.Text = roleName;
             }
 

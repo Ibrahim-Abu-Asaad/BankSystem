@@ -115,8 +115,11 @@ namespace BankSystemUI
         private void frmMyProfile_Load(object sender, EventArgs e)
         {
             _FillInformation();
-        }
 
+            if (clsRole.IsRoleAdmin(_User.RoleID))
+                btnDeleteAccount.Visible = false;
+        }
+        
         private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //

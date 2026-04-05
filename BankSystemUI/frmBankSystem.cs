@@ -178,7 +178,12 @@ namespace BankSystemUI
 
             if (btnRoundedRole.Text.Length <= 6)
             {
-                btnRoundedRole.Size = new Size(129, 43);
+                btnRoundedRole.Size = new Size(110, 42);
+                btnRoundedRole.BorderRadius = 22;
+            }
+            else
+            {
+                btnRoundedRole.Size = new Size(190, 42);
                 btnRoundedRole.BorderRadius = 22;
             }
 
