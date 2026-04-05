@@ -100,8 +100,16 @@ namespace BankSystemUI
                         "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (clsUser.DeleteUser(UserID))
+                    {
+
                         MessageBox.Show($"User deleted successfully: {selectedUser.Username}",
                             "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        if (_User.UserID == selectedUser.UserID)
+                            Application.Restart();
+                        
+
+                    }                         
                     else
                         MessageBox.Show($"User was not deleted: {selectedUser.Username}",
                             "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);

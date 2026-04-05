@@ -86,7 +86,6 @@ namespace BankSystemUI
 
         private void btnManageClients_Click(object sender, EventArgs e)
         {
-
             int PermissionID = clsPermission.GetPermissionIDByName("Client_AccessPage");
 
             if (!_User.HasPermission(_User.RoleID, PermissionID))

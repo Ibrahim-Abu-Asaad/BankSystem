@@ -66,7 +66,7 @@ namespace BankSystemUI
 
             if (_User == null)
             {
-                MessageBox.Show("Wrong Username", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There is not an account with this username", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 

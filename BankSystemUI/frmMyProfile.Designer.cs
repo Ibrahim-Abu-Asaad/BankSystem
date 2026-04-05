@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -79,6 +81,7 @@
             rbtnFemale = new RadioButton();
             label11 = new Label();
             chbShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
+            btnDeleteAccount = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)pbMyProfile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -95,12 +98,12 @@
             guna2ControlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2ControlBox1.BorderRadius = 15;
             guna2ControlBox1.Cursor = Cursors.Hand;
-            guna2ControlBox1.CustomizableEdges = customizableEdges20;
+            guna2ControlBox1.CustomizableEdges = customizableEdges22;
             guna2ControlBox1.FillColor = Color.Tomato;
             guna2ControlBox1.IconColor = Color.White;
             guna2ControlBox1.Location = new Point(734, 9);
             guna2ControlBox1.Name = "guna2ControlBox1";
-            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges21;
+            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges23;
             guna2ControlBox1.Size = new Size(37, 36);
             guna2ControlBox1.TabIndex = 0;
             // 
@@ -133,7 +136,7 @@
             pbMyProfile.InitialImage = null;
             pbMyProfile.Location = new Point(329, 137);
             pbMyProfile.Name = "pbMyProfile";
-            pbMyProfile.ShadowDecoration.CustomizableEdges = customizableEdges19;
+            pbMyProfile.ShadowDecoration.CustomizableEdges = customizableEdges21;
             pbMyProfile.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbMyProfile.Size = new Size(158, 163);
             pbMyProfile.SizeMode = PictureBoxSizeMode.Zoom;
@@ -144,7 +147,7 @@
             // txtName
             // 
             txtName.BorderRadius = 4;
-            txtName.CustomizableEdges = customizableEdges17;
+            txtName.CustomizableEdges = customizableEdges19;
             txtName.DefaultText = "";
             txtName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -159,7 +162,7 @@
             txtName.Name = "txtName";
             txtName.PlaceholderText = "Enter Your Name";
             txtName.SelectedText = "";
-            txtName.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            txtName.ShadowDecoration.CustomizableEdges = customizableEdges20;
             txtName.Size = new Size(194, 38);
             txtName.TabIndex = 4;
             txtName.TextChanged += txtName_TextChanged;
@@ -167,7 +170,7 @@
             // txtEmail
             // 
             txtEmail.BorderRadius = 4;
-            txtEmail.CustomizableEdges = customizableEdges15;
+            txtEmail.CustomizableEdges = customizableEdges17;
             txtEmail.DefaultText = "";
             txtEmail.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtEmail.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -182,7 +185,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Enter Your Email";
             txtEmail.SelectedText = "";
-            txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges18;
             txtEmail.Size = new Size(194, 38);
             txtEmail.TabIndex = 5;
             txtEmail.TextChanged += txtEmail_TextChanged;
@@ -192,7 +195,7 @@
             dtpBirthdate.BorderRadius = 4;
             dtpBirthdate.Checked = true;
             dtpBirthdate.Cursor = Cursors.Hand;
-            dtpBirthdate.CustomizableEdges = customizableEdges13;
+            dtpBirthdate.CustomizableEdges = customizableEdges15;
             dtpBirthdate.FillColor = SystemColors.Highlight;
             dtpBirthdate.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpBirthdate.Format = DateTimePickerFormat.Long;
@@ -200,7 +203,7 @@
             dtpBirthdate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpBirthdate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpBirthdate.Name = "dtpBirthdate";
-            dtpBirthdate.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            dtpBirthdate.ShadowDecoration.CustomizableEdges = customizableEdges16;
             dtpBirthdate.Size = new Size(288, 38);
             dtpBirthdate.TabIndex = 6;
             dtpBirthdate.Value = new DateTime(2026, 10, 26, 15, 36, 47, 926);
@@ -220,7 +223,7 @@
             // txtPhone
             // 
             txtPhone.BorderRadius = 4;
-            txtPhone.CustomizableEdges = customizableEdges11;
+            txtPhone.CustomizableEdges = customizableEdges13;
             txtPhone.DefaultText = "";
             txtPhone.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPhone.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -235,7 +238,7 @@
             txtPhone.Name = "txtPhone";
             txtPhone.PlaceholderText = "Enter Your Phone";
             txtPhone.SelectedText = "";
-            txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges14;
             txtPhone.Size = new Size(194, 38);
             txtPhone.TabIndex = 9;
             txtPhone.TextChanged += txtPhone_TextChanged;
@@ -243,7 +246,7 @@
             // txtUsername
             // 
             txtUsername.BorderRadius = 4;
-            txtUsername.CustomizableEdges = customizableEdges9;
+            txtUsername.CustomizableEdges = customizableEdges11;
             txtUsername.DefaultText = "";
             txtUsername.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtUsername.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -258,7 +261,7 @@
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Enter Your Username";
             txtUsername.SelectedText = "";
-            txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges12;
             txtUsername.Size = new Size(194, 38);
             txtUsername.TabIndex = 10;
             txtUsername.TextChanged += txtUsername_TextChanged;
@@ -266,7 +269,7 @@
             // txtPassword
             // 
             txtPassword.BorderRadius = 4;
-            txtPassword.CustomizableEdges = customizableEdges7;
+            txtPassword.CustomizableEdges = customizableEdges9;
             txtPassword.DefaultText = "";
             txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -281,7 +284,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Enter Your Password";
             txtPassword.SelectedText = "";
-            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges10;
             txtPassword.Size = new Size(194, 38);
             txtPassword.TabIndex = 11;
             txtPassword.TextChanged += txtPassword_TextChanged;
@@ -289,7 +292,7 @@
             // txtAddress
             // 
             txtAddress.BorderRadius = 4;
-            txtAddress.CustomizableEdges = customizableEdges5;
+            txtAddress.CustomizableEdges = customizableEdges7;
             txtAddress.DefaultText = "";
             txtAddress.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtAddress.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -304,7 +307,7 @@
             txtAddress.Name = "txtAddress";
             txtAddress.PlaceholderText = "Enter Your Address";
             txtAddress.SelectedText = "";
-            txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges8;
             txtAddress.Size = new Size(194, 38);
             txtAddress.TabIndex = 12;
             txtAddress.TextChanged += txtAddress_TextChanged;
@@ -313,16 +316,16 @@
             // 
             btnSave.BorderRadius = 5;
             btnSave.Cursor = Cursors.Hand;
-            btnSave.CustomizableEdges = customizableEdges3;
+            btnSave.CustomizableEdges = customizableEdges5;
             btnSave.DisabledState.BorderColor = Color.DarkGray;
             btnSave.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSave.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnSave.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnSave.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(319, 717);
+            btnSave.Location = new Point(569, 701);
             btnSave.Name = "btnSave";
-            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnSave.Size = new Size(168, 52);
             btnSave.TabIndex = 13;
             btnSave.Text = "Save";
@@ -415,7 +418,7 @@
             cbCountry.BackColor = Color.Transparent;
             cbCountry.BorderRadius = 4;
             cbCountry.Cursor = Cursors.Hand;
-            cbCountry.CustomizableEdges = customizableEdges1;
+            cbCountry.CustomizableEdges = customizableEdges3;
             cbCountry.DisplayMember = "Country";
             cbCountry.DrawMode = DrawMode.OwnerDrawFixed;
             cbCountry.DropDownHeight = 240;
@@ -431,7 +434,7 @@
             cbCountry.ItemHeight = 30;
             cbCountry.Location = new Point(98, 435);
             cbCountry.Name = "cbCountry";
-            cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges4;
             cbCountry.Size = new Size(170, 36);
             cbCountry.TabIndex = 22;
             cbCountry.ValueMember = "Choose Country";
@@ -510,11 +513,32 @@
             chbShowPassword.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
             chbShowPassword.CheckedChanged += chbShowPassword_CheckedChanged;
             // 
+            // btnDeleteAccount
+            // 
+            btnDeleteAccount.BorderRadius = 5;
+            btnDeleteAccount.Cursor = Cursors.Hand;
+            btnDeleteAccount.CustomizableEdges = customizableEdges1;
+            btnDeleteAccount.DisabledState.BorderColor = Color.DarkGray;
+            btnDeleteAccount.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDeleteAccount.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDeleteAccount.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDeleteAccount.FillColor = Color.Tomato;
+            btnDeleteAccount.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDeleteAccount.ForeColor = Color.White;
+            btnDeleteAccount.Location = new Point(98, 701);
+            btnDeleteAccount.Name = "btnDeleteAccount";
+            btnDeleteAccount.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnDeleteAccount.Size = new Size(168, 52);
+            btnDeleteAccount.TabIndex = 28;
+            btnDeleteAccount.Text = "Delete Account";
+            btnDeleteAccount.Click += btnDeleteAccount_Click;
+            // 
             // frmMyProfile
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 794);
+            Controls.Add(btnDeleteAccount);
             Controls.Add(chbShowPassword);
             Controls.Add(label11);
             Controls.Add(rbtnFemale);
@@ -584,5 +608,6 @@
         private RadioButton rbtnMale;
         private Label label11;
         private Guna.UI2.WinForms.Guna2CheckBox chbShowPassword;
+        private Guna.UI2.WinForms.Guna2Button btnDeleteAccount;
     }
 }

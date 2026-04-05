@@ -143,7 +143,7 @@ namespace BankSystemDAL
                                     p.CountryID, p.Phone, p.MarkDeleted, p.Gender
                              FROM Users u
                              INNER JOIN Persons p ON u.PersonID = p.ID
-                             WHERE u.Username = @Username";
+                             WHERE u.Username = @Username AND p.MarkDeleted = 0";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Username", Username);

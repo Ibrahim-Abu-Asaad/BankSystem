@@ -1,5 +1,6 @@
 ﻿using BankSystemBLL;
 using Guna.UI2.WinForms;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -389,7 +390,7 @@ namespace BankSystemUI
         private void chbShowPassword_CheckedChanged(object sender, EventArgs e)
         {
 
-            if(chbShowPassword.Checked == true)
+            if (chbShowPassword.Checked == true)
             {
 
                 txtPassword.UseSystemPasswordChar = false;
@@ -403,5 +404,53 @@ namespace BankSystemUI
             }
 
         }
+
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show($"Are you sure you want to delete your account?",
+                        "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (clsUser.DeleteUser(_User.UserID))
+                {
+
+                    MessageBox.Show($"Your account has been deleted successfully",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Application.Restart();
+
+                    //clsGlobal.Logout();
+
+                }
+                else
+                    MessageBox.Show($"Your account was not deleted",
+                        "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+
+            }
+        }
+
+
+        // This should put in global class
+        //public static void Logout()
+        //{
+
+        //    List<Form> openForms = new List<Form>(Application.OpenForms.Cast<Form>());
+        //    foreach (Form frm in openForms)
+        //    {
+        //        frm.Hide();
+        //    }
+
+        //    frmLogin login = new frmLogin();
+        //    login.ShowDialog();
+
+        //    foreach (Form frm in openForms)
+        //    {
+        //        frm.Close();
+        //    }
+
+        //}
+
     }
 }
