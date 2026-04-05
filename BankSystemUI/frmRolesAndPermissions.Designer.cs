@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
@@ -47,6 +49,7 @@
             lblRoleName = new Label();
             label4 = new Label();
             label5 = new Label();
+            btnAddNewRole = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)dgvListRoles).BeginInit();
             SuspendLayout();
             // 
@@ -62,12 +65,12 @@
             guna2ControlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2ControlBox1.BorderRadius = 15;
             guna2ControlBox1.Cursor = Cursors.Hand;
-            guna2ControlBox1.CustomizableEdges = customizableEdges3;
+            guna2ControlBox1.CustomizableEdges = customizableEdges5;
             guna2ControlBox1.FillColor = Color.Tomato;
             guna2ControlBox1.IconColor = Color.White;
-            guna2ControlBox1.Location = new Point(1114, 12);
+            guna2ControlBox1.Location = new Point(818, 12);
             guna2ControlBox1.Name = "guna2ControlBox1";
-            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2ControlBox1.Size = new Size(37, 36);
             guna2ControlBox1.TabIndex = 0;
             // 
@@ -76,7 +79,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 24F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.Highlight;
-            label1.Location = new Point(411, 84);
+            label1.Location = new Point(289, 65);
             label1.Name = "label1";
             label1.Size = new Size(404, 54);
             label1.TabIndex = 1;
@@ -124,7 +127,7 @@
             dgvListRoles.ReadOnly = true;
             dgvListRoles.RowHeadersVisible = false;
             dgvListRoles.RowHeadersWidth = 51;
-            dgvListRoles.Size = new Size(358, 403);
+            dgvListRoles.Size = new Size(313, 403);
             dgvListRoles.TabIndex = 3;
             dgvListRoles.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvListRoles.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -149,11 +152,14 @@
             dgvListRoles.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgvListRoles.CellContentDoubleClick += dgvListRoles_CellContentDoubleClick;
             dgvListRoles.CellDoubleClick += dgvListRoles_CellDoubleClick;
+            dgvListRoles.CellLeave += dgvListRoles_CellLeave;
+            dgvListRoles.CellMouseEnter += dgvListRoles_CellMouseEnter;
+            dgvListRoles.CellMouseLeave += dgvListRoles_CellMouseLeave;
             // 
             // chlPermissions
             // 
             chlPermissions.FormattingEnabled = true;
-            chlPermissions.Location = new Point(528, 264);
+            chlPermissions.Location = new Point(446, 279);
             chlPermissions.Name = "chlPermissions";
             chlPermissions.Size = new Size(282, 136);
             chlPermissions.TabIndex = 4;
@@ -162,7 +168,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(528, 215);
+            label3.Location = new Point(446, 212);
             label3.Name = "label3";
             label3.Size = new Size(120, 27);
             label3.TabIndex = 5;
@@ -171,16 +177,17 @@
             // btnSave
             // 
             btnSave.BorderRadius = 5;
-            btnSave.CustomizableEdges = customizableEdges1;
+            btnSave.Cursor = Cursors.Hand;
+            btnSave.CustomizableEdges = customizableEdges3;
             btnSave.DisabledState.BorderColor = Color.DarkGray;
             btnSave.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSave.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnSave.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnSave.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(900, 559);
+            btnSave.Location = new Point(665, 553);
             btnSave.Name = "btnSave";
-            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnSave.Size = new Size(170, 56);
             btnSave.TabIndex = 7;
             btnSave.Text = "Save";
@@ -191,7 +198,7 @@
             lblRoleName.AutoSize = true;
             lblRoleName.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblRoleName.ForeColor = SystemColors.Highlight;
-            lblRoleName.Location = new Point(650, 219);
+            lblRoleName.Location = new Point(568, 216);
             lblRoleName.Name = "lblRoleName";
             lblRoleName.Size = new Size(0, 22);
             lblRoleName.TabIndex = 8;
@@ -199,29 +206,49 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(594, 414);
+            label4.Font = new Font("Cascadia Mono", 9F);
+            label4.Location = new Point(512, 421);
             label4.Name = "label4";
-            label4.Size = new Size(340, 22);
+            label4.Size = new Size(306, 20);
             label4.TabIndex = 9;
             label4.Text = "You As Admin Have All Permissions";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Cascadia Mono", 9F);
             label5.ForeColor = SystemColors.Highlight;
-            label5.Location = new Point(528, 414);
+            label5.Location = new Point(446, 421);
             label5.Name = "label5";
-            label5.Size = new Size(60, 22);
+            label5.Size = new Size(54, 20);
             label5.TabIndex = 10;
             label5.Text = "Note:";
+            // 
+            // btnAddNewRole
+            // 
+            btnAddNewRole.BorderRadius = 5;
+            btnAddNewRole.Cursor = Cursors.Hand;
+            btnAddNewRole.CustomizableEdges = customizableEdges1;
+            btnAddNewRole.DisabledState.BorderColor = Color.DarkGray;
+            btnAddNewRole.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAddNewRole.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAddNewRole.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAddNewRole.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAddNewRole.ForeColor = Color.White;
+            btnAddNewRole.Location = new Point(446, 553);
+            btnAddNewRole.Name = "btnAddNewRole";
+            btnAddNewRole.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnAddNewRole.Size = new Size(170, 56);
+            btnAddNewRole.TabIndex = 11;
+            btnAddNewRole.Text = "Add New Role";
+            btnAddNewRole.Click += btnAddNewRole_Click;
             // 
             // frmRolesAndPermissions
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1163, 641);
+            ClientSize = new Size(867, 641);
+            Controls.Add(btnAddNewRole);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(lblRoleName);
@@ -255,5 +282,6 @@
         private Label lblRoleName;
         private Label label5;
         private Label label4;
+        private Guna.UI2.WinForms.Guna2Button btnAddNewRole;
     }
 }

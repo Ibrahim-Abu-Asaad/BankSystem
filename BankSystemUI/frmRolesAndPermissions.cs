@@ -146,5 +146,33 @@ namespace BankSystemUI
                 MessageBox.Show("An error occurred while saving permissions.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
+
+        private void dgvListRoles_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+
+            //
+
+        }
+
+        private void dgvListRoles_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvListRoles.Cursor = Cursors.Default;
+        }
+
+        private void dgvListRoles_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0)
+                dgvListRoles.Cursor = Cursors.Hand;
+
+        }
+
+        private void btnAddNewRole_Click(object sender, EventArgs e)
+        {
+
+            Form frm = new frmAddNewRole();
+            frm.ShowDialog();
+
+        }
     }
 }
