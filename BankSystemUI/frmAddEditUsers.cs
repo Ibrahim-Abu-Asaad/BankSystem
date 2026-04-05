@@ -18,20 +18,26 @@ namespace BankSystemUI
     public partial class frmAddEditUsers : Form
     {
 
-        clsUser _User;
-        int _UserID = -1;
+        clsUser _User = new clsUser();
+        int _selectedUserID = -1;
         clsUser.enMode _Mode = clsUser.enMode.Create;
 
+        clsUser LoggedInUser;
 
-        public frmAddEditUsers(int UserID)
+
+        public frmAddEditUsers(int selectedUserID, int LoggedInUserID)
         {
             InitializeComponent();
 
-            if (UserID == -1)
+            if (selectedUserID == -1)
                 llblRemove.Visible = false;
 
-            _UserID = UserID;
-            _User = clsUser.GetUserByUserID(UserID);
+            _selectedUserID = selectedUserID;
+            
+            _User = clsUser.GetUserByUserID(selectedUserID);
+            //_selectedUserID = _User.UserID;
+
+            LoggedInUser = clsUser.GetUserByUserID(LoggedInUserID);
         }
 
 
@@ -46,7 +52,11 @@ namespace BankSystemUI
 
             cbRole.DisplayMember = "RoleName";
             cbRole.ValueMember = "ID";
-            cbRole.DataSource = clsDataRole.ListAllRoles();
+
+            if (clsRole.IsRoleAdmin(LoggedInUser.RoleID))
+                cbRole.DataSource = clsRole.ListAllRolesWithoutAdmin();
+
+            
             cbRole.SelectedIndex = 0;
 
             cbCountry.DisplayMember = "Name";
@@ -60,7 +70,7 @@ namespace BankSystemUI
             // Then Check the default ones
             //_LoadDefaultUserPermissions();
 
-            if (_UserID == -1)
+            if (_selectedUserID == -1)
                 _Mode = clsUser.enMode.Create;
             else
                 _Mode = clsUser.enMode.Update;
@@ -102,7 +112,7 @@ namespace BankSystemUI
 
         private void _FillTheFieldsWithUserInfoFromDatabase()
         {
-            _User = clsUser.GetUserByUserID(_UserID);
+            _User = clsUser.GetUserByUserID(_selectedUserID);
             _User.Mode = clsUser.enMode.Update;
 
             txtName.Text = _User.Name;
@@ -201,7 +211,7 @@ namespace BankSystemUI
 
         private void _FillTheUserWithTheValidatedInfo()
         {
-            _User.UserID = _UserID;
+            _User.UserID = _selectedUserID;
             _User.Name = txtName.Text;
             _User.Email = txtEmail.Text;
             _User.BirthDate = dtpBirthdate.Value;
@@ -316,13 +326,52 @@ namespace BankSystemUI
                 isValid = false;
             }
 
-            //// Permissions
-            //if (clbPermissions.CheckedItems.Count == 0)
+            //// Role
+            //if (cbRole.SelectedValue.ToString().ToLower() != "account manager" && clsRole.GetRoleNameByRoleID(_User.RoleID).ToString().ToLower() == "account manager")
             //{
-            //    MessageBox.Show("Please select at least one permission.",
-            //        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    MessageBox.Show("You are an Account Manager, You can not change your role, Check your admin",
+            //        "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             //    isValid = false;
             //}
+
+            string currentUserRole = clsRole.GetRoleNameByRoleID(LoggedInUser.RoleID).ToLower();
+
+            string selectedRoleName = cbRole.Text.ToLower();
+
+            bool IsAdmin = clsRole.IsRoleAdmin(LoggedInUser.RoleID);
+
+
+            //// Logic: If I am an Account Manager, and I am NOT an Admin, I cannot change my role.
+            //if (currentUserRole == "account manager" && selectedRoleName != "account manager" && !IsAdmin && _Mode == clsUser.enMode.Update && _User.UserID == LoggedInUser.UserID)
+            //{
+            //    //MessageBox.Show("As an Account Manager, you cannot change your own role. Only your admin can perform this action.",
+            //    //    "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            //    errorProvider1.SetError(cbRole, "As an Account Manager, you cannot change your own role. Only your admin can perform this action.");
+
+            //    isValid = false;
+
+            //    // Reset the selection to prevent the change
+            //    cbRole.Text = "Account Manager";
+            //}
+
+
+            if(clsRole.IsRoleAdmin(LoggedInUser.RoleID) && selectedRoleName != "admin" && _User.UserID == LoggedInUser.UserID && _Mode == clsUser.enMode.Update)
+            {
+
+                //MessageBox.Show("As an Admin, you cannot change your own role. Only a System Administrator can perform this action.",
+                //    "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                errorProvider1.SetError(cbRole, "As an Admin, you cannot change your own role. Only a System Administrator can perform this action.");
+
+                isValid = false;
+
+                // Reset the selection to prevent the change
+                cbRole.Text = "Admin";
+
+            }
+
 
             return isValid;
         }

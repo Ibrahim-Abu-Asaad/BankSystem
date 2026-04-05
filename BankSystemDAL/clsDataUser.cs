@@ -208,6 +208,37 @@ namespace BankSystemDAL
             return dt;
         }
 
+        public static DataTable ListUsersWithoutAdmin()
+        {
+
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT u.ID, u.Username, u.LastLogin,
+                                    p.Name, c.Name AS Country, r.RoleName
+                             FROM Users u
+                             INNER JOIN Persons p ON u.PersonID = p.ID
+                             INNER JOIN Countries c ON p.CountryID = c.ID
+                             INNER JOIN Roles r ON u.RoleID = r.ID
+                             WHERE p.MarkDeleted = 0 AND RoleName != 'Admin'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
+            catch (Exception ex) { string errorMessage = ex.Message; }
+            finally { connection.Close(); }
+
+            return dt;
+
+
+
+        }
+
 
         public static DataTable ListLoginsRegister()
         {
@@ -260,7 +291,7 @@ namespace BankSystemDAL
             string query = @"SELECT COUNT(Users.ID)
                              FROM Users INNER JOIN
                              Persons ON Users.PersonID = Persons.ID
-                             WHERE Persons.MarkDeleted = 0";
+                             WHERE Persons.MarkDeleted = 0 AND Users.RoleID != 3";
 
             SqlCommand command = new SqlCommand(query, connection);
 

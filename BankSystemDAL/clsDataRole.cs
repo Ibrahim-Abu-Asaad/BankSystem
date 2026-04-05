@@ -369,6 +369,41 @@ public class clsDataRole
 
     }
 
+    public static bool IsRoleAdmin(int RoleID)
+    {
+
+        bool IsRoleAdmin = false;
+
+        SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+        string query = @"SELECT Found=1 FROM Roles WHERE RoleName = 'Admin' AND ID = @RoleID";
+
+        SqlCommand command = new SqlCommand(query, connection);
+        command.Parameters.AddWithValue("@RoleID", RoleID);
+
+        try
+        {
+
+            connection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+                IsRoleAdmin = true;
+
+        }
+        catch (Exception ex)
+        {
+            string errorMessage = ex.Message;
+        }
+        finally
+        {
+            connection.Close();
+        }
+
+
+        return IsRoleAdmin;
+
+    }
 
 
 

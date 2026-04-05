@@ -17,6 +17,8 @@ namespace BankSystemUI
 
         clsUser _User;
 
+        
+
         public frmManageUsers(int UserID)
         {
             InitializeComponent();
@@ -38,9 +40,10 @@ namespace BankSystemUI
         {
 
             lblTotalUsers.Text = clsUser.GetUserCount().ToString();
-            lblAdminCount.Text = clsUser.GetAdminCount().ToString();
+            //lblAdminCount.Text = clsUser.GetAdminCount().ToString();
 
-            dgvListUsers.DataSource = clsUser.ListUsers();
+            //dgvListUsers.DataSource = clsUser.ListUsers();
+            dgvListUsers.DataSource = clsUser.ListUsersWithoutAdmin();
             dgvListUsers.Columns["ID"].Visible = false;
 
 
@@ -65,6 +68,7 @@ namespace BankSystemUI
         private void dgvListUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            
 
             if (e.RowIndex < 0) return;
 
@@ -80,7 +84,7 @@ namespace BankSystemUI
                     return;
                 }
 
-                Form frm = new frmAddEditUsers(UserID);
+                Form frm = new frmAddEditUsers(selectedUser.UserID, _User.UserID);
                 frm.ShowDialog();
                 _RefreshUsersList();
                 txtSearchBy.Text = SEARCHING_Sentence;
@@ -153,7 +157,7 @@ namespace BankSystemUI
 
             }
 
-            lblAdminCount.Text = AdminCount.ToString();
+            //lblAdminCount.Text = AdminCount.ToString();
 
         }
 
@@ -199,7 +203,7 @@ namespace BankSystemUI
             if (_User.HasPermission(_User.RoleID, clsPermission.GetPermissionIDByName("User_Create")))
             {
 
-                Form frm = new frmAddEditUsers(-1);
+                Form frm = new frmAddEditUsers(-1, _User.UserID);
                 frm.ShowDialog();
                 //_RefreshUsersList();
 

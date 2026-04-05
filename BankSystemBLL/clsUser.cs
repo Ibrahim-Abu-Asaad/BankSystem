@@ -194,6 +194,9 @@ namespace BankSystemBLL
         public static DataTable ListUsers()
             => clsDataUser.ListUsers();
 
+        public static DataTable ListUsersWithoutAdmin()
+            => clsDataUser.ListUsersWithoutAdmin();
+
         public static DataTable ListLoginsRegister()
             => clsDataUser.ListLoginsRegister();
 

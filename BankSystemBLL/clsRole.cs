@@ -45,7 +45,12 @@ namespace BankSystemBLL
 
         public static bool Find(int ID)
             => clsDataRole.GetRoleNameByRoleID(ID) != null;
-                   
+
+        public static bool IsRoleAdmin(int RoleID)
+            => clsDataRole.IsRoleAdmin(RoleID);
+
+
+
         //public bool Save()
         //{
         //    switch (Mode)
