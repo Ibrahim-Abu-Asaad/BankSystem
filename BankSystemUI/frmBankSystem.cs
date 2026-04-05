@@ -135,7 +135,7 @@ namespace BankSystemUI
         private void btnLoginsRegister_Click(object sender, EventArgs e)
         {
 
-            int PermissionID = clsPermission.GetPermissionIDByName("LoginsRegister-AccessPage");
+            int PermissionID = clsPermission.GetPermissionIDByName("LoginsRegister_AccessPage");
 
             if (!_User.HasPermission(_User.RoleID, PermissionID))
             {
