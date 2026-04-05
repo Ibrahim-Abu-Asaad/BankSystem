@@ -32,6 +32,8 @@ namespace BankSystemBLL
         public static DataTable ListAllRoles()
             => clsDataRole.ListAllRoles();
 
+        public static DataTable ListAllRolesWithoutAdmin()
+            => clsDataRole.ListAllRolesWithoutAdmin();
         public static bool HasPermission(int ID, int PermissionID)
             => clsDataRole.HasPermission(ID, PermissionID);
 
@@ -77,6 +79,8 @@ namespace BankSystemBLL
         public static bool DeleteRole(int ID)
             => clsDataRole.DeleteRole(ID);
 
+        public static DataTable GetPermissionsByRoleID(int RoleID)
+            => clsDataRole.GetRolePermissions(RoleID);
 
 
 

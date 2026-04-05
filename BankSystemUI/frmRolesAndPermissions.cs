@@ -15,7 +15,7 @@ namespace BankSystemUI
     {
 
         clsUser _User;
-
+        private int _selectedRoleID = -1;
 
         public frmRolesAndPermissions(int UserID)
         {
@@ -32,11 +32,42 @@ namespace BankSystemUI
         private void frmRolesAndPermissions_Load(object sender, EventArgs e)
         {
 
-            dgvListRoles.DataSource = clsRole.ListAllRoles();
+            //dgvListRoles.DataSource = clsRole.ListAllRoles();
+            dgvListRoles.DataSource = clsRole.ListAllRolesWithoutAdmin();
 
             if (dgvListRoles.Columns.Contains("ID"))
                 dgvListRoles.Columns["ID"].Visible = false;
 
+            _FillAllPermissions();
+
+
+
+            if (dgvListRoles.Rows.Count > 0)
+            {
+                dgvListRoles.ClearSelection();
+                dgvListRoles.Rows[0].Selected = true;
+                dgvListRoles_CellDoubleClick(dgvListRoles, new DataGridViewCellEventArgs(0, 0));
+            }
+
+
+
+
+        }
+
+        private void _FillAllPermissions()
+        {
+            chlPermissions.Items.Clear();
+
+            DataTable dt = clsPermission.ListAllPermissions();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                chlPermissions.Items.Add(new clsPermissionItem
+                {
+                    ID = (int)row["ID"],
+                    Name = row["PermissionName"].ToString()
+                });
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -51,13 +82,68 @@ namespace BankSystemUI
 
         }
 
+
+
         private void dgvListRoles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            //MessageBox.Show($"{_User.Name}, {clsRole.GetRoleNameByRoleID(_User.RoleID)}");
-            //MessageBox.Show(dgvListRoles.Rows[e.RowIndex].ToString());
-            
 
+            if (e.RowIndex >= 0)
+            {
+                string roleName = dgvListRoles.Rows[e.RowIndex].Cells["RoleName"].Value.ToString();
+                lblRoleName.Text = roleName;
+            }
+
+            //string Name = lblRoleName.Text;
+            int RoleID = clsRole.GetRoleIDByRoleName(lblRoleName.Text);
+            _selectedRoleID = RoleID;
+
+            //int PermissionID = clsPermission.GetPermissionIDByName();
+            int PermissionID = -1;
+
+            string PermissionName = "";
+
+            // Put all boxesChecked to false
+
+            for (int i = 0; i < chlPermissions.Items.Count; i++)
+                chlPermissions.SetItemChecked(i, false);
+
+
+            for (int i = 0; i < chlPermissions.Items.Count; i++)
+            {
+
+                //PermissionName = chlPermissions.Items[i].ToString();
+                //PermissionID = clsPermission.GetPermissionIDByName(PermissionName);
+
+                PermissionID = ((clsPermissionItem)chlPermissions.Items[i]).ID;
+
+                if (clsRole.HasPermission(RoleID, PermissionID))
+                    chlPermissions.SetItemChecked(i, true);
+
+            }
+
+
+
+
+
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            List<int> SelectedIDs = new List<int>();
+
+            foreach (object item in chlPermissions.CheckedItems)
+            {
+                clsPermissionItem permission = (clsPermissionItem)item;
+                SelectedIDs.Add(permission.ID);
+            }
+
+            if (clsPermission.UpdateRolePermissions(_selectedRoleID, SelectedIDs))
+                MessageBox.Show("Permissions updated successfully for role: " + lblRoleName.Text, "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("An error occurred while saving permissions.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
     }

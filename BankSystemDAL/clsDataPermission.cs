@@ -274,11 +274,95 @@ namespace BankSystemDAL
             return dt;
         }
 
-        
+        public static bool DeleteAllRolePermissions(int RoleID)
+        {
+            //int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
+            string query = "DELETE FROM RolePermissions WHERE RoleID = @RoleID";
 
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@RoleID", RoleID);
 
+            try
+            {
+                connection.Open();
+                //rowsAffected = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
 
+            return true;
+        }
+
+        public static bool AddPermissionToRole(int RoleID, int PermissionID)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"INSERT INTO RolePermissions (RoleID, PermissionID)
+                     VALUES (@RoleID, @PermissionID)";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@RoleID", RoleID);
+            command.Parameters.AddWithValue("@PermissionID", PermissionID);
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+        }
+
+        public static DataTable GetRolePermissions(int RoleID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT PermissionID FROM RolePermissions WHERE RoleID = @RoleID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@RoleID", RoleID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
 
     }
 }

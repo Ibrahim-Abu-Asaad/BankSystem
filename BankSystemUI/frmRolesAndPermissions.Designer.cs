@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
@@ -45,8 +43,10 @@
             dgvListRoles = new Guna.UI2.WinForms.Guna2DataGridView();
             chlPermissions = new CheckedListBox();
             label3 = new Label();
-            txtRoleName = new Guna.UI2.WinForms.Guna2TextBox();
             btnSave = new Guna.UI2.WinForms.Guna2Button();
+            lblRoleName = new Label();
+            label4 = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvListRoles).BeginInit();
             SuspendLayout();
             // 
@@ -62,12 +62,12 @@
             guna2ControlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2ControlBox1.BorderRadius = 15;
             guna2ControlBox1.Cursor = Cursors.Hand;
-            guna2ControlBox1.CustomizableEdges = customizableEdges5;
+            guna2ControlBox1.CustomizableEdges = customizableEdges3;
             guna2ControlBox1.FillColor = Color.Tomato;
             guna2ControlBox1.IconColor = Color.White;
             guna2ControlBox1.Location = new Point(1114, 12);
             guna2ControlBox1.Name = "guna2ControlBox1";
-            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2ControlBox1.Size = new Size(37, 36);
             guna2ControlBox1.TabIndex = 0;
             // 
@@ -168,27 +168,6 @@
             label3.TabIndex = 5;
             label3.Text = "Role Name";
             // 
-            // txtRoleName
-            // 
-            txtRoleName.BorderRadius = 4;
-            txtRoleName.CustomizableEdges = customizableEdges3;
-            txtRoleName.DefaultText = "";
-            txtRoleName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtRoleName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtRoleName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtRoleName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtRoleName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtRoleName.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtRoleName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtRoleName.Location = new Point(652, 212);
-            txtRoleName.Margin = new Padding(3, 4, 3, 4);
-            txtRoleName.Name = "txtRoleName";
-            txtRoleName.PlaceholderText = "Role Name";
-            txtRoleName.SelectedText = "";
-            txtRoleName.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtRoleName.Size = new Size(209, 34);
-            txtRoleName.TabIndex = 6;
-            // 
             // btnSave
             // 
             btnSave.BorderRadius = 5;
@@ -205,14 +184,48 @@
             btnSave.Size = new Size(170, 56);
             btnSave.TabIndex = 7;
             btnSave.Text = "Save";
+            btnSave.Click += btnSave_Click;
+            // 
+            // lblRoleName
+            // 
+            lblRoleName.AutoSize = true;
+            lblRoleName.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblRoleName.ForeColor = SystemColors.Highlight;
+            lblRoleName.Location = new Point(650, 219);
+            lblRoleName.Name = "lblRoleName";
+            lblRoleName.Size = new Size(0, 22);
+            lblRoleName.TabIndex = 8;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(594, 414);
+            label4.Name = "label4";
+            label4.Size = new Size(340, 22);
+            label4.TabIndex = 9;
+            label4.Text = "You As Admin Have All Permissions";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = SystemColors.Highlight;
+            label5.Location = new Point(528, 414);
+            label5.Name = "label5";
+            label5.Size = new Size(60, 22);
+            label5.TabIndex = 10;
+            label5.Text = "Note:";
             // 
             // frmRolesAndPermissions
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1163, 641);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(lblRoleName);
             Controls.Add(btnSave);
-            Controls.Add(txtRoleName);
             Controls.Add(label3);
             Controls.Add(chlPermissions);
             Controls.Add(dgvListRoles);
@@ -238,7 +251,9 @@
         private Guna.UI2.WinForms.Guna2DataGridView dgvListRoles;
         private Label label3;
         private CheckedListBox chlPermissions;
-        private Guna.UI2.WinForms.Guna2TextBox txtRoleName;
         private Guna.UI2.WinForms.Guna2Button btnSave;
+        private Label lblRoleName;
+        private Label label5;
+        private Label label4;
     }
 }

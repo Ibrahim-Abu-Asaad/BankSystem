@@ -215,13 +215,13 @@ namespace BankSystemUI
         private void btnRolesAndPermissions_Click(object sender, EventArgs e)
         {
 
-            //int PermissionID = clsPermission.GetPermissionIDByName("RolesAndPermissions_AccessPage");
+            int PermissionID = clsPermission.GetPermissionIDByName("RolesAndPermissions_AccessPage");
 
-            //if (!_User.HasPermission(_User.RoleID, PermissionID))
-            //{
-            //    _AccessDenied();
-            //    return;
-            //}
+            if (!_User.HasPermission(_User.RoleID, PermissionID))
+            {
+                _AccessDenied();
+                return;
+            }
 
             Form frm = new frmRolesAndPermissions(_User.UserID);
             frm.ShowDialog();

@@ -42,6 +42,41 @@ public class clsDataRole
 
     }
 
+    public static DataTable ListAllRolesWithoutAdmin()
+    {
+
+        DataTable dt = new DataTable();
+
+        SqlConnection connection = new SqlConnection(ConnectionString);
+
+        string query = "SELECT ID, RoleName FROM Roles WHERE LOWER(RoleName) != 'admin'";
+
+        SqlCommand command = new SqlCommand(query, connection);
+
+        try
+        {
+
+            connection.Open();
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+            adapter.Fill(dt);
+
+        }
+        catch (Exception ex)
+        {
+            string errorMessage = ex.Message;
+        }
+        finally
+        {
+            connection.Close();
+        }
+
+
+        return dt;
+
+    }
+
     public static int GetRoleIDByRoleName(string RoleName)
     {
 
@@ -260,7 +295,40 @@ public class clsDataRole
 
     }
 
+    public static DataTable GetRolePermissions(int RoleID)
+    {
 
+        DataTable dt = new DataTable();
+
+        SqlConnection connection = new SqlConnection(ConnectionString);
+
+        string query = "SELECT PermissionID FROM RolePermissions WHERE RoleID = @RoleID";
+
+        SqlCommand command = new SqlCommand(query, connection);
+
+        try
+        {
+
+            connection.Open();
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+            adapter.Fill(dt);
+
+        }
+        catch (Exception ex)
+        {
+            string errorMessage = ex.Message;
+        }
+        finally
+        {
+            connection.Close();
+        }
+
+
+        return dt;
+
+    }
 
 
 

@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="clsCountry.cs" />
     <Compile Include="clsPermission.cs" />
+    <Compile Include="clsPermissionItem.cs" />
     <Compile Include="clsPerson.cs" />
     <Compile Include="clsRole.cs" />
     <Compile Include="clsUser.cs" />
