@@ -46,7 +46,7 @@ namespace BankSystemUI
             {
                 dgvListRoles.ClearSelection();
                 dgvListRoles.Rows[0].Selected = true;
-                dgvListRoles_CellDoubleClick(dgvListRoles, new DataGridViewCellEventArgs(0, 0));
+                dgvListRoles_CellClick(dgvListRoles, new DataGridViewCellEventArgs(0, 0));
             }
 
 
@@ -58,7 +58,8 @@ namespace BankSystemUI
         {
             chlPermissions.Items.Clear();
 
-            DataTable dt = clsPermission.ListAllPermissions();
+            //DataTable dt = clsPermission.ListAllPermissions();
+            DataTable dt = clsPermission.GetAllPermissionsWithoutRolePermissions();
 
             foreach (DataRow row in dt.Rows)
             {
@@ -88,39 +89,39 @@ namespace BankSystemUI
         {
 
 
-            if (e.RowIndex >= 0)
-            {
-                string roleName = dgvListRoles.Rows[e.RowIndex].Cells["RoleName"].Value.ToString();
-                lblRoleName.Text = roleName;
-            }
+            //if (e.RowIndex >= 0)
+            //{
+            //    string roleName = dgvListRoles.Rows[e.RowIndex].Cells["RoleName"].Value.ToString();
+            //    lblRoleName.Text = roleName;
+            //}
 
-            //string Name = lblRoleName.Text;
-            int RoleID = clsRole.GetRoleIDByRoleName(lblRoleName.Text);
-            _selectedRoleID = RoleID;
+            ////string Name = lblRoleName.Text;
+            //int RoleID = clsRole.GetRoleIDByRoleName(lblRoleName.Text);
+            //_selectedRoleID = RoleID;
 
-            //int PermissionID = clsPermission.GetPermissionIDByName();
-            int PermissionID = -1;
+            ////int PermissionID = clsPermission.GetPermissionIDByName();
+            //int PermissionID = -1;
 
-            string PermissionName = "";
+            //string PermissionName = "";
 
-            // Put all boxesChecked to false
+            //// Put all boxesChecked to false
 
-            for (int i = 0; i < chlPermissions.Items.Count; i++)
-                chlPermissions.SetItemChecked(i, false);
+            //for (int i = 0; i < chlPermissions.Items.Count; i++)
+            //    chlPermissions.SetItemChecked(i, false);
 
 
-            for (int i = 0; i < chlPermissions.Items.Count; i++)
-            {
+            //for (int i = 0; i < chlPermissions.Items.Count; i++)
+            //{
 
-                //PermissionName = chlPermissions.Items[i].ToString();
-                //PermissionID = clsPermission.GetPermissionIDByName(PermissionName);
+            //    //PermissionName = chlPermissions.Items[i].ToString();
+            //    //PermissionID = clsPermission.GetPermissionIDByName(PermissionName);
 
-                PermissionID = ((clsPermissionItem)chlPermissions.Items[i]).ID;
+            //    PermissionID = ((clsPermissionItem)chlPermissions.Items[i]).ID;
 
-                if (clsRole.HasPermission(RoleID, PermissionID))
-                    chlPermissions.SetItemChecked(i, true);
+            //    if (clsRole.HasPermission(RoleID, PermissionID))
+            //        chlPermissions.SetItemChecked(i, true);
 
-            }
+            //}
 
 
 
@@ -172,6 +173,47 @@ namespace BankSystemUI
 
             Form frm = new frmAddNewRole();
             frm.ShowDialog();
+
+            dgvListRoles.DataSource = clsRole.ListAllRolesWithoutAdmin();
+
+        }
+
+        private void dgvListRoles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0)
+            {
+                string roleName = dgvListRoles.Rows[e.RowIndex].Cells["RoleName"].Value.ToString();
+                lblRoleName.Text = roleName;
+            }
+
+            //string Name = lblRoleName.Text;
+            int RoleID = clsRole.GetRoleIDByRoleName(lblRoleName.Text);
+            _selectedRoleID = RoleID;
+
+            //int PermissionID = clsPermission.GetPermissionIDByName();
+            int PermissionID = -1;
+
+            string PermissionName = "";
+
+            // Put all boxesChecked to false
+
+            for (int i = 0; i < chlPermissions.Items.Count; i++)
+                chlPermissions.SetItemChecked(i, false);
+
+
+            for (int i = 0; i < chlPermissions.Items.Count; i++)
+            {
+
+                //PermissionName = chlPermissions.Items[i].ToString();
+                //PermissionID = clsPermission.GetPermissionIDByName(PermissionName);
+
+                PermissionID = ((clsPermissionItem)chlPermissions.Items[i]).ID;
+
+                if (clsRole.HasPermission(RoleID, PermissionID))
+                    chlPermissions.SetItemChecked(i, true);
+
+            }
 
         }
     }

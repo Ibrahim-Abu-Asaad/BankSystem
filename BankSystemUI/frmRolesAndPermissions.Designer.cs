@@ -150,6 +150,7 @@
             dgvListRoles.ThemeStyle.RowsStyle.Height = 29;
             dgvListRoles.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvListRoles.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvListRoles.CellClick += dgvListRoles_CellClick;
             dgvListRoles.CellContentDoubleClick += dgvListRoles_CellContentDoubleClick;
             dgvListRoles.CellDoubleClick += dgvListRoles_CellDoubleClick;
             dgvListRoles.CellLeave += dgvListRoles_CellLeave;
@@ -207,11 +208,11 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Cascadia Mono", 9F);
-            label4.Location = new Point(512, 421);
+            label4.Location = new Point(504, 421);
             label4.Name = "label4";
-            label4.Size = new Size(306, 20);
+            label4.Size = new Size(252, 20);
             label4.TabIndex = 9;
-            label4.Text = "You As Admin Have All Permissions";
+            label4.Text = "Admins Have All Permissions";
             // 
             // label5
             // 

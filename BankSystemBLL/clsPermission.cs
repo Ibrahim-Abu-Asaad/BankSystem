@@ -120,6 +120,11 @@ namespace BankSystemBLL
         public static DataTable ListAllPermissions()
             => clsDataPermission.ListAllPermissions();
 
+        public static DataTable GetAllPermissionsWithoutRolePermissions()
+            => clsDataPermission.GetAllPermissionsWithoutRolePermissions();
+
+
+
         public static bool UpdateRolePermissions(int RoleID, List<int> SelectedPermissionIDs)
         {
             if (clsDataPermission.DeleteAllRolePermissions(RoleID))

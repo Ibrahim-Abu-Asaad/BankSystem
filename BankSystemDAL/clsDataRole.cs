@@ -330,7 +330,44 @@ public class clsDataRole
 
     }
 
+    public static bool IsRoleExist(string RoleName)
+    {
 
+        SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+        bool IsRoleExist = false;
+        SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+        string query = @"SELECT Found=1 FROM Roles WHERE RoleName = @RoleName";
+
+        SqlCommand command = new SqlCommand(query, connection);
+        command.Parameters.AddWithValue("@RoleName", RoleName);
+
+        try
+        {
+
+            connection.Open();
+
+            SqlDataReader dr = command.ExecuteReader();
+            if (dr.HasRows)
+                IsRoleExist = true;
+
+
+        }
+        catch (Exception ex)
+        {
+            string msg = ex.Message;
+        }
+        finally
+        {
+            connection.Close();
+        }
+
+        return IsRoleExist;
+
+
+
+    }
 
 
 

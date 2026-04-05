@@ -248,6 +248,7 @@ namespace BankSystemDAL
 
         public static DataTable ListAllPermissions()
         {
+
             DataTable dt = new DataTable();
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -272,6 +273,39 @@ namespace BankSystemDAL
             }
 
             return dt;
+
+        }
+
+        public static DataTable GetAllPermissionsWithoutRolePermissions()
+        {
+
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT ID, PermissionName FROM Permissions 
+                             WHERE PermissionName NOT LIKE '%Role%' 
+                             AND PermissionName NOT LIKE '%Permission%';";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                dt.Load(reader);
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
         }
 
         public static bool DeleteAllRolePermissions(int RoleID)

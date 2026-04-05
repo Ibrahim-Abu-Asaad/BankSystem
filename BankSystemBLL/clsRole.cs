@@ -12,21 +12,21 @@ namespace BankSystemBLL
 
         public int ID { get; set; }
         public string RoleName { get; set; }
-        enum enMode { AddNew = 0, Update = 1 };
-        enMode Mode = enMode.AddNew;
+        //enum enMode { AddNew = 0, Update = 1 };
+        //enMode Mode = enMode.AddNew;
 
         public clsRole()
         {
             this.ID = -1;
             this.RoleName = "";
-            Mode = enMode.AddNew;
+            //Mode = enMode.AddNew;
         }
 
         private clsRole(int ID, string RoleName)
         {
             this.ID = ID;
             this.RoleName = RoleName;
-            Mode = enMode.Update;
+            //Mode = enMode.Update;
         }
 
         public static DataTable ListAllRoles()
@@ -46,34 +46,34 @@ namespace BankSystemBLL
         public static bool Find(int ID)
             => clsDataRole.GetRoleNameByRoleID(ID) != null;
                    
-        public bool Save()
-        {
-            switch (Mode)
-            {
-                case enMode.AddNew:
-                    if (_AddNewRole())
-                    {
-                        Mode = enMode.Update;
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+        //public bool Save()
+        //{
+        //    switch (Mode)
+        //    {
+        //        case enMode.AddNew:
+        //            if (_AddNewRole())
+        //            {
+        //                Mode = enMode.Update;
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                return false;
+        //            }
 
-                case enMode.Update:
-                    return _UpdateRole();
-            }
+        //        case enMode.Update:
+        //            return _UpdateRole();
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
-        private bool _AddNewRole()
-            => clsDataRole.AddNewRole(this.RoleName) != -1;
+        public static int AddNewRole(string RoleName)
+            => clsDataRole.AddNewRole(RoleName);
 
 
-        private bool _UpdateRole()
-            => clsDataRole.UpdateRole(this.ID, this.RoleName);
+        public static bool UpdateRole(int RoleID, string RoleName)
+            => clsDataRole.UpdateRole(RoleID, RoleName);
 
 
         public static bool DeleteRole(int ID)
@@ -82,7 +82,8 @@ namespace BankSystemBLL
         public static DataTable GetPermissionsByRoleID(int RoleID)
             => clsDataRole.GetRolePermissions(RoleID);
 
-
+        public static bool IsRoleExist(string RoleName)
+            => clsDataRole.IsRoleExist(RoleName);
 
 
 
