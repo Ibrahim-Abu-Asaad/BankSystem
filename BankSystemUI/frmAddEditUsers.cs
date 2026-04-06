@@ -50,7 +50,7 @@ namespace BankSystemUI
             txtPassword.UseSystemPasswordChar = true;
             txtConfirmPassword.UseSystemPasswordChar = true;
 
-            cbRole.DisplayMember = "RoleName";
+            cbRole.DisplayMember = "Role";
             cbRole.ValueMember = "ID";
 
             if (clsRole.IsRoleAdmin(LoggedInUser.RoleID))
@@ -132,9 +132,9 @@ namespace BankSystemUI
 
             //_CheckUserPermissions();
 
-            if (_User.RoleID == clsRole.GetRoleIDByRoleName("Admin"))
-                cbRole.SelectedValue = _User.RoleID;
-            else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Account Manager"))
+            //if (_User.RoleID == clsRole.GetRoleIDByRoleName("Admin"))
+            //    cbRole.SelectedValue = _User.RoleID;
+            if (_User.RoleID == clsRole.GetRoleIDByRoleName("Account Manager"))
                 cbRole.SelectedValue = _User.RoleID;
             else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Finance Manager"))
                 cbRole.SelectedValue = _User.RoleID;

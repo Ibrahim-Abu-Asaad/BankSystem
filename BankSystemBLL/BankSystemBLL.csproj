@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsClient.cs" />
     <Compile Include="clsCountry.cs" />
     <Compile Include="clsPermission.cs" />
     <Compile Include="clsPermissionItem.cs" />

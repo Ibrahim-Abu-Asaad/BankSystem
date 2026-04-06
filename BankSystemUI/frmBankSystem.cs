@@ -96,7 +96,7 @@ namespace BankSystemUI
 
             Form frm = new frmManageClients();
             frm.ShowDialog();
-
+      
         }
 
         private void btnTransactions_Click(object sender, EventArgs e)
