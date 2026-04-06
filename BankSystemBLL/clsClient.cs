@@ -21,6 +21,16 @@ namespace BankSystemBLL
         DateTime CreatedAt { get; set; }
 
 
+        // Mode
+
+        public enum enMode
+        {
+            Create,
+            Update
+        }
+        public enMode Mode;
+
+
 
         // Constructors
         public clsClient() : base()
@@ -42,16 +52,20 @@ namespace BankSystemBLL
             this.Phone = "";
             this.Gender = "Male";
 
+            Mode = enMode.Create;
+
         }
 
-        private clsClient(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted, string Gender, int ID, string AccountNO, string PINcode, decimal Balance, DateTime CreatedAt) : base(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, Gender)
+        private clsClient(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted, string Gender, int ID, string AccountNO, string PINcode, decimal Balance) : base(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, Gender)
         {
 
             this.ID = ID;
             this.AccountNO = AccountNO;
             this.PINcode = PINcode;
             this.Balance = Balance;
-            this.CreatedAt = CreatedAt;
+            this.CreatedAt = DateTime.Now;
+
+            Mode = enMode.Update;
 
         }
 
@@ -62,10 +76,73 @@ namespace BankSystemBLL
 
         // Functions
 
+        private bool _AddNewClient(clsClient Client)
+            => clsDataClient.AddNewClient(Client.Name, Client.Email, Client.BirthDate.Value,
+                Client.Address, Client.ImagePath, Client.CountryID,
+                Client.Phone, Client.Gender,
+                Client.AccountNO, Client.PINcode, Client.Balance) != -1;
+        //{
+
+        //    int newClientID = clsDataClient.AddNewClient
+        //        (Client.Name, Client.Email, Client.BirthDate.Value,
+        //        Client.Address, Client.ImagePath, Client.CountryID,
+        //        Client.Phone, Client.Gender,
+        //        Client.AccountNO, Client.PINcode, Client.Balance);
+
+        //    return (newClientID != -1);
+
+        //}
+
+        private bool _UpdateClient(clsClient Client)
+            => clsDataClient.UpdateClient(Client.PersonID, Client.Name, Client.Email, Client.BirthDate.Value,
+                Client.Address, Client.ImagePath, Client.CountryID, Client.Phone, Client.Gender,
+                Client.ID, Client.AccountNO, Client.PINcode, Client.Balance);
+        //{
+
+        //    bool updated = clsDataClient.UpdateClient(
+        //        Client.PersonID, Client.Name, Client.Email, Client.BirthDate.Value,
+        //        Client.Address, Client.ImagePath, Client.CountryID, Client.Phone, Client.Gender,
+        //        Client.ID, Client.AccountNO, Client.PINcode, Client.Balance);
+
+        //    return updated;
+
+        //}
+        public static bool DeleteClient(int ID)
+            => clsDataClient.DeleteClient(ID);
+                
+
         public static DataTable ListAllClients()
             => clsDataClient.ListAllClients();
 
+        public static int GetClientCount()
+            => clsDataClient.GetClientCount();
 
+
+
+
+
+
+
+        public bool Save()
+        {
+
+            switch (Mode)
+            {
+                case enMode.Create:
+                    _AddNewClient(this);
+                    break;
+
+
+                case enMode.Update:
+                    _UpdateClient(this);
+                    break;
+            }
+
+
+
+
+            return false;
+        }
 
     }
 }

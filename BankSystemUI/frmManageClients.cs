@@ -29,7 +29,26 @@ namespace BankSystemUI
         private void frmManageClients_Load(object sender, EventArgs e)
         {
 
+            _RefreshClientsList();
+
+            cbSearchBy.Items.Add("AccountNO");
+            cbSearchBy.Items.Add("Name");
+
+            cbSearchBy.SelectedIndex = 0;
+
+        }
+
+
+        private void _RefreshClientsList()
+        {
+
+            lblTotalClients.Text = clsClient.GetClientCount().ToString();
+            //lblAdminCount.Text = clsUser.GetAdminCount().ToString();
+
+            //dgvListUsers.DataSource = clsUser.ListUsers();
             dgvListClients.DataSource = clsClient.ListAllClients();
+            dgvListClients.Columns["ID"].Visible = false;
+
 
         }
     }
