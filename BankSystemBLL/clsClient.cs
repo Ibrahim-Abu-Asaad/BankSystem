@@ -14,11 +14,11 @@ namespace BankSystemBLL
 
         // Fields
 
-        int ID { get; set; }
-        string AccountNO { get; set; }
-        string PINcode { get; set; }
-        decimal Balance { get; set; }
-        DateTime CreatedAt { get; set; }
+        public int ID { get; set; }
+        public string AccountNO { get; set; }
+        public string PINcode { get; set; }
+        public decimal Balance { get; set; }
+        public DateTime CreatedAt { get; set; }
 
 
         // Mode
@@ -118,6 +118,51 @@ namespace BankSystemBLL
             => clsDataClient.GetClientCount();
 
 
+        public static clsClient GetClientByClientID(int ClientID)
+        {
+            int PersonID = -1, CountryID = -1, MarkDeleted = 0;
+            string Name = "", Email = "", Address = "", ImagePath = "", Phone = "", Gender = "", AccountNO = "", PINcode = "";
+            DateTime BirthDate = DateTime.Now;
+            decimal Balance = 0;
+
+            if (clsDataClient.GetClientByClientID(ref PersonID, ref Name, ref Email, ref BirthDate, ref Address,
+                ref ImagePath, ref CountryID, ref Phone, ref MarkDeleted, ref Gender, ClientID, ref AccountNO, ref PINcode, ref Balance))
+            {
+                return new clsClient(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, Gender, ClientID, AccountNO, PINcode, Balance);
+            }
+            else
+                return null;
+        }
+
+        // Find Client by Account Number
+        public static clsClient GetClientByAccountNO(string AccountNO)
+        {
+            int PersonID = -1, CountryID = -1, MarkDeleted = 0, ClientID = -1;
+            string Name = "", Email = "", Address = "", ImagePath = "", Phone = "", Gender = "", PINcode = "";
+            DateTime BirthDate = DateTime.Now;
+            decimal Balance = 0;
+
+            if (clsDataClient.GetClientByAccountNO(ref PersonID, ref Name, ref Email, ref BirthDate, ref Address,
+                ref ImagePath, ref CountryID, ref Phone, ref MarkDeleted, ref Gender, ref ClientID, AccountNO, ref PINcode, ref Balance))
+            {
+                return new clsClient(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, Gender, ClientID, AccountNO, PINcode, Balance);
+            }
+            else
+                return null;
+        }
+
+        public static bool IsClientExist(string AccountNO)
+            => clsDataClient.IsClientExist(AccountNO);
+
+        public static bool IsClientExist(int ClientID)
+            => clsDataClient.IsClientExist(ClientID);
+
+        public static int GetTotalClients()
+            => clsDataClient.GetClientCount();
+        
+        public bool CheckPIN(string PIN)
+            => clsDataClient.CheckIfPINcodeRight(this.ID, PIN);
+        
 
 
 

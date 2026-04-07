@@ -63,6 +63,7 @@
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="clsDataClient.cs" />
     <Compile Include="clsDataCountry.cs" />
+    <Compile Include="clsDataCurrency.cs" />
     <Compile Include="clsDataPermission.cs" />
     <Compile Include="clsDataRole.cs" />
     <Compile Include="clsDataUser.cs" />

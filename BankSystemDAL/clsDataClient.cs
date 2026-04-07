@@ -19,7 +19,14 @@ namespace BankSystemDAL
             DataTable dt = new DataTable();
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT * FROM Clients";
+            //string query = @"SELECT * FROM Clients";
+
+            string query = @"SELECT Clients.ID, Persons.Name, Countries.Name AS Country, Clients.AccountNO, Clients.Balance, Currencies.Name AS 'Currency Name', Currencies.Code
+                             FROM Persons INNER JOIN
+                             Clients ON Persons.ID = Clients.PersonID INNER JOIN
+                             Countries ON Persons.CountryID = Countries.ID INNER JOIN
+                             Currencies ON Clients.CurrenyID = Currencies.ID";
+
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -125,7 +132,7 @@ namespace BankSystemDAL
                                     p.CountryID, p.Phone, p.MarkDeleted, p.Gender
                              FROM Clients c
                              INNER JOIN Persons p ON c.PersonID = p.ID
-                             WHERE c.ID = @ID AND c.MarkDeleted = 0";
+                             WHERE c.ID = @ID AND p.MarkDeleted = 0";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ID", ID);
@@ -544,6 +551,9 @@ namespace BankSystemDAL
 
             return IsDeleted;
         }
+
+
+
 
 
 
