@@ -52,7 +52,7 @@ namespace BankSystemUI
 
             cbCurrency.DisplayMember = "Name";
             cbCurrency.ValueMember = "ID";
-            cbCurrency.DataSource = clsCurrency.GetAllCurrencies();
+            cbCurrency.DataSource = clsCurrency.GetAmericanAndSyrianCurrencies();
             //cbCurrency.DataSource = clsCurrency.GetAmericanAndSyrianCurrencies();
             cbCurrency.MaxDropDownItems = 7;
 
@@ -128,6 +128,7 @@ namespace BankSystemUI
 
             txtAccountNO.Text = _Client.AccountNO.ToString();
             txtPINcode.Text = _Client.PINcode.ToString();
+            nudBalance.Value = _Client.Balance;
 
             //cbCurrency.DisplayMember = "Name";
             //cbCurrency.ValueMember = "ID";
@@ -136,7 +137,7 @@ namespace BankSystemUI
 
             cbCurrency.SelectedValue = _Client.CurrencyID;
 
-            MessageBox.Show($"{_Client.CurrencyID}");
+            //MessageBox.Show($"{_Client.CurrencyID}");
 
 
 
@@ -232,7 +233,7 @@ namespace BankSystemUI
             _Client.Address = txtAddress.Text;
             _Client.Phone = txtPhone.Text;
             _Client.CountryID = cbCountry.SelectedValue != null ? (int)cbCountry.SelectedValue : 0;
-            
+
 
             if (rbtnMale.Checked == true)
                 _Client.Gender = "Male";
@@ -241,7 +242,9 @@ namespace BankSystemUI
 
             _Client.AccountNO = txtAccountNO.Text;
             _Client.PINcode = txtPINcode.Text;
+            _Client.Balance = nudBalance.Value;
             _Client.CurrencyID = (int)cbCurrency.SelectedValue;
+            
 
 
         }
@@ -394,40 +397,6 @@ namespace BankSystemUI
         private void guna2Button1_Click(object sender, EventArgs e)
         {
 
-            //string msg = "";
-
-            //if (_ValidateInfo())
-            //{
-            //    _FillTheUserWithTheValidatedInfo();
-
-            //    if (_Client.Save())
-            //    {
-
-
-            //        if (_Mode == clsClient.enMode.Update)
-            //            msg = "Client updated successfully!";
-            //        else msg = "Client added successfully!";
-
-            //        MessageBox.Show(msg, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //        if (_Mode == clsClient.enMode.Create)
-            //            _ResetFields();
-            //        else
-            //            this.Close();
-
-            //    }
-            //    else
-            //    {
-
-            //        if (_Mode == clsClient.enMode.Update)
-            //            msg = "Client was not updated!";
-            //        else msg = "Client was not added";
-
-            //        MessageBox.Show(msg, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //    }
-            //}
-
 
             if (!_ValidateInfo()) return;
 
@@ -451,6 +420,54 @@ namespace BankSystemUI
                 MessageBox.Show("Operation failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPhone.Text.Length > 0)
+                errorProvider1.SetError(txtPhone, "");
+        }
+
+        private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '+')
+                e.Handled = true;
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEmail.Text.Length > 0)
+                errorProvider1.SetError(txtEmail, "");
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtName.Text.Length > 0)
+                errorProvider1.SetError(txtName, "");
+        }
+
+        private void txtAddress_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAddress.Text.Length > 0)
+                errorProvider1.SetError(txtAddress, "");
+        }
+
+        private void txtAccountNO_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAccountNO.Text.Length > 0)
+                errorProvider1.SetError(txtAccountNO, "");
+        }
+
+        private void txtPINcode_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPINcode.Text.Length > 0)
+                errorProvider1.SetError(txtPINcode, "");
+        }
+
+        private void txtBalance_TextChanged(object sender, EventArgs e)
+        {
+            //if (txtBalance.Text.Length > 0)
+            //    errorProvider1.SetError(txtBalance, "");
         }
     }
 }

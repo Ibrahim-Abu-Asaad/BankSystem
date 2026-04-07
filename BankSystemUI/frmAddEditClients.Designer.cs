@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -44,10 +42,14 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -82,12 +84,14 @@
             label7 = new Label();
             txtAccountNO = new Guna.UI2.WinForms.Guna2TextBox();
             label9 = new Label();
-            lblBalance = new Label();
             cbCurrency = new Guna.UI2.WinForms.Guna2ComboBox();
             errorProvider1 = new ErrorProvider(components);
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            label10 = new Label();
+            nudBalance = new Guna.UI2.WinForms.Guna2NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)pbCkientImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudBalance).BeginInit();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -102,12 +106,12 @@
             guna2ControlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2ControlBox1.BorderRadius = 15;
             guna2ControlBox1.Cursor = Cursors.Hand;
-            guna2ControlBox1.CustomizableEdges = customizableEdges22;
+            guna2ControlBox1.CustomizableEdges = customizableEdges24;
             guna2ControlBox1.FillColor = Color.Tomato;
             guna2ControlBox1.IconColor = Color.White;
             guna2ControlBox1.Location = new Point(1088, 12);
             guna2ControlBox1.Name = "guna2ControlBox1";
-            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges23;
+            guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges25;
             guna2ControlBox1.Size = new Size(37, 36);
             guna2ControlBox1.TabIndex = 0;
             // 
@@ -163,7 +167,7 @@
             pbCkientImage.ImageRotate = 0F;
             pbCkientImage.Location = new Point(516, 197);
             pbCkientImage.Name = "pbCkientImage";
-            pbCkientImage.ShadowDecoration.CustomizableEdges = customizableEdges21;
+            pbCkientImage.ShadowDecoration.CustomizableEdges = customizableEdges23;
             pbCkientImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbCkientImage.Size = new Size(132, 134);
             pbCkientImage.SizeMode = PictureBoxSizeMode.Zoom;
@@ -185,7 +189,7 @@
             cbCountry.BackColor = Color.Transparent;
             cbCountry.BorderRadius = 4;
             cbCountry.Cursor = Cursors.Hand;
-            cbCountry.CustomizableEdges = customizableEdges9;
+            cbCountry.CustomizableEdges = customizableEdges11;
             cbCountry.DrawMode = DrawMode.OwnerDrawFixed;
             cbCountry.DropDownHeight = 240;
             cbCountry.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -198,7 +202,7 @@
             cbCountry.Location = new Point(899, 434);
             cbCountry.MaxDropDownItems = 7;
             cbCountry.Name = "cbCountry";
-            cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges12;
             cbCountry.Size = new Size(162, 36);
             cbCountry.TabIndex = 48;
             // 
@@ -207,7 +211,7 @@
             dtpBirthdate.BorderRadius = 4;
             dtpBirthdate.Checked = true;
             dtpBirthdate.Cursor = Cursors.Hand;
-            dtpBirthdate.CustomizableEdges = customizableEdges11;
+            dtpBirthdate.CustomizableEdges = customizableEdges13;
             dtpBirthdate.FillColor = SystemColors.Highlight;
             dtpBirthdate.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpBirthdate.Format = DateTimePickerFormat.Long;
@@ -215,7 +219,7 @@
             dtpBirthdate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpBirthdate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpBirthdate.Name = "dtpBirthdate";
-            dtpBirthdate.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            dtpBirthdate.ShadowDecoration.CustomizableEdges = customizableEdges14;
             dtpBirthdate.Size = new Size(282, 36);
             dtpBirthdate.TabIndex = 47;
             dtpBirthdate.Value = new DateTime(2026, 3, 29, 19, 28, 5, 116);
@@ -223,7 +227,7 @@
             // txtPhone
             // 
             txtPhone.BorderRadius = 4;
-            txtPhone.CustomizableEdges = customizableEdges13;
+            txtPhone.CustomizableEdges = customizableEdges15;
             txtPhone.DefaultText = "";
             txtPhone.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPhone.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -238,9 +242,11 @@
             txtPhone.Name = "txtPhone";
             txtPhone.PlaceholderText = "Enter Your Phone";
             txtPhone.SelectedText = "";
-            txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges16;
             txtPhone.Size = new Size(184, 36);
             txtPhone.TabIndex = 46;
+            txtPhone.TextChanged += txtPhone_TextChanged;
+            txtPhone.KeyPress += txtPhone_KeyPress;
             // 
             // label6
             // 
@@ -265,7 +271,7 @@
             // txtAddress
             // 
             txtAddress.BorderRadius = 4;
-            txtAddress.CustomizableEdges = customizableEdges15;
+            txtAddress.CustomizableEdges = customizableEdges17;
             txtAddress.DefaultText = "";
             txtAddress.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtAddress.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -280,9 +286,10 @@
             txtAddress.Name = "txtAddress";
             txtAddress.PlaceholderText = "Enter Your Address";
             txtAddress.SelectedText = "";
-            txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges18;
             txtAddress.Size = new Size(184, 36);
             txtAddress.TabIndex = 43;
+            txtAddress.TextChanged += txtAddress_TextChanged;
             // 
             // txtBirthdate
             // 
@@ -307,7 +314,7 @@
             // txtEmail
             // 
             txtEmail.BorderRadius = 4;
-            txtEmail.CustomizableEdges = customizableEdges17;
+            txtEmail.CustomizableEdges = customizableEdges19;
             txtEmail.DefaultText = "";
             txtEmail.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtEmail.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -322,9 +329,10 @@
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Enter Your Email";
             txtEmail.SelectedText = "";
-            txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges20;
             txtEmail.Size = new Size(184, 36);
             txtEmail.TabIndex = 40;
+            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // label2
             // 
@@ -339,7 +347,7 @@
             // txtName
             // 
             txtName.BorderRadius = 4;
-            txtName.CustomizableEdges = customizableEdges19;
+            txtName.CustomizableEdges = customizableEdges21;
             txtName.DefaultText = "";
             txtName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -354,9 +362,10 @@
             txtName.Name = "txtName";
             txtName.PlaceholderText = "Enter Your Name";
             txtName.SelectedText = "";
-            txtName.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            txtName.ShadowDecoration.CustomizableEdges = customizableEdges22;
             txtName.Size = new Size(184, 36);
             txtName.TabIndex = 38;
+            txtName.TextChanged += txtName_TextChanged;
             // 
             // label1
             // 
@@ -450,7 +459,7 @@
             // txtPINcode
             // 
             txtPINcode.BorderRadius = 4;
-            txtPINcode.CustomizableEdges = customizableEdges5;
+            txtPINcode.CustomizableEdges = customizableEdges7;
             txtPINcode.DefaultText = "";
             txtPINcode.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPINcode.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -465,15 +474,16 @@
             txtPINcode.Name = "txtPINcode";
             txtPINcode.PlaceholderText = "Enter Your PIN code";
             txtPINcode.SelectedText = "";
-            txtPINcode.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtPINcode.ShadowDecoration.CustomizableEdges = customizableEdges8;
             txtPINcode.Size = new Size(201, 36);
             txtPINcode.TabIndex = 57;
+            txtPINcode.TextChanged += txtPINcode_TextChanged;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(41, 650);
+            label7.Location = new Point(38, 650);
             label7.Name = "label7";
             label7.Size = new Size(100, 22);
             label7.TabIndex = 56;
@@ -482,7 +492,7 @@
             // txtAccountNO
             // 
             txtAccountNO.BorderRadius = 4;
-            txtAccountNO.CustomizableEdges = customizableEdges7;
+            txtAccountNO.CustomizableEdges = customizableEdges9;
             txtAccountNO.DefaultText = "";
             txtAccountNO.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtAccountNO.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -497,7 +507,7 @@
             txtAccountNO.Name = "txtAccountNO";
             txtAccountNO.PlaceholderText = "Enter Your AccountNO";
             txtAccountNO.SelectedText = "";
-            txtAccountNO.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txtAccountNO.ShadowDecoration.CustomizableEdges = customizableEdges10;
             txtAccountNO.Size = new Size(201, 36);
             txtAccountNO.TabIndex = 55;
             // 
@@ -511,22 +521,12 @@
             label9.TabIndex = 60;
             label9.Text = "Balance";
             // 
-            // lblBalance
-            // 
-            lblBalance.AutoSize = true;
-            lblBalance.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblBalance.Location = new Point(849, 650);
-            lblBalance.Name = "lblBalance";
-            lblBalance.Size = new Size(100, 22);
-            lblBalance.TabIndex = 61;
-            lblBalance.Text = "200000,00";
-            // 
             // cbCurrency
             // 
             cbCurrency.BackColor = Color.Transparent;
             cbCurrency.BorderRadius = 4;
             cbCurrency.Cursor = Cursors.Hand;
-            cbCurrency.CustomizableEdges = customizableEdges3;
+            cbCurrency.CustomizableEdges = customizableEdges5;
             cbCurrency.DrawMode = DrawMode.OwnerDrawFixed;
             cbCurrency.DropDownHeight = 240;
             cbCurrency.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -536,11 +536,11 @@
             cbCurrency.ForeColor = SystemColors.ControlText;
             cbCurrency.IntegralHeight = false;
             cbCurrency.ItemHeight = 30;
-            cbCurrency.Location = new Point(763, 687);
+            cbCurrency.Location = new Point(849, 687);
             cbCurrency.MaxDropDownItems = 7;
             cbCurrency.Name = "cbCurrency";
-            cbCurrency.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            cbCurrency.Size = new Size(200, 36);
+            cbCurrency.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            cbCurrency.Size = new Size(225, 36);
             cbCurrency.TabIndex = 62;
             cbCurrency.SelectedIndexChanged += cbCurrency_SelectedIndexChanged;
             // 
@@ -552,7 +552,7 @@
             // 
             guna2Button1.BorderRadius = 5;
             guna2Button1.Cursor = Cursors.Hand;
-            guna2Button1.CustomizableEdges = customizableEdges1;
+            guna2Button1.CustomizableEdges = customizableEdges3;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -561,20 +561,44 @@
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Location = new Point(477, 756);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2Button1.Size = new Size(177, 56);
             guna2Button1.TabIndex = 63;
             guna2Button1.Text = "Save";
             guna2Button1.Click += guna2Button1_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.Location = new Point(758, 693);
+            label10.Name = "label10";
+            label10.Size = new Size(90, 22);
+            label10.TabIndex = 65;
+            label10.Text = "Currency";
+            // 
+            // nudBalance
+            // 
+            nudBalance.BackColor = Color.Transparent;
+            nudBalance.CustomizableEdges = customizableEdges1;
+            nudBalance.Font = new Font("Segoe UI", 9F);
+            nudBalance.Location = new Point(849, 641);
+            nudBalance.Margin = new Padding(3, 4, 3, 4);
+            nudBalance.Maximum = new decimal(new int[] { 1410065408, 2, 0, 0 });
+            nudBalance.Name = "nudBalance";
+            nudBalance.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            nudBalance.Size = new Size(225, 39);
+            nudBalance.TabIndex = 66;
             // 
             // frmAddEditClients
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1137, 836);
+            Controls.Add(nudBalance);
+            Controls.Add(label10);
             Controls.Add(guna2Button1);
             Controls.Add(cbCurrency);
-            Controls.Add(lblBalance);
             Controls.Add(label9);
             Controls.Add(chbShowPassword);
             Controls.Add(label8);
@@ -611,6 +635,7 @@
             Load += frmAddEditClients_Load;
             ((System.ComponentModel.ISupportInitialize)pbCkientImage).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudBalance).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -646,10 +671,11 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPINcode;
         private Label label7;
         private Guna.UI2.WinForms.Guna2TextBox txtAccountNO;
-        private Label lblBalance;
         private Label label9;
         private Guna.UI2.WinForms.Guna2ComboBox cbCurrency;
         private ErrorProvider errorProvider1;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Label label10;
+        private Guna.UI2.WinForms.Guna2NumericUpDown nudBalance;
     }
 }
