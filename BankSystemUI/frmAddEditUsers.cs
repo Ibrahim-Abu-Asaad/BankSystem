@@ -75,6 +75,9 @@ namespace BankSystemUI
             else
                 _Mode = clsUser.enMode.Update;
 
+
+
+
             if (_Mode == clsUser.enMode.Create)
             {
                 _User = new clsUser();
@@ -415,6 +418,7 @@ namespace BankSystemUI
 
         private void _ResetFields()
         {
+
             _User = new clsUser();
             _Mode = clsUser.enMode.Create;
 
@@ -443,6 +447,7 @@ namespace BankSystemUI
             pbUserImage.Image = Properties.Resources.InitPicProfile;
             lblTitleAddEditUser.Text = "Add New User";
             errorProvider1.Clear();
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

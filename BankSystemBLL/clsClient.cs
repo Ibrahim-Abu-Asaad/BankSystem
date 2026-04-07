@@ -18,6 +18,7 @@ namespace BankSystemBLL
         public string AccountNO { get; set; }
         public string PINcode { get; set; }
         public decimal Balance { get; set; }
+        public int CurrencyID { get; set; }
         public DateTime CreatedAt { get; set; }
 
 
@@ -40,6 +41,7 @@ namespace BankSystemBLL
             this.AccountNO = "";
             this.PINcode = "";
             this.Balance = 0m;
+            this.CurrencyID = -1;
             this.CreatedAt = DateTime.Now;
 
             this.PersonID = -1;
@@ -56,13 +58,14 @@ namespace BankSystemBLL
 
         }
 
-        private clsClient(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted, string Gender, int ID, string AccountNO, string PINcode, decimal Balance) : base(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, Gender)
+        private clsClient(int PersonID, string Name, string Email, DateTime BirthDate, string Address, string ImagePath, int CountryID, string Phone, int MarkDeleted, string Gender, int ID, string AccountNO, string PINcode, decimal Balance, int CurrencyID) : base(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, Gender)
         {
 
             this.ID = ID;
             this.AccountNO = AccountNO;
             this.PINcode = PINcode;
             this.Balance = Balance;
+            this.CurrencyID = CurrencyID;
             this.CreatedAt = DateTime.Now;
 
             Mode = enMode.Update;
@@ -80,7 +83,7 @@ namespace BankSystemBLL
             => clsDataClient.AddNewClient(Client.Name, Client.Email, Client.BirthDate.Value,
                 Client.Address, Client.ImagePath, Client.CountryID,
                 Client.Phone, Client.Gender,
-                Client.AccountNO, Client.PINcode, Client.Balance) != -1;
+                Client.AccountNO, Client.PINcode, Client.Balance, Client.CurrencyID) != -1;
         //{
 
         //    int newClientID = clsDataClient.AddNewClient
@@ -96,17 +99,8 @@ namespace BankSystemBLL
         private bool _UpdateClient(clsClient Client)
             => clsDataClient.UpdateClient(Client.PersonID, Client.Name, Client.Email, Client.BirthDate.Value,
                 Client.Address, Client.ImagePath, Client.CountryID, Client.Phone, Client.Gender,
-                Client.ID, Client.AccountNO, Client.PINcode, Client.Balance);
-        //{
+                Client.ID, Client.AccountNO, Client.PINcode, Client.Balance, Client.CurrencyID);
 
-        //    bool updated = clsDataClient.UpdateClient(
-        //        Client.PersonID, Client.Name, Client.Email, Client.BirthDate.Value,
-        //        Client.Address, Client.ImagePath, Client.CountryID, Client.Phone, Client.Gender,
-        //        Client.ID, Client.AccountNO, Client.PINcode, Client.Balance);
-
-        //    return updated;
-
-        //}
         public static bool DeleteClient(int ID)
             => clsDataClient.DeleteClient(ID);
                 
@@ -124,11 +118,12 @@ namespace BankSystemBLL
             string Name = "", Email = "", Address = "", ImagePath = "", Phone = "", Gender = "", AccountNO = "", PINcode = "";
             DateTime BirthDate = DateTime.Now;
             decimal Balance = 0;
+            int CurrencyID = -1;
 
             if (clsDataClient.GetClientByClientID(ref PersonID, ref Name, ref Email, ref BirthDate, ref Address,
-                ref ImagePath, ref CountryID, ref Phone, ref MarkDeleted, ref Gender, ClientID, ref AccountNO, ref PINcode, ref Balance))
+                ref ImagePath, ref CountryID, ref Phone, ref MarkDeleted, ref Gender, ClientID, ref AccountNO, ref PINcode, ref Balance, ref CurrencyID))
             {
-                return new clsClient(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, Gender, ClientID, AccountNO, PINcode, Balance);
+                return new clsClient(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, Gender, ClientID, AccountNO, PINcode, Balance, CurrencyID);
             }
             else
                 return null;
@@ -141,11 +136,12 @@ namespace BankSystemBLL
             string Name = "", Email = "", Address = "", ImagePath = "", Phone = "", Gender = "", PINcode = "";
             DateTime BirthDate = DateTime.Now;
             decimal Balance = 0;
+            int CurrencyID = -1;
 
             if (clsDataClient.GetClientByAccountNO(ref PersonID, ref Name, ref Email, ref BirthDate, ref Address,
-                ref ImagePath, ref CountryID, ref Phone, ref MarkDeleted, ref Gender, ref ClientID, AccountNO, ref PINcode, ref Balance))
+                ref ImagePath, ref CountryID, ref Phone, ref MarkDeleted, ref Gender, ref ClientID, AccountNO, ref PINcode, ref Balance, ref CurrencyID))
             {
-                return new clsClient(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, Gender, ClientID, AccountNO, PINcode, Balance);
+                return new clsClient(PersonID, Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, MarkDeleted, Gender, ClientID, AccountNO, PINcode, Balance, CurrencyID);
             }
             else
                 return null;
@@ -162,32 +158,49 @@ namespace BankSystemBLL
         
         public bool CheckPIN(string PIN)
             => clsDataClient.CheckIfPINcodeRight(this.ID, PIN);
-        
 
 
 
 
+
+
+        //public bool Save()
+        //{
+
+        //    switch (Mode)
+        //    {
+        //        case enMode.Create:
+        //            _AddNewClient(this);
+        //            break;
+
+
+        //        case enMode.Update:
+        //            _UpdateClient(this);
+        //            break;
+        //    }
+
+        //    return false;
+        //}
 
         public bool Save()
         {
-
             switch (Mode)
             {
                 case enMode.Create:
-                    _AddNewClient(this);
-                    break;
+                    if (_AddNewClient(this))
+                        return true;
 
+                    return false;
 
                 case enMode.Update:
-                    _UpdateClient(this);
-                    break;
+                    return _UpdateClient(this);
             }
-
-
-
 
             return false;
         }
+
+
+
 
     }
 }

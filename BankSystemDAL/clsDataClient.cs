@@ -25,7 +25,8 @@ namespace BankSystemDAL
                              FROM Persons INNER JOIN
                              Clients ON Persons.ID = Clients.PersonID INNER JOIN
                              Countries ON Persons.CountryID = Countries.ID INNER JOIN
-                             Currencies ON Clients.CurrenyID = Currencies.ID";
+                             Currencies ON Clients.CurrencyID = Currencies.ID
+                             WHERE MarkDeleted = 0";
 
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -121,13 +122,13 @@ namespace BankSystemDAL
         public static bool GetClientByClientID(ref int PersonID, ref string Name, ref string Email,
             ref DateTime BirthDate, ref string Address, ref string ImagePath, ref int CountryID,
             ref string Phone, ref int MarkDeleted, ref string Gender, int ID, ref string AccountNO,
-            ref string PINcode, ref decimal Balance)
+            ref string PINcode, ref decimal Balance, ref int CurrencyID)
         {
 
             bool IsFoundClient = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT c.ID, c.AccountNO, c.PINcode, c.Balance, c.CreatedAt, c.PersonID,
+            string query = @"SELECT c.ID, c.AccountNO, c.PINcode, c.Balance, c.CurrencyID, c.CreatedAt, c.PersonID,
                                     p.Name, p.Email, p.BirthDate, p.Address, p.ImagePath,
                                     p.CountryID, p.Phone, p.MarkDeleted, p.Gender
                              FROM Clients c
@@ -160,6 +161,7 @@ namespace BankSystemDAL
                     AccountNO = reader["AccountNO"].ToString();
                     PINcode = reader["PINcode"].ToString();
                     Balance = (decimal)reader["Balance"];
+                    CurrencyID = (int)reader["CurrencyID"];
                     //CreatedAt = (reader["CreatedAt"] != DBNull.Value) ? (DateTime)reader["CreatedAt"] : DateTime.Now;
                 }
             }
@@ -172,13 +174,13 @@ namespace BankSystemDAL
         public static bool GetClientByAccountNO(ref int PersonID, ref string Name, ref string Email,
             ref DateTime BirthDate, ref string Address, ref string ImagePath, ref int CountryID,
             ref string Phone, ref int MarkDeleted, ref string Gender, ref int ID, string AccountNO,
-            ref string PINcode, ref decimal Balance)
+            ref string PINcode, ref decimal Balance, ref int CurrencyID)
         {
 
             bool IsFoundClient = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT c.ID, c.AccountNO, c.PINcode, c.Balance, c.CreatedAt, c.PersonID,
+            string query = @"SELECT c.ID, c.AccountNO, c.PINcode, c.Balance, c.CurrencyID, c.CreatedAt, c.PersonID,
                                     p.Name, p.Email, p.BirthDate, p.Address, p.ImagePath,
                                     p.CountryID, p.Phone, p.MarkDeleted, p.Gender
                              FROM Clients c
@@ -211,6 +213,7 @@ namespace BankSystemDAL
                     AccountNO = reader["AccountNO"].ToString();
                     PINcode = reader["PINcode"].ToString();
                     Balance = (decimal)reader["Balance"];
+                    CurrencyID = (int)reader["CurrencyID"];
                     //CreatedAt = (reader["CreatedAt"] != DBNull.Value) ? (DateTime)reader["CreatedAt"] : DateTime.Now;
                 }
             }
@@ -450,7 +453,7 @@ namespace BankSystemDAL
 
         public static int AddNewClient(string Name, string Email, DateTime BirthDate, string Address,
             string ImagePath, int CountryID, string Phone, string Gender,
-            string AccountNO, string PINcode, decimal Balance)
+            string AccountNO, string PINcode, decimal Balance, int CurrencyID)
         {
             int PersonID = _AddInfoInPersonTable(Name, Email, BirthDate, Address, ImagePath, CountryID, Phone, Gender);
 
@@ -461,8 +464,8 @@ namespace BankSystemDAL
 
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"INSERT INTO Clients (AccountNO, PINcode, PersonID, Balance)
-                             VALUES (@AccountNO, @PINcode, @PersonID, @Balance);
+            string query = @"INSERT INTO Clients (AccountNO, PINcode, PersonID, Balance, CurrencyID)
+                             VALUES (@AccountNO, @PINcode, @PersonID, @Balance, @CurrencyID);
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -470,6 +473,7 @@ namespace BankSystemDAL
             command.Parameters.AddWithValue("@AccountNO", AccountNO);
             command.Parameters.AddWithValue("@PINcode", PINcode);
             command.Parameters.Add("@Balance", SqlDbType.Decimal).Value = Balance;
+            command.Parameters.AddWithValue("@CurrencyID", CurrencyID);
 
             try
             {
@@ -487,7 +491,7 @@ namespace BankSystemDAL
 
         public static bool UpdateClient(int PersonID, string Name, string Email, DateTime BirthDate,
             string Address, string ImagePath, int CountryID, string Phone, string Gender,
-            int ClientID, string AccountNO, string PINcode, decimal Balance)
+            int ClientID, string AccountNO, string PINcode, decimal Balance, int CurrencyID)
         {
             bool IsUpdated = false;
 
@@ -499,7 +503,7 @@ namespace BankSystemDAL
                              WHERE ID = @PersonID;
                              UPDATE Clients
                              SET [AccountNO] = @AccountNO, [PINcode] = @PINcode,
-                                 [PersonID] = @PersonID, [Balance] = @Balance
+                                 [PersonID] = @PersonID, [Balance] = @Balance, [CurrencyID] = @CurrencyID
                              WHERE ID = @ClientID;";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -512,10 +516,11 @@ namespace BankSystemDAL
             command.Parameters.AddWithValue("@Phone", Phone);
             command.Parameters.AddWithValue("@CountryID", CountryID);
             command.Parameters.AddWithValue("@Gender", Gender);
-            command.Parameters.AddWithValue("@UserID", ClientID);
-            command.Parameters.AddWithValue("@Username", AccountNO);
-            command.Parameters.AddWithValue("@Password", PINcode);
+            command.Parameters.AddWithValue("@ClientID", ClientID);
+            command.Parameters.AddWithValue("@AccountNO", AccountNO);
+            command.Parameters.AddWithValue("@PINcode", PINcode);
             command.Parameters.Add("@Balance", SqlDbType.Decimal).Value = Balance;
+            command.Parameters.AddWithValue("@CurrencyID", CurrencyID);
 
             try
             {
@@ -531,6 +536,7 @@ namespace BankSystemDAL
 
         public static bool DeleteClient(int ID)
         {
+
             bool IsDeleted = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -550,6 +556,7 @@ namespace BankSystemDAL
             finally { connection.Close(); }
 
             return IsDeleted;
+
         }
 
 

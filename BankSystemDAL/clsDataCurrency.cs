@@ -45,6 +45,39 @@ namespace BankSystemDAL
 
         }
 
+        public static DataTable GetAmericanAndSyrianCurrencies()
+        {
+
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT ID, Name FROM Currencies WHERE Code = 'USD' OR Code = 'SYP'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+
+                connection.Open();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                adapter.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
+        }
+
 
 
 

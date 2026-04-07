@@ -17,9 +17,9 @@ namespace BankSystemUI
 
 
         clsClient _Client;
-        int _CLientID = -1;
+        int _ClientID = -1;
         clsClient.enMode _Mode;
-        
+
 
         public frmAddEditClients(int ClientID)
         {
@@ -29,7 +29,7 @@ namespace BankSystemUI
             _Client = clsClient.GetClientByClientID(ClientID);
 
             if (ClientID != -1)
-                _CLientID = ClientID;
+                _ClientID = ClientID;
 
 
         }
@@ -53,15 +53,10 @@ namespace BankSystemUI
             cbCurrency.DisplayMember = "Name";
             cbCurrency.ValueMember = "ID";
             cbCurrency.DataSource = clsCurrency.GetAllCurrencies();
+            //cbCurrency.DataSource = clsCurrency.GetAmericanAndSyrianCurrencies();
             cbCurrency.MaxDropDownItems = 7;
 
-            // Load all permissions into CheckedListBox
-            //_LoadPermissionsIntoCheckedListBox();
-
-            // Then Check the default ones
-            //_LoadDefaultUserPermissions();
-
-            if (_CLientID == -1)
+            if (_ClientID == -1)
                 _Mode = clsClient.enMode.Create;
             else
                 _Mode = clsClient.enMode.Update;
@@ -97,6 +92,8 @@ namespace BankSystemUI
         private void _FillTheFieldsWithClientInfoFromDatabase()
         {
             //_Client = clsUser.GetUserByUserID(_selectedUserID);
+
+
             _Client.Mode = clsClient.enMode.Update;
 
             txtName.Text = _Client.Name;
@@ -126,10 +123,335 @@ namespace BankSystemUI
                 llblRemove.Visible = false;
             }
 
-            //errorProvider1.Clear();
+            errorProvider1.Clear();
+
+
+            txtAccountNO.Text = _Client.AccountNO.ToString();
+            txtPINcode.Text = _Client.PINcode.ToString();
+
+            //cbCurrency.DisplayMember = "Name";
+            //cbCurrency.ValueMember = "ID";
+            //cbCurrency.DataSource = clsCurrency.GetAllCurrencies();
+            //cbCurrency.SelectedValue = _Client
+
+            cbCurrency.SelectedValue = _Client.CurrencyID;
+
+            MessageBox.Show($"{_Client.CurrencyID}");
+
+
+
+
+
+
+        }
+
+        private void chbShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chbShowPassword.Checked == true)
+                txtPINcode.UseSystemPasswordChar = false;
+            else
+                txtPINcode.UseSystemPasswordChar = true;
+
+        }
+
+        private void llblSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Select a Profile Picture";
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    pbCkientImage.Image = Image.FromFile(openFileDialog.FileName);
+                    _Client.ImagePath = openFileDialog.FileName;
+                    llblSetImage.Visible = false;
+                    llblRemove.Visible = true;
+                }
+            }
+
+        }
+
+        private void llblRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            if (_Client.ImagePath != Properties.Resources.InitPicProfile.ToString())
+            {
+                _Client.ImagePath = "";
+
+                if (rbtnMale.Checked == true)
+                    pbCkientImage.Image = Properties.Resources.InitPicProfile;
+                else if (rbtnFemale.Checked == true)
+                    pbCkientImage.Image = Properties.Resources.initialPhotoWomen;
+
+                llblRemove.Visible = false;
+                llblSetImage.Visible = true;
+            }
+
+        }
+
+        private void rbtnMale_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (rbtnMale.Checked)
+            {
+                if (string.IsNullOrEmpty(_Client.ImagePath))
+                {
+                    pbCkientImage.Image = Properties.Resources.InitPicProfile;
+                    //pbUserImage.Tag = "default";
+                }
+            }
+
+        }
+
+        private void rbtnFemale_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (rbtnMale.Checked)
+            {
+                if (string.IsNullOrEmpty(_Client.ImagePath))
+                {
+                    pbCkientImage.Image = Properties.Resources.InitPicProfile;
+                    //pbUserImage.Tag = "default";
+                }
+            }
+
+        }
+
+        private void _FillTheUserWithTheValidatedInfo()
+        {
+
+            int ClientID = _ClientID;
+
+            _Client.ID = ClientID;
+            _Client.Name = txtName.Text;
+            _Client.Email = txtEmail.Text;
+            _Client.BirthDate = dtpBirthdate.Value;
+            _Client.Address = txtAddress.Text;
+            _Client.Phone = txtPhone.Text;
+            _Client.CountryID = cbCountry.SelectedValue != null ? (int)cbCountry.SelectedValue : 0;
+            
+
+            if (rbtnMale.Checked == true)
+                _Client.Gender = "Male";
+            else _Client.Gender = "Female";
+
+
+            _Client.AccountNO = txtAccountNO.Text;
+            _Client.PINcode = txtPINcode.Text;
+            _Client.CurrencyID = (int)cbCurrency.SelectedValue;
+
+
         }
 
 
+        private bool _ValidateInfo()
+        {
 
+            bool isValid = true;
+
+            // Name
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                errorProvider1.SetError(txtName, "Name is required!");
+                isValid = false;
+            }
+            else if (txtName.TextLength < 2)
+            {
+                errorProvider1.SetError(txtName, "Name must be at least 2 chars");
+                isValid = false;
+            }
+
+            // Email
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                errorProvider1.SetError(txtEmail, "The email is required!");
+                isValid = false;
+            }
+            else if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            {
+                errorProvider1.SetError(txtEmail, "Invalid email address!");
+                isValid = false;
+            }
+            if (clsUser.IsEmailExist(txtEmail.Text, _Client.PersonID))
+            {
+                errorProvider1.SetError(txtEmail, "This email already exists, enter another one");
+                isValid = false;
+            }
+
+            // Phone
+            if (txtPhone.TextLength == 0)
+            {
+                errorProvider1.SetError(txtPhone, "The phone number is required");
+                isValid = false;
+            }
+            else if (txtPhone.TextLength < 8 || txtPhone.TextLength > 20)
+            {
+                errorProvider1.SetError(txtPhone, "Phone number length should be between 8 and 20 digits");
+                isValid = false;
+            }
+            else if (clsUser.IsPhoneExist(txtPhone.Text, _Client.PersonID))
+            {
+                errorProvider1.SetError(txtPhone, "This phone already exists, enter another one");
+                isValid = false;
+            }
+
+            // Birthdate
+            if (dtpBirthdate.Value > DateTime.Now)
+            {
+                errorProvider1.SetError(dtpBirthdate, "Birth date cannot be in the future");
+                isValid = false;
+            }
+
+            // Address
+            if (txtAddress.TextLength == 0)
+            {
+                errorProvider1.SetError(txtAddress, "The address is required");
+                isValid = false;
+            }
+
+            // AccountNO
+            if (txtAccountNO.Text.Length == 0)
+            {
+                errorProvider1.SetError(txtAccountNO, "The AccountNO is required");
+                isValid = false;
+            }
+            else if (clsUser.IsUsernameExist(txtAccountNO.Text, _Client.ID))
+            {
+                errorProvider1.SetError(txtAccountNO, "This AccountNO already exists, enter another one");
+                isValid = false;
+            }
+
+            // Password
+            if (txtPINcode.Text.Length == 0)
+            {
+                errorProvider1.SetError(txtPINcode, "The PINcode is required");
+                isValid = false;
+            }
+            else if (txtPINcode.Text.Length < 4)
+            {
+                errorProvider1.SetError(txtPINcode, "PINcode must be at least 8 characters");
+                isValid = false;
+            }
+
+            return isValid;
+
+        }
+
+        private void _ResetFields()
+        {
+
+            //_Client = new clsClient();
+            //_Mode = clsClient.enMode.Create;
+
+            //llblRemove.Visible = false;
+            //llblSetImage.Visible = true;
+
+            //txtName.Text = "";
+            //txtEmail.Text = "";
+            //txtPhone.Text = "";
+            //txtAddress.Text = "";
+            //txtAccountNO.Text = "";
+            //txtPINcode.Text = "";
+
+            //rbtnMale.Checked = true;
+
+            //dtpBirthdate.Value = DateTime.Now;
+            //if (cbCountry.Items.Count > 0) cbCountry.SelectedIndex = 0;
+
+            //pbCkientImage.Image = Properties.Resources.InitPicProfile;
+            //lblTitle.Text = "Add New Client";
+            //errorProvider1.Clear();
+
+            _Client = new clsClient();
+            _Mode = clsClient.enMode.Create;
+            _Client.Mode = _Mode;
+
+            txtName.Text = "";
+            txtEmail.Text = "";
+            txtPhone.Text = "";
+            txtAddress.Text = "";
+            txtAccountNO.Text = "";
+            txtPINcode.Text = "";
+            dtpBirthdate.Value = DateTime.Now;
+
+            if (cbCountry.Items.Count > 0) cbCountry.SelectedIndex = 0;
+            if (cbCurrency.Items.Count > 0) cbCurrency.SelectedIndex = 0;
+
+            rbtnMale.Checked = true;
+            pbCkientImage.Image = Properties.Resources.InitPicProfile;
+
+            llblRemove.Visible = false;
+            llblSetImage.Visible = true;
+
+            lblTitle.Text = "Add New Client";
+            errorProvider1.Clear();
+
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+
+            //string msg = "";
+
+            //if (_ValidateInfo())
+            //{
+            //    _FillTheUserWithTheValidatedInfo();
+
+            //    if (_Client.Save())
+            //    {
+
+
+            //        if (_Mode == clsClient.enMode.Update)
+            //            msg = "Client updated successfully!";
+            //        else msg = "Client added successfully!";
+
+            //        MessageBox.Show(msg, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //        if (_Mode == clsClient.enMode.Create)
+            //            _ResetFields();
+            //        else
+            //            this.Close();
+
+            //    }
+            //    else
+            //    {
+
+            //        if (_Mode == clsClient.enMode.Update)
+            //            msg = "Client was not updated!";
+            //        else msg = "Client was not added";
+
+            //        MessageBox.Show(msg, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            //    }
+            //}
+
+
+            if (!_ValidateInfo()) return;
+
+            _FillTheUserWithTheValidatedInfo();
+
+            if (_Client.Save())
+            {
+                if (_Mode == clsClient.enMode.Create)
+                {
+                    MessageBox.Show("Client added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _ResetFields();
+                }
+                else
+                {
+                    MessageBox.Show("Client updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Operation failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
     }
 }
+

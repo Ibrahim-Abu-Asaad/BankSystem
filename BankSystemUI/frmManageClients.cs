@@ -23,6 +23,7 @@ namespace BankSystemUI
         private void guna2ControlBox1_Click(object sender, EventArgs e)
         {
             this.Close();
+            _RefreshClientsList();
         }
 
 
@@ -103,15 +104,15 @@ namespace BankSystemUI
 
                 clsClient _SelectedClient = clsClient.GetClientByClientID(_SelectedClientID);
 
-                if (_SelectedClient != null)
-                    MessageBox.Show($"Hello {_SelectedClient.Name}");
-                else MessageBox.Show("NULL");
+                //if (_SelectedClient != null)
+                //    MessageBox.Show($"Hello {_SelectedClient.Name}");
+                //else MessageBox.Show("NULL");
 
 
 
-                //Form frm = new frmAddEditClients(_SelectedClientID);
-                //frm.ShowDialog();
-                //_RefreshClientsList();
+                Form frm = new frmAddEditClients(_SelectedClientID);
+                frm.ShowDialog();
+                _RefreshClientsList();
 
                 //txtSearchBy.Text = SEARCHING_Sentence;
                 //_Search();
@@ -134,6 +135,22 @@ namespace BankSystemUI
 
             // DELETE
 
+            if (dgvListClients.CurrentRow != null)
+            {
+
+                int _SelectedClientID = -1;
+                _SelectedClientID = (int)dgvListClients.CurrentRow.Cells["ID"].Value;
+                clsClient _SelectedClient = clsClient.GetClientByClientID(_SelectedClientID);
+
+                int _SelectedPersonID = _SelectedClient.PersonID;
+
+                //MessageBox.Show(_SelectedClientID.ToString());
+                //MessageBox.Show(_SelectedPersonID.ToString());
+                clsClient.DeleteClient(_SelectedPersonID);
+                _RefreshClientsList();
+
+
+            }
 
 
         }
