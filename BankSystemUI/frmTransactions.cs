@@ -48,7 +48,7 @@ namespace BankSystemUI
             //cbAccountNO.SelectedIndex = 0;
 
             _Client = clsClient.GetClientByClientID((int)cbAccountNO.SelectedValue);
-            lblBalance.Text = _Client.Balance.ToString() + " USD";
+            lblBalance.Text = _Client.Balance.ToString("N2") + " USD";
 
 
         }
@@ -93,21 +93,131 @@ namespace BankSystemUI
         {
 
             _Client = clsClient.GetClientByClientID((int)cbAccountNO.SelectedValue);
-            lblBalance.Text = _Client.Balance.ToString() + " USD";
+            lblBalance.Text = _Client.Balance.ToString("N2") + " USD";
 
+        }
+
+        private void _RefreshPage()
+        {
+
+            _Client = clsClient.GetClientByClientID(_Client.ID);
+
+            if (_Client != null)
+            {
+                lblBalance.Text = _Client.Balance.ToString("N2") + " USD";
+            }
+
+            nudAmount.Value = 0;
+            errorProvider1.Clear();
+
+        }
+
+        private bool _IsValid()
+        {
+            bool isValid = true;
+
+            errorProvider1.Clear();
+
+            if (nudAmount.Value <= 0)
+            {
+                errorProvider1.SetError(nudAmount, "Please enter an amount greater than 0");
+                isValid = false;
+            }
+
+            if (State == enState.Withdraw)
+            {
+                if (nudAmount.Value > _Client.Balance)
+                {
+                    errorProvider1.SetError(nudAmount, $"Insufficient balance! Your current balance is {_Client.Balance} USD");
+                    isValid = false;
+                }
+            }
+
+            return isValid;
         }
 
         private void btnWithdrawDeposite_Click(object sender, EventArgs e)
         {
 
-            if(State == enState.Withdraw)
+
+            if (!_IsValid())
+                return;
+
+
+            if (State == enState.Withdraw)
             {
-                MessageBox.Show("Withdraw");
+
+                if (MessageBox.Show($"Are You Sure You Want To Withdraw {nudAmount.Value.ToString()}$ From {_Client.AccountNO}", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+
+                    if (clsTransactions.Withdraw(_Client.ID, nudAmount.Value))
+                    {
+
+                        MessageBox.Show($"Withdraw Operation Has been Done", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _RefreshPage();
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show($"Withdraw Operation Failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+
+                }
+
+
+
             }
             else
             {
-                MessageBox.Show("Deposite");
+
+                if (MessageBox.Show($"Are You Sure You Want To Deposite {nudAmount.Value.ToString()}$ To {_Client.AccountNO}", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+
+                    if (clsTransactions.Deposite(_Client.ID, nudAmount.Value))
+                    {
+
+                        MessageBox.Show($"Deposite Operation Has been Done", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _RefreshPage();
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show($"Deposite Operation Failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+
+                }
+
+
+
             }
+
+
+            _RefreshPage();
+
+        }
+
+        private void nudAmmount_ValueChanged(object sender, EventArgs e)
+        {
+
+            errorProvider1.Clear();
+            _IsValid();
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void transactionsRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Form frm = new frmTransactionsRegister();
+            frm.ShowDialog();
 
         }
     }

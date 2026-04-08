@@ -66,6 +66,7 @@
     <Compile Include="clsDataCurrency.cs" />
     <Compile Include="clsDataPermission.cs" />
     <Compile Include="clsDataRole.cs" />
+    <Compile Include="clsDataTransaction.cs" />
     <Compile Include="clsDataUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

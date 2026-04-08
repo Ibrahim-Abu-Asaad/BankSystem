@@ -207,5 +207,21 @@ namespace BankSystemBLL
 
 
 
+
+
+        // Transactions Functions Operations
+        // inside clsDataTransacions and clsTransactions
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

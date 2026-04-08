@@ -67,6 +67,7 @@
     <Compile Include="clsPermissionItem.cs" />
     <Compile Include="clsPerson.cs" />
     <Compile Include="clsRole.cs" />
+    <Compile Include="clsTransactions.cs" />
     <Compile Include="clsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

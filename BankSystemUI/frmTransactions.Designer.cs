@@ -46,14 +46,17 @@
             transferToolStripMenuItem = new ToolStripMenuItem();
             cbAccountNO = new Guna.UI2.WinForms.Guna2ComboBox();
             label13 = new Label();
-            nudAmmount = new Guna.UI2.WinForms.Guna2NumericUpDown();
+            nudAmount = new Guna.UI2.WinForms.Guna2NumericUpDown();
             label3 = new Label();
             label4 = new Label();
             btnWithdrawDeposite = new Guna.UI2.WinForms.Guna2Button();
             label2 = new Label();
             lblBalance = new Label();
+            errorProvider1 = new ErrorProvider(components);
+            transactionsRegisterToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudAmmount).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudAmount).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -85,14 +88,14 @@
             lblTitleWithdrawDeposite.ForeColor = SystemColors.Highlight;
             lblTitleWithdrawDeposite.Location = new Point(338, 55);
             lblTitleWithdrawDeposite.Name = "lblTitleWithdrawDeposite";
-            lblTitleWithdrawDeposite.Size = new Size(239, 54);
+            lblTitleWithdrawDeposite.Size = new Size(192, 54);
             lblTitleWithdrawDeposite.TabIndex = 1;
-            lblTitleWithdrawDeposite.Text = "Transactions";
+            lblTitleWithdrawDeposite.Text = "Withdraw";
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { withdrawToolStripMenuItem, depositeToolStripMenuItem, transferToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { withdrawToolStripMenuItem, depositeToolStripMenuItem, transferToolStripMenuItem, transactionsRegisterToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(946, 28);
@@ -156,28 +159,31 @@
             label13.TabIndex = 40;
             label13.Text = "Account Number";
             // 
-            // nudAmmount
+            // nudAmount
             // 
-            nudAmmount.BackColor = Color.Transparent;
-            nudAmmount.CustomizableEdges = customizableEdges3;
-            nudAmmount.Font = new Font("Segoe UI", 9F);
-            nudAmmount.Location = new Point(442, 255);
-            nudAmmount.Margin = new Padding(3, 4, 3, 4);
-            nudAmmount.Maximum = new decimal(new int[] { 1410065408, 2, 0, 0 });
-            nudAmmount.Name = "nudAmmount";
-            nudAmmount.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            nudAmmount.Size = new Size(286, 39);
-            nudAmmount.TabIndex = 67;
+            nudAmount.BackColor = Color.Transparent;
+            nudAmount.CustomizableEdges = customizableEdges3;
+            nudAmount.Font = new Font("Segoe UI", 9F);
+            nudAmount.Location = new Point(442, 255);
+            nudAmount.Margin = new Padding(3, 4, 3, 4);
+            nudAmount.Maximum = new decimal(new int[] { 1410065408, 2, 0, 0 });
+            nudAmount.Name = "nudAmount";
+            nudAmount.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            nudAmount.Size = new Size(286, 39);
+            nudAmount.TabIndex = 67;
+            nudAmount.ValueChanged += nudAmmount_ValueChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(737, 264);
+            label3.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Green;
+            label3.Location = new Point(442, 298);
             label3.Name = "label3";
-            label3.Size = new Size(40, 22);
+            label3.Size = new Size(24, 27);
             label3.TabIndex = 68;
-            label3.Text = "USD";
+            label3.Text = "$";
+            label3.Click += label3_Click;
             // 
             // label4
             // 
@@ -200,7 +206,7 @@
             btnWithdrawDeposite.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnWithdrawDeposite.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnWithdrawDeposite.ForeColor = Color.White;
-            btnWithdrawDeposite.Location = new Point(379, 332);
+            btnWithdrawDeposite.Location = new Point(371, 349);
             btnWithdrawDeposite.Name = "btnWithdrawDeposite";
             btnWithdrawDeposite.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnWithdrawDeposite.Size = new Size(159, 56);
@@ -228,6 +234,17 @@
             lblBalance.TabIndex = 72;
             lblBalance.Text = "****";
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // transactionsRegisterToolStripMenuItem
+            // 
+            transactionsRegisterToolStripMenuItem.Name = "transactionsRegisterToolStripMenuItem";
+            transactionsRegisterToolStripMenuItem.Size = new Size(162, 24);
+            transactionsRegisterToolStripMenuItem.Text = "Transactions Register";
+            transactionsRegisterToolStripMenuItem.Click += transactionsRegisterToolStripMenuItem_Click;
+            // 
             // frmTransactions
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -238,7 +255,7 @@
             Controls.Add(btnWithdrawDeposite);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(nudAmmount);
+            Controls.Add(nudAmount);
             Controls.Add(label13);
             Controls.Add(cbAccountNO);
             Controls.Add(lblTitleWithdrawDeposite);
@@ -252,7 +269,8 @@
             Load += frmTransactions_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudAmmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudAmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -270,9 +288,11 @@
         private Label label13;
         private Label label4;
         private Label label3;
-        private Guna.UI2.WinForms.Guna2NumericUpDown nudAmmount;
+        private Guna.UI2.WinForms.Guna2NumericUpDown nudAmount;
         private Guna.UI2.WinForms.Guna2Button btnWithdrawDeposite;
         private Label lblBalance;
         private Label label2;
+        private ErrorProvider errorProvider1;
+        private ToolStripMenuItem transactionsRegisterToolStripMenuItem;
     }
 }

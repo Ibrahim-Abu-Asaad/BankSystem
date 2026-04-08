@@ -79,5 +79,81 @@ namespace BankSystemUI
 
 
         }
+
+
+
+        private bool _IsValid()
+        {
+
+            errorProvider1.Clear();
+            bool isValid = true;
+
+            if (nudAmount.Value <= 0)
+            {
+                errorProvider1.SetError(nudAmount, "Please enter an amount greater than 0");
+                isValid = false;
+            }
+
+            if (_FromClient != null && nudAmount.Value > _FromClient.Balance)
+            {
+                errorProvider1.SetError(nudAmount, "Insufficient balance in source account!");
+                isValid = false;
+            }
+
+            if (cbFromAccountNO.SelectedValue != null && cbToAccountNO.SelectedValue != null)
+            {
+                if ((int)cbFromAccountNO.SelectedValue == (int)cbToAccountNO.SelectedValue)
+                {
+                    errorProvider1.SetError(cbToAccountNO, "Cannot transfer to the same account!");
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+
+        }
+
+        private void _RefreshData()
+        {
+
+            _FromClient = clsClient.GetClientByClientID(_FromClient.ID);
+            _ToClient = clsClient.GetClientByClientID(_ToClient.ID);
+
+            lblFromBalance.Text = _FromClient.Balance.ToString("N2") + " USD";
+            lblToBalance.Text = _ToClient.Balance.ToString("N2") + " USD";
+
+            nudAmount.Value = 0;
+        }
+
+        private void btnTransfer_Click(object sender, EventArgs e)
+        {
+
+            if (!_IsValid())
+                return;
+
+            string msg = $"Are you sure you want to transfer {nudAmount.Value}$ " +
+                     $"from [{_FromClient.AccountNO}] to [{_ToClient.AccountNO}]?";
+
+
+            if (MessageBox.Show(msg, "Confirm Transfer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                if (clsTransactions.Transfer(_FromClient.ID, _ToClient.ID, nudAmount.Value))
+                {
+                    MessageBox.Show("Transfer completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    _RefreshData();
+
+                }
+                else
+                {
+                    MessageBox.Show("Transfer failed! Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+
+
+        }
     }
 }

@@ -46,8 +46,7 @@
             lblFromBalance = new Label();
             label2 = new Label();
             label4 = new Label();
-            label3 = new Label();
-            nudAmmount = new Guna.UI2.WinForms.Guna2NumericUpDown();
+            nudAmount = new Guna.UI2.WinForms.Guna2NumericUpDown();
             label13 = new Label();
             cbFromAccountNO = new Guna.UI2.WinForms.Guna2ComboBox();
             lblToBalance = new Label();
@@ -57,7 +56,10 @@
             btnTransfer = new Guna.UI2.WinForms.Guna2Button();
             label10 = new Label();
             label11 = new Label();
-            ((System.ComponentModel.ISupportInitialize)nudAmmount).BeginInit();
+            errorProvider1 = new ErrorProvider(components);
+            label5 = new Label();
+            ((System.ComponentModel.ISupportInitialize)nudAmount).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -132,28 +134,18 @@
             label4.TabIndex = 77;
             label4.Text = "Ammount";
             // 
-            // label3
+            // nudAmount
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(686, 417);
-            label3.Name = "label3";
-            label3.Size = new Size(40, 22);
-            label3.TabIndex = 76;
-            label3.Text = "USD";
-            // 
-            // nudAmmount
-            // 
-            nudAmmount.BackColor = Color.Transparent;
-            nudAmmount.CustomizableEdges = customizableEdges5;
-            nudAmmount.Font = new Font("Segoe UI", 9F);
-            nudAmmount.Location = new Point(391, 408);
-            nudAmmount.Margin = new Padding(3, 4, 3, 4);
-            nudAmmount.Maximum = new decimal(new int[] { 1410065408, 2, 0, 0 });
-            nudAmmount.Name = "nudAmmount";
-            nudAmmount.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            nudAmmount.Size = new Size(286, 39);
-            nudAmmount.TabIndex = 75;
+            nudAmount.BackColor = Color.Transparent;
+            nudAmount.CustomizableEdges = customizableEdges5;
+            nudAmount.Font = new Font("Segoe UI", 9F);
+            nudAmount.Location = new Point(391, 408);
+            nudAmount.Margin = new Padding(3, 4, 3, 4);
+            nudAmount.Maximum = new decimal(new int[] { 1410065408, 2, 0, 0 });
+            nudAmount.Name = "nudAmount";
+            nudAmount.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            nudAmount.Size = new Size(286, 39);
+            nudAmount.TabIndex = 75;
             // 
             // label13
             // 
@@ -258,6 +250,7 @@
             btnTransfer.Size = new Size(159, 56);
             btnTransfer.TabIndex = 87;
             btnTransfer.Text = "Transfer";
+            btnTransfer.Click += btnTransfer_Click;
             // 
             // label10
             // 
@@ -279,11 +272,27 @@
             label11.TabIndex = 89;
             label11.Text = "To Client";
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Green;
+            label5.Location = new Point(391, 451);
+            label5.Name = "label5";
+            label5.Size = new Size(24, 27);
+            label5.TabIndex = 90;
+            label5.Text = "$";
+            // 
             // frmTransfer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1084, 619);
+            Controls.Add(label5);
             Controls.Add(label11);
             Controls.Add(label10);
             Controls.Add(btnTransfer);
@@ -294,8 +303,7 @@
             Controls.Add(lblFromBalance);
             Controls.Add(label2);
             Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(nudAmmount);
+            Controls.Add(nudAmount);
             Controls.Add(label13);
             Controls.Add(cbFromAccountNO);
             Controls.Add(lblCornerNameAddEditUser);
@@ -306,7 +314,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmTransfer";
             Load += frmTransfer_Load;
-            ((System.ComponentModel.ISupportInitialize)nudAmmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudAmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -324,12 +333,13 @@
         private Label lblFromBalance;
         private Label label2;
         private Label label4;
-        private Label label3;
-        private Guna.UI2.WinForms.Guna2NumericUpDown nudAmmount;
+        private Guna.UI2.WinForms.Guna2NumericUpDown nudAmount;
         private Label label13;
         private Guna.UI2.WinForms.Guna2ComboBox cbFromAccountNO;
         private Label label11;
         private Label label10;
         private Guna.UI2.WinForms.Guna2Button btnTransfer;
+        private ErrorProvider errorProvider1;
+        private Label label5;
     }
 }
