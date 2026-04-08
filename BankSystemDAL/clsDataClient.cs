@@ -16,6 +16,7 @@ namespace BankSystemDAL
 
         public static DataTable ListAllClients()
         {
+
             DataTable dt = new DataTable();
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -41,6 +42,39 @@ namespace BankSystemDAL
             finally { connection.Close(); }
 
             return dt;
+
+        }
+
+        public static DataTable ListAllClientsWithoutThisClient(int ClientID)
+        {
+
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //string query = @"SELECT * FROM Clients";
+
+            string query = @"SELECT Clients.ID, Persons.Name, Countries.Name AS Country, Clients.AccountNO, Clients.Balance, Currencies.Name AS 'Currency Name', Currencies.Code
+                             FROM Persons INNER JOIN
+                             Clients ON Persons.ID = Clients.PersonID INNER JOIN
+                             Countries ON Persons.CountryID = Countries.ID INNER JOIN
+                             Currencies ON Clients.CurrencyID = Currencies.ID
+                             WHERE MarkDeleted = 0 AND Clients.ID != @ClientID";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ClientID", ClientID);
+
+            try
+            {
+                connection.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+            }
+            catch (Exception ex) { string errorMessage = ex.Message; }
+            finally { connection.Close(); }
+
+            return dt;
+
         }
 
         public static bool IsClientExist(string AccountNO, string PINcode)

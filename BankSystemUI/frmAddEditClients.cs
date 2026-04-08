@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace BankSystemUI
 {
@@ -52,9 +53,10 @@ namespace BankSystemUI
 
             cbCurrency.DisplayMember = "Name";
             cbCurrency.ValueMember = "ID";
-            cbCurrency.DataSource = clsCurrency.GetAmericanAndSyrianCurrencies();
+            cbCurrency.DataSource = clsCurrency.GetAmericanCurrency();
             //cbCurrency.DataSource = clsCurrency.GetAmericanAndSyrianCurrencies();
-            cbCurrency.MaxDropDownItems = 7;
+            //cbCurrency.MaxDropDownItems = 7;
+            cbCurrency.Enabled = false;
 
             if (_ClientID == -1)
                 _Mode = clsClient.enMode.Create;
@@ -72,18 +74,39 @@ namespace BankSystemUI
                 lblTitle.Text = "Add New Client";
 
                 rbtnMale.Checked = true;
+                nudBalance.Value = 500;
+
+                llblRemove.Visible = false;
+                llblSetImage.Visible = true;
 
             }
             else if (_Mode == clsClient.enMode.Update)
             {
                 _Client.Mode = _Mode;
 
-                lblCornerTitle.Text = "Apex Bank - Edit User";
-                lblTitle.Text = "Edit User";
+                lblCornerTitle.Text = "Apex Bank - Edit Client";
+                lblTitle.Text = "Edit Client";
                 lblTitle.Location = new Point(490, 52);
 
                 _FillTheFieldsWithClientInfoFromDatabase();
+
+                nudBalance.Enabled = false;
+                cbCurrency.Enabled = false;
+
             }
+
+            //if (pbClientImage.Image != Properties.Resources.InitPicProfile && pbClientImage.Image != Properties.Resources.initialPhotoWomen)
+            //{
+            //    llblRemove.Visible = true;
+            //    llblSetImage.Visible = false;
+            //}
+
+            //if (pbClientImage.Image == Properties.Resources.InitPicProfile || pbClientImage.Image == Properties.Resources.initialPhotoWomen)
+            //{
+            //    llblRemove.Visible = false;
+            //    llblSetImage.Visible = true;
+            //}
+
 
 
 
@@ -111,9 +134,21 @@ namespace BankSystemUI
                 rbtnFemale.Checked = true;
 
 
-            if (_Client.ImagePath != "" && File.Exists(_Client.ImagePath))
+            //if (_Client.ImagePath != "" && File.Exists(_Client.ImagePath))
+            //{
+            //    pbClientImage.Load(_Client.ImagePath);
+            //    llblSetImage.Visible = false;
+            //    llblRemove.Visible = true;
+            //}
+            //else
+            //{
+            //    llblSetImage.Visible = true;
+            //    llblRemove.Visible = false;
+            //}
+
+            if (!string.IsNullOrEmpty(_Client.ImagePath) && File.Exists(_Client.ImagePath))
             {
-                pbCkientImage.Load(_Client.ImagePath);
+                pbClientImage.Load(_Client.ImagePath);
                 llblSetImage.Visible = false;
                 llblRemove.Visible = true;
             }
@@ -121,7 +156,16 @@ namespace BankSystemUI
             {
                 llblSetImage.Visible = true;
                 llblRemove.Visible = false;
+
+                if (_Client.Gender.ToLower() == "male")
+                    pbClientImage.Image = Properties.Resources.InitPicProfile;
+                else
+                    pbClientImage.Image = Properties.Resources.initialPhotoWomen;
             }
+
+
+
+
 
             errorProvider1.Clear();
 
@@ -166,7 +210,7 @@ namespace BankSystemUI
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    pbCkientImage.Image = Image.FromFile(openFileDialog.FileName);
+                    pbClientImage.Image = Image.FromFile(openFileDialog.FileName);
                     _Client.ImagePath = openFileDialog.FileName;
                     llblSetImage.Visible = false;
                     llblRemove.Visible = true;
@@ -183,9 +227,9 @@ namespace BankSystemUI
                 _Client.ImagePath = "";
 
                 if (rbtnMale.Checked == true)
-                    pbCkientImage.Image = Properties.Resources.InitPicProfile;
+                    pbClientImage.Image = Properties.Resources.InitPicProfile;
                 else if (rbtnFemale.Checked == true)
-                    pbCkientImage.Image = Properties.Resources.initialPhotoWomen;
+                    pbClientImage.Image = Properties.Resources.initialPhotoWomen;
 
                 llblRemove.Visible = false;
                 llblSetImage.Visible = true;
@@ -198,9 +242,9 @@ namespace BankSystemUI
 
             if (rbtnMale.Checked)
             {
-                if (string.IsNullOrEmpty(_Client.ImagePath))
+                if (string.IsNullOrEmpty(_Client.ImagePath) || pbClientImage.Image == Properties.Resources.initialPhotoWomen)
                 {
-                    pbCkientImage.Image = Properties.Resources.InitPicProfile;
+                    pbClientImage.Image = Properties.Resources.InitPicProfile;
                     //pbUserImage.Tag = "default";
                 }
             }
@@ -210,12 +254,11 @@ namespace BankSystemUI
         private void rbtnFemale_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (rbtnMale.Checked)
+            if (rbtnFemale.Checked)
             {
                 if (string.IsNullOrEmpty(_Client.ImagePath))
                 {
-                    pbCkientImage.Image = Properties.Resources.InitPicProfile;
-                    //pbUserImage.Tag = "default";
+                    pbClientImage.Image = Properties.Resources.initialPhotoWomen;
                 }
             }
 
@@ -244,7 +287,7 @@ namespace BankSystemUI
             _Client.PINcode = txtPINcode.Text;
             _Client.Balance = nudBalance.Value;
             _Client.CurrencyID = (int)cbCurrency.SelectedValue;
-            
+
 
 
         }
@@ -327,7 +370,7 @@ namespace BankSystemUI
                 isValid = false;
             }
 
-            // Password
+            // PINcode
             if (txtPINcode.Text.Length == 0)
             {
                 errorProvider1.SetError(txtPINcode, "The PINcode is required");
@@ -337,6 +380,13 @@ namespace BankSystemUI
             {
                 errorProvider1.SetError(txtPINcode, "PINcode must be at least 8 characters");
                 isValid = false;
+            }
+
+
+            // Balance
+            if (nudBalance.Value < 500)
+            {
+                MessageBox.Show("The Balance Should be at least 500 dollar to create a new bank account", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             return isValid;
@@ -384,7 +434,7 @@ namespace BankSystemUI
             if (cbCurrency.Items.Count > 0) cbCurrency.SelectedIndex = 0;
 
             rbtnMale.Checked = true;
-            pbCkientImage.Image = Properties.Resources.InitPicProfile;
+            pbClientImage.Image = Properties.Resources.InitPicProfile;
 
             llblRemove.Visible = false;
             llblSetImage.Visible = true;
@@ -468,6 +518,16 @@ namespace BankSystemUI
         {
             //if (txtBalance.Text.Length > 0)
             //    errorProvider1.SetError(txtBalance, "");
+        }
+
+        private void dtpBirthdate_ValueChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void guna2ControlBox1_Click(object sender, EventArgs e)
+        {
+            //
         }
     }
 }

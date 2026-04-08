@@ -195,6 +195,7 @@
             txtSearchBy.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txtSearchBy.Size = new Size(180, 36);
             txtSearchBy.TabIndex = 4;
+            txtSearchBy.TextChanged += txtSearchBy_TextChanged;
             // 
             // cbSearchBy
             // 
@@ -214,6 +215,7 @@
             cbSearchBy.ShadowDecoration.CustomizableEdges = customizableEdges4;
             cbSearchBy.Size = new Size(143, 36);
             cbSearchBy.TabIndex = 5;
+            cbSearchBy.SelectedIndexChanged += cbSearchBy_SelectedIndexChanged;
             // 
             // label1
             // 

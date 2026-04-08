@@ -108,6 +108,11 @@ namespace BankSystemBLL
         public static DataTable ListAllClients()
             => clsDataClient.ListAllClients();
 
+
+        public static DataTable ListAllClientsWithoutThisClient(int ClientID)
+            => clsDataClient.ListAllClientsWithoutThisClient(ClientID);
+
+
         public static int GetClientCount()
             => clsDataClient.GetClientCount();
 

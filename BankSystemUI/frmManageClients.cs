@@ -15,6 +15,10 @@ namespace BankSystemUI
 {
     public partial class frmManageClients : Form
     {
+
+
+        DataTable _dtClients = clsClient.ListAllClients();
+
         public frmManageClients()
         {
             InitializeComponent();
@@ -44,17 +48,24 @@ namespace BankSystemUI
         private void _RefreshClientsList()
         {
 
-            lblTotalClients.Text = clsClient.GetClientCount().ToString();
+            //lblTotalClients.Text = clsClient.GetClientCount().ToString();
             //lblAdminCount.Text = clsUser.GetAdminCount().ToString();
 
             //dgvListUsers.DataSource = clsUser.ListUsers();
-            dgvListClients.DataSource = clsClient.ListAllClients();
+
+            //dgvListClients.DataSource = clsClient.ListAllClients();
+
             //dgvListClients.Columns["ID"].Visible = false;
 
             //if (dgvListClients.Columns.Contains("ID"))
             //{
             //    dgvListClients.Columns["ID"].Visible = false;
             //}
+
+            //DataTable _dtClients = clsClient.ListAllClients();
+            dgvListClients.DataSource = _dtClients;
+
+            lblTotalClients.Text = _dtClients.Rows.Count.ToString();
 
 
         }
@@ -64,6 +75,7 @@ namespace BankSystemUI
 
             Form frm = new frmAddEditClients(-1);
             frm.ShowDialog();
+            _RefreshClientsList();
 
         }
 
@@ -160,5 +172,42 @@ namespace BankSystemUI
             //
         }
 
+        private void _ApplyFilter()
+        {
+
+            if (_dtClients == null) return;
+
+
+            string columnName = cbSearchBy.Text;
+            string value = txtSearchBy.Text.Trim();
+
+            if (string.IsNullOrEmpty(value))
+            {
+                _dtClients.DefaultView.RowFilter = "";
+                return;
+            }
+
+
+            if (columnName == "AccountNO")
+                _dtClients.DefaultView.RowFilter = $"AccountNO LIKE '{value}%'";
+            else if (columnName == "Name")
+                _dtClients.DefaultView.RowFilter = $"Name LIKE '%{value}%'";
+
+
+        }
+
+        private void txtSearchBy_TextChanged(object sender, EventArgs e)
+        {
+
+            _ApplyFilter();
+
+        }
+
+        private void cbSearchBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            _ApplyFilter();
+
+        }
     }
 }

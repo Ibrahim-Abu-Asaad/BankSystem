@@ -33,6 +33,9 @@ namespace BankSystemBLL
         public static DataTable GetAmericanAndSyrianCurrencies()
             => clsDataCurrency.GetAmericanAndSyrianCurrencies();
 
+        public static DataTable GetAmericanCurrency()
+            => clsDataCurrency.GetAmericanCurrency();
+
 
 
     }

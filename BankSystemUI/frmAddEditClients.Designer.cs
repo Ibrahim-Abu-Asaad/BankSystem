@@ -60,7 +60,7 @@
             lblTitle = new Label();
             llblRemove = new LinkLabel();
             llblSetImage = new LinkLabel();
-            pbCkientImage = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            pbClientImage = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             label4 = new Label();
             cbCountry = new Guna.UI2.WinForms.Guna2ComboBox();
             dtpBirthdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -89,7 +89,7 @@
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             label10 = new Label();
             nudBalance = new Guna.UI2.WinForms.Guna2NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)pbCkientImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbClientImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudBalance).BeginInit();
             SuspendLayout();
@@ -114,6 +114,7 @@
             guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges25;
             guna2ControlBox1.Size = new Size(37, 36);
             guna2ControlBox1.TabIndex = 0;
+            guna2ControlBox1.Click += guna2ControlBox1_Click;
             // 
             // lblCornerTitle
             // 
@@ -131,11 +132,11 @@
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 24F, FontStyle.Italic, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = SystemColors.Highlight;
-            lblTitle.Location = new Point(477, 62);
+            lblTitle.Location = new Point(454, 63);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(203, 54);
+            lblTitle.Size = new Size(292, 54);
             lblTitle.TabIndex = 2;
-            lblTitle.Text = "Add Client";
+            lblTitle.Text = "Add New Client";
             // 
             // llblRemove
             // 
@@ -161,24 +162,24 @@
             llblSetImage.Text = "Set Image";
             llblSetImage.LinkClicked += llblSetImage_LinkClicked;
             // 
-            // pbCkientImage
+            // pbClientImage
             // 
-            pbCkientImage.Image = Properties.Resources.InitPicProfile;
-            pbCkientImage.ImageRotate = 0F;
-            pbCkientImage.Location = new Point(516, 197);
-            pbCkientImage.Name = "pbCkientImage";
-            pbCkientImage.ShadowDecoration.CustomizableEdges = customizableEdges23;
-            pbCkientImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            pbCkientImage.Size = new Size(132, 134);
-            pbCkientImage.SizeMode = PictureBoxSizeMode.Zoom;
-            pbCkientImage.TabIndex = 35;
-            pbCkientImage.TabStop = false;
+            pbClientImage.Image = Properties.Resources.InitPicProfile;
+            pbClientImage.ImageRotate = 0F;
+            pbClientImage.Location = new Point(516, 197);
+            pbClientImage.Name = "pbClientImage";
+            pbClientImage.ShadowDecoration.CustomizableEdges = customizableEdges23;
+            pbClientImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            pbClientImage.Size = new Size(132, 134);
+            pbClientImage.SizeMode = PictureBoxSizeMode.Zoom;
+            pbClientImage.TabIndex = 35;
+            pbClientImage.TabStop = false;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(815, 441);
+            label4.Location = new Point(804, 441);
             label4.Name = "label4";
             label4.Size = new Size(80, 22);
             label4.TabIndex = 49;
@@ -199,11 +200,11 @@
             cbCountry.ForeColor = SystemColors.ControlText;
             cbCountry.IntegralHeight = false;
             cbCountry.ItemHeight = 30;
-            cbCountry.Location = new Point(899, 434);
+            cbCountry.Location = new Point(888, 434);
             cbCountry.MaxDropDownItems = 7;
             cbCountry.Name = "cbCountry";
             cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            cbCountry.Size = new Size(162, 36);
+            cbCountry.Size = new Size(226, 36);
             cbCountry.TabIndex = 48;
             // 
             // dtpBirthdate
@@ -223,6 +224,7 @@
             dtpBirthdate.Size = new Size(282, 36);
             dtpBirthdate.TabIndex = 47;
             dtpBirthdate.Value = new DateTime(2026, 3, 29, 19, 28, 5, 116);
+            dtpBirthdate.ValueChanged += dtpBirthdate_ValueChanged;
             // 
             // txtPhone
             // 
@@ -237,7 +239,7 @@
             txtPhone.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPhone.ForeColor = SystemColors.ControlText;
             txtPhone.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPhone.Location = new Point(890, 378);
+            txtPhone.Location = new Point(879, 378);
             txtPhone.Margin = new Padding(3, 4, 3, 4);
             txtPhone.Name = "txtPhone";
             txtPhone.PlaceholderText = "Enter Your Phone";
@@ -252,7 +254,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(826, 384);
+            label6.Location = new Point(815, 384);
             label6.Name = "label6";
             label6.Size = new Size(60, 22);
             label6.TabIndex = 45;
@@ -262,7 +264,7 @@
             // 
             lblAddress.AutoSize = true;
             lblAddress.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAddress.Location = new Point(487, 440);
+            lblAddress.Location = new Point(467, 440);
             lblAddress.Name = "lblAddress";
             lblAddress.Size = new Size(80, 22);
             lblAddress.TabIndex = 44;
@@ -281,7 +283,7 @@
             txtAddress.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAddress.ForeColor = SystemColors.ControlText;
             txtAddress.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtAddress.Location = new Point(569, 434);
+            txtAddress.Location = new Point(549, 434);
             txtAddress.Margin = new Padding(3, 4, 3, 4);
             txtAddress.Name = "txtAddress";
             txtAddress.PlaceholderText = "Enter Your Address";
@@ -305,7 +307,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(507, 384);
+            label3.Location = new Point(487, 384);
             label3.Name = "label3";
             label3.Size = new Size(60, 22);
             label3.TabIndex = 41;
@@ -324,7 +326,7 @@
             txtEmail.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.ForeColor = SystemColors.ControlText;
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(569, 378);
+            txtEmail.Location = new Point(553, 378);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Enter Your Email";
@@ -515,7 +517,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(763, 650);
+            label9.Location = new Point(742, 650);
             label9.Name = "label9";
             label9.Size = new Size(80, 22);
             label9.TabIndex = 60;
@@ -536,11 +538,11 @@
             cbCurrency.ForeColor = SystemColors.ControlText;
             cbCurrency.IntegralHeight = false;
             cbCurrency.ItemHeight = 30;
-            cbCurrency.Location = new Point(849, 687);
+            cbCurrency.Location = new Point(828, 687);
             cbCurrency.MaxDropDownItems = 7;
             cbCurrency.Name = "cbCurrency";
             cbCurrency.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            cbCurrency.Size = new Size(225, 36);
+            cbCurrency.Size = new Size(286, 36);
             cbCurrency.TabIndex = 62;
             cbCurrency.SelectedIndexChanged += cbCurrency_SelectedIndexChanged;
             // 
@@ -557,7 +559,7 @@
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.Font = new Font("Segoe UI", 9F);
+            guna2Button1.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Location = new Point(477, 756);
             guna2Button1.Name = "guna2Button1";
@@ -571,7 +573,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(758, 693);
+            label10.Location = new Point(737, 693);
             label10.Name = "label10";
             label10.Size = new Size(90, 22);
             label10.TabIndex = 65;
@@ -582,12 +584,12 @@
             nudBalance.BackColor = Color.Transparent;
             nudBalance.CustomizableEdges = customizableEdges1;
             nudBalance.Font = new Font("Segoe UI", 9F);
-            nudBalance.Location = new Point(849, 641);
+            nudBalance.Location = new Point(828, 644);
             nudBalance.Margin = new Padding(3, 4, 3, 4);
             nudBalance.Maximum = new decimal(new int[] { 1410065408, 2, 0, 0 });
             nudBalance.Name = "nudBalance";
             nudBalance.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            nudBalance.Size = new Size(225, 39);
+            nudBalance.Size = new Size(286, 39);
             nudBalance.TabIndex = 66;
             // 
             // frmAddEditClients
@@ -624,7 +626,7 @@
             Controls.Add(txtName);
             Controls.Add(llblRemove);
             Controls.Add(llblSetImage);
-            Controls.Add(pbCkientImage);
+            Controls.Add(pbClientImage);
             Controls.Add(lblTitle);
             Controls.Add(lblCornerTitle);
             Controls.Add(guna2ControlBox1);
@@ -633,7 +635,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAddEditClients";
             Load += frmAddEditClients_Load;
-            ((System.ComponentModel.ISupportInitialize)pbCkientImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbClientImage).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudBalance).EndInit();
             ResumeLayout(false);
@@ -648,7 +650,7 @@
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
         private LinkLabel llblRemove;
         private LinkLabel llblSetImage;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox pbCkientImage;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox pbClientImage;
         private Label label4;
         private Guna.UI2.WinForms.Guna2ComboBox cbCountry;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpBirthdate;
