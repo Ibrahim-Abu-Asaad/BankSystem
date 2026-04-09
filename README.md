@@ -6,7 +6,7 @@
 
 ## 📸 Screenshots
 
-![Login](screenshots/Login_Page.PNG)
+![Login](screenshots/Login%20Page.PNG)
 
 ---
 
