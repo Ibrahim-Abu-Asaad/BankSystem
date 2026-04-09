@@ -93,4 +93,6 @@ The solution is organized into three distinct layers to ensure separation of con
    Restore NuGet packages if prompted.
    Press F5 to build and run the application.
 
-Developed by (https://github.com/Ibrahim-Abu-Asaad)[Ibrahim Abu-Asaad]
+---
+
+[Ibrahim Abu-Asaad](https://github.com/Ibrahim-Abu-Asaad)
