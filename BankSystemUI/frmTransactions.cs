@@ -23,7 +23,6 @@ namespace BankSystemUI
         {
             Withdraw,
             Deposite,
-            Transfer
         }
         public enState State = enState.Withdraw;
 
@@ -78,14 +77,14 @@ namespace BankSystemUI
         private void transferToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            State = enState.Transfer;
+            //State = enState.Transfer;
 
             Form frm = new frmTransfer();
             frm.ShowDialog();
 
-            State = enState.Withdraw;
-            lblTitleWithdrawDeposite.Text = "Withdraw";
-            btnWithdrawDeposite.Text = "Withdraw";
+            //State = enState.Withdraw;
+            //lblTitleWithdrawDeposite.Text = "Withdraw";
+            //btnWithdrawDeposite.Text = "Withdraw";
 
         }
 
@@ -136,65 +135,52 @@ namespace BankSystemUI
             return isValid;
         }
 
+        private void ExecuteWithdraw()
+        {
+            if (MessageBox.Show($"Are You Sure You Want To Withdraw {nudAmount.Value}$?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (clsTransactions.Withdraw(_Client.ID, nudAmount.Value))
+                {
+                    MessageBox.Show("Withdraw Done", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Withdraw Failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ExecuteDeposite()
+        {
+            if (MessageBox.Show($"Are You Sure You Want To Deposite {nudAmount.Value}$?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (clsTransactions.Deposite(_Client.ID, nudAmount.Value))
+                {
+                    MessageBox.Show("Deposite Done", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Deposite Failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private void btnWithdrawDeposite_Click(object sender, EventArgs e)
         {
 
 
-            if (!_IsValid())
-                return;
+          if (!_IsValid()) return;
 
-
-            if (State == enState.Withdraw)
+            switch (State)
             {
+                case enState.Withdraw:
+                    ExecuteWithdraw();
+                    break;
 
-                if (MessageBox.Show($"Are You Sure You Want To Withdraw {nudAmount.Value.ToString()}$ From {_Client.AccountNO}", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-
-                    if (clsTransactions.Withdraw(_Client.ID, nudAmount.Value))
-                    {
-
-                        MessageBox.Show($"Withdraw Operation Has been Done", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        _RefreshPage();
-
-                    }
-                    else
-                    {
-
-                        MessageBox.Show($"Withdraw Operation Failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    }
-
-                }
-
-
-
+                case enState.Deposite:
+                    ExecuteDeposite();
+                    break;
             }
-            else
-            {
-
-                if (MessageBox.Show($"Are You Sure You Want To Deposite {nudAmount.Value.ToString()}$ To {_Client.AccountNO}", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-
-                    if (clsTransactions.Deposite(_Client.ID, nudAmount.Value))
-                    {
-
-                        MessageBox.Show($"Deposite Operation Has been Done", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        _RefreshPage();
-
-                    }
-                    else
-                    {
-
-                        MessageBox.Show($"Deposite Operation Failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    }
-
-                }
-
-
-
-            }
-
 
             _RefreshPage();
 

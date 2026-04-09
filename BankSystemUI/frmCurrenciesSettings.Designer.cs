@@ -31,10 +31,17 @@
             components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             label1 = new Label();
             label2 = new Label();
+            dgvCurrencies = new Guna.UI2.WinForms.Guna2DataGridView();
+            lblNote = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvCurrencies).BeginInit();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -80,11 +87,92 @@
             label2.TabIndex = 2;
             label2.Text = "Currencies Settings";
             // 
+            // dgvCurrencies
+            // 
+            dgvCurrencies.AllowUserToAddRows = false;
+            dgvCurrencies.AllowUserToDeleteRows = false;
+            dgvCurrencies.AllowUserToOrderColumns = true;
+            dgvCurrencies.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvCurrencies.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvCurrencies.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvCurrencies.ColumnHeadersHeight = 40;
+            dgvCurrencies.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvCurrencies.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvCurrencies.GridColor = Color.FromArgb(231, 229, 255);
+            dgvCurrencies.Location = new Point(12, 249);
+            dgvCurrencies.Name = "dgvCurrencies";
+            dgvCurrencies.ReadOnly = true;
+            dgvCurrencies.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvCurrencies.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvCurrencies.RowHeadersVisible = false;
+            dgvCurrencies.RowHeadersWidth = 51;
+            dgvCurrencies.Size = new Size(971, 415);
+            dgvCurrencies.TabIndex = 4;
+            dgvCurrencies.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvCurrencies.ThemeStyle.AlternatingRowsStyle.Font = null;
+            dgvCurrencies.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
+            dgvCurrencies.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
+            dgvCurrencies.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
+            dgvCurrencies.ThemeStyle.BackColor = Color.White;
+            dgvCurrencies.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            dgvCurrencies.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            dgvCurrencies.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvCurrencies.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+            dgvCurrencies.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvCurrencies.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvCurrencies.ThemeStyle.HeaderStyle.Height = 40;
+            dgvCurrencies.ThemeStyle.ReadOnly = true;
+            dgvCurrencies.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvCurrencies.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvCurrencies.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+            dgvCurrencies.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvCurrencies.ThemeStyle.RowsStyle.Height = 29;
+            dgvCurrencies.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvCurrencies.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            // 
+            // lblNote
+            // 
+            lblNote.AutoSize = true;
+            lblNote.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNote.Location = new Point(168, 176);
+            lblNote.Name = "lblNote";
+            lblNote.Size = new Size(70, 22);
+            lblNote.TabIndex = 5;
+            lblNote.Text = "label3";
+            // 
             // frmCurrenciesSettings
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1007, 622);
+            ClientSize = new Size(1007, 676);
+            Controls.Add(lblNote);
+            Controls.Add(dgvCurrencies);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(guna2ControlBox1);
@@ -93,6 +181,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmCurrenciesSettings";
             Load += frmCurrenciesSettings_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvCurrencies).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -103,5 +192,7 @@
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
         private Label label2;
         private Label label1;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvCurrencies;
+        private Label lblNote;
     }
 }

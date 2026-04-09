@@ -17,18 +17,11 @@ namespace BankSystemBLL
 
 
 
-
-
-
-
-
-
-
-
-
-
         public static DataTable GetAllCurrencies()
             => clsDataCurrency.GetAllCurrencies();
+
+        public static DataTable GetAllCurrenciesAndRateToShowItInDGV()
+            => clsDataCurrency.GetAllCurrenciesAndRateToShowItInDGV();
 
         public static DataTable GetAmericanAndSyrianCurrencies()
             => clsDataCurrency.GetAmericanAndSyrianCurrencies();

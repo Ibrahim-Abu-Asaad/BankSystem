@@ -36,5 +36,10 @@ namespace BankSystemUI
             _ShowLoginsRegisterTable();
 
         }
+
+        private void dgvLoginsRegister_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //
+        }
     }
 }
