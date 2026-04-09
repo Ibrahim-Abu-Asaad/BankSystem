@@ -6,13 +6,7 @@
 
 ## 📸 Screenshots
 
-| Login | Dashboard | Manage Clients |
-|-------|-----------|----------------|
-| ![Login](screenshots/Login_Page.PNG) | ![Dashboard](screenshots/Bank_Interface_Page.PNG) | ![Clients](screenshots/Manage_Clients_Page.PNG) |
-
-| Transactions | Transfer | Roles & Permissions |
-|--------------|----------|---------------------|
-| ![Transactions](screenshots/Transactions_Page.PNG) | ![Transfer](screenshots/Transfer_Page.PNG) | ![Roles](screenshots/Roles_And_Permissions_Page.PNG) |
+![Login](screenshots/Login_Page.PNG)
 
 ---
 
