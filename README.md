@@ -84,7 +84,7 @@
 ## 🧭 Table of Contents
 
 - [Overview](#-overview)
-- [Architecture](#️-architecture)
+- [Architecture](#-architecture)
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
 - [Database Design](#-database-design)
