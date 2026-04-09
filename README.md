@@ -81,21 +81,6 @@
 
 ---
 
-## 🧭 Table of Contents
-
-- [Overview](#-overview)
-- [Architecture](#-architecture)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Database Design](#-database-design)
-- [Modules](#-modules)
-- [Security](#-security)
-- [Getting Started](#-getting-started)
-- [Project Structure](#-project-structure)
-- [Author](#-author)
-
----
-
 ## 🔍 Overview
 
 **Apex Bank** is a desktop banking system designed to simulate real-world bank operations. It supports multi-user access with granular role-based permissions, enabling Admins, Account Managers, Finance Managers, and Standard Users to interact with the system based on their authorization level.
