@@ -42,25 +42,7 @@ namespace BankSystemUI
                 return false;
             }
 
-            ////_UserID = clsUser.IsUserExist(Username, Password);
-            //_UserID = clsUser.IsUserExist(Username);
 
-            //if (_UserID == -1)
-            //{
-            //    MessageBox.Show("Wronge Username", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return false;
-            //}
-
-            //_User = clsUser.GetUserByUserID(_UserID);
-
-            //if (!clsUser.CheckIfPasswordRight(_UserID, Password))
-            //{
-            //    MessageBox.Show("Wronge Password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return false;
-            //}
-
-
-            //return true;
 
             _User = clsUser.GetUserByUsername(Username);
 
@@ -75,6 +57,12 @@ namespace BankSystemUI
                 MessageBox.Show("Wrong Password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
+            //if (!clsCryptography.VerifyPassword(Password, _User.Password))
+            //{
+            //    MessageBox.Show("Wrong Password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
 
             _UserID = _User.UserID;
             return true;

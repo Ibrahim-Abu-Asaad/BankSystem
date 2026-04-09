@@ -213,12 +213,38 @@ namespace BankSystemBLL
         // SAVE
         public bool Save()
         {
+
+
             switch (Mode)
             {
                 case enMode.Create: return _CreateNewUser(this);
                 case enMode.Update: return _UpdateUser(this);
             }
+            this.Password = clsCryptography.HashPassword(this.Password);
             return false;
+
+
+            //if (Mode == enMode.Create)
+            //    this.Password = clsCryptography.HashPassword(this.Password);
+
+            //switch (Mode)
+            //{
+            //    case enMode.Create:
+            //        if (_CreateNewUser(this))
+            //        {
+            //            Mode = enMode.Update;
+            //            return true;
+            //        }
+            //        return false;
+
+            //    case enMode.Update:
+            //        return _UpdateUser(this);
+
+            //    default:
+            //        return false;
+            //}
+
+
         }
 
     }

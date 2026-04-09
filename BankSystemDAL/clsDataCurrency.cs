@@ -159,9 +159,5 @@ namespace BankSystemDAL
 
 
 
-
-
-
-
     }
 }

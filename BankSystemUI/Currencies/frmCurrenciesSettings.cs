@@ -28,5 +28,12 @@ namespace BankSystemUI
             //lblNote.ForeColor = Color.Gray;
 
         }
+
+        private void btnEditRate_Click(object sender, EventArgs e)
+        {
+
+            //
+
+        }
     }
 }

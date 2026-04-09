@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="clsClient.cs" />
     <Compile Include="clsCountry.cs" />
+    <Compile Include="clsCryptography.cs" />
     <Compile Include="clsCurrency.cs" />
     <Compile Include="clsPermission.cs" />
     <Compile Include="clsPermissionItem.cs" />
