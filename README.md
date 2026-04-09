@@ -126,8 +126,8 @@ The project is built on a **3-Layer (N-Tier) Architecture**, strictly separating
 - Search and filter clients by Account Number or Name
 
 > [!NOTE]
-- **Secure Data Handling:** Implementing "Soft Delete" logic for Users and Clients;
-- records are marked as 'Deleted' (0 to 1) instead of being permanently removed to maintain database integrity and audit history.
+> **Secure Data Handling:** Implementing "Soft Delete" logic for Users and Clients;
+> records are marked as 'Deleted' (0 to 1) instead of being permanently removed to maintain database integrity and audit history.
   
 
 ### 💸 Transactions
