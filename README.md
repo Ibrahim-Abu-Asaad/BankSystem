@@ -1,98 +1,268 @@
-# 🏦 Apex Bank - Desktop Management System
+# 🏦 Apex Bank — Desktop Banking Management System
 
-[![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
-[![.NET Framework](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=.net&logoColor=white)](https://dotnet.microsoft.com/en-us/)
-[![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server)
-
-**Apex Bank** is a high-performance administrative banking application built with a robust **3-Layer Architecture**. It features a sophisticated permission-based system, real-time transaction handling, and comprehensive auditing tools designed for modern financial management.
-
-> [!CAUTION]
-> **Work in Progress:** This project is currently under active development. Database scripts and full functionality are being updated regularly.
-
----
-
-## 📖 Table of Contents
-* [🚀 Key Features](#-key-features)
-* [🛠 Tech Stack](#-tech-stack)
-* [📂 Project Structure](#-project-structure)
-* [📸 Screenshots](#-screenshots)
-* [📥 Setup & Installation](#-setup--installation)
-
----
-
-## 🚀 Key Features
-
-### 👤 Advanced User & Profile Management
-* **Granular RBAC:** Role-Based Access Control allowing specific permissions for *Admin*, *Finance Manager*, and *Account Manager*.
-* **Secure Login Register:** An automated audit trail tracking every user session and login timestamp.
-* **Personalized Profiles:** Users can manage their own credentials and profile imagery directly from the "My Profile" module.
-
-### 💸 Transaction Engine
-* **Core Operations:** Fully implemented modules for **Deposits**, **Withdrawals**, and **Transfers**.
-* **Real-time Validation:** Integrated balance checking within the Logic Layer to prevent overdrafts.
-* **Transaction Register:** Comprehensive logs documenting every movement of funds, including sender/receiver data and currency codes.
-
-### 💰 Global Banking & Security
-* **Multi-Currency Support:** Manage account balances with integrated currency rate tracking (USD, JOD, SAR, etc.).
-* **Error Provider Validation:** Robust input validation across all forms (Email, Phone, PIN) to ensure data integrity and a smooth UX.
-
----
-
-## 🛠 Tech Stack
-
-* **Language:** C#
-* **Framework:** .NET (Windows Forms)
-* **Database:** Microsoft SQL Server
-* **Architecture:** 3-Layer Design (UI, Business Logic, Data Access)
-
----
-
-## 📂 Project Structure
-
-The solution is organized into three distinct layers to ensure separation of concerns and maintainability:
-
-* 🖥️ **`BankSystemUI`** - The Presentation Layer handling Windows Forms and user interaction.
-* 🧠 **`BankSystemBLL`** - The Business Logic Layer managing validations, permissions, and calculations.
-* 💾 **`BankSystemDAL`** - The Data Access Layer handling SQL queries and database connectivity.
+> A full-featured, role-based banking management application built with **C# Windows Forms** and **SQL Server**, implementing a clean 3-layer architecture with real-time validation, transactional integrity, and a comprehensive audit trail.
 
 ---
 
 ## 📸 Screenshots
 
-### 🖥️ Dashboard & Administration
-| Main Interface | User Permissions |
-|---|---|
-| ![Main Interface](./screenshots/Bank_Interface_Page.jpg) | ![Permissions](./screenshots/Roles_And_Permissions_Page.PNG) |
+| Login | Dashboard | Manage Clients |
+|-------|-----------|----------------|
+| ![Login](screenshots/Login_Page.PNG) | ![Dashboard](screenshots/Bank_Interface_Page.PNG) | ![Clients](screenshots/Manage_Clients_Page.PNG) |
 
-### 💳 Financial Transactions
-| Transfer System | Transactions Register |
-|---|---|
-| ![Transfer](./screenshots/Transfer_Page.jpg) | ![Log](./screenshots/Transactions_Register_Page.jpg) |
-
-### 📋 Client & User Management
-| Manage Clients | Add New User |
-|---|---|
-| ![Clients](./screenshots/Manage_Clients_Page.PNG) | ![Add User](./screenshots/Add_New_User_Page.PNG) |
+| Transactions | Transfer | Roles & Permissions |
+|--------------|----------|---------------------|
+| ![Transactions](screenshots/Transactions_Page.PNG) | ![Transfer](screenshots/Transfer_Page.PNG) | ![Roles](screenshots/Roles_And_Permissions_Page.PNG) |
 
 ---
 
-## 📥 Setup & Installation
+## 🧭 Table of Contents
 
-1. **Clone the repository:**
+- [Overview](#-overview)
+- [Architecture](#️-architecture)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Database Design](#-database-design)
+- [Modules](#-modules)
+- [Security](#-security)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Author](#-author)
+
+---
+
+## 🔍 Overview
+
+**Apex Bank** is a desktop banking system designed to simulate real-world bank operations. It supports multi-user access with granular role-based permissions, enabling Admins, Account Managers, Finance Managers, and Standard Users to interact with the system based on their authorization level.
+
+The application handles client account management, monetary transactions (deposit, withdrawal, transfer), currency exchange rate tracking, and a full audit log of all system activity.
+
+---
+
+## 🏛️ Architecture
+
+The project is built on a **3-Layer (N-Tier) Architecture**, strictly separating concerns:
+
+```
+┌─────────────────────────────────┐
+│     Presentation Layer (UI)     │  Windows Forms — all screens & dialogs
+├─────────────────────────────────┤
+│   Business Logic Layer (BLL)    │  Validation, rules, transaction logic
+├─────────────────────────────────┤
+│   Data Access Layer (DAL)       │  SQL Server queries via stored procedures
+└─────────────────────────────────┘
+```
+
+**Key design principles applied:**
+- **Separation of Concerns** — each layer has a single, well-defined responsibility
+- **Encapsulation** — business rules are hidden from the UI and inaccessible to the data layer
+- **Modularity** — features (clients, users, transactions) are independently structured
+- **OOP** — classes represent real-world entities with clear state and behavior
+
+---
+
+## ✨ Features
+
+### 👤 User & Access Management
+- Secure login system with show/hide password toggle
+- Role-Based Access Control (RBAC) with fully configurable permissions per role
+- Admin can add, edit, and delete users with assigned roles
+- Profile management for all logged-in users
+
+### 🏧 Client Account Management
+- Full CRUD for bank clients (Create, Read, Update, Delete)
+- Each client has a unique Account Number, PIN code, balance, and currency
+- Profile photo support with set/remove functionality
+- Search and filter clients by Account Number or Name
+
+### 💸 Transactions
+- **Deposit** — add funds to any client account
+- **Withdraw** — deduct funds with balance sufficiency validation
+- **Transfer** — move funds between two accounts in real time
+- Dollar sign ($) indicator with live balance display
+- Full transaction history in the **Transactions Register**
+
+### 💱 Currencies Rate
+- Displays real-time exchange rates for Middle Eastern and international currencies
+- Base currency: USD, with rates for JOD, SYP, IQD, SAR, EGP, AED, KWD, LBP, and more
+
+### 📋 Audit & Logging
+- **Logins Register** — records every login event with timestamp, username, role, and full name
+- **Transactions Register** — complete ledger with transaction type, amount, date, from/to accounts and person names, and currency
+
+### 🔐 Roles & Permissions
+- Configurable roles: Admin, Account Manager, Finance Manager, Standard User
+- Granular permissions: `Client_AccessPage`, `Client_Create`, `Client_Edit`, `Client_Delete`, `Transaction_AccessPage`, `Transaction_Withdraw`, and more
+- Admins automatically inherit all permissions
+- Ability to add new custom roles at runtime
+
+### ✅ Input Validation
+- Real-time **ErrorProvider** validation on all input fields
+- Validates: name, email format, phone number, address, date of birth, account number uniqueness, PIN strength, and password confirmation match
+- Prevents saving until all required fields pass validation — no silent failures
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Language | C# (.NET Framework) |
+| UI Framework | Windows Forms (WinForms) |
+| Database | Microsoft SQL Server |
+| Data Access | ADO.NET with Stored Procedures |
+| IDE | Visual Studio |
+| Architecture | 3-Layer (Presentation / BLL / DAL) |
+
+---
+
+## 🗄️ Database Design
+
+The SQL Server database uses a normalized relational schema with the following core tables:
+
+```
+Clients          → Stores client personal info, account number, PIN, balance, currency
+Users            → Stores system users with login credentials and roles
+Roles            → Defines available roles (Admin, Manager, etc.)
+Permissions      → Maps permissions to roles
+Transactions     → Logs every financial transaction with from/to accounts
+LoginHistory     → Audit log of all login events
+Currencies       → Currency codes and exchange rates vs. USD
+```
+
+**Key constraints enforced at the DB level:**
+- Unique Account Numbers per client
+- Foreign keys linking transactions to client accounts
+- Non-nullable fields for critical financial data
+
+---
+
+## 📦 Modules
+
+| Module | Description |
+|--------|-------------|
+| **Login** | Authenticates users, records login timestamp, enforces session |
+| **Dashboard** | Role-aware home screen; shows only permitted navigation items |
+| **Manage Clients** | Full client CRUD with search, pagination, and photo management |
+| **Add / Edit Client** | Form with real-time validation, date picker, country dropdown |
+| **Transactions** | Tabbed interface: Withdraw / Deposit / Transfer / Register |
+| **Manage Users** | Admin-only user management with role assignment |
+| **Add / Edit User** | User form with login credentials and role selector |
+| **Currencies Rate** | Live currency rate table sorted by country |
+| **Logins Register** | Searchable login audit log with date, username, role, name |
+| **Transactions Register** | Full transaction ledger with type, accounts, amounts |
+| **Roles & Permissions** | Permission matrix editor per role with save and add-new |
+| **My Profile** | Editable personal profile for the currently logged-in user |
+
+---
+
+## 🔐 Security
+
+- **Password hashing** — passwords are never stored in plain text
+- **PIN masking** — client PINs are hidden by default with an opt-in Show checkbox
+- **Session binding** — all actions are tied to the authenticated user's identity
+- **Permission enforcement** — every sensitive screen checks the user's permission before rendering
+- **Audit trail** — logins and all financial activity are permanently logged and cannot be deleted from the UI
+- **Balance validation** — withdrawals and transfers are rejected server-side if balance is insufficient
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Windows OS
+- Visual Studio 2019 or later
+- SQL Server 2017 or later (or SQL Server Express)
+- .NET Framework 4.7.2+
+
+### Setup
+
+1. **Clone the repository**
    ```bash
-   git clone [https://github.com/Ibrahim-Abu-Asaad/BankSystem.git](https://github.com/Ibrahim-Abu-Asaad/BankSystem.git)
-   cd BankSystem
+   git clone https://github.com/your-username/ApexBank.git
+   cd ApexBank
    ```
-2. Database Configuration:
-   Ensure SQL Server is installed and running.
-   Update the connection string in clsDataAccessSettings located within the DAL layer.
-   (Note: Database backup/scripts will be added to the /DB folder soon).
 
-3. Build the Project:
-   Open the .sln file in Visual Studio.
-   Restore NuGet packages if prompted.
-   Press F5 to build and run the application.
+2. **Restore the database**
+   - Open SQL Server Management Studio (SSMS)
+   - Run the script located at `Database/ApexBank_Schema.sql`
+   - Then run `Database/ApexBank_SeedData.sql` for sample data
+
+3. **Configure the connection string**
+   - Open `DataAccessLayer/clsDataAccessSettings.cs`
+   - Update the `Server` and `Database` fields to match your SQL Server instance:
+     ```csharp
+     public static string ConnectionString =
+         "Server=YOUR_SERVER_NAME; Database=ApexBank; Integrated Security=True;";
+     ```
+
+4. **Build and Run**
+   - Open `ApexBank.sln` in Visual Studio
+   - Press `F5` or click **Start** to build and run
+
+5. **Default Admin Login**
+   ```
+   Username: ibra
+   Password: [set in seed data]
+   ```
 
 ---
 
-[Ibrahim Abu-Asaad](https://github.com/Ibrahim-Abu-Asaad)
+## 🗂️ Project Structure
+
+```
+ApexBank/
+│
+├── PresentationLayer/          # All Windows Forms screens
+│   ├── frmLogin.cs
+│   ├── frmMain.cs
+│   ├── frmManageClients.cs
+│   ├── frmAddEditClient.cs
+│   ├── frmManageUsers.cs
+│   ├── frmAddEditUser.cs
+│   ├── frmTransactions.cs
+│   ├── frmTransfer.cs
+│   ├── frmCurrenciesRate.cs
+│   ├── frmLoginsRegister.cs
+│   ├── frmTransactionsRegister.cs
+│   ├── frmRolesAndPermissions.cs
+│   └── frmMyProfile.cs
+│
+├── BusinessLogicLayer/         # Validation, rules, computation
+│   ├── clsClient.cs
+│   ├── clsUser.cs
+│   ├── clsTransaction.cs
+│   ├── clsRole.cs
+│   └── clsCurrency.cs
+│
+├── DataAccessLayer/            # SQL communication
+│   ├── clsDataAccessSettings.cs
+│   ├── clsClientData.cs
+│   ├── clsUserData.cs
+│   ├── clsTransactionData.cs
+│   └── clsCurrencyData.cs
+│
+└── Database/
+    ├── ApexBank_Schema.sql
+    └── ApexBank_SeedData.sql
+```
+
+---
+
+## 👨‍💻 Author
+
+**Ibrahim Abu-Asaad**
+
+- Built with passion as a full-stack desktop application demonstrating real-world software engineering principles
+- Covers security, financial integrity, UI/UX, database design, and clean architecture in a single cohesive project
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+> *"Clean architecture is not about where you put the files — it's about which direction the dependencies point."*
