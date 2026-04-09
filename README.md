@@ -12,7 +12,7 @@ Login Page
 ---
 
 Bank Interface Page
-![BankInterface](screenshots/Bank%20Interface%20Page)
+![BankInterface](screenshots/Bank%20Interface%20Page.PNG)
 
 ---
 
