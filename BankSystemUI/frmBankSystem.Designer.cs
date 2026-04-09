@@ -182,7 +182,7 @@ namespace BankSystemUI
             btnCurrenciesSettings.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnCurrenciesSettings.Size = new Size(240, 56);
             btnCurrenciesSettings.TabIndex = 9;
-            btnCurrenciesSettings.Text = "Currency Settings";
+            btnCurrenciesSettings.Text = "Currencies Rate";
             btnCurrenciesSettings.Click += btnCurrenciesSettings_Click;
             // 
             // btnLoginsRegister
