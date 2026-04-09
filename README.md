@@ -120,7 +120,6 @@ The project is built on a **3-Layer (N-Tier) Architecture**, strictly separating
 
 **Key design principles applied:**
 - **Separation of Concerns** — each layer has a single, well-defined responsibility
-- **Encapsulation** — business rules are hidden from the UI and inaccessible to the data layer
 - **Modularity** — features (clients, users, transactions) are independently structured
 - **OOP** — classes represent real-world entities with clear state and behavior
 
@@ -131,15 +130,20 @@ The project is built on a **3-Layer (N-Tier) Architecture**, strictly separating
 ### 👤 User & Access Management
 - Secure login system with show/hide password toggle
 - Role-Based Access Control (RBAC) with fully configurable permissions per role
-- Admin can add, edit, and delete users with assigned roles
+- Admin can add, edit, and delete(Soft deletion) users with assigned roles
 - Profile management for all logged-in users
 - Search and filter users by Username or Name
 
 ### 🏧 Client Account Management
-- Full CRUD for bank clients (Create, Read, Update, Delete)
+- Full CRUD for bank clients (Create, Read, Update, Delete(Soft deletion))
 - Each client has a unique Account Number, PIN code, balance, and currency
 - Profile photo support with set/remove functionality
 - Search and filter clients by Account Number or Name
+
+> [!NOTE]
+- **Secure Data Handling:** Implementing "Soft Delete" logic for Users and Clients;
+- records are marked as 'Deleted' (0 to 1) instead of being permanently removed to maintain database integrity and audit history.
+  
 
 ### 💸 Transactions
 - **Deposit** — add funds to any client account
@@ -203,7 +207,7 @@ RolePermissions  → Manages granular access control by mapping specific system 
 
 **Key constraints enforced at the DB level:**
 - Unique Account Numbers per client
-- Foreign keys linking transactions to client accounts
+- Unique Username per user
 - Non-nullable fields for critical financial data
 
 ---
