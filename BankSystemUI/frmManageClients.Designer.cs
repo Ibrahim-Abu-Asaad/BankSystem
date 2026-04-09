@@ -171,6 +171,7 @@
             dgvListClients.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvListClients.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgvListClients.CellContentClick += dgvListClients_CellContentClick;
+            dgvListClients.CellContextMenuStripChanged += dgvListClients_CellContentClick;
             dgvListClients.CellMouseDown += dgvListClients_CellMouseDown;
             // 
             // txtSearchBy

@@ -48,24 +48,11 @@ namespace BankSystemUI
         private void _RefreshClientsList()
         {
 
-            //lblTotalClients.Text = clsClient.GetClientCount().ToString();
-            //lblAdminCount.Text = clsUser.GetAdminCount().ToString();
-
-            //dgvListUsers.DataSource = clsUser.ListUsers();
-
-            //dgvListClients.DataSource = clsClient.ListAllClients();
-
-            //dgvListClients.Columns["ID"].Visible = false;
-
-            //if (dgvListClients.Columns.Contains("ID"))
-            //{
-            //    dgvListClients.Columns["ID"].Visible = false;
-            //}
-
-            //DataTable _dtClients = clsClient.ListAllClients();
+            _dtClients = clsClient.ListAllClients();
             dgvListClients.DataSource = _dtClients;
 
             lblTotalClients.Text = _dtClients.Rows.Count.ToString();
+            dgvListClients.Columns["ID"].Visible = false;
 
 
         }
@@ -82,19 +69,34 @@ namespace BankSystemUI
         private void dgvListClients_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
 
+            //if (e.Button == MouseButtons.Right)
+            //{
+            //    if (e.RowIndex >= 0)
+            //    {
+            //        // Clear previous selections and select the row that was right-clicked
+            //        dgvListClients.ClearSelection();
+            //        dgvListClients.Rows[e.RowIndex].Selected = true;
+
+            //        // Get the mouse position relative to the grid
+            //        Point mousePosition = dgvListClients.PointToClient(Cursor.Position);
+
+            //        // Show the ContextMenuStrip at the mouse position
+            //        cmsClients.Show(dgvListClients, mousePosition);
+            //    }
+            //}
+
             if (e.Button == MouseButtons.Right)
             {
+                // Ensure we clicked on a valid row header or cell, not the column header
                 if (e.RowIndex >= 0)
                 {
-                    // Clear previous selections and select the row that was right-clicked
                     dgvListClients.ClearSelection();
+                    // Set the current row to the one right-clicked
                     dgvListClients.Rows[e.RowIndex].Selected = true;
+                    dgvListClients.CurrentCell = dgvListClients.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                    // Get the mouse position relative to the grid
-                    Point mousePosition = dgvListClients.PointToClient(Cursor.Position);
-
-                    // Show the ContextMenuStrip at the mouse position
-                    cmsClients.Show(dgvListClients, mousePosition);
+                    // Show the context menu at the mouse position
+                    cmsClients.Show(Cursor.Position);
                 }
             }
 
@@ -103,42 +105,18 @@ namespace BankSystemUI
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            // EDIT
 
-            if (dgvListClients.CurrentRow != null)
+            if (dgvListClients.SelectedRows.Count > 0)
             {
 
-                int _SelectedClientID = -1;
-                _SelectedClientID = (int)dgvListClients.CurrentRow.Cells["ID"].Value;
+                int selectedClientID = (int)dgvListClients.CurrentRow.Cells["ID"].Value;
 
-                //MessageBox.Show($"{_SelectedClientID}");
-                //return;
-
-                clsClient _SelectedClient = clsClient.GetClientByClientID(_SelectedClientID);
-
-                //if (_SelectedClient != null)
-                //    MessageBox.Show($"Hello {_SelectedClient.Name}");
-                //else MessageBox.Show("NULL");
-
-
-
-                Form frm = new frmAddEditClients(_SelectedClientID);
+                Form frm = new frmAddEditClients(selectedClientID);
                 frm.ShowDialog();
+
                 _RefreshClientsList();
-
-                //txtSearchBy.Text = SEARCHING_Sentence;
-                //_Search();
-
-
-
-
+            
             }
-
-
-
-
-
-
 
         }
 
@@ -169,7 +147,9 @@ namespace BankSystemUI
 
         private void dgvListClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             //
+
         }
 
         private void _ApplyFilter()
@@ -208,6 +188,11 @@ namespace BankSystemUI
 
             _ApplyFilter();
 
+        }
+
+        private void dgvListClients_CellContextMenuStripChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //
         }
     }
 }

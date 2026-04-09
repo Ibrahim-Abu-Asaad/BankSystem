@@ -95,20 +95,6 @@ namespace BankSystemUI
 
             }
 
-            //if (pbClientImage.Image != Properties.Resources.InitPicProfile && pbClientImage.Image != Properties.Resources.initialPhotoWomen)
-            //{
-            //    llblRemove.Visible = true;
-            //    llblSetImage.Visible = false;
-            //}
-
-            //if (pbClientImage.Image == Properties.Resources.InitPicProfile || pbClientImage.Image == Properties.Resources.initialPhotoWomen)
-            //{
-            //    llblRemove.Visible = false;
-            //    llblSetImage.Visible = true;
-            //}
-
-
-
 
         }
 
@@ -133,18 +119,6 @@ namespace BankSystemUI
             else if (_Client.Gender.ToLower() == "female")
                 rbtnFemale.Checked = true;
 
-
-            //if (_Client.ImagePath != "" && File.Exists(_Client.ImagePath))
-            //{
-            //    pbClientImage.Load(_Client.ImagePath);
-            //    llblSetImage.Visible = false;
-            //    llblRemove.Visible = true;
-            //}
-            //else
-            //{
-            //    llblSetImage.Visible = true;
-            //    llblRemove.Visible = false;
-            //}
 
             if (!string.IsNullOrEmpty(_Client.ImagePath) && File.Exists(_Client.ImagePath))
             {
@@ -173,11 +147,6 @@ namespace BankSystemUI
             txtAccountNO.Text = _Client.AccountNO.ToString();
             txtPINcode.Text = _Client.PINcode.ToString();
             nudBalance.Value = _Client.Balance;
-
-            //cbCurrency.DisplayMember = "Name";
-            //cbCurrency.ValueMember = "ID";
-            //cbCurrency.DataSource = clsCurrency.GetAllCurrencies();
-            //cbCurrency.SelectedValue = _Client
 
             cbCurrency.SelectedValue = _Client.CurrencyID;
 
@@ -364,7 +333,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtAccountNO, "The AccountNO is required");
                 isValid = false;
             }
-            else if (clsUser.IsUsernameExist(txtAccountNO.Text, _Client.ID))
+            else if (clsClient.IsAccountNOExistWithoutHim(txtAccountNO.Text, _Client.ID))
             {
                 errorProvider1.SetError(txtAccountNO, "This AccountNO already exists, enter another one");
                 isValid = false;
@@ -378,16 +347,23 @@ namespace BankSystemUI
             }
             else if (txtPINcode.Text.Length < 4)
             {
-                errorProvider1.SetError(txtPINcode, "PINcode must be at least 8 characters");
+                errorProvider1.SetError(txtPINcode, "PINcode must be at least 4 characters");
                 isValid = false;
             }
 
 
             // Balance
-            if (nudBalance.Value < 500)
+            if (nudBalance.Value <= 0)
             {
-                MessageBox.Show("The Balance Should be at least 500 dollar to create a new bank account", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errorProvider1.SetError(nudBalance, "Please enter an amount greater than 0");
+                isValid = false;
             }
+            else if (nudBalance.Value < 500)
+            {
+                errorProvider1.SetError(nudBalance, "The Balance Should be at least 500 dollar to create a new bank account");
+                isValid = false;
+            }
+
 
             return isValid;
 
@@ -528,6 +504,39 @@ namespace BankSystemUI
         private void guna2ControlBox1_Click(object sender, EventArgs e)
         {
             //
+        }
+
+        private void nudBalance_ValueChanged(object sender, EventArgs e)
+        {
+
+            if (nudBalance.Text.Length > 0)
+                errorProvider1.SetError(nudBalance, "");
+
+        }
+
+        private void txtAccountNO_TextChanged_1(object sender, EventArgs e)
+        {
+            if (txtAccountNO.Text.Length > 0)
+                errorProvider1.SetError(txtAccountNO, "");
+
+        }
+
+        private void nudBalance_DataContextChanged(object sender, EventArgs e)
+        {
+            if (txtAccountNO.Text.Length > 0)
+                errorProvider1.SetError(txtAccountNO, "");
+        }
+
+        private void nudBalance_BindingContextChanged(object sender, EventArgs e)
+        {
+            //if (txtAccountNO.Text.Length > 0)
+            //    errorProvider1.SetError(txtAccountNO, "");
+        }
+
+        private void nudBalance_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (nudBalance.Text.Length > 0)
+                errorProvider1.SetError(nudBalance, "");
         }
     }
 }

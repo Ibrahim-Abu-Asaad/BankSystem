@@ -437,7 +437,7 @@
             chbShowPassword.CheckedState.BorderThickness = 0;
             chbShowPassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             chbShowPassword.Cursor = Cursors.Hand;
-            chbShowPassword.Location = new Point(475, 687);
+            chbShowPassword.Location = new Point(459, 687);
             chbShowPassword.Name = "chbShowPassword";
             chbShowPassword.Size = new Size(67, 24);
             chbShowPassword.TabIndex = 59;
@@ -452,7 +452,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(384, 650);
+            label8.Location = new Point(368, 650);
             label8.Name = "label8";
             label8.Size = new Size(90, 22);
             label8.TabIndex = 58;
@@ -471,7 +471,7 @@
             txtPINcode.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPINcode.ForeColor = SystemColors.ControlText;
             txtPINcode.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPINcode.Location = new Point(475, 644);
+            txtPINcode.Location = new Point(459, 644);
             txtPINcode.Margin = new Padding(3, 4, 3, 4);
             txtPINcode.Name = "txtPINcode";
             txtPINcode.PlaceholderText = "Enter Your PIN code";
@@ -485,7 +485,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(38, 650);
+            label7.Location = new Point(24, 650);
             label7.Name = "label7";
             label7.Size = new Size(100, 22);
             label7.TabIndex = 56;
@@ -504,7 +504,7 @@
             txtAccountNO.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAccountNO.ForeColor = SystemColors.ControlText;
             txtAccountNO.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtAccountNO.Location = new Point(140, 644);
+            txtAccountNO.Location = new Point(126, 644);
             txtAccountNO.Margin = new Padding(3, 4, 3, 4);
             txtAccountNO.Name = "txtAccountNO";
             txtAccountNO.PlaceholderText = "Enter Your AccountNO";
@@ -512,12 +512,13 @@
             txtAccountNO.ShadowDecoration.CustomizableEdges = customizableEdges10;
             txtAccountNO.Size = new Size(201, 36);
             txtAccountNO.TabIndex = 55;
+            txtAccountNO.TextChanged += txtAccountNO_TextChanged_1;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(742, 650);
+            label9.Location = new Point(707, 650);
             label9.Name = "label9";
             label9.Size = new Size(80, 22);
             label9.TabIndex = 60;
@@ -538,7 +539,7 @@
             cbCurrency.ForeColor = SystemColors.ControlText;
             cbCurrency.IntegralHeight = false;
             cbCurrency.ItemHeight = 30;
-            cbCurrency.Location = new Point(828, 687);
+            cbCurrency.Location = new Point(793, 687);
             cbCurrency.MaxDropDownItems = 7;
             cbCurrency.Name = "cbCurrency";
             cbCurrency.ShadowDecoration.CustomizableEdges = customizableEdges6;
@@ -573,7 +574,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(737, 693);
+            label10.Location = new Point(702, 693);
             label10.Name = "label10";
             label10.Size = new Size(90, 22);
             label10.TabIndex = 65;
@@ -584,13 +585,17 @@
             nudBalance.BackColor = Color.Transparent;
             nudBalance.CustomizableEdges = customizableEdges1;
             nudBalance.Font = new Font("Segoe UI", 9F);
-            nudBalance.Location = new Point(828, 644);
+            nudBalance.Location = new Point(793, 644);
             nudBalance.Margin = new Padding(3, 4, 3, 4);
             nudBalance.Maximum = new decimal(new int[] { 1410065408, 2, 0, 0 });
             nudBalance.Name = "nudBalance";
             nudBalance.ShadowDecoration.CustomizableEdges = customizableEdges2;
             nudBalance.Size = new Size(286, 39);
             nudBalance.TabIndex = 66;
+            nudBalance.ValueChanged += nudBalance_ValueChanged;
+            nudBalance.BindingContextChanged += nudBalance_BindingContextChanged;
+            nudBalance.DataContextChanged += nudBalance_DataContextChanged;
+            nudBalance.KeyPress += nudBalance_KeyPress;
             // 
             // frmAddEditClients
             // 

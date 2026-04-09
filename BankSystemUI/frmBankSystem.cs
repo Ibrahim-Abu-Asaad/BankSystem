@@ -151,6 +151,12 @@ namespace BankSystemUI
         {
             Form frm = new frmMyProfile(_User.UserID);
             frm.ShowDialog();
+
+            int MarkDeleted = clsUser.GetUserByUserID(_User.UserID).MarkDeleted;
+
+            if (MarkDeleted == 1)
+                this.Close();
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)

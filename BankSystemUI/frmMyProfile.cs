@@ -420,7 +420,8 @@ namespace BankSystemUI
                     MessageBox.Show($"Your account has been deleted successfully",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    Application.Restart();
+                    //Application.Restart();
+                    this.Close();
 
                     //clsGlobal.Logout();
 

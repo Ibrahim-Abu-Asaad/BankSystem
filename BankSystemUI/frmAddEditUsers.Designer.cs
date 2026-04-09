@@ -255,7 +255,7 @@
             txtEmail.PlaceholderText = "Enter Your Email";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            txtEmail.Size = new Size(184, 36);
+            txtEmail.Size = new Size(203, 36);
             txtEmail.TabIndex = 9;
             txtEmail.TextChanged += txtEmail_TextChanged;
             txtEmail.KeyPress += txtEmail_KeyPress;
@@ -299,7 +299,7 @@
             txtAddress.PlaceholderText = "Enter Your Address";
             txtAddress.SelectedText = "";
             txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            txtAddress.Size = new Size(184, 36);
+            txtAddress.Size = new Size(203, 36);
             txtAddress.TabIndex = 13;
             txtAddress.TextChanged += txtAddress_TextChanged;
             // 
@@ -332,7 +332,7 @@
             txtPhone.PlaceholderText = "Enter Your Phone";
             txtPhone.SelectedText = "";
             txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            txtPhone.Size = new Size(184, 36);
+            txtPhone.Size = new Size(210, 36);
             txtPhone.TabIndex = 17;
             txtPhone.TextChanged += txtPhone_TextChanged;
             txtPhone.KeyPress += guna2TextBox1_KeyPress;
@@ -375,7 +375,7 @@
             cbCountry.MaxDropDownItems = 7;
             cbCountry.Name = "cbCountry";
             cbCountry.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            cbCountry.Size = new Size(162, 36);
+            cbCountry.Size = new Size(201, 36);
             cbCountry.TabIndex = 19;
             // 
             // label4

@@ -1,4 +1,5 @@
 ﻿using BankSystemDAL;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -164,8 +165,11 @@ namespace BankSystemBLL
         public bool CheckPIN(string PIN)
             => clsDataClient.CheckIfPINcodeRight(this.ID, PIN);
 
+        public static bool IsAccountNOExist(string AccountNO)
+            => clsDataClient.IsAccountNOExist(AccountNO);
 
-
+        public static bool IsAccountNOExistWithoutHim(string AccountNO, int ClientID)
+            => clsDataClient.IsAccountNOExistWithoutHim(AccountNO, ClientID);
 
 
 

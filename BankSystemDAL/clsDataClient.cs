@@ -152,6 +152,52 @@ namespace BankSystemDAL
             return IsClientExist;
         }
 
+        public static bool IsAccountNOExist(string AccountNO)
+        {
+            bool IsClientExist = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT Found=1 FROM Clients WHERE AccountNO = @AccountNO";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@AccountNO", AccountNO);
+
+            try
+            {
+                connection.Open();
+                object obj = command.ExecuteScalar();
+                if (obj != null)
+                    IsClientExist = true;
+            }
+            catch (Exception ex) { string errorMessage = ex.Message; }
+            finally { connection.Close(); }
+
+            return IsClientExist;
+        }
+
+        public static bool IsAccountNOExistWithoutHim(string AccountNO, int ClientID)
+        {
+            bool IsClientExist = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT Found=1 FROM Clients WHERE AccountNO = @AccountNO AND ID != @ClientID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@AccountNO", AccountNO);
+            command.Parameters.AddWithValue("@ClientID", ClientID);
+
+            try
+            {
+                connection.Open();
+                object obj = command.ExecuteScalar();
+                if (obj != null)
+                    IsClientExist = true;
+            }
+            catch (Exception ex) { string errorMessage = ex.Message; }
+            finally { connection.Close(); }
+
+            return IsClientExist;
+        }
 
         public static bool GetClientByClientID(ref int PersonID, ref string Name, ref string Email,
             ref DateTime BirthDate, ref string Address, ref string ImagePath, ref int CountryID,
