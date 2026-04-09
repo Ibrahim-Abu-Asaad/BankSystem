@@ -112,7 +112,7 @@ The project is built on a **3-Layer (N-Tier) Architecture**, strictly separating
 ┌─────────────────────────────────┐
 │     Presentation Layer (UI)     │  Windows Forms — all screens & dialogs
 ├─────────────────────────────────┤
-│   Business Logic Layer (BLL)    │  Validation, rules, transaction logic
+│   Business Logic Layer (BLL)    │  Validation, rules, Logic
 ├─────────────────────────────────┤
 │   Data Access Layer (DAL)       │  SQL Server queries via stored procedures
 └─────────────────────────────────┘
@@ -133,6 +133,7 @@ The project is built on a **3-Layer (N-Tier) Architecture**, strictly separating
 - Role-Based Access Control (RBAC) with fully configurable permissions per role
 - Admin can add, edit, and delete users with assigned roles
 - Profile management for all logged-in users
+- Search and filter users by Username or Name
 
 ### 🏧 Client Account Management
 - Full CRUD for bank clients (Create, Read, Update, Delete)
@@ -148,7 +149,7 @@ The project is built on a **3-Layer (N-Tier) Architecture**, strictly separating
 - Full transaction history in the **Transactions Register**
 
 ### 💱 Currencies Rate
-- Displays real-time exchange rates for Middle Eastern and international currencies
+- Displays exchange rates for Middle Eastern currencies
 - Base currency: USD, with rates for JOD, SYP, IQD, SAR, EGP, AED, KWD, LBP, and more
 
 ### 📋 Audit & Logging
@@ -174,6 +175,7 @@ The project is built on a **3-Layer (N-Tier) Architecture**, strictly separating
 |-------|-----------|
 | Language | C# (.NET Framework) |
 | UI Framework | Windows Forms (WinForms) |
+| Libraries | Guna.UI2 |
 | Database | Microsoft SQL Server |
 | Data Access | ADO.NET with Stored Procedures |
 | IDE | Visual Studio |
@@ -186,13 +188,17 @@ The project is built on a **3-Layer (N-Tier) Architecture**, strictly separating
 The SQL Server database uses a normalized relational schema with the following core tables:
 
 ```
-Clients          → Stores client personal info, account number, PIN, balance, currency
-Users            → Stores system users with login credentials and roles
-Roles            → Defines available roles (Admin, Manager, etc.)
-Permissions      → Maps permissions to roles
-Transactions     → Logs every financial transaction with from/to accounts
-LoginHistory     → Audit log of all login events
-Currencies       → Currency codes and exchange rates vs. USD
+Persons          → Stores client/User personal info.
+Clients          → Stores client Sensitive Info: account number, PIN, balance.
+Users            → Stores system users with login credentials and roles.
+Roles            → Defines available roles (Admin, Account Manager, Finance Manager).
+Permissions      → Maps permissions to roles.
+Countries        → Store Arab Countries and USA.
+Transactions     → Logs every financial transaction with from/to accounts.
+LoginsRegister   → Audit log of all login events.
+Currencies       → Currency name, code and  Country.
+Exchange Rates   → Stores real-time currency conversion values used for calculating international bank transfers.
+RolePermissions  → Manages granular access control by mapping specific system permissions to authorized user roles.
 ```
 
 **Key constraints enforced at the DB level:**
@@ -206,15 +212,15 @@ Currencies       → Currency codes and exchange rates vs. USD
 
 | Module | Description |
 |--------|-------------|
-| **Login** | Authenticates users, records login timestamp, enforces session |
+| **Login** | Authenticates users, records login timestamp |
 | **Dashboard** | Role-aware home screen; shows only permitted navigation items |
 | **Manage Clients** | Full client CRUD with search, pagination, and photo management |
 | **Add / Edit Client** | Form with real-time validation, date picker, country dropdown |
-| **Transactions** | Tabbed interface: Withdraw / Deposit / Transfer / Register |
+| **Transactions** | Tabbed interface: Withdraw / Deposit / Transfer / Transactions Register |
 | **Manage Users** | Admin-only user management with role assignment |
 | **Add / Edit User** | User form with login credentials and role selector |
-| **Currencies Rate** | Live currency rate table sorted by country |
-| **Logins Register** | Searchable login audit log with date, username, role, name |
+| **Currencies Rate** | Live currency rate table |
+| **Logins Register** | login audit log with date, username, role, name |
 | **Transactions Register** | Full transaction ledger with type, accounts, amounts |
 | **Roles & Permissions** | Permission matrix editor per role with save and add-new |
 | **My Profile** | Editable personal profile for the currently logged-in user |
@@ -236,7 +242,6 @@ Currencies       → Currency codes and exchange rates vs. USD
 
 ### Prerequisites
 
-- Windows OS
 - Visual Studio 2019 or later
 - SQL Server 2017 or later (or SQL Server Express)
 - .NET Framework 4.7.2+
@@ -245,31 +250,44 @@ Currencies       → Currency codes and exchange rates vs. USD
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/ApexBank.git
-   cd ApexBank
+   git clone https://github.com/Ibrahim-Abu-Asaad/BankSystem.git
+   cd BankSystem
    ```
 
-2. **Restore the database**
-   - Open SQL Server Management Studio (SSMS)
-   - Run the script located at `Database/ApexBank_Schema.sql`
-   - Then run `Database/ApexBank_SeedData.sql` for sample data
+2. **Download the SQL Script:**
+   Choose the script that matches your SQL Server version:
+   - **SQL Server 2019:** [Download Script](https://drive.google.com/file/d/1Kt3fT27UkkZdvpGVXqu4JMBx8GgY3uzs/view?usp=sharing)
+   - **SQL Server 2022:** [Download Script](https://drive.google.com/file/d/1eZpHbPVfiAl7cdFDCX6ost4yVz546WnL/view?usp=sharing)
 
-3. **Configure the connection string**
-   - Open `DataAccessLayer/clsDataAccessSettings.cs`
+3. **Prepare the Database:**
+   - Open **SQL Server Management Studio (SSMS)** and connect to your instance.
+   - Right-click on **Databases** and select **New Database...**
+   - Name the database: `BankSystemDB`
+
+4. **Execute the Script:**
+   - Open the downloaded `.sql` file in SSMS (File > Open > File).
+   - Ensure `BankSystemDB` is selected in the available databases dropdown (top left).
+   - Press **Execute** (or `F5`) to run the script and build your system.
+
+5. **Configure the connection string**
+   - Open `BankSystemDAL/clsDataAccessSettings.cs`
    - Update the `Server` and `Database` fields to match your SQL Server instance:
      ```csharp
-     public static string ConnectionString =
-         "Server=YOUR_SERVER_NAME; Database=ApexBank; Integrated Security=True;";
+     public static string ConnectionString = "Server=YOUR_SERVER_NAME; Database=BankSystemDB; Integrated Security=True;";
+     ```
+     OR
+     ```csharp
+      public const string ConnectionString = "Server=YOUR_SERVER_NAME; Database=BankSystemDB; User ID=YOUR_USER; Password=YOUR_PASSWORD;";
      ```
 
-4. **Build and Run**
-   - Open `ApexBank.sln` in Visual Studio
+6. **Build and Run**
+   - Open `BankSystem.sln` in Visual Studio
    - Press `F5` or click **Start** to build and run
 
-5. **Default Admin Login**
+7. **Default Admin Login**
    ```
    Username: ibra
-   Password: [set in seed data]
+   Password: 123123123
    ```
 
 ---
@@ -277,40 +295,40 @@ Currencies       → Currency codes and exchange rates vs. USD
 ## 🗂️ Project Structure
 
 ```
-ApexBank/
+BankSystem/ (Solution)
 │
-├── PresentationLayer/          # All Windows Forms screens
-│   ├── frmLogin.cs
-│   ├── frmMain.cs
-│   ├── frmManageClients.cs
-│   ├── frmAddEditClient.cs
-│   ├── frmManageUsers.cs
-│   ├── frmAddEditUser.cs
-│   ├── frmTransactions.cs
-│   ├── frmTransfer.cs
-│   ├── frmCurrenciesRate.cs
-│   ├── frmLoginsRegister.cs
-│   ├── frmTransactionsRegister.cs
-│   ├── frmRolesAndPermissions.cs
-│   └── frmMyProfile.cs
+├── BankSystemUI/               # Presentation Layer (Organized by Feature)
+│   ├── 📂 Auth                 # frmLogin.cs
+│   ├── 📂 Clients              # frmManageClients.cs, frmAddEditClients.cs
+│   ├── 📂 Currencies           # frmCurrenciesSettings.cs
+│   ├── 📂 Logs                 # frmLoginsRegister.cs
+│   ├── 📂 Main                 # frmBankSystem.cs, frmMyProfile.cs
+│   ├── 📂 Roles & Permissions  # frmRolesAndPermissions.cs, frmAddNewRole.cs
+│   ├── 📂 Transactions         # frmTransactions.cs, frmTransfer.cs, frmTransactionsRegister.cs
+│   ├── 📂 Users                # frmManageUsers.cs, frmAddEditUsers.cs
+│   ├── 📂 Resources            # Icons and Images (Edit, Trash, Profile, etc.)
+│   └── Program.cs              # Application Entry Point
 │
-├── BusinessLogicLayer/         # Validation, rules, computation
-│   ├── clsClient.cs
-│   ├── clsUser.cs
-│   ├── clsTransaction.cs
-│   ├── clsRole.cs
-│   └── clsCurrency.cs
+├── BankSystemBLL/              # Business Logic Layer (The "Brain")
+│   ├── clsPerson.cs            # Base Class for People
+│   ├── clsClient.cs            # Client Logic
+│   ├── clsUser.cs              # User Logic & Authentication
+│   ├── clsRole.cs              # Role Logic
+│   ├── clsPermission.cs        # Permissions Logic
+│   ├── clsPermissionItem.cs    # Easy Handling With Permissions
+│   ├── clsTransactions.cs      # Transaction Operations Logic
+│   ├── clsCurrency.cs          # Currency Logic
+│   └── clsCountry.cs           # Country Functions
 │
-├── DataAccessLayer/            # SQL communication
-│   ├── clsDataAccessSettings.cs
-│   ├── clsClientData.cs
-│   ├── clsUserData.cs
-│   ├── clsTransactionData.cs
-│   └── clsCurrencyData.cs
-│
-└── Database/
-    ├── ApexBank_Schema.sql
-    └── ApexBank_SeedData.sql
+└── BankSystemDAL/              # Data Access Layer (SQL Communication)
+    ├── clsDataAccessSettings.cs# Database Connection Settings
+    ├── clsDataClient.cs        # Client DB Queries
+    ├── clsDataUser.cs          # User DB Queries
+    ├── clsDataRole.cs          # Role DB Queries
+    ├── clsDataPermission.cs    # Permission DB Queries
+    ├── clsDataTransaction.cs   # Transaction DB Queries
+    ├── clsDataCurrency.cs      # Currency DB Queries
+    └── clsDataCountry.cs       # Country DB Queries
 ```
 
 ---
@@ -319,15 +337,13 @@ ApexBank/
 
 **Ibrahim Abu-Asaad**
 
-- Built with passion as a full-stack desktop application demonstrating real-world software engineering principles
-- Covers security, financial integrity, UI/UX, database design, and clean architecture in a single cohesive project
+- Built as a practice project to master programming foundations and the core principles of Object-Oriented Programming (OOP).
+- Developed to gain a deep understanding of 3-Tier Architecture, ensuring a clean separation between User Interface, Business Logic,and Data Access.
+- Covers security, financial integrity, UI/UX, database design, and clean architecture in a single cohesive project.
 
 ---
 
 ## 📄 License
 
-This project is open-source and available under the [MIT License](LICENSE).
-
+This project is open-source and free for everyone, feel free to fork it.
 ---
-
-> *"Clean architecture is not about where you put the files — it's about which direction the dependencies point."*
