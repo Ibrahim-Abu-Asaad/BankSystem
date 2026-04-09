@@ -6,7 +6,13 @@
 
 ## 📸 Screenshots
 
+Login Page
 ![Login](screenshots/Login%20Page.PNG)
+
+---
+
+Bank Interface Page
+![BankInterface](screenshots/Bank%20Interface%20Page)
 
 ---
 
