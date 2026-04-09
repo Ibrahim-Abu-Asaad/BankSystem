@@ -112,7 +112,7 @@ The project is built on a **3-Layer (N-Tier) Architecture**, strictly separating
 ┌─────────────────────────────────┐
 │     Presentation Layer (UI)     │  Windows Forms — all screens & dialogs
 ├─────────────────────────────────┤
-│   Business Logic Layer (BLL)    │  Validation, rules, Logic
+│   Business Logic Layer (BLL)    │  business rules, and entity logic
 ├─────────────────────────────────┤
 │   Data Access Layer (DAL)       │  SQL Server queries via stored procedures
 └─────────────────────────────────┘
