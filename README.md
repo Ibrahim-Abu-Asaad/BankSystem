@@ -6,13 +6,78 @@
 
 ## 📸 Screenshots
 
-Login Page
+### Login Page
 ![Login](screenshots/Login%20Page.PNG)
 
 ---
 
-Bank Interface Page
+### Bank Interface Page
 ![BankInterface](screenshots/Bank%20Interface%20Page.PNG)
+
+---
+
+### Manage Clients
+![ManageClients](screenshots/Manage%20Clients%20Page.PNG)
+
+---
+
+### Add New Client
+![AddNewClient](screenshots/Add%20New%20Client%20Page.PNG)
+
+---
+
+### Edit Client
+![EditClient](screenshots/Edit%20Client%20Page.PNG)
+
+---
+
+### Manage Users
+![ManageUsers](screenshots/Manage%20Users%20Page.PNG)
+
+---
+
+### Add New User
+![AddNewUser](screenshots/Add%20New%20User%20Page.PNG)
+
+---
+
+### Edit User
+![EditUser](screenshots/Edit%20User%20Page.PNG)
+
+---
+
+### Roles And Permissions
+![RolesPermissions](screenshots/Roles%20And%20Permissions%20Page.PNG)
+
+---
+
+### Transactions
+![Transactions](screenshots/Transactions%20Page.PNG)
+
+---
+
+### Transactions Register
+![TransactionsRegister](screenshots/Transactions%20Register%20Page.PNG)
+
+---
+
+### Transfer Page
+![Transfer](screenshots/Transfer%20Page.PNG)
+
+---
+
+### Logins Register
+![LoginsRegister](screenshots/Logins%20Register%20Page.PNG)
+
+---
+
+### Currencies Rate
+![CurrenciesRate](screenshots/Currencies%20Rate%20Page.PNG)
+
+---
+
+### My Profile
+![MyProfile](screenshots/My%20Profile%20Page.PNG)
 
 ---
 
