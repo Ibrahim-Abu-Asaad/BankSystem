@@ -82,6 +82,7 @@
             label11 = new Label();
             chbShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
             btnDeleteAccount = new Guna.UI2.WinForms.Guna2Button();
+            chbChangePassword = new Guna.UI2.WinForms.Guna2CheckBox();
             ((System.ComponentModel.ISupportInitialize)pbMyProfile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -279,7 +280,7 @@
             txtPassword.Font = new Font("Cascadia Mono", 9F);
             txtPassword.ForeColor = Color.Black;
             txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Location = new Point(448, 561);
+            txtPassword.Location = new Point(448, 619);
             txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Enter Your Password";
@@ -323,7 +324,7 @@
             btnSave.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnSave.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(569, 701);
+            btnSave.Location = new Point(569, 757);
             btnSave.Name = "btnSave";
             btnSave.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnSave.Size = new Size(168, 52);
@@ -397,7 +398,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(356, 569);
+            label9.Location = new Point(356, 627);
             label9.Name = "label9";
             label9.Size = new Size(90, 22);
             label9.TabIndex = 20;
@@ -502,7 +503,7 @@
             chbShowPassword.CheckedState.BorderThickness = 0;
             chbShowPassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             chbShowPassword.Cursor = Cursors.Hand;
-            chbShowPassword.Location = new Point(448, 606);
+            chbShowPassword.Location = new Point(448, 664);
             chbShowPassword.Name = "chbShowPassword";
             chbShowPassword.Size = new Size(132, 24);
             chbShowPassword.TabIndex = 27;
@@ -525,7 +526,7 @@
             btnDeleteAccount.FillColor = Color.Tomato;
             btnDeleteAccount.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDeleteAccount.ForeColor = Color.White;
-            btnDeleteAccount.Location = new Point(98, 701);
+            btnDeleteAccount.Location = new Point(98, 757);
             btnDeleteAccount.Name = "btnDeleteAccount";
             btnDeleteAccount.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnDeleteAccount.Size = new Size(168, 52);
@@ -533,11 +534,31 @@
             btnDeleteAccount.Text = "Delete Account";
             btnDeleteAccount.Click += btnDeleteAccount_Click;
             // 
+            // chbChangePassword
+            // 
+            chbChangePassword.AutoSize = true;
+            chbChangePassword.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
+            chbChangePassword.CheckedState.BorderRadius = 0;
+            chbChangePassword.CheckedState.BorderThickness = 0;
+            chbChangePassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            chbChangePassword.Cursor = Cursors.Hand;
+            chbChangePassword.Location = new Point(448, 592);
+            chbChangePassword.Name = "chbChangePassword";
+            chbChangePassword.Size = new Size(146, 24);
+            chbChangePassword.TabIndex = 29;
+            chbChangePassword.Text = "Change Password";
+            chbChangePassword.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
+            chbChangePassword.UncheckedState.BorderRadius = 0;
+            chbChangePassword.UncheckedState.BorderThickness = 0;
+            chbChangePassword.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            chbChangePassword.CheckedChanged += chbChangePassword_CheckedChanged;
+            // 
             // frmMyProfile
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 794);
+            ClientSize = new Size(784, 838);
+            Controls.Add(chbChangePassword);
             Controls.Add(btnDeleteAccount);
             Controls.Add(chbShowPassword);
             Controls.Add(label11);
@@ -609,5 +630,6 @@
         private Label label11;
         private Guna.UI2.WinForms.Guna2CheckBox chbShowPassword;
         private Guna.UI2.WinForms.Guna2Button btnDeleteAccount;
+        private Guna.UI2.WinForms.Guna2CheckBox chbChangePassword;
     }
 }

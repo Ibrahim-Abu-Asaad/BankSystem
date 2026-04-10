@@ -90,6 +90,7 @@
             rbtnFemale = new RadioButton();
             chbShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
             label11 = new Label();
+            chbChangePassword = new Guna.UI2.WinForms.Guna2CheckBox();
             ((System.ComponentModel.ISupportInitialize)pbUserImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -613,11 +614,31 @@
             label11.TabIndex = 43;
             label11.Text = "User Role";
             // 
+            // chbChangePassword
+            // 
+            chbChangePassword.AutoSize = true;
+            chbChangePassword.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
+            chbChangePassword.CheckedState.BorderRadius = 0;
+            chbChangePassword.CheckedState.BorderThickness = 0;
+            chbChangePassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            chbChangePassword.Cursor = Cursors.Hand;
+            chbChangePassword.Location = new Point(459, 567);
+            chbChangePassword.Name = "chbChangePassword";
+            chbChangePassword.Size = new Size(146, 24);
+            chbChangePassword.TabIndex = 44;
+            chbChangePassword.Text = "Change Password";
+            chbChangePassword.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
+            chbChangePassword.UncheckedState.BorderRadius = 0;
+            chbChangePassword.UncheckedState.BorderThickness = 0;
+            chbChangePassword.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            chbChangePassword.CheckedChanged += chbChangePassword_CheckedChanged;
+            // 
             // frmAddEditUsers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1137, 794);
+            Controls.Add(chbChangePassword);
             Controls.Add(label11);
             Controls.Add(chbShowPassword);
             Controls.Add(rbtnFemale);
@@ -702,5 +723,6 @@
         private Label label13;
         private Guna.UI2.WinForms.Guna2CheckBox chbShowPassword;
         private Label label11;
+        private Guna.UI2.WinForms.Guna2CheckBox chbChangePassword;
     }
 }

@@ -11,7 +11,17 @@ namespace BankSystemBLL
 
         public int UserID { get; set; }
         public string Username { get; set; }
+
+
+
+        // This Is The Password Hash
         public string Password { get; set; }
+
+        // The Real Password is here (We will use it to send it to Edit form)
+        //public string RealPassword { get; set; }
+
+
+
         public DateTime LastLogin { get; set; }
         public int RoleID { get; set; }
         //public List<string> PermissionNames { get; set; } = new List<string>();
@@ -220,7 +230,6 @@ namespace BankSystemBLL
                 case enMode.Create: return _CreateNewUser(this);
                 case enMode.Update: return _UpdateUser(this);
             }
-            this.Password = clsCryptography.HashPassword(this.Password);
             return false;
 
 

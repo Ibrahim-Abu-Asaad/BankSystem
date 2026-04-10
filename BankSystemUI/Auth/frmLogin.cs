@@ -12,6 +12,8 @@ namespace BankSystemUI
             InitializeComponent();
         }
 
+        int FailedLogedIn = 0;
+
         private clsUser _User = new clsUser();
         private int _UserID = -1;
 
@@ -48,15 +50,36 @@ namespace BankSystemUI
 
             if (_User == null)
             {
+                FailedLogedIn++;
                 MessageBox.Show("There is not an account with this username", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (_User.Password != Password)
+            //if (_User.Password != Password)
+            //{
+            //    MessageBox.Show("Wrong Password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
+
+            //string Role = clsRole.GetRoleNameByRoleID(_User.RoleID).ToString().ToLower();
+            //if (Role == "admin" && txtPassword.Text == "123")
+            //    return true;
+
+            // HASHING
+            //////////////////////////////////////////////////////////////////////////////
+            string enteredPasswordFromLogin = Password;
+            string storedHashPassword = _User.Password;
+
+            bool IsCorrect = BCrypt.Net.BCrypt.Verify(enteredPasswordFromLogin, storedHashPassword);
+
+            if (!IsCorrect)
             {
+                FailedLogedIn++;
                 MessageBox.Show("Wrong Password", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            //////////////////////////////////////////////////////////////////////////////
+
 
             //if (!clsCryptography.VerifyPassword(Password, _User.Password))
             //{
@@ -87,7 +110,9 @@ namespace BankSystemUI
             if (_Login())
             {
 
-                Form frm = new frmBankSystem(_UserID);
+                FailedLogedIn = 0;
+                //Form frm = new frmBankSystem(_UserID);
+                Form frm = new frmBankSystem(_User.UserID);
                 frm.ShowDialog();
                 txtUsername.Text = string.Empty;
                 txtPassword.Text = string.Empty;
@@ -96,6 +121,19 @@ namespace BankSystemUI
                 //MessageBox.Show($"Right Username And Right Password, Username: {_User.Username} Password: {_User.Password}");
 
             }
+            else if(FailedLogedIn == 3)
+            {
+
+                MessageBox.Show("Too many failed login attempts.\nThe application will now close for security reasons.",
+                "Access Denied",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+                this.Close();
+
+            }
+
+                
+
             //else
             //{
 

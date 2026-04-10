@@ -80,7 +80,17 @@ namespace BankSystemUI
             //txtCountry.Text = _User.CountryID.ToString();
             txtPhone.Text = _User.Phone;
             txtUsername.Text = _User.Username;
-            txtPassword.Text = _User.Password;
+
+            chbChangePassword.Visible = true;
+            chbChangePassword.Checked = false;
+            //chbChangePassword.Enabled = false;
+
+            txtPassword.Enabled = chbShowPassword.Enabled = false;
+
+            txtPassword.Text = "";
+
+
+
             txtAddress.Text = _User.Address;
 
             if (_User.Gender.ToLower() == "male")
@@ -119,7 +129,7 @@ namespace BankSystemUI
             if (clsRole.IsRoleAdmin(_User.RoleID))
                 btnDeleteAccount.Visible = false;
         }
-        
+
         private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //
@@ -159,13 +169,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtEmail, "Invalid email address!");
                 isValid = false;
             }
-            // From AI: Not used for now, maybe later 
-            //string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            //if (!Regex.IsMatch(txtEmail.Text, emailPattern))
-            //{
-            //    MessageBox.Show("Invalid email format. Please check again.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return false;
-            //}
+
             if (clsUser.IsEmailExist(txtEmail.Text, _User.PersonID))
             {
                 errorProvider1.SetError(txtEmail, "This email is already exist, enter another one");
@@ -226,16 +230,35 @@ namespace BankSystemUI
             }
 
 
-            // Validate Password
-            if (txtPassword.Text.Length == 0)
+            //// Validate Password
+            //if (txtPassword.Text.Length == 0)
+            //{
+            //    errorProvider1.SetError(txtPassword, "The password is required");
+            //    isValid = false;
+            //}
+            //else if (txtPassword.Text.Length < 8)
+            //{
+            //    errorProvider1.SetError(txtPassword, "Password must be at least 8 characters.");
+            //    isValid = false;
+            //}
+
+            if (chbChangePassword.Visible == true && chbChangePassword.Checked == true)
             {
-                errorProvider1.SetError(txtPassword, "The password is required");
-                isValid = false;
-            }
-            else if (txtPassword.Text.Length < 8)
-            {
-                errorProvider1.SetError(txtPassword, "Password must be at least 8 characters.");
-                isValid = false;
+
+                if (txtPassword.Text.Length == 0)
+                {
+                    errorProvider1.SetError(txtPassword, "The password is required");
+                    isValid = false;
+                }
+                else if (txtPassword.Text.Length < 8)
+                {
+                    errorProvider1.SetError(txtPassword, "Password must be at least 8 characters");
+                    isValid = false;
+                }
+
+
+
+
             }
 
 
@@ -269,7 +292,19 @@ namespace BankSystemUI
             _User.CountryID = (int)cbCountry.SelectedValue;
 
             _User.Username = txtUsername.Text;
-            _User.Password = txtPassword.Text;
+
+            //_User.Password = txtPassword.Text;
+
+            if (chbChangePassword.Visible && chbChangePassword.Checked)
+            {
+                _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
+            }
+            else
+            {
+                _User.Password = "";
+            }
+
+            //_User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
 
             if (rbtnMale.Checked == true)
                 _User.Gender = "Male";
@@ -433,6 +468,19 @@ namespace BankSystemUI
 
 
             }
+        }
+
+        private void chbChangePassword_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chbChangePassword.Checked == true)
+                chbShowPassword.Enabled = txtPassword.Enabled = true;
+            else
+            {
+                txtPassword.Text = "";
+                txtPassword.Enabled = chbShowPassword.Enabled = false;
+            }
+
         }
 
 

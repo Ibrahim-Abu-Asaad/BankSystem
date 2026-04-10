@@ -619,20 +619,74 @@ namespace BankSystemDAL
             string Address, string ImagePath, int CountryID, string Phone, string Gender,
             int UserID, string Username, string Password, int RoleID)
         {
+
+            //bool IsUpdated = false;
+
+            //SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            //string query = @"UPDATE Persons
+            //                 SET [Name] = @Name, [Email] = @Email, [BirthDate] = @BirthDate,
+            //                     [Address] = @Address, [ImagePath] = @ImagePath, [Phone] = @Phone,
+            //                     [MarkDeleted] = 0, [CountryID] = @CountryID, [Gender] = @Gender
+            //                 WHERE ID = @PersonID;
+            //                 UPDATE Users
+            //                 SET [Username] = @Username, [Password] = @Password,
+            //                     [PersonID] = @PersonID, [RoleID] = @RoleID
+            //                 WHERE ID = @UserID;";
+
+            //SqlCommand command = new SqlCommand(query, connection);
+            //command.Parameters.AddWithValue("@PersonID", PersonID);
+            //command.Parameters.AddWithValue("@Name", Name);
+            //command.Parameters.AddWithValue("@Email", Email);
+            //command.Parameters.AddWithValue("@BirthDate", BirthDate);
+            //command.Parameters.AddWithValue("@Address", Address);
+            //command.Parameters.AddWithValue("@ImagePath", (object)ImagePath ?? DBNull.Value);
+            //command.Parameters.AddWithValue("@Phone", Phone);
+            //command.Parameters.AddWithValue("@CountryID", CountryID);
+            //command.Parameters.AddWithValue("@Gender", Gender);
+            //command.Parameters.AddWithValue("@UserID", UserID);
+            //command.Parameters.AddWithValue("@Username", Username);
+            //command.Parameters.AddWithValue("@Password", Password);
+            //command.Parameters.AddWithValue("@RoleID", RoleID);
+
+            //try
+            //{
+            //    connection.Open();
+            //    command.ExecuteNonQuery();
+            //    IsUpdated = true;
+            //}
+            //catch (Exception ex) { string message = ex.Message; }
+            //finally { connection.Close(); }
+
+            //return IsUpdated;
+
+
             bool IsUpdated = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            // ✅ Step 1: Build query dynamically
             string query = @"UPDATE Persons
-                             SET [Name] = @Name, [Email] = @Email, [BirthDate] = @BirthDate,
-                                 [Address] = @Address, [ImagePath] = @ImagePath, [Phone] = @Phone,
-                                 [MarkDeleted] = 0, [CountryID] = @CountryID, [Gender] = @Gender
-                             WHERE ID = @PersonID;
-                             UPDATE Users
-                             SET [Username] = @Username, [Password] = @Password,
-                                 [PersonID] = @PersonID, [RoleID] = @RoleID
-                             WHERE ID = @UserID;";
+                     SET [Name] = @Name, [Email] = @Email, [BirthDate] = @BirthDate,
+                         [Address] = @Address, [ImagePath] = @ImagePath, [Phone] = @Phone,
+                         [MarkDeleted] = 0, [CountryID] = @CountryID, [Gender] = @Gender
+                     WHERE ID = @PersonID;
+
+                     UPDATE Users
+                     SET [Username] = @Username, ";
+
+            // ✅ Step 2: Only update password if provided
+            if (!string.IsNullOrEmpty(Password))
+            {
+                query += "[Password] = @Password, ";
+            }
+
+            query += @"[PersonID] = @PersonID, [RoleID] = @RoleID
+               WHERE ID = @UserID;";
 
             SqlCommand command = new SqlCommand(query, connection);
+
+            // Parameters
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@Name", Name);
             command.Parameters.AddWithValue("@Email", Email);
@@ -644,7 +698,13 @@ namespace BankSystemDAL
             command.Parameters.AddWithValue("@Gender", Gender);
             command.Parameters.AddWithValue("@UserID", UserID);
             command.Parameters.AddWithValue("@Username", Username);
-            command.Parameters.AddWithValue("@Password", Password);
+
+            // ✅ Add password param ONLY if used
+            if (!string.IsNullOrEmpty(Password))
+            {
+                command.Parameters.AddWithValue("@Password", Password);
+            }
+
             command.Parameters.AddWithValue("@RoleID", RoleID);
 
             try
@@ -653,10 +713,27 @@ namespace BankSystemDAL
                 command.ExecuteNonQuery();
                 IsUpdated = true;
             }
-            catch (Exception ex) { string message = ex.Message; }
-            finally { connection.Close(); }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            finally
+            {
+                connection.Close();
+            }
 
             return IsUpdated;
+
+
+
+
+
+
+
+
+
+
+
         }
 
         public static bool DeleteUser(int ID)

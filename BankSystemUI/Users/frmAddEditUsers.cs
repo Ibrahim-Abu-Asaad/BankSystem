@@ -33,7 +33,7 @@ namespace BankSystemUI
                 llblRemove.Visible = false;
 
             _selectedUserID = selectedUserID;
-            
+
             _User = clsUser.GetUserByUserID(selectedUserID);
             //_selectedUserID = _User.UserID;
 
@@ -56,19 +56,13 @@ namespace BankSystemUI
             if (clsRole.IsRoleAdmin(LoggedInUser.RoleID))
                 cbRole.DataSource = clsRole.ListAllRolesWithoutAdmin();
 
-            
+
             cbRole.SelectedIndex = 0;
 
             cbCountry.DisplayMember = "Name";
             cbCountry.ValueMember = "ID";
             cbCountry.DataSource = clsCountry.GetAllCountries();
             cbCountry.MaxDropDownItems = 7;
-
-            // Load all permissions into CheckedListBox
-            //_LoadPermissionsIntoCheckedListBox();
-
-            // Then Check the default ones
-            //_LoadDefaultUserPermissions();
 
             if (_selectedUserID == -1)
                 _Mode = clsUser.enMode.Create;
@@ -82,6 +76,9 @@ namespace BankSystemUI
             {
                 _User = new clsUser();
                 _User.Mode = _Mode;
+
+                chbChangePassword.Visible = false;
+
 
                 lblCornerNameAddEditUser.Text = "Apex Bank - Add New User";
                 lblTitleAddEditUser.Text = "Add New User";
@@ -98,19 +95,21 @@ namespace BankSystemUI
                 lblTitleAddEditUser.Location = new Point(490, 52);
 
                 _FillTheFieldsWithUserInfoFromDatabase();
+
+                chbChangePassword.Visible = true;
+                chbChangePassword.Checked = false;
+
+                if (chbChangePassword.Checked == true)
+                {
+                    txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = true;
+                }
+                else
+                {
+                    txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = false;
+                }
+
             }
         }
-
-
-        //private void _LoadPermissionsIntoCheckedListBox()
-        //{
-        //    clbPermissions.Items.Clear();
-
-        //    DataTable dt = clsPermission.ListAllPermissions();
-
-        //    foreach (DataRow row in dt.Rows)
-        //        clbPermissions.Items.Add(row["PermissionName"].ToString());
-        //}
 
 
         private void _FillTheFieldsWithUserInfoFromDatabase()
@@ -123,8 +122,18 @@ namespace BankSystemUI
             txtPhone.Text = _User.Phone;
             txtAddress.Text = _User.Address;
             txtUsername.Text = _User.Username;
-            txtPassword.Text = _User.Password;
-            txtConfirmPassword.Text = _User.Password;
+
+
+
+
+            txtPassword.Text = "";
+            txtConfirmPassword.Text = "";
+
+
+            
+
+
+
             dtpBirthdate.Text = _User.BirthDate.ToString();
             cbCountry.SelectedValue = _User.CountryID;
 
@@ -133,10 +142,7 @@ namespace BankSystemUI
             else if (_User.Gender.ToLower() == "female")
                 rbtnFemale.Checked = true;
 
-            //_CheckUserPermissions();
 
-            //if (_User.RoleID == clsRole.GetRoleIDByRoleName("Admin"))
-            //    cbRole.SelectedValue = _User.RoleID;
             if (_User.RoleID == clsRole.GetRoleIDByRoleName("Account Manager"))
                 cbRole.SelectedValue = _User.RoleID;
             else if (_User.RoleID == clsRole.GetRoleIDByRoleName("Finance Manager"))
@@ -159,59 +165,6 @@ namespace BankSystemUI
             errorProvider1.Clear();
         }
 
-        //private void _CheckUserPermissions()
-        //{
-
-        //    for (int i = 0; i < clbPermissions.Items.Count; i++)
-        //    {
-        //        string permName = clbPermissions.Items[i].ToString();
-        //        clbPermissions.SetItemChecked(i, _User.PermissionNames.Contains(permName));
-        //    }
-
-        //}
-
-        private void _LoadDefaultUserPermissions()
-        {
-
-            //var userPermissions = new List<string>
-            //    {
-            //    clsPermission.enPermissions.Client_AccessPage.ToString(),
-            //    clsPermission.enPermissions.Client_Create.ToString(),
-            //    clsPermission.enPermissions.Client_Edit.ToString(),
-            //    clsPermission.enPermissions.Client_Delete.ToString(),
-            //    clsPermission.enPermissions.Transaction_AccessPage.ToString(),
-            //    clsPermission.enPermissions.Transaction_Withdraw.ToString(),
-            //    clsPermission.enPermissions.Transaction_Deposit.ToString(),
-            //    clsPermission.enPermissions.Transaction_Transfer.ToString(),
-            //    clsPermission.enPermissions.Currency_AccessPage.ToString()
-            //    };
-
-            //for (int i = 0; i < clbPermissions.Items.Count; i++)
-            //{
-            //    if (userPermissions.Contains(clbPermissions.Items[i].ToString()))
-            //    {
-            //        clbPermissions.SetItemChecked(i, true);
-            //    }
-            //    else
-            //    {
-            //        clbPermissions.SetItemChecked(i, false);
-            //    }
-            //}
-
-        }
-
-
-        //private List<string> _GetSelectedPermissions()
-        //{
-        //    var permissions = new List<string>();
-
-        //    foreach (var item in clbPermissions.CheckedItems)
-        //        permissions.Add(item.ToString());
-
-        //    return permissions;
-        //}
-
-
         private void _FillTheUserWithTheValidatedInfo()
         {
             _User.UserID = _selectedUserID;
@@ -222,13 +175,29 @@ namespace BankSystemUI
             _User.Phone = txtPhone.Text;
             _User.CountryID = cbCountry.SelectedValue != null ? (int)cbCountry.SelectedValue : 0;
             _User.Username = txtUsername.Text;
-            _User.Password = txtPassword.Text;
+
+            //HASHING
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            if (_Mode == clsUser.enMode.Create)
+            {
+                _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
+            }
+            else if (_Mode == clsUser.enMode.Update && chbChangePassword.Checked)
+            {
+                _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
+            }
+            else
+            {
+                _User.Password = "";
+            }
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             if (rbtnMale.Checked == true)
                 _User.Gender = "Male";
             else _User.Gender = "Female";
 
-            //_User.PermissionNames = _GetSelectedPermissions();
 
 
             _User.RoleID = cbRole.SelectedValue != null ? (int)cbRole.SelectedValue : -1;
@@ -313,30 +282,30 @@ namespace BankSystemUI
             }
 
             // Password
-            if (txtPassword.Text.Length == 0)
+            if (_Mode == clsUser.enMode.Create || (_Mode == clsUser.enMode.Update && chbChangePassword.Visible == true && chbChangePassword.Checked == true))
             {
-                errorProvider1.SetError(txtPassword, "The password is required");
-                isValid = false;
-            }
-            else if (txtPassword.Text.Length < 8)
-            {
-                errorProvider1.SetError(txtPassword, "Password must be at least 8 characters");
-                isValid = false;
-            }
-            else if (txtConfirmPassword.Text != txtPassword.Text)
-            {
-                errorProvider1.SetError(txtConfirmPassword, "Passwords do not match!");
-                isValid = false;
-            }
 
-            //// Role
-            //if (cbRole.SelectedValue.ToString().ToLower() != "account manager" && clsRole.GetRoleNameByRoleID(_User.RoleID).ToString().ToLower() == "account manager")
-            //{
-            //    MessageBox.Show("You are an Account Manager, You can not change your role, Check your admin",
-            //        "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (txtPassword.Text.Length == 0)
+                {
+                    errorProvider1.SetError(txtPassword, "The password is required");
+                    isValid = false;
+                }
+                else if (txtPassword.Text.Length < 8)
+                {
+                    errorProvider1.SetError(txtPassword, "Password must be at least 8 characters");
+                    isValid = false;
+                }
+                else if (txtConfirmPassword.Text != txtPassword.Text)
+                {
+                    errorProvider1.SetError(txtConfirmPassword, "Passwords do not match!");
+                    isValid = false;
+                }
 
-            //    isValid = false;
-            //}
+
+
+
+            }
+            
 
             string currentUserRole = clsRole.GetRoleNameByRoleID(LoggedInUser.RoleID).ToLower();
 
@@ -345,26 +314,9 @@ namespace BankSystemUI
             bool IsAdmin = clsRole.IsRoleAdmin(LoggedInUser.RoleID);
 
 
-            //// Logic: If I am an Account Manager, and I am NOT an Admin, I cannot change my role.
-            //if (currentUserRole == "account manager" && selectedRoleName != "account manager" && !IsAdmin && _Mode == clsUser.enMode.Update && _User.UserID == LoggedInUser.UserID)
-            //{
-            //    //MessageBox.Show("As an Account Manager, you cannot change your own role. Only your admin can perform this action.",
-            //    //    "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            //    errorProvider1.SetError(cbRole, "As an Account Manager, you cannot change your own role. Only your admin can perform this action.");
-
-            //    isValid = false;
-
-            //    // Reset the selection to prevent the change
-            //    cbRole.Text = "Account Manager";
-            //}
-
-
-            if(clsRole.IsRoleAdmin(LoggedInUser.RoleID) && selectedRoleName != "admin" && _User.UserID == LoggedInUser.UserID && _Mode == clsUser.enMode.Update)
+            if (clsRole.IsRoleAdmin(LoggedInUser.RoleID) && selectedRoleName != "admin" && _User.UserID == LoggedInUser.UserID && _Mode == clsUser.enMode.Update)
             {
 
-                //MessageBox.Show("As an Admin, you cannot change your own role. Only a System Administrator can perform this action.",
-                //    "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 errorProvider1.SetError(cbRole, "As an Admin, you cannot change your own role. Only a System Administrator can perform this action.");
 
@@ -437,10 +389,6 @@ namespace BankSystemUI
 
             dtpBirthdate.Value = DateTime.Now;
             if (cbCountry.Items.Count > 0) cbCountry.SelectedIndex = 0;
-
-            //// Uncheck all permissions
-            //for (int i = 0; i < clbPermissions.Items.Count; i++)
-            //    clbPermissions.SetItemChecked(i, false);
 
             cbRole.SelectedIndex = 0;
 
@@ -603,29 +551,7 @@ namespace BankSystemUI
         private void cbRole_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            //if (cbRole.Text.ToLower() == "admin")
-            //{
-
-            //    for (int i = 0; i < clbPermissions.Items.Count; i++)
-            //    {
-            //        //string permName = clbPermissions.Items[i].ToString();
-            //        clbPermissions.SetItemChecked(i, true);
-            //    }
-
-            //}
-            //else if (cbRole.Text.ToLower() == "user")
-            //{
-
-
-            //    _LoadDefaultUserPermissions();
-
-            //    //for (int i = 0; i < clbPermissions.Items.Count; i++)
-            //    //{
-            //    //    //string permName = clbPermissions.Items[i].ToString();
-            //    //    clbPermissions.SetItemChecked(i, false);
-            //    //}
-
-            //}
+            //
 
         }
 
@@ -634,7 +560,6 @@ namespace BankSystemUI
             //
         }
 
-        //Dictionary<int, int> Perm = new Dictionary<int, int>();
         Dictionary<int, List<int>> Perm = new Dictionary<int, List<int>>()
     {
     { 0, new List<int> { 1, 2, 3 } },
@@ -642,50 +567,12 @@ namespace BankSystemUI
     { 8, new List<int> { 9, 10, 11 } }
     };
 
-        //private void _CheckAndUncheck(Dictionary<int, int> per)
-        //{
-
-
-        //    //
-
-
-        //}
 
         private void clbPermissions_ItemCheck(object sender, ItemCheckEventArgs e)
         {
 
-            //// Handle Master Unchecking (If Master is unchecked, uncheck all children)
-            //if (Perm.ContainsKey(e.Index) && e.NewValue == CheckState.Unchecked)
-            //{
-            //    // Use BeginInvoke to allow the current event to finish before force-unchecking children
-            //    this.BeginInvoke(new Action(() =>
-            //    {
-            //        foreach (int childIndex in Perm[e.Index])
-            //        {
-            //            clbPermissions.SetItemChecked(childIndex, false);
-            //        }
-            //    }));
-            //}
+           //
 
-            //// Handle Child Checking (If Child is checked, ensure Master is already checked)
-            //foreach (var group in Perm)
-            //{
-            //    int masterIndex = group.Key;
-            //    List<int> children = group.Value;
-
-            //    if (children.Contains(e.Index) && e.NewValue == CheckState.Checked)
-            //    {
-            //        // If the master is currently unchecked, stop the user
-            //        if (clbPermissions.GetItemCheckState(masterIndex) == CheckState.Unchecked)
-            //        {
-            //            e.NewValue = CheckState.Unchecked;
-            //            string masterName = clbPermissions.Items[masterIndex].ToString();
-            //            MessageBox.Show($"You must enable '{masterName}' before selecting this permission.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //            return;
-            //        }
-            //    }
-
-            //}
         }
 
         private void chbShowPassword_CheckedChanged(object sender, EventArgs e)
@@ -716,6 +603,20 @@ namespace BankSystemUI
         private void lblTitleAddEditUser_Click(object sender, EventArgs e)
         {
             //
+        }
+
+        private void chbChangePassword_CheckedChanged(object sender, EventArgs e)
+        {
+
+
+            if (chbChangePassword.Checked == true)
+                txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = true;
+            else
+            {
+                txtPassword.Text = txtConfirmPassword.Text = "";
+                txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = false;
+            }
+
         }
     }
 }
