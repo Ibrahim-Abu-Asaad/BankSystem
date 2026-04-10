@@ -197,8 +197,8 @@ RolePermissions  → Manages granular access control by mapping specific system 
 
 2. **Download the SQL Script:**
    Choose the script that matches your SQL Server version:
-   - **SQL Server 2019:** [Download Script](https://drive.google.com/file/d/1Kt3fT27UkkZdvpGVXqu4JMBx8GgY3uzs/view?usp=sharing)
-   - **SQL Server 2022:** [Download Script](https://drive.google.com/file/d/1eZpHbPVfiAl7cdFDCX6ost4yVz546WnL/view?usp=sharing)
+   - **SQL Server 2019:** [Download Script](https://drive.google.com/file/d/1lQHYK10YgP814DAwyLCgRYMKiDKUvGpo/view?usp=sharing)
+   - **SQL Server 2022:** [Download Script](https://drive.google.com/file/d/1wPSK55GORvMs4eA_JVznnjQwJ2v1tcRI/view?usp=sharing)
 
 3. **Prepare the Database:**
    - Open **SQL Server Management Studio (SSMS)** and connect to your instance.
