@@ -6,7 +6,28 @@
 
 ## 📸 Screenshots
 
+### 🔑 Authentication & Profile
+| Login Page | Registration Page | My Profile |
+| :---: | :---: | :---: |
+| ![Login](./screenshots/LoginPage.PNG) | ![Register](./screenshots/LoginsRegisterPage.PNG) | ![Profile](./screenshots/MyProfilePage.PNG) |
 
+### 👥 User & Client Management
+| Manage Users | Edit User | Roles & Permissions |
+| :---: | :---: | :---: |
+| ![Users](./screenshots/ManageUsersPage.PNG) | ![Edit](./screenshots/EditUserPage.PNG) | ![Roles](./screenshots/RolesAndPermissionsPage.PNG) |
+
+| Manage Clients | Add New Client |
+| :---: | :---: |
+| ![Clients](./screenshots/ManageClientsPage.PNG) | ![Add Client](./screenshots/AddNewClientPage.PNG) |
+
+### 💰 Banking Operations
+| Bank Interface | Currencies Rates | Transactions Register |
+| :---: | :---: | :---: |
+| ![Interface](./screenshots/BankInterfacePage.PNG) | ![Currencies](./screenshots/CurrenciesRatePage.PNG) | ![Transactions](./screenshots/TransactionsRegisterPage.PNG) |
+
+| Deposit | Withdraw | Transfer |
+| :---: | :---: | :---: |
+| ![Deposit](./screenshots/DepositePage.PNG) | ![Withdraw](./screenshots/WithdrawPage.PNG) | ![Transfer](./screenshots/TransferPage.PNG) |
 
 ---
 
