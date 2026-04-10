@@ -87,6 +87,8 @@
 
 The application handles client account management, monetary transactions (deposit, withdrawal, transfer), currency exchange rate tracking, and a full audit log of all system activity.
 
+The system implements secure authentication using industry-standard password hashing (BCrypt) and basic brute-force protection mechanisms.
+
 ---
 
 ## 🏛️ Architecture
@@ -201,7 +203,7 @@ RolePermissions  → Manages granular access control by mapping specific system 
 
 | Module | Description |
 |--------|-------------|
-| **Login** | Authenticates users, records login timestamp |
+| **Login** | Authenticates users using hashed passwords (BCrypt), tracks login attempts, and records login timestamps |
 | **Dashboard** | Role-aware home screen; shows only permitted navigation items |
 | **Manage Clients** | Full client CRUD with search, pagination, and photo management |
 | **Add / Edit Client** | Form with real-time validation, date picker, country dropdown |
@@ -218,8 +220,8 @@ RolePermissions  → Manages granular access control by mapping specific system 
 
 ## 🔐 Security
 
-- **Password hashing** — passwords are never stored in plain text
-- **PIN masking** — client PINs are hidden by default with an opt-in Show checkbox
+- **Password hashing (BCrypt)** — all user passwords are securely hashed using BCrypt before being stored in the database
+- **Login attempt protection** — limits login attempts and enforces a temporary lockout after repeated failures to mitigate brute-force attacks
 - **Session binding** — all actions are tied to the authenticated user's identity
 - **Permission enforcement** — every sensitive screen checks the user's permission before rendering
 - **Audit trail** — logins and all financial activity are permanently logged and cannot be deleted from the UI
