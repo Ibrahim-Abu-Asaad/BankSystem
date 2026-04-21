@@ -142,10 +142,9 @@ Exchange Rates   → Stores real-time currency conversion values used for calcul
 RolePermissions  → Manages granular access control by mapping specific system permissions to authorized user roles.
 ```
 
-**Key constraints enforced at the DB level:**
-- Unique Account Numbers per client
-- Unique Username per user
-- Non-nullable fields for critical financial data
+## 🧩 Database Relational Schema
+
+![Database Relational Schema](./screenshots/Database%20Relational%20Schema.PNG)
 
 ---
 
