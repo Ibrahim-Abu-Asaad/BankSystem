@@ -7,11 +7,10 @@
 ## 📸 Screenshots
 
 ### 🔑 Authentication & Profile
-| **Login & Registration** | **Identity & Security** |
-| :---: | :---: |
-| ![Login](./screenshots/LoginPage.PNG) | ![Profile](./screenshots/MyProfilePage.PNG) |
-| *Secure Gateway to Apex Bank* | *User Profile & Personal Info* |
-| ![Register](./screenshots/LoginsRegisterPage.PNG) | ![Change Password](./screenshots/ChangePasswordSmallPage.PNG) |
+| Login Page | Registration Page | My Profile & Password |
+| :---: | :---: | :---: |
+| ![Login](./screenshots/LoginPage.PNG) | ![Register](./screenshots/LoginsRegisterPage.PNG) | ![Profile](./screenshots/MyProfilePage.PNG) |
+| **Login Page** | **Registration Page** | **My Profile / Change Password** |
 
 ### 👥 User & Client Management
 | Manage Users | Edit User | Roles & Permissions |
