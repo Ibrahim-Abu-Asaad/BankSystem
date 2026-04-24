@@ -1,4 +1,5 @@
 ﻿using BankSystemBLL;
+using BankSystemUI.Auth;
 using Guna.UI2.WinForms;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
@@ -81,13 +82,13 @@ namespace BankSystemUI
             txtPhone.Text = _User.Phone;
             txtUsername.Text = _User.Username;
 
-            chbChangePassword.Visible = true;
-            chbChangePassword.Checked = false;
-            //chbChangePassword.Enabled = false;
+            //chbChangePassword.Visible = true;
+            //chbChangePassword.Checked = false;
+            ////chbChangePassword.Enabled = false;
 
-            txtPassword.Enabled = chbShowPassword.Enabled = false;
+            //txtPassword.Enabled = chbShowPassword.Enabled = false;
 
-            txtPassword.Text = "";
+            //txtPassword.Text = "";
 
 
 
@@ -116,8 +117,8 @@ namespace BankSystemUI
             cbCountry.DataSource = clsCountry.GetAllCountries();
             cbCountry.SelectedValue = _User.CountryID;
 
-            chbShowPassword.Checked = false;
-            txtPassword.UseSystemPasswordChar = true;
+            //chbShowPassword.Checked = false;
+            //txtPassword.UseSystemPasswordChar = true;
 
 
         }
@@ -126,8 +127,11 @@ namespace BankSystemUI
         {
             _FillInformation();
 
-            if (clsRole.IsRoleAdmin(_User.RoleID))
-                btnDeleteAccount.Visible = false;
+            //if (clsRole.IsRoleAdmin(_User.RoleID))
+            //    btnDeleteAccount.Visible = false;
+
+            btnDeleteAccount.Visible = false;
+
         }
 
         private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -242,24 +246,24 @@ namespace BankSystemUI
             //    isValid = false;
             //}
 
-            if (chbChangePassword.Visible == true && chbChangePassword.Checked == true)
-            {
+            //if (chbChangePassword.Visible == true && chbChangePassword.Checked == true)
+            //{
 
-                if (txtPassword.Text.Length == 0)
-                {
-                    errorProvider1.SetError(txtPassword, "The password is required");
-                    isValid = false;
-                }
-                else if (txtPassword.Text.Length < 8)
-                {
-                    errorProvider1.SetError(txtPassword, "Password must be at least 8 characters");
-                    isValid = false;
-                }
-
-
+            //    if (txtPassword.Text.Length == 0)
+            //    {
+            //        errorProvider1.SetError(txtPassword, "The password is required");
+            //        isValid = false;
+            //    }
+            //    else if (txtPassword.Text.Length < 8)
+            //    {
+            //        errorProvider1.SetError(txtPassword, "Password must be at least 8 characters");
+            //        isValid = false;
+            //    }
 
 
-            }
+
+
+            //}
 
 
 
@@ -295,14 +299,14 @@ namespace BankSystemUI
 
             //_User.Password = txtPassword.Text;
 
-            if (chbChangePassword.Visible && chbChangePassword.Checked)
-            {
-                _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
-            }
-            else
-            {
-                _User.Password = "";
-            }
+            //if (chbChangePassword.Visible && chbChangePassword.Checked)
+            //{
+            //    _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
+            //}
+            //else
+            //{
+            //    _User.Password = "";
+            //}
 
             //_User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
 
@@ -372,8 +376,8 @@ namespace BankSystemUI
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-            if (txtPassword.Text.Length > 0)
-                errorProvider1.SetError(txtPassword, "");
+            //if (txtPassword.Text.Length > 0)
+            //    errorProvider1.SetError(txtPassword, "");
         }
 
         private void llblRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -428,18 +432,18 @@ namespace BankSystemUI
         private void chbShowPassword_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (chbShowPassword.Checked == true)
-            {
+            //if (chbShowPassword.Checked == true)
+            //{
 
-                txtPassword.UseSystemPasswordChar = false;
+            //    txtPassword.UseSystemPasswordChar = false;
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-                txtPassword.UseSystemPasswordChar = true;
+            //    txtPassword.UseSystemPasswordChar = true;
 
-            }
+            //}
 
         }
 
@@ -473,13 +477,23 @@ namespace BankSystemUI
         private void chbChangePassword_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (chbChangePassword.Checked == true)
-                chbShowPassword.Enabled = txtPassword.Enabled = true;
-            else
-            {
-                txtPassword.Text = "";
-                txtPassword.Enabled = chbShowPassword.Enabled = false;
-            }
+            //if (chbChangePassword.Checked == true)
+            //    chbShowPassword.Enabled = txtPassword.Enabled = true;
+            //else
+            //{
+            //    txtPassword.Text = "";
+            //    txtPassword.Enabled = chbShowPassword.Enabled = false;
+            //}
+
+        }
+
+        private void llblChangePassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            frmChangePassword frm = new frmChangePassword(_UserID);
+            frm.ShowDialog();
+
+            _User = clsUser.GetUserByUserID(_UserID);
 
         }
 

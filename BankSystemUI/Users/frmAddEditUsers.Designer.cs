@@ -50,10 +50,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             lblCornerNameAddEditUser = new Label();
@@ -77,20 +77,20 @@
             label5 = new Label();
             label7 = new Label();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
-            label8 = new Label();
-            txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             label9 = new Label();
-            label10 = new Label();
-            txtConfirmPassword = new Guna.UI2.WinForms.Guna2TextBox();
             errorProvider1 = new ErrorProvider(components);
             llblRemove = new LinkLabel();
             cbRole = new Guna.UI2.WinForms.Guna2ComboBox();
             label13 = new Label();
             rbtnMale = new RadioButton();
             rbtnFemale = new RadioButton();
-            chbShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
             label11 = new Label();
-            chbChangePassword = new Guna.UI2.WinForms.Guna2CheckBox();
+            llblChangePassword = new LinkLabel();
+            txtConfirmPassword = new Guna.UI2.WinForms.Guna2TextBox();
+            lblConfirmPassword = new Label();
+            lblPassword = new Label();
+            txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
+            chbShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
             ((System.ComponentModel.ISupportInitialize)pbUserImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -433,39 +433,6 @@
             txtUsername.TabIndex = 22;
             txtUsername.TextChanged += txtUsername_TextChanged;
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(365, 604);
-            label8.Name = "label8";
-            label8.Size = new Size(90, 22);
-            label8.TabIndex = 25;
-            label8.Text = "Password";
-            // 
-            // txtPassword
-            // 
-            txtPassword.BorderRadius = 4;
-            txtPassword.CustomizableEdges = customizableEdges5;
-            txtPassword.DefaultText = "";
-            txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPassword.ForeColor = SystemColors.ControlText;
-            txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Location = new Point(456, 598);
-            txtPassword.Margin = new Padding(3, 4, 3, 4);
-            txtPassword.Name = "txtPassword";
-            txtPassword.PlaceholderText = "Enter Your Password";
-            txtPassword.SelectedText = "";
-            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            txtPassword.Size = new Size(201, 36);
-            txtPassword.TabIndex = 24;
-            txtPassword.TextChanged += txtPassword_TextChanged;
-            // 
             // label9
             // 
             label9.AutoSize = true;
@@ -477,39 +444,6 @@
             label9.TabIndex = 26;
             label9.Text = "Role";
             label9.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(700, 604);
-            label10.Name = "label10";
-            label10.Size = new Size(170, 22);
-            label10.TabIndex = 33;
-            label10.Text = "Confirm Password";
-            // 
-            // txtConfirmPassword
-            // 
-            txtConfirmPassword.BorderRadius = 4;
-            txtConfirmPassword.CustomizableEdges = customizableEdges3;
-            txtConfirmPassword.DefaultText = "";
-            txtConfirmPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtConfirmPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtConfirmPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtConfirmPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtConfirmPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtConfirmPassword.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtConfirmPassword.ForeColor = SystemColors.ControlText;
-            txtConfirmPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtConfirmPassword.Location = new Point(871, 598);
-            txtConfirmPassword.Margin = new Padding(3, 4, 3, 4);
-            txtConfirmPassword.Name = "txtConfirmPassword";
-            txtConfirmPassword.PlaceholderText = "Confirm Password";
-            txtConfirmPassword.SelectedText = "";
-            txtConfirmPassword.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtConfirmPassword.Size = new Size(201, 36);
-            txtConfirmPassword.TabIndex = 32;
-            txtConfirmPassword.TextChanged += txtConfirmPassword_TextChanged;
             // 
             // errorProvider1
             // 
@@ -532,7 +466,7 @@
             cbRole.BackColor = Color.Transparent;
             cbRole.BorderRadius = 4;
             cbRole.Cursor = Cursors.Hand;
-            cbRole.CustomizableEdges = customizableEdges1;
+            cbRole.CustomizableEdges = customizableEdges5;
             cbRole.DrawMode = DrawMode.OwnerDrawFixed;
             cbRole.DropDownStyle = ComboBoxStyle.DropDownList;
             cbRole.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -542,7 +476,7 @@
             cbRole.ItemHeight = 30;
             cbRole.Location = new Point(275, 727);
             cbRole.Name = "cbRole";
-            cbRole.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            cbRole.ShadowDecoration.CustomizableEdges = customizableEdges6;
             cbRole.Size = new Size(235, 36);
             cbRole.TabIndex = 36;
             cbRole.SelectedIndexChanged += cbRole_SelectedIndexChanged;
@@ -585,25 +519,6 @@
             rbtnFemale.UseVisualStyleBackColor = true;
             rbtnFemale.CheckedChanged += rbtnFemale_CheckedChanged;
             // 
-            // chbShowPassword
-            // 
-            chbShowPassword.AutoSize = true;
-            chbShowPassword.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            chbShowPassword.CheckedState.BorderRadius = 0;
-            chbShowPassword.CheckedState.BorderThickness = 0;
-            chbShowPassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            chbShowPassword.Cursor = Cursors.Hand;
-            chbShowPassword.Location = new Point(456, 641);
-            chbShowPassword.Name = "chbShowPassword";
-            chbShowPassword.Size = new Size(132, 24);
-            chbShowPassword.TabIndex = 42;
-            chbShowPassword.Text = "Show Password";
-            chbShowPassword.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            chbShowPassword.UncheckedState.BorderRadius = 0;
-            chbShowPassword.UncheckedState.BorderThickness = 0;
-            chbShowPassword.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            chbShowPassword.CheckedChanged += chbShowPassword_CheckedChanged;
-            // 
             // label11
             // 
             label11.AutoSize = true;
@@ -614,43 +529,121 @@
             label11.TabIndex = 43;
             label11.Text = "User Role";
             // 
-            // chbChangePassword
+            // llblChangePassword
             // 
-            chbChangePassword.AutoSize = true;
-            chbChangePassword.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            chbChangePassword.CheckedState.BorderRadius = 0;
-            chbChangePassword.CheckedState.BorderThickness = 0;
-            chbChangePassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            chbChangePassword.Cursor = Cursors.Hand;
-            chbChangePassword.Location = new Point(459, 567);
-            chbChangePassword.Name = "chbChangePassword";
-            chbChangePassword.Size = new Size(146, 24);
-            chbChangePassword.TabIndex = 44;
-            chbChangePassword.Text = "Change Password";
-            chbChangePassword.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            chbChangePassword.UncheckedState.BorderRadius = 0;
-            chbChangePassword.UncheckedState.BorderThickness = 0;
-            chbChangePassword.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            chbChangePassword.CheckedChanged += chbChangePassword_CheckedChanged;
+            llblChangePassword.AutoSize = true;
+            llblChangePassword.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            llblChangePassword.Location = new Point(21, 636);
+            llblChangePassword.Name = "llblChangePassword";
+            llblChangePassword.Size = new Size(124, 20);
+            llblChangePassword.TabIndex = 44;
+            llblChangePassword.TabStop = true;
+            llblChangePassword.Text = "Change Password";
+            llblChangePassword.LinkClicked += llblChangePassword_LinkClicked;
+            // 
+            // txtConfirmPassword
+            // 
+            txtConfirmPassword.BorderRadius = 4;
+            txtConfirmPassword.CustomizableEdges = customizableEdges1;
+            txtConfirmPassword.DefaultText = "";
+            txtConfirmPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtConfirmPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtConfirmPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtConfirmPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtConfirmPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtConfirmPassword.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtConfirmPassword.ForeColor = SystemColors.ControlText;
+            txtConfirmPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtConfirmPassword.Location = new Point(884, 598);
+            txtConfirmPassword.Margin = new Padding(3, 4, 3, 4);
+            txtConfirmPassword.Name = "txtConfirmPassword";
+            txtConfirmPassword.PlaceholderText = "Enter Your Phone";
+            txtConfirmPassword.SelectedText = "";
+            txtConfirmPassword.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtConfirmPassword.Size = new Size(210, 36);
+            txtConfirmPassword.TabIndex = 48;
+            txtConfirmPassword.TextChanged += txtConfirmPassword_TextChanged_1;
+            // 
+            // lblConfirmPassword
+            // 
+            lblConfirmPassword.AutoSize = true;
+            lblConfirmPassword.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblConfirmPassword.Location = new Point(711, 604);
+            lblConfirmPassword.Name = "lblConfirmPassword";
+            lblConfirmPassword.Size = new Size(170, 22);
+            lblConfirmPassword.TabIndex = 47;
+            lblConfirmPassword.Text = "Confirm Password";
+            // 
+            // lblPassword
+            // 
+            lblPassword.AutoSize = true;
+            lblPassword.Font = new Font("Cascadia Mono", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPassword.Location = new Point(368, 604);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(90, 22);
+            lblPassword.TabIndex = 46;
+            lblPassword.Text = "Password";
+            // 
+            // txtPassword
+            // 
+            txtPassword.BorderRadius = 4;
+            txtPassword.CustomizableEdges = customizableEdges3;
+            txtPassword.DefaultText = "";
+            txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPassword.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.ForeColor = SystemColors.ControlText;
+            txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPassword.Location = new Point(459, 598);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PlaceholderText = "Enter Your Email";
+            txtPassword.SelectedText = "";
+            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtPassword.Size = new Size(203, 36);
+            txtPassword.TabIndex = 45;
+            txtPassword.TextChanged += txtPassword_TextChanged_1;
+            // 
+            // chbShowPassword
+            // 
+            chbShowPassword.AutoSize = true;
+            chbShowPassword.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
+            chbShowPassword.CheckedState.BorderRadius = 0;
+            chbShowPassword.CheckedState.BorderThickness = 0;
+            chbShowPassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            chbShowPassword.Cursor = Cursors.Hand;
+            chbShowPassword.Location = new Point(459, 641);
+            chbShowPassword.Name = "chbShowPassword";
+            chbShowPassword.Size = new Size(132, 24);
+            chbShowPassword.TabIndex = 49;
+            chbShowPassword.Text = "Show Password";
+            chbShowPassword.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
+            chbShowPassword.UncheckedState.BorderRadius = 0;
+            chbShowPassword.UncheckedState.BorderThickness = 0;
+            chbShowPassword.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            chbShowPassword.CheckedChanged += chbShowPassword_CheckedChanged_1;
             // 
             // frmAddEditUsers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1137, 794);
-            Controls.Add(chbChangePassword);
-            Controls.Add(label11);
             Controls.Add(chbShowPassword);
+            Controls.Add(txtConfirmPassword);
+            Controls.Add(lblConfirmPassword);
+            Controls.Add(lblPassword);
+            Controls.Add(txtPassword);
+            Controls.Add(llblChangePassword);
+            Controls.Add(label11);
             Controls.Add(rbtnFemale);
             Controls.Add(rbtnMale);
             Controls.Add(label13);
             Controls.Add(cbRole);
             Controls.Add(llblRemove);
-            Controls.Add(label10);
-            Controls.Add(txtConfirmPassword);
             Controls.Add(label9);
-            Controls.Add(label8);
-            Controls.Add(txtPassword);
             Controls.Add(label7);
             Controls.Add(txtUsername);
             Controls.Add(label5);
@@ -707,22 +700,22 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPhone;
         private Label label4;
         private Guna.UI2.WinForms.Guna2ComboBox cbCountry;
-        private Label label8;
-        private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Label label7;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private Label label5;
         private Label label9;
-        private Label label10;
-        private Guna.UI2.WinForms.Guna2TextBox txtConfirmPassword;
         private ErrorProvider errorProvider1;
         private LinkLabel llblRemove;
         private Guna.UI2.WinForms.Guna2ComboBox cbRole;
         private RadioButton rbtnFemale;
         private RadioButton rbtnMale;
         private Label label13;
-        private Guna.UI2.WinForms.Guna2CheckBox chbShowPassword;
         private Label label11;
-        private Guna.UI2.WinForms.Guna2CheckBox chbChangePassword;
+        private LinkLabel llblChangePassword;
+        private Guna.UI2.WinForms.Guna2TextBox txtConfirmPassword;
+        private Label lblConfirmPassword;
+        private Label lblPassword;
+        private Guna.UI2.WinForms.Guna2TextBox txtPassword;
+        private Guna.UI2.WinForms.Guna2CheckBox chbShowPassword;
     }
 }

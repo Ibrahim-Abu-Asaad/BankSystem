@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Runtime.ConstrainedExecution;
 using System.Collections.Generic;
+using BankSystemUI.Auth;
 
 namespace BankSystemUI
 {
@@ -46,9 +47,9 @@ namespace BankSystemUI
         private void frmAddEditUsers_Load(object sender, EventArgs e)
         {
 
-            chbShowPassword.Checked = false;
-            txtPassword.UseSystemPasswordChar = true;
-            txtConfirmPassword.UseSystemPasswordChar = true;
+            //chbShowPassword.Checked = false;
+            //txtPassword.UseSystemPasswordChar = true;
+            //txtConfirmPassword.UseSystemPasswordChar = true;
 
             cbRole.DisplayMember = "Role";
             cbRole.ValueMember = "ID";
@@ -64,26 +65,80 @@ namespace BankSystemUI
             cbCountry.DataSource = clsCountry.GetAllCountries();
             cbCountry.MaxDropDownItems = 7;
 
+
+
+
+            //if (_selectedUserID == -1)
+            //    _Mode = clsUser.enMode.Create;
+            //else
+            //    _Mode = clsUser.enMode.Update;
+
+
+
+
+            //if (_Mode == clsUser.enMode.Create)
+            //{
+            //    _User = new clsUser();
+            //    _User.Mode = _Mode;
+
+            //    //chbChangePassword.Visible = false;
+
+
+            //    lblCornerNameAddEditUser.Text = "Apex Bank - Add New User";
+            //    lblTitleAddEditUser.Text = "Add New User";
+
+            //    rbtnMale.Checked = true;
+
+            //}
+            //else if (_Mode == clsUser.enMode.Update)
+            //{
+            //    _User.Mode = _Mode;
+
+            //    lblCornerNameAddEditUser.Text = "Apex Bank - Edit User";
+            //    lblTitleAddEditUser.Text = "Edit User";
+            //    lblTitleAddEditUser.Location = new Point(490, 52);
+
+            //    _FillTheFieldsWithUserInfoFromDatabase();
+
+            //    //chbChangePassword.Visible = true;
+            //    //chbChangePassword.Checked = false;
+
+            //    //if (chbChangePassword.Checked == true)
+            //    //{
+            //    //    txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = true;
+            //    //}
+            //    //else
+            //    //{
+            //    //    txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = false;
+            //    //}
+
+            //}
+
+
             if (_selectedUserID == -1)
                 _Mode = clsUser.enMode.Create;
             else
                 _Mode = clsUser.enMode.Update;
-
-
-
 
             if (_Mode == clsUser.enMode.Create)
             {
                 _User = new clsUser();
                 _User.Mode = _Mode;
 
-                chbChangePassword.Visible = false;
-
-
                 lblCornerNameAddEditUser.Text = "Apex Bank - Add New User";
                 lblTitleAddEditUser.Text = "Add New User";
-
                 rbtnMale.Checked = true;
+
+                txtPassword.Visible = true;
+                txtConfirmPassword.Visible = true;
+                lblPassword.Visible = true;
+                lblConfirmPassword.Visible = true;
+                llblChangePassword.Visible = false;
+
+                chbShowPassword.Visible = true;
+                chbShowPassword.Checked = false;
+                txtPassword.UseSystemPasswordChar = true;
+                txtConfirmPassword.UseSystemPasswordChar = true;
 
             }
             else if (_Mode == clsUser.enMode.Update)
@@ -96,19 +151,21 @@ namespace BankSystemUI
 
                 _FillTheFieldsWithUserInfoFromDatabase();
 
-                chbChangePassword.Visible = true;
-                chbChangePassword.Checked = false;
+                // --- PASSWORD LOGIC FOR UPDATE ---
+                // Hide textboxes (they use a separate form), show the link
+                txtPassword.Visible = false;
+                txtConfirmPassword.Visible = false;
+                lblPassword.Visible = false;
+                lblConfirmPassword.Visible = false;
+                llblChangePassword.Visible = true;
+                chbShowPassword.Visible = false;
 
-                if (chbChangePassword.Checked == true)
-                {
-                    txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = true;
-                }
-                else
-                {
-                    txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = false;
-                }
 
             }
+
+
+
+
         }
 
 
@@ -126,11 +183,11 @@ namespace BankSystemUI
 
 
 
-            txtPassword.Text = "";
-            txtConfirmPassword.Text = "";
+            //txtPassword.Text = "";
+            //txtConfirmPassword.Text = "";
 
 
-            
+
 
 
 
@@ -179,17 +236,23 @@ namespace BankSystemUI
             //HASHING
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            //if (_Mode == clsUser.enMode.Create)
+            //{
+            //    _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
+            //}
+            //else if (_Mode == clsUser.enMode.Update && chbChangePassword.Checked)
+            //{
+            //    _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
+            //}
+            //else
+            //{
+            //    _User.Password = "";
+            //}
+
             if (_Mode == clsUser.enMode.Create)
             {
+                // Only map password from textboxes during creation
                 _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
-            }
-            else if (_Mode == clsUser.enMode.Update && chbChangePassword.Checked)
-            {
-                _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
-            }
-            else
-            {
-                _User.Password = "";
             }
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,7 +295,7 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtEmail, "Invalid email address!");
                 isValid = false;
             }
-            if (clsUser.IsEmailExist(txtEmail.Text, _User.PersonID))
+            if (clsUser.IsEmailExist(txtEmail.Text, _User.PersonID) && _Mode == clsUser.enMode.Update)
             {
                 errorProvider1.SetError(txtEmail, "This email already exists, enter another one");
                 isValid = false;
@@ -249,10 +312,30 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtPhone, "Phone number length should be between 8 and 20 digits");
                 isValid = false;
             }
-            else if (clsUser.IsPhoneExist(txtPhone.Text, _User.PersonID))
+            else if (clsUser.IsPhoneExist(txtPhone.Text, _User.PersonID) && _Mode == clsUser.enMode.Update)
             {
                 errorProvider1.SetError(txtPhone, "This phone already exists, enter another one");
                 isValid = false;
+            }
+
+            // Password
+            if (_Mode == clsUser.enMode.Create)
+            {
+                if (string.IsNullOrWhiteSpace(txtPassword.Text))
+                {
+                    errorProvider1.SetError(txtPassword, "The password is required");
+                    isValid = false;
+                }
+                else if (txtPassword.Text.Length < 8)
+                {
+                    errorProvider1.SetError(txtPassword, "Password must be at least 8 characters");
+                    isValid = false;
+                }
+                else if (txtConfirmPassword.Text != txtPassword.Text)
+                {
+                    errorProvider1.SetError(txtConfirmPassword, "Passwords do not match!");
+                    isValid = false;
+                }
             }
 
             // Birthdate
@@ -275,37 +358,37 @@ namespace BankSystemUI
                 errorProvider1.SetError(txtUsername, "The username is required");
                 isValid = false;
             }
-            else if (clsUser.IsUsernameExist(txtUsername.Text, _User.UserID))
+            else if (clsUser.IsUsernameExist(txtUsername.Text, _User.UserID) && _Mode == clsUser.enMode.Update)
             {
                 errorProvider1.SetError(txtUsername, "This username already exists, enter another one");
                 isValid = false;
             }
 
-            // Password
-            if (_Mode == clsUser.enMode.Create || (_Mode == clsUser.enMode.Update && chbChangePassword.Visible == true && chbChangePassword.Checked == true))
-            {
+            //// Password
+            //if (_Mode == clsUser.enMode.Create || (_Mode == clsUser.enMode.Update && chbChangePassword.Visible == true && chbChangePassword.Checked == true))
+            //{
 
-                if (txtPassword.Text.Length == 0)
-                {
-                    errorProvider1.SetError(txtPassword, "The password is required");
-                    isValid = false;
-                }
-                else if (txtPassword.Text.Length < 8)
-                {
-                    errorProvider1.SetError(txtPassword, "Password must be at least 8 characters");
-                    isValid = false;
-                }
-                else if (txtConfirmPassword.Text != txtPassword.Text)
-                {
-                    errorProvider1.SetError(txtConfirmPassword, "Passwords do not match!");
-                    isValid = false;
-                }
-
-
+            //    if (txtPassword.Text.Length == 0)
+            //    {
+            //        errorProvider1.SetError(txtPassword, "The password is required");
+            //        isValid = false;
+            //    }
+            //    else if (txtPassword.Text.Length < 8)
+            //    {
+            //        errorProvider1.SetError(txtPassword, "Password must be at least 8 characters");
+            //        isValid = false;
+            //    }
+            //    else if (txtConfirmPassword.Text != txtPassword.Text)
+            //    {
+            //        errorProvider1.SetError(txtConfirmPassword, "Passwords do not match!");
+            //        isValid = false;
+            //    }
 
 
-            }
-            
+
+
+            //}
+
 
             string currentUserRole = clsRole.GetRoleNameByRoleID(LoggedInUser.RoleID).ToLower();
 
@@ -384,6 +467,10 @@ namespace BankSystemUI
             txtUsername.Text = "";
             txtPassword.Text = "";
             txtConfirmPassword.Text = "";
+
+            chbShowPassword.Checked = false;
+            txtPassword.UseSystemPasswordChar = true;
+            txtConfirmPassword.UseSystemPasswordChar = true;
 
             rbtnMale.Checked = true;
 
@@ -490,8 +577,8 @@ namespace BankSystemUI
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
 
-            if (txtPassword.Text.Length > 0)
-                errorProvider1.SetError(txtPassword, "");
+            //if (txtPassword.Text.Length > 0)
+            //    errorProvider1.SetError(txtPassword, "");
 
         }
 
@@ -499,8 +586,8 @@ namespace BankSystemUI
         private void txtConfirmPassword_TextChanged(object sender, EventArgs e)
         {
 
-            if (txtConfirmPassword.Text.Length > 0)
-                errorProvider1.SetError(txtConfirmPassword, "");
+            //if (txtConfirmPassword.Text.Length > 0)
+            //    errorProvider1.SetError(txtConfirmPassword, "");
 
         }
 
@@ -571,27 +658,27 @@ namespace BankSystemUI
         private void clbPermissions_ItemCheck(object sender, ItemCheckEventArgs e)
         {
 
-           //
+            //
 
         }
 
         private void chbShowPassword_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (chbShowPassword.Checked == true)
-            {
+            //if (chbShowPassword.Checked == true)
+            //{
 
-                txtPassword.UseSystemPasswordChar = false;
-                txtConfirmPassword.UseSystemPasswordChar = false;
+            //    txtPassword.UseSystemPasswordChar = false;
+            //    txtConfirmPassword.UseSystemPasswordChar = false;
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-                txtPassword.UseSystemPasswordChar = true;
-                txtConfirmPassword.UseSystemPasswordChar = true;
+            //    txtPassword.UseSystemPasswordChar = true;
+            //    txtConfirmPassword.UseSystemPasswordChar = true;
 
-            }
+            //}
 
         }
 
@@ -609,13 +696,47 @@ namespace BankSystemUI
         {
 
 
-            if (chbChangePassword.Checked == true)
-                txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = true;
-            else
-            {
-                txtPassword.Text = txtConfirmPassword.Text = "";
-                txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = false;
-            }
+            //if (chbChangePassword.Checked == true)
+            //    txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = true;
+            //else
+            //{
+            //    txtPassword.Text = txtConfirmPassword.Text = "";
+            //    txtPassword.Enabled = txtConfirmPassword.Enabled = chbShowPassword.Enabled = false;
+            //}
+
+        }
+
+        private void llblChangePassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            frmChangePassword frm = new frmChangePassword(_selectedUserID);
+            frm.ShowDialog();
+
+            _User = clsUser.GetUserByUserID(_selectedUserID);
+
+        }
+
+        private void chbShowPassword_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+            txtPassword.UseSystemPasswordChar = !chbShowPassword.Checked;
+            txtConfirmPassword.UseSystemPasswordChar = !chbShowPassword.Checked;
+
+        }
+
+        private void txtPassword_TextChanged_1(object sender, EventArgs e)
+        {
+
+            if (txtPassword.Text.Length > 0)
+                errorProvider1.SetError(txtPassword, "");
+
+        }
+
+        private void txtConfirmPassword_TextChanged_1(object sender, EventArgs e)
+        {
+
+            if (txtConfirmPassword.Text.Length > 0)
+                errorProvider1.SetError(txtConfirmPassword, "");
 
         }
     }
