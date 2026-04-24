@@ -7,10 +7,13 @@
 ## 📸 Screenshots
 
 ### 🔑 Authentication & Profile
-| Login Page | Registration Page | My Profile & Password |
-| :---: | :---: | :---: |
-| ![Login](./screenshots/LoginPage.PNG) | ![Register](./screenshots/LoginsRegisterPage.PNG) | ![Profile](./screenshots/MyProfilePage.PNG) |
-| **Login Page** | **Registration Page** | **My Profile / Change Password** |
+| Login Page | Registration Page |
+| :---: | :---: |
+| ![Login](./screenshots/LoginPage.PNG) | ![Register](./screenshots/LoginsRegisterPage.PNG) |
+
+| My Profile | Change Password |
+| :---: | :---: |
+| ![Profile](./screenshots/MyProfilePage.PNG) | ![Change Password](./screenshots/ChangePasswordSmallPage.PNG) |
 
 ### 👥 User & Client Management
 | Manage Users | Edit User | Roles & Permissions |
