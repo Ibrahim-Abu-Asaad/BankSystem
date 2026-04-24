@@ -255,6 +255,15 @@ namespace BankSystemUI
                 _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
             }
 
+            //if (_Mode == clsUser.enMode.Create)
+            //{
+            //    _User.Password = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
+            //}
+            //else
+            //{
+            //
+            //}
+
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             if (rbtnMale.Checked == true)
@@ -709,10 +718,20 @@ namespace BankSystemUI
         private void llblChangePassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
+            //frmChangePassword frm = new frmChangePassword(_selectedUserID);
+            //frm.ShowDialog();
+
+            //_User = clsUser.GetUserByUserID(_selectedUserID);
+
             frmChangePassword frm = new frmChangePassword(_selectedUserID);
             frm.ShowDialog();
 
-            _User = clsUser.GetUserByUserID(_selectedUserID);
+            clsUser updatedTemp = clsUser.GetUserByUserID(_selectedUserID);
+            if (updatedTemp != null)
+            {
+                _User.Password = updatedTemp.Password;
+            }
+
 
         }
 
