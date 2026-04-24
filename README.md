@@ -9,7 +9,8 @@
 ### 🔑 Authentication & Profile
 | Login Page | Registration Page | My Profile |
 | :---: | :---: | :---: |
-| ![Login](./screenshots/LoginPage.PNG) | ![Register](./screenshots/LoginsRegisterPage.PNG) | ![Profile](./screenshots/MyProfilePage.PNG) | ![Change Password](./screenshots/ChangePasswordSmallPage.PNG) |
+| ![Login](./screenshots/LoginPage.PNG) | ![Register](./screenshots/LoginsRegisterPage.PNG) | ![Profile](./screenshots/MyProfilePage.PNG) |
+![Change Password](./screenshots/ChangePasswordSmallPage.PNG) |
 
 ### 👥 User & Client Management
 | Manage Users | Edit User | Roles & Permissions |
