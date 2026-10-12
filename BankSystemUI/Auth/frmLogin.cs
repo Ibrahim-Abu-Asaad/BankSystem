@@ -71,7 +71,7 @@ namespace BankSystemUI
             string storedHashPassword = _User.Password;
 
             bool IsCorrect = BCrypt.Net.BCrypt.Verify(enteredPasswordFromLogin, storedHashPassword);
-
+            //bool IsCorrect = Password == _User.Password;
             if (!IsCorrect)
             {
                 FailedLogedIn++;
